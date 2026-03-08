@@ -497,6 +497,16 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
       </div>
     </div>
 
+    <div style="text-align:center;margin-bottom:4px">
+      <button class="btn btn-ghost" style="font-size:9px;padding:6px 14px" onclick="spShowDevices()">
+        📱 SELECIONAR DISPOSITIVO
+      </button>
+    </div>
+    <div id="sp-devices" style="display:none;background:var(--bg2);border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden">
+      <div style="padding:10px 14px;font-size:9px;font-weight:700;color:var(--txt3);letter-spacing:.1em;border-bottom:1px solid var(--line)">DISPOSITIVOS DISPONÍVEIS</div>
+      <div id="sp-devices-list"><div style="padding:14px;font-size:10px;color:var(--txt3);text-align:center">Carregando...</div></div>
+    </div>
+
     <div class="sp-pomo-sync">
       <div>
         <div style="font-size:11px;color:var(--txt);font-weight:500">Sincronizar com Pomodoro</div>
@@ -1063,6 +1073,7 @@ let spPomoSync = true
 let spCurrentMs = 0
 let spDurationMs = 0
 let spVol = 70
+let spDeviceId = null
 
 // PKCE helpers
 function spRandStr(len){ const a='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~'; return Array.from(crypto.getRandomValues(new Uint8Array(len))).map(b=>a[b%a.length]).join('') }
@@ -1108,13 +1119,21 @@ function spFmt(ms){ if(!ms) return '0:00'; const s=Math.floor(ms/1000); return `
 
 async function spGetState(){
   const d = await spFetch('/me/player')
-  if(!d||!d.item) return
+  if(!d||!d.item) {
+    // Tenta pegar dispositivos disponíveis
+    const devs = await spFetch('/me/player/devices')
+    if(devs?.devices?.length){
+      spDeviceId = devs.devices.find(d=>d.is_active)?.id || devs.devices[0].id
+    }
+    return
+  }
   spPlaying = d.is_playing
   spShuffleOn = d.shuffle_state
   spRepeatMode = d.repeat_state
   spCurrentMs = d.progress_ms||0
   spDurationMs = d.item.duration_ms||1
   spVol = d.device?.volume_percent??70
+  spDeviceId = d.device?.id || spDeviceId
 
   const img = d.item.album?.images?.[0]?.url
   document.getElementById('sp-cover-wrap').innerHTML = img
@@ -1163,39 +1182,76 @@ async function spGetQueue(){
   `).join('')
 }
 
+async function spShowDevices(){
+  const el = document.getElementById('sp-devices')
+  if(el.style.display !== 'none'){ el.style.display='none'; return }
+  el.style.display = 'block'
+  const d = await spFetch('/me/player/devices')
+  const list = document.getElementById('sp-devices-list')
+  if(!d?.devices?.length){
+    list.innerHTML='<div style="padding:14px;font-size:10px;color:var(--txt3);text-align:center">Nenhum dispositivo encontrado.<br>Abra o Spotify em algum aparelho!</div>'
+    return
+  }
+  list.innerHTML = d.devices.map(dev=>`
+    <div onclick="spSelectDevice('${dev.id}')" style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid var(--line);cursor:pointer;${dev.id===spDeviceId?'background:#1db95415;':''}">
+      <div style="font-size:18px">${dev.type==='Smartphone'?'📱':dev.type==='Computer'?'💻':dev.type==='Tablet'?'📱':'🔊'}</div>
+      <div style="flex:1">
+        <div style="font-size:11px;color:${dev.id===spDeviceId?'#1db954':'var(--txt)'};font-weight:500">${dev.name}</div>
+        <div style="font-size:9px;color:var(--txt3);margin-top:2px">${dev.type}${dev.is_active?' · Ativo':''}</div>
+      </div>
+      ${dev.id===spDeviceId?'<div style="font-size:9px;color:#1db954;font-weight:700">✓</div>':''}
+    </div>
+  `).join('')
+}
+
+async function spSelectDevice(id){
+  spDeviceId = id
+  await spFetch('/me/player','PUT',{device_ids:[id],play:spPlaying})
+  document.getElementById('sp-devices').style.display='none'
+  toast('Dispositivo selecionado!')
+  setTimeout(spGetState, 1000)
+}
+
 async function spPlayPause(){
   if(spPlaying){
-    await spFetch('/me/player/pause','PUT')
+    await spFetch('/me/player/pause'+(spDeviceId?`?device_id=${spDeviceId}`:''),'PUT')
     spPlaying=false
     document.getElementById('sp-play-icon').innerHTML='<polygon points="5 3 19 12 5 21 5 3"/>'
     clearInterval(spProgInterval)
   } else {
-    await spFetch('/me/player/play','PUT')
+    // Tenta transferir para o dispositivo se necessário
+    if(spDeviceId){
+      await spFetch('/me/player','PUT',{device_ids:[spDeviceId],play:true})
+    } else {
+      await spFetch('/me/player/play','PUT')
+    }
     spPlaying=true
     document.getElementById('sp-play-icon').innerHTML='<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>'
     spStartProg()
+    setTimeout(spGetState, 800)
   }
 }
 
-async function spNext(){ await spFetch('/me/player/next','POST'); setTimeout(spGetState,600) }
-async function spPrev(){ await spFetch('/me/player/previous','POST'); setTimeout(spGetState,600) }
+async function spNext(){ await spFetch('/me/player/next'+(spDeviceId?`?device_id=${spDeviceId}`:''),'POST'); setTimeout(spGetState,800) }
+async function spPrev(){ await spFetch('/me/player/previous'+(spDeviceId?`?device_id=${spDeviceId}`:''),'POST'); setTimeout(spGetState,800) }
 
 async function spShuffle(){
   spShuffleOn=!spShuffleOn
-  await spFetch(`/me/player/shuffle?state=${spShuffleOn}`,'PUT')
+  await spFetch(`/me/player/shuffle?state=${spShuffleOn}`+(spDeviceId?`&device_id=${spDeviceId}`:''),'PUT')
   document.getElementById('btn-shuffle').classList.toggle('active',spShuffleOn)
 }
 
 async function spRepeat(){
   const modes=['off','context','track']
   spRepeatMode=modes[(modes.indexOf(spRepeatMode)+1)%3]
-  await spFetch(`/me/player/repeat?state=${spRepeatMode}`,'PUT')
+  await spFetch(`/me/player/repeat?state=${spRepeatMode}`+(spDeviceId?`&device_id=${spDeviceId}`:''),'PUT')
   document.getElementById('btn-repeat').classList.toggle('active',spRepeatMode!=='off')
 }
 
 async function spPlayTrack(uri){
-  await spFetch('/me/player/play','PUT',{uris:[uri]})
-  setTimeout(spGetState,600)
+  const body = spDeviceId ? {device_id:spDeviceId, uris:[uri]} : {uris:[uri]}
+  await spFetch('/me/player/play','PUT', body)
+  setTimeout(spGetState,800)
 }
 
 async function spSeek(e){
