@@ -1052,7 +1052,7 @@ const SP_SCOPES     = [
   'streaming',
   'user-read-email',
   'user-read-private',
-].join('%20')
+].join(' ')
 
 let spToken = null
 let spPlaying = false
@@ -1064,9 +1064,24 @@ let spCurrentMs = 0
 let spDurationMs = 0
 let spVol = 70
 
-function spLogin(){
-  const url = `https://accounts.spotify.com/authorize?client_id=${SP_CLIENT_ID}&response_type=token&redirect_uri=${encodeURIComponent(SP_REDIRECT)}&scope=${SP_SCOPES}&show_dialog=false`
-  window.location.href = url
+// PKCE helpers
+function spRandStr(len){ const a='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~'; return Array.from(crypto.getRandomValues(new Uint8Array(len))).map(b=>a[b%a.length]).join('') }
+async function spSha256(plain){ const e=new TextEncoder(); const d=await crypto.subtle.digest('SHA-256',e.encode(plain)); return d }
+function spBase64url(buf){ return btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'') }
+
+async function spLogin(){
+  const verifier = spRandStr(64)
+  const challenge = spBase64url(await spSha256(verifier))
+  try{ localStorage.setItem('sp_verifier', verifier) }catch(e){}
+  const params = new URLSearchParams({
+    client_id: SP_CLIENT_ID,
+    response_type: 'code',
+    redirect_uri: SP_REDIRECT,
+    scope: SP_SCOPES,
+    code_challenge_method: 'S256',
+    code_challenge: challenge,
+  })
+  window.location.href = 'https://accounts.spotify.com/authorize?' + params.toString()
 }
 
 function spLogout(){
@@ -1207,28 +1222,77 @@ function spStartProg(){
   },1000)
 }
 
-// Callback do Spotify — pega token da URL
-function spCheckCallback(){
-  const hash=window.location.hash
-  if(hash&&hash.includes('access_token')){
-    const p=new URLSearchParams(hash.slice(1))
-    const token=p.get('access_token')
-    const exp=parseInt(p.get('expires_in')||'3600')
-    if(token){
-      spToken=token
-      try{ localStorage.setItem('sp_token',token); localStorage.setItem('sp_expiry',Date.now()+exp*1000) }catch(e){}
-      history.replaceState(null,'',window.location.pathname)
+// Callback do Spotify — troca code por token (PKCE)
+async function spCheckCallback(){
+  const params = new URLSearchParams(window.location.search)
+  const code = params.get('code')
+  if(!code) return
+
+  let verifier = ''
+  try{ verifier = localStorage.getItem('sp_verifier')||'' }catch(e){}
+  if(!verifier) return
+
+  // Limpa a URL
+  history.replaceState(null,'',window.location.pathname)
+
+  try{
+    const r = await fetch('https://accounts.spotify.com/api/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        client_id: SP_CLIENT_ID,
+        grant_type: 'authorization_code',
+        code,
+        redirect_uri: SP_REDIRECT,
+        code_verifier: verifier,
+      })
+    })
+    const d = await r.json()
+    if(d.access_token){
+      spToken = d.access_token
+      try{
+        localStorage.setItem('sp_token', d.access_token)
+        localStorage.setItem('sp_expiry', Date.now() + (d.expires_in||3600)*1000)
+        if(d.refresh_token) localStorage.setItem('sp_refresh', d.refresh_token)
+        localStorage.removeItem('sp_verifier')
+      }catch(e){}
       spInitPlayer()
+    } else {
+      toast('Erro ao conectar Spotify. Tente novamente.')
     }
-  }
+  } catch(e){ toast('Erro de conexão com Spotify.') }
 }
 
 // Token salvo no localStorage
-function spCheckSaved(){
+async function spCheckSaved(){
   try{
-    const token=localStorage.getItem('sp_token')
-    const expiry=parseInt(localStorage.getItem('sp_expiry')||'0')
-    if(token&&Date.now()<expiry){ spToken=token; spInitPlayer() }
+    const token = localStorage.getItem('sp_token')
+    const expiry = parseInt(localStorage.getItem('sp_expiry')||'0')
+    const refresh = localStorage.getItem('sp_refresh')
+
+    if(token && Date.now() < expiry - 60000){
+      spToken = token
+      spInitPlayer()
+    } else if(refresh){
+      // Tenta renovar o token
+      const r = await fetch('https://accounts.spotify.com/api/token',{
+        method:'POST',
+        headers:{'Content-Type':'application/x-www-form-urlencoded'},
+        body: new URLSearchParams({
+          grant_type:'refresh_token',
+          refresh_token: refresh,
+          client_id: SP_CLIENT_ID,
+        })
+      })
+      const d = await r.json()
+      if(d.access_token){
+        spToken = d.access_token
+        localStorage.setItem('sp_token', d.access_token)
+        localStorage.setItem('sp_expiry', Date.now()+(d.expires_in||3600)*1000)
+        if(d.refresh_token) localStorage.setItem('sp_refresh', d.refresh_token)
+        spInitPlayer()
+      }
+    }
   }catch(e){}
 }
 
