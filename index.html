@@ -187,11 +187,9 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
 .sp-btn.main svg{width:28px;height:28px}
 .sp-btn.active{color:#1db954}
 
-.sp-volume{display:flex;align-items:center;gap:8px;width:100%}
-.sp-vol-icon{color:var(--txt3)}
-.sp-vol-icon svg{width:14px;height:14px;fill:currentColor}
-.sp-vol-bar{flex:1;height:3px;background:var(--line);border-radius:2px;cursor:pointer;position:relative}
-.sp-vol-fill{height:100%;background:var(--txt2);border-radius:2px;pointer-events:none}
+.sp-volume{display:flex;align-items:center;gap:8px;width:100%;padding:0 2px}
+.sp-vol-bar{flex:1;height:4px;background:var(--line);border-radius:2px;cursor:pointer;position:relative}
+.sp-vol-fill{height:100%;background:#1db954;border-radius:2px;pointer-events:none;transition:width .2s}
 
 .sp-queue{background:var(--bg1);border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .sp-queue-header{padding:12px 14px;font-size:9px;font-weight:700;color:var(--txt3);letter-spacing:.1em;border-bottom:1px solid var(--line)}
@@ -472,28 +470,55 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
         </div>
       </div>
       <div class="sp-controls">
+        <!-- Shuffle -->
         <button class="sp-btn" id="btn-shuffle" onclick="spShuffle()" title="Aleatório">
-          <svg viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/>
+            <polyline points="21 16 21 21 16 21"/><line x1="4" y1="4" x2="9" y2="9"/>
+          </svg>
         </button>
-        <button class="sp-btn" onclick="spPrev()">
-          <svg viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
+        <!-- Anterior -->
+        <button class="sp-btn" onclick="spPrev()" title="Anterior">
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="19 20 9 12 19 4 19 20"/><rect x="5" y="4" width="3" height="16" rx="1"/></svg>
         </button>
+        <!-- Play/Pause -->
         <button class="sp-btn main" id="btn-play" onclick="spPlayPause()">
-          <svg id="sp-play-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <svg id="sp-play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
         </button>
-        <button class="sp-btn" onclick="spNext()">
-          <svg viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+        <!-- Próxima -->
+        <button class="sp-btn" onclick="spNext()" title="Próxima">
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 4 15 12 5 20 5 4"/><rect x="16" y="4" width="3" height="16" rx="1"/></svg>
         </button>
+        <!-- Repeat -->
         <button class="sp-btn" id="btn-repeat" onclick="spRepeat()" title="Repetir">
-          <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+          <svg id="sp-repeat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/>
+            <polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/>
+          </svg>
         </button>
       </div>
+
+      <!-- Volume com botões - e + -->
       <div class="sp-volume">
-        <div class="sp-vol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/></svg></div>
-        <div class="sp-vol-bar" id="sp-vol-bar" onclick="spVolume(event)">
+        <button class="sp-btn" style="padding:4px" onclick="spVolStep(-10)" title="Diminuir">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/>
+            <line x1="23" y1="9" x2="17" y2="15"/>
+            <line x1="17" y1="9" x2="23" y2="15"/>
+          </svg>
+        </button>
+        <div class="sp-vol-bar" id="sp-vol-bar" onclick="spVolumeClick(event)">
           <div class="sp-vol-fill" id="sp-vol-fill" style="width:70%"></div>
+          <div id="sp-vol-thumb" style="position:absolute;top:50%;right:calc(30% - 6px);transform:translateY(-50%);width:12px;height:12px;border-radius:50%;background:#fff;pointer-events:none;transition:right .1s"></div>
         </div>
-        <div class="sp-vol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 010 7.07"/><path d="M19.07 4.93a10 10 0 010 14.14"/></svg></div>
+        <div id="sp-vol-pct" style="font-size:9px;color:var(--txt3);min-width:28px;text-align:center">70%</div>
+        <button class="sp-btn" style="padding:4px" onclick="spVolStep(10)" title="Aumentar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/>
+            <path d="M15.54 8.46a5 5 0 010 7.07"/>
+            <path d="M19.07 4.93a10 10 0 010 14.14"/>
+          </svg>
+        </button>
       </div>
     </div>
 
@@ -1134,6 +1159,7 @@ async function spGetState(){
   spDurationMs = d.item.duration_ms||1
   spVol = d.device?.volume_percent??70
   spDeviceId = d.device?.id || spDeviceId
+  spUpdateVolUI(spVol)
 
   const img = d.item.album?.images?.[0]?.url
   document.getElementById('sp-cover-wrap').innerHTML = img
@@ -1144,7 +1170,6 @@ async function spGetState(){
   document.getElementById('sp-track-artist').textContent = d.item.artists?.map(a=>a.name).join(', ')||'—'
   document.getElementById('sp-track-album').textContent = d.item.album?.name||''
   document.getElementById('sp-time-tot').textContent = spFmt(spDurationMs)
-  document.getElementById('sp-vol-fill').style.width = spVol+'%'
 
   const icon = document.getElementById('sp-play-icon')
   icon.innerHTML = spPlaying
@@ -1258,16 +1283,31 @@ async function spSeek(e){
   const bar=document.getElementById('sp-prog-bar')
   const pct=e.offsetX/bar.offsetWidth
   const ms=Math.floor(pct*spDurationMs)
-  await spFetch(`/me/player/seek?position_ms=${ms}`,'PUT')
+  await spFetch(`/me/player/seek?position_ms=${ms}`+(spDeviceId?`&device_id=${spDeviceId}`:''),'PUT')
   spCurrentMs=ms; spUpdateProg()
 }
 
-async function spVolume(e){
+function spUpdateVolUI(pct){
+  document.getElementById('sp-vol-fill').style.width = pct+'%'
+  document.getElementById('sp-vol-pct').textContent = pct+'%'
+  const thumb = document.getElementById('sp-vol-thumb')
+  if(thumb) thumb.style.right = `calc(${100-pct}% - 6px)`
+}
+
+async function spVolumeClick(e){
   const bar=document.getElementById('sp-vol-bar')
-  const pct=Math.round(e.offsetX/bar.offsetWidth*100)
+  const rect=bar.getBoundingClientRect()
+  const pct=Math.round(Math.max(0,Math.min(1,(e.clientX-rect.left)/rect.width))*100)
   spVol=pct
-  document.getElementById('sp-vol-fill').style.width=pct+'%'
-  await spFetch(`/me/player/volume?volume_percent=${pct}`,'PUT')
+  spUpdateVolUI(pct)
+  await spFetch(`/me/player/volume?volume_percent=${pct}`+(spDeviceId?`&device_id=${spDeviceId}`:''),'PUT')
+}
+
+async function spVolStep(delta){
+  spVol = Math.max(0, Math.min(100, spVol + delta))
+  spUpdateVolUI(spVol)
+  await spFetch(`/me/player/volume?volume_percent=${spVol}`+(spDeviceId?`&device_id=${spDeviceId}`:''),'PUT')
+  toast(delta > 0 ? `🔊 Volume: ${spVol}%` : `🔉 Volume: ${spVol}%`)
 }
 
 function spStartProg(){
