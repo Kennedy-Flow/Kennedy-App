@@ -153,7 +153,76 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
 .top-body ul{padding-left:14px;margin-top:4px}
 .top-body li{margin-bottom:3px}
 
-/* ── SPOTIFY PLAYER ──────────────────────── */
+/* ── MODO PROVA ──────────────────────────── */
+.prova-hero{background:linear-gradient(135deg,#2a1020,var(--bg1));border:1px solid #6a2040;border-radius:14px;padding:15px;margin-bottom:8px}
+.prova-urgente{background:linear-gradient(135deg,#2a1008,var(--bg1));border:1px solid #8a4010}
+.prova-ok{background:linear-gradient(135deg,#0a1a20,var(--bg1));border:1px solid #104060}
+.prova-tag{font-size:8px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:20px;display:inline-block;margin-bottom:8px}
+.prova-tag.red{background:#f06e7c22;color:#f06e7c;border:1px solid #f06e7c44}
+.prova-tag.yellow{background:#f0a04e22;color:#f0a04e;border:1px solid #f0a04e44}
+.prova-tag.green{background:#3ecfa422;color:#3ecfa4;border:1px solid #3ecfa444}
+.prova-nome{font-family:var(--sans);font-size:16px;font-weight:800;margin-bottom:4px}
+.prova-data{font-size:10px;color:var(--txt2);margin-bottom:10px}
+.prova-countdown{display:flex;align-items:baseline;gap:6px;margin-bottom:10px}
+.prova-dias{font-family:var(--sans);font-size:42px;font-weight:800;line-height:1}
+.prova-dias-label{font-size:10px;color:var(--txt2)}
+.prova-plano{background:var(--bg2);border-radius:8px;padding:10px 12px}
+.prova-plano-title{font-size:8px;font-weight:700;color:var(--txt3);letter-spacing:.1em;margin-bottom:6px}
+.prova-dica{font-size:10px;color:var(--txt2);line-height:1.6;margin-bottom:4px;padding-left:10px;border-left:2px solid var(--acc5)}
+
+.aval-card{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:6px;display:flex;align-items:center;gap:12px}
+.aval-data-box{background:var(--bg);border-radius:8px;padding:6px 10px;text-align:center;min-width:44px;flex-shrink:0}
+.aval-dia{font-family:var(--sans);font-size:18px;font-weight:800;line-height:1}
+.aval-mes{font-size:8px;color:var(--txt3);letter-spacing:.06em;margin-top:1px}
+.aval-info{flex:1}
+.aval-materia{font-size:12px;font-weight:600;color:var(--txt)}
+.aval-tipo{font-size:9px;color:var(--txt3);margin-top:2px}
+.aval-dias-badge{font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px;flex-shrink:0}
+
+/* ── CONTEÚDO EXTRA ──────────────────────── */
+.extra-section{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px}
+.extra-label{font-size:8px;color:var(--txt3);letter-spacing:.1em;font-weight:700;margin-bottom:6px}
+.top-card.extra{opacity:.7;border-style:dashed}
+.top-card.extra .top-nome::after{content:' · EXTRA';font-size:7px;color:var(--acc4);margin-left:4px}
+
+/* NAV badge prova */
+.nav-badge{position:absolute;top:4px;right:8px;background:var(--acc5);color:#fff;font-size:7px;font-weight:700;border-radius:10px;padding:1px 5px;line-height:1.4}
+/* ── MÓDULO IA ───────────────────────────── */
+.ia-btn{width:100%;background:linear-gradient(135deg,#6a3de8,#4eaaf0);border:none;border-radius:12px;padding:14px;color:#fff;font-family:var(--mono);font-size:11px;font-weight:700;cursor:pointer;letter-spacing:.05em;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;margin-bottom:8px}
+.ia-btn:active{transform:scale(.97);opacity:.9}
+.ia-btn svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2;flex-shrink:0}
+.ia-upload-area{border:2px dashed var(--acc);border-radius:12px;padding:24px 16px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:8px;background:#7c6ef808}
+.ia-upload-area:active{background:#7c6ef820}
+.ia-upload-area svg{width:32px;height:32px;stroke:var(--acc);fill:none;stroke-width:1.5;margin-bottom:8px;display:block;margin:0 auto 8px}
+.ia-upload-txt{font-size:11px;color:var(--acc);font-weight:600}
+.ia-upload-sub{font-size:9px;color:var(--txt3);margin-top:4px}
+.ia-preview{width:100%;border-radius:10px;margin-bottom:8px;display:none}
+.ia-loading{display:none;flex-direction:column;align-items:center;gap:10px;padding:24px;text-align:center}
+.ia-loading.show{display:flex}
+.ia-spinner{width:36px;height:36px;border:3px solid var(--line);border-top-color:var(--acc);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ia-loading-txt{font-size:11px;color:var(--txt2)}
+.ia-result{background:var(--bg2);border:1px solid var(--acc);border-radius:12px;padding:14px;margin-bottom:8px;display:none}
+.ia-result.show{display:block}
+.ia-result-title{font-size:9px;font-weight:700;color:var(--acc);letter-spacing:.1em;margin-bottom:10px}
+.ia-result-body{font-size:11px;color:var(--txt);line-height:1.7}
+.ia-result-body b{color:var(--acc2)}
+.ia-result-body ul{padding-left:14px;margin:6px 0}
+.ia-result-body li{margin-bottom:3px}
+.ia-chat{background:var(--bg1);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:8px}
+.ia-chat-msgs{max-height:280px;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.ia-msg{max-width:85%;border-radius:10px;padding:9px 12px;font-size:10.5px;line-height:1.6}
+.ia-msg.user{align-self:flex-end;background:var(--acc);color:#fff;border-bottom-right-radius:3px}
+.ia-msg.ai{align-self:flex-start;background:var(--bg2);color:var(--txt);border-bottom-left-radius:3px}
+.ia-msg.ai b{color:var(--acc2)}
+.ia-chat-input{display:flex;border-top:1px solid var(--line)}
+.ia-chat-input input{flex:1;background:none;border:none;padding:11px 14px;color:var(--txt);font-family:var(--mono);font-size:11px;outline:none}
+.ia-chat-input input::placeholder{color:var(--txt3)}
+.ia-chat-send{background:var(--acc);border:none;padding:11px 14px;cursor:pointer;color:#fff;font-family:var(--mono);font-size:10px;font-weight:700;transition:opacity .15s}
+.ia-chat-send:active{opacity:.7}
+.ia-chat-send:disabled{opacity:.4;cursor:not-allowed}
+
+/* ── SPOTIFY ─────────────────────────────── */
 .sp-login{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;text-align:center;gap:16px}
 .sp-login-icon{width:64px;height:64px;background:#1db954;border-radius:50%;display:flex;align-items:center;justify-content:center}
 .sp-login-icon svg{width:34px;height:34px;fill:#fff}
@@ -233,58 +302,211 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
 
 /* ── DESKTOP LAYOUT ──────────────────────────── */
 @media (min-width: 768px){
-  body{ display:flex; justify-content:center; background:var(--bg); }
-
-  /* Wrapper centralizado tipo card */
-  .app-shell{
-    width:100%; max-width:420px;
+  /* ── BODY & SHELL ── */
+  body{
+    display:grid;
+    grid-template-columns:220px 1fr;
     min-height:100vh;
-    position:relative;
     background:var(--bg);
-    box-shadow: 0 0 60px rgba(124,110,248,.12);
+    background-image:
+      radial-gradient(ellipse at 20% 20%, #7c6ef811 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, #4eaaf008 0%, transparent 60%);
   }
 
-  /* Sidebar de navegação no desktop */
+  .app-shell{
+    grid-column:1/-1;
+    display:grid;
+    grid-template-columns:220px 1fr;
+    min-height:100vh;
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    position:relative;
+  }
+
+  /* ── SIDEBAR NAV ── */
   nav{
-    position:fixed; bottom:auto; top:0; left:50%;
-    transform:translateX(calc(-50% + 210px + 12px));
-    width:180px; height:100vh;
-    flex-direction:column; justify-content:flex-start;
-    border-top:none; border-left:1px solid var(--line);
-    padding:80px 0 20px;
+    position:fixed;
+    top:0; left:0;
+    width:220px; height:100vh;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:stretch;
+    border-top:none;
+    border-right:1px solid var(--line);
+    padding:0;
     background:var(--bg1);
-    border-radius:0;
+    gap:0;
+    z-index:200;
+    overflow:hidden;
   }
+
+  /* Logo no topo da sidebar */
+  nav::before{
+    content:'KENNEDY';
+    display:block;
+    font-family:'Syne',sans-serif;
+    font-weight:800;
+    font-size:16px;
+    color:var(--acc);
+    padding:28px 22px 8px;
+    letter-spacing:.08em;
+    border-bottom:1px solid var(--line);
+    margin-bottom:8px;
+  }
+
   nav button{
-    flex:none; width:100%;
-    flex-direction:row; justify-content:flex-start;
-    padding:13px 20px; gap:12px;
-    font-size:10px; border-radius:0;
+    flex:none;
+    width:100%;
+    flex-direction:row;
+    justify-content:flex-start;
+    padding:13px 22px;
+    gap:12px;
+    font-size:10px;
+    letter-spacing:.06em;
+    border-radius:0;
+    color:var(--txt2);
+    border-left:3px solid transparent;
+    transition:all .15s;
   }
-  nav button svg{width:18px;height:18px;flex-shrink:0}
+  nav button:hover{ background:var(--bg2); color:var(--txt) }
+  nav button svg{ width:17px; height:17px; flex-shrink:0 }
   nav button.active{
-    background:#1e1c2e;
+    background:#7c6ef812;
     border-left:3px solid var(--acc);
     color:var(--acc);
   }
+  nav button.active svg{ filter:drop-shadow(0 0 4px var(--acc)) }
+  nav button.active::after{
+    content:'';
+    display:none;
+  }
 
-  /* Topbar fica dentro do app-shell */
+  /* Versão no rodapé da sidebar */
+  nav::after{
+    content:'3º ANO · ENEM 2026';
+    display:block;
+    font-size:8px;
+    color:var(--txt3);
+    letter-spacing:.1em;
+    padding:16px 22px;
+    margin-top:auto;
+    border-top:1px solid var(--line);
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+  }
+
+  /* ── TOPBAR ── */
   .topbar{
-    left:50%; transform:translateX(-50%);
-    width:420px;
+    position:fixed;
+    top:0;
+    left:220px;
+    right:0;
+    width:auto;
+    transform:none;
+    padding:14px 32px;
+    background:var(--bg);
+    border-bottom:1px solid var(--line);
+    z-index:100;
   }
+  .topbar-title{ font-size:17px }
 
-  /* Pages ajustam padding pro sidebar à direita */
+  /* ── CONTENT AREA ── */
   .page{
-    padding-bottom:30px;
+    margin-left:220px;
+    padding:72px 32px 40px;
+    min-height:100vh;
+    max-width:none;
   }
 
-  /* Banner install no desktop fica no topo */
-  .install-bar{
-    bottom:auto; top:70px;
-    left:50%; transform:translateX(-50%);
-    width:420px; left:50%;
+  /* 2 colunas nas páginas que fazem sentido */
+  #page-hoje .today-card{ max-width:640px }
+  #page-hoje #lista-hoje{ max-width:640px }
+
+  #page-pomo .card{
+    max-width:420px;
+    margin:0 auto 16px;
   }
+  #page-pomo .pomo-steps{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    max-width:640px;
+  }
+
+  #page-conteudo{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:0 24px;
+    align-items:start;
+  }
+  #page-conteudo .sec-header:first-child{ grid-column:1/-1 }
+  #page-conteudo #c-pills{
+    grid-column:1;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    position:sticky;
+    top:72px;
+  }
+  #page-conteudo .cpill{
+    width:100%;
+    text-align:left;
+    border-radius:8px;
+    padding:9px 12px;
+    font-size:10px;
+  }
+  #page-conteudo #c-prog,
+  #page-conteudo .sec-header:not(:first-child),
+  #page-conteudo #c-lista{
+    grid-column:2;
+  }
+
+  /* Provas em 2 colunas */
+  #page-provas .ia-chat{ max-width:640px }
+  #page-provas #prova-destaque{ max-width:640px }
+
+  /* Música centralizado */
+  #page-musica .sp-now{ max-width:420px; margin:0 auto }
+  #page-musica .sp-player{ max-width:640px; margin:0 auto }
+
+  /* Semana — tabela mais larga */
+  #page-semana .dia-scroll{ max-width:640px }
+  #page-semana #lista-semana{ max-width:640px }
+
+  /* Cards mais largos no desktop */
+  .card{ border-radius:14px }
+
+  /* Topbar badge relógio */
+  .badge{ font-size:13px; padding:5px 14px }
+
+  /* Banner install adaptado */
+  .install-bar{
+    bottom:auto;
+    top:auto;
+    bottom:24px;
+    left:232px;
+    right:24px;
+    width:auto;
+    transform:none;
+    border-radius:12px;
+  }
+
+  /* Scrollbar bonita no desktop */
+  ::-webkit-scrollbar{ width:5px; height:5px }
+  ::-webkit-scrollbar-track{ background:transparent }
+  ::-webkit-scrollbar-thumb{ background:var(--line); border-radius:3px }
+  ::-webkit-scrollbar-thumb:hover{ background:var(--txt3) }
+}
+
+/* Telas maiores — sidebar mais larga */
+@media (min-width:1100px){
+  nav{ width:240px }
+  .topbar{ left:240px }
+  .page{ margin-left:240px; padding:72px 48px 40px }
+  .install-bar{ left:252px }
 }
 </style>
 </head>
@@ -343,15 +565,15 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
 <!-- PAGE FOCO -->
 <div id="page-pomo" class="page">
   <div class="card" style="text-align:center;padding:20px 16px">
-    <div class="pomo-wrap">
-      <svg width="180" height="180" viewBox="0 0 180 180">
-        <circle cx="90" cy="90" r="80" fill="none" stroke="var(--line)" stroke-width="6"/>
-        <circle id="timer-circle-fg" cx="90" cy="90" r="80" fill="none" stroke="var(--acc)" stroke-width="6" stroke-linecap="round" stroke-dasharray="502" stroke-dashoffset="0" transform="rotate(-90 90 90)"/>
-        <text x="90" y="82" text-anchor="middle" font-family="Syne,sans-serif" font-size="44" font-weight="800" fill="var(--txt)" id="svg-timer">25:00</text>
-        <text x="90" y="108" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="var(--txt2)" id="svg-label">FOCO</text>
+    <div class="pomo-wrap" style="display:flex;justify-content:center;align-items:center;flex-direction:column">
+      <svg width="200" height="200" viewBox="0 0 200 200" style="display:block;margin:0 auto">
+        <circle cx="100" cy="100" r="88" fill="none" stroke="var(--line)" stroke-width="7"/>
+        <circle id="timer-circle-fg" cx="100" cy="100" r="88" fill="none" stroke="var(--acc)" stroke-width="7" stroke-linecap="round" stroke-dasharray="553" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
+        <text x="100" y="92" text-anchor="middle" dominant-baseline="middle" font-family="Syne,sans-serif" font-size="48" font-weight="800" fill="var(--txt)" id="svg-timer">25:00</text>
+        <text x="100" y="122" text-anchor="middle" dominant-baseline="middle" font-family="JetBrains Mono,monospace" font-size="12" fill="var(--txt2)" id="svg-label">FOCO</text>
       </svg>
     </div>
-    <div style="display:flex;justify-content:center;gap:8px" id="pomo-dots"></div>
+    <div style="display:flex;justify-content:center;gap:8px;margin-top:8px" id="pomo-dots"></div>
     <div style="margin-top:6px;font-size:9px;color:var(--txt3)" id="pomo-session">Sessão 1 de 4</div>
     <div class="pomo-btns">
       <button class="btn btn-ghost" onclick="resetPomo()">RESET</button>
@@ -431,6 +653,84 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
     <div class="toggle-row" style="border-bottom:none">
       <div><div class="toggle-lbl">Resetar checklist</div><div class="toggle-sub">Limpa os itens de hoje manualmente</div></div>
       <button class="btn btn-ghost" style="font-size:9px;padding:6px 12px" onclick="resetChecklist()">RESETAR</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE PROVAS -->
+<div id="page-provas" class="page">
+
+  <!-- Destaque próxima prova -->
+  <div id="prova-destaque"></div>
+
+  <!-- MÓDULO IA -->
+  <div class="sec-header">ASSISTENTE IA</div>
+
+  <!-- Upload foto -->
+  <div id="ia-upload-wrap">
+    <div class="ia-upload-area" onclick="document.getElementById('ia-file').click()">
+      <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      <div class="ia-upload-txt">📷 Foto do calendário de provas</div>
+      <div class="ia-upload-sub">Tire foto da folha da escola e a IA extrai tudo</div>
+    </div>
+    <input type="file" id="ia-file" accept="image/*" capture="environment" style="display:none" onchange="iaAnalisarFoto(event)">
+    <img id="ia-preview" class="ia-preview" alt="preview">
+  </div>
+
+  <!-- Loading -->
+  <div class="ia-loading" id="ia-loading">
+    <div class="ia-spinner"></div>
+    <div class="ia-loading-txt" id="ia-loading-txt">Analisando imagem...</div>
+  </div>
+
+  <!-- Resultado análise foto -->
+  <div class="ia-result" id="ia-result">
+    <div class="ia-result-title">✦ ANÁLISE DA IA</div>
+    <div class="ia-result-body" id="ia-result-body"></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-primary" style="flex:1;font-size:9px" onclick="iaSalvarProvas()">SALVAR PROVAS DETECTADAS</button>
+      <button class="btn btn-ghost" style="font-size:9px;padding:8px 12px" onclick="iaLimpar()">LIMPAR</button>
+    </div>
+  </div>
+
+  <!-- Chat IA -->
+  <div class="sec-header">CHAT COM A IA</div>
+  <div class="ia-chat">
+    <div class="ia-chat-msgs" id="ia-chat-msgs">
+      <div class="ia-msg ai">Oi Kennedy! 👋 Sou seu assistente de estudos.<br><br>Posso te ajudar com:<br>• Dúvidas de qualquer matéria<br>• Plano de estudos personalizado<br>• Dicas para TDAH e autismo<br>• Estratégias para as provas<br><br>Me manda sua dúvida!</div>
+    </div>
+    <div class="ia-chat-input">
+      <input type="text" id="ia-chat-in" placeholder="Digite sua dúvida..." onkeydown="if(event.key==='Enter')iaChatEnviar()">
+      <button class="ia-chat-send" id="ia-chat-send" onclick="iaChatEnviar()">ENVIAR</button>
+    </div>
+  </div>
+
+  <!-- Calendário de avaliações -->
+  <div class="sec-header">CALENDÁRIO DE AVALIAÇÕES</div>
+  <div id="aval-lista"></div>
+  <div class="sec-header">ADICIONAR AVALIAÇÃO</div>
+  <div class="card" style="padding:14px">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div>
+        <div style="font-size:9px;color:var(--txt3);margin-bottom:4px;letter-spacing:.06em">MATÉRIA</div>
+        <input id="nova-materia" type="text" placeholder="Ex: Matemática, Física..." style="width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:9px 12px;color:var(--txt);font-family:var(--mono);font-size:11px;outline:none">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div>
+          <div style="font-size:9px;color:var(--txt3);margin-bottom:4px;letter-spacing:.06em">DATA</div>
+          <input id="nova-data" type="date" style="width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:9px 12px;color:var(--txt);font-family:var(--mono);font-size:11px;outline:none">
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--txt3);margin-bottom:4px;letter-spacing:.06em">TIPO</div>
+          <select id="nova-tipo" style="width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:9px 12px;color:var(--txt);font-family:var(--mono);font-size:11px;outline:none">
+            <option value="Parcial">Parcial</option>
+            <option value="Bimestral">Bimestral</option>
+            <option value="Recuperação">Recuperação</option>
+            <option value="Trabalho">Trabalho</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="addAval()" style="width:100%">ADICIONAR</button>
     </div>
   </div>
 </div>
@@ -566,8 +866,12 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
     <svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M9 2h6"/><line x1="12" y1="5" x2="12" y2="9"/></svg>
     FOCO
   </button>
-  <button onclick="showPage('conteudo',this)">
+  <button onclick="showPage('provas',this)" id="nav-provas" style="position:relative">
     <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+    PROVAS
+  </button>
+  <button onclick="showPage('conteudo',this)">
+    <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
     CONTEÚDO
   </button>
   <button onclick="showPage('musica',this)">
@@ -698,6 +1002,7 @@ const PAGE_TITLES={
   hoje:['Hoje','KENNEDY · 3º ANO'],
   semana:['Semana','CRONOGRAMA COMPLETO'],
   pomo:['Foco','POMODORO TIMER'],
+  provas:['Provas','MODO PROVA · AVALIAÇÕES'],
   mat:['Matérias','DISTRIBUIÇÃO SEMANAL'],
   conteudo:['Conteúdo','TÓPICOS E RESUMOS'],
   musica:['Música','SPOTIFY PLAYER'],
@@ -851,7 +1156,7 @@ ABREVS.forEach(ab=>{
 // ═══════════════════════════════════════════
 // POMODORO
 // ═══════════════════════════════════════════
-const POMO_FOCO=25*60,POMO_BREAK=5*60,POMO_LONG=20*60,CIRC=502
+const POMO_FOCO=25*60,POMO_BREAK=5*60,POMO_LONG=20*60,CIRC=553
 let pomoRunning=false,pomoTime=POMO_FOCO,pomoTotal=POMO_FOCO
 let pomoTimer=null,pomoSession=1,pomoFase='foco',somOn=true
 
@@ -887,7 +1192,7 @@ function togglePomo(){
         clearInterval(pomoTimer);pomoRunning=false;beep()
         if(pomoFase==='foco'){
           if(pomoSession<4){pomoFase='pausa';pomoTime=POMO_BREAK;pomoTotal=POMO_BREAK;toast('Bloco concluído! 5 min de pausa.')}
-          else{pomoFase='longa';pomoTime=POMO_LONG;pomoTotal=POMO_LONG;toast('4 blocos! Pausa longa de 20 min.')}
+          else{pomoFase='longa';pomoTime=POMO_LONG;pomoTotal=POMO_LONG;toast('4 blocos! Pausa longa de 20 min. 🍅');iaPomoCheck()}
         } else {
           if(pomoSession>=4)pomoSession=0
           pomoSession++;pomoFase='foco';pomoTime=POMO_FOCO;pomoTotal=POMO_FOCO;toast('Pausa encerrada. Hora de focar!')
@@ -919,73 +1224,90 @@ function beep(){
 updatePomoDisplay()
 
 // ═══════════════════════════════════════════
-// CONTEÚDO DAS MATÉRIAS
+// CONTEÚDO REAL 3º ANO
 // ═══════════════════════════════════════════
 const CONTEUDO={
   'Portugues':{label:'Português',cor:'#4eaaf0',tops:[
-    {id:'p1',n:'Interpretação de Texto',r:'<b>O que cai no ENEM:</b> Tema central, inferências, linguagem e recursos expressivos.<br><br><ul><li>Linguagem denotativa x conotativa</li><li>Intertextualidade e ironia</li><li>Figuras de linguagem: metáfora, metonímia, hipérbole</li></ul>'},
-    {id:'p2',n:'Redação ENEM',r:'<b>Estrutura:</b> Introdução (tese) → 2 parágrafos de desenvolvimento → Conclusão.<br><br><b>Proposta de intervenção precisa ter:</b><ul><li>Agente · Ação · Meio · Efeito · Detalhamento</li></ul>'},
-    {id:'p3',n:'Gramática e Ortografia',r:'<b>Foco:</b> Concordância, regência, crase, pontuação e pronomes.<br><br><ul><li>Concordância verbal e nominal</li><li>Regência: assistir, visar, aspirar, obedecer</li><li>Crase: regras e exceções</li></ul>'},
-    {id:'p4',n:'Literatura Brasileira',r:'<b>Períodos cobrados:</b><ul><li>Romantismo: Alencar, Álvares de Azevedo</li><li>Realismo: Machado de Assis</li><li>Modernismo: Drummond, Clarice Lispector</li></ul>'},
-    {id:'p5',n:'Variação Linguística',r:'A língua varia por região, classe social e situação.<br><br><ul><li>Variação regional (dialetos)</li><li>Registro formal x informal</li><li>ENEM: não existe "erro" na fala, só inadequação ao contexto</li></ul>'},
+    {id:'p1',n:'Interpretação e Argumentação',r:'<b>O que cai:</b> Identificar tese, argumentos e conclusão em textos dissertativos.<br><br><ul><li>Tipos de argumento: autoridade, exemplificação, dado estatístico</li><li>Operadores argumentativos: portanto, contudo, embora, visto que</li><li>Intertextualidade e paráfrase</li></ul>'},
+    {id:'p2',n:'Redação — Estrutura e Proposta',r:'<b>Estrutura obrigatória:</b><br>Introdução (tese) → Desenvolvimento 1 → Desenvolvimento 2 → Conclusão<br><br><b>Proposta de intervenção (5 elementos):</b><ul><li>Agente · Ação · Meio/modo · Efeito · Detalhamento</li></ul><b>Nota máxima:</b> respeitar direitos humanos + agente concreto + detalhamento real'},
+    {id:'p3',n:'Variação Linguística e Sociolinguística',r:'<b>Conceitos:</b><ul><li>Variedade padrão x não padrão</li><li>Variação regional, social, histórica e situacional</li><li>Preconceito linguístico: o que é e como o ENEM cobra</li><li>Adequação ao contexto: formal x informal</li></ul>'},
+    {id:'p4',n:'Figuras de Linguagem e Recursos Expressivos',r:'<ul><li>Metáfora, metonímia, hipérbole, eufemismo, ironia</li><li>Antítese, paradoxo, gradação, anáfora</li><li>Polissemia e denotação x conotação</li><li>Intertextualidade e paródia</li></ul>'},
+    {id:'p5',n:'Literatura — Modernismo e Contemporâneo',r:'<b>Modernismo (1922–1945):</b><ul><li>1ª fase: Oswald de Andrade, Mário de Andrade</li><li>2ª fase: Drummond, Graciliano Ramos, Rachel de Queiroz</li><li>3ª fase: João Guimarães Rosa, Clarice Lispector</li></ul><b>Contemporâneo:</b> fragmentação, hibridismo de gêneros'},
+  ],extra:[
+    {id:'p6',n:'Gramática — Concordância e Regência',r:'<ul><li>Concordância verbal com sujeito composto e invertido</li><li>Regência: assistir, visar, aspirar, obedecer, preferir</li><li>Crase: regras essenciais e exceções</li></ul>',extra:true},
+    {id:'p7',n:'Gêneros Textuais',r:'Carta argumentativa, artigo de opinião, editorial, crônica.<br>Cada gênero tem linguagem e estrutura próprias.',extra:true},
   ]},
   'Matematica':{label:'Matemática',cor:'#7c6ef8',tops:[
-    {id:'m1',n:'Funções',r:'<b>Tipos:</b> 1º grau, 2º grau, exponencial, logarítmica, modular.<br><br><ul><li>Domínio, contradomínio e imagem</li><li>Gráficos e interpretação visual</li><li>Máximo e mínimo da quadrática</li></ul>'},
-    {id:'m2',n:'Geometria',r:'<b>Plana:</b> Áreas, Pitágoras, semelhança, trigonometria.<br><b>Espacial:</b> Volume de prismas, pirâmides, cilindro, cone, esfera.'},
-    {id:'m3',n:'Estatística e Probabilidade',r:'Média, mediana, moda, gráficos · Espaço amostral, eventos.<br><br><ul><li>Permutação, combinação e arranjo</li></ul>'},
-    {id:'m4',n:'PA e PG',r:'<b>PA:</b> Razão constante · <b>PG:</b> Quociente constante.<br><br><ul><li>Juros simples (PA) e compostos (PG)</li></ul>'},
-    {id:'m5',n:'Matemática Financeira',r:'<b>Simples:</b> M = C(1+it) · <b>Compostos:</b> M = C(1+i)^t<br><br><ul><li>Porcentagem e variação percentual</li><li>Financiamento e parcelas — cai muito!</li></ul>'},
-    {id:'m6',n:'Trigonometria',r:'Seno, cosseno, tangente · Valores notáveis: 30°, 45°, 60°.<br><br><ul><li>Lei dos senos e cossenos</li></ul>'},
+    {id:'m1',n:'Funções — 1º e 2º Grau',r:'<b>1º grau:</b> f(x) = ax + b → gráfico é reta<br><b>2º grau:</b> f(x) = ax² + bx + c<br><br><ul><li>Vértice: x = -b/2a · y = -Δ/4a</li><li>Δ = b² - 4ac → raízes e análise do gráfico</li><li>Aplicações: lucro, custo, trajetória</li></ul>'},
+    {id:'m2',n:'Funções Exponencial e Logarítmica',r:'<b>Exponencial:</b> f(x) = aˣ — crescimento e decrescimento<br><b>Logarítmica:</b> logₐx = y ↔ aʸ = x<br><br><ul><li>Propriedades dos logaritmos</li><li>Aplicações: juros compostos, pH, escala Richter</li></ul>'},
+    {id:'m3',n:'Geometria Plana',r:'<ul><li>Áreas: triângulo, quadriláteros, círculo</li><li>Teorema de Pitágoras e relações métricas</li><li>Semelhança de triângulos</li><li>Trigonometria: seno, cosseno, tangente — valores notáveis</li></ul>'},
+    {id:'m4',n:'Geometria Espacial',r:'<ul><li>Prismas e pirâmides: volume e área lateral</li><li>Cilindro: V = πr²h · Cone: V = πr²h/3</li><li>Esfera: V = 4πr³/3</li><li>Planificação e embalagens — cai muito!</li></ul>'},
+    {id:'m5',n:'Matemática Financeira e Estatística',r:'<b>Financeira:</b> Juros simples M=C(1+it) · Compostos M=C(1+i)ⁿ<br><b>Estatística:</b> média, mediana, moda, desvio<br><b>Probabilidade:</b> P(A) = casos favoráveis / total'},
+  ],extra:[
+    {id:'m6',n:'PA, PG e Combinatória',r:'PA: razão constante · PG: quociente constante<br>Permutação, arranjo e combinação simples',extra:true},
+    {id:'m7',n:'Trigonometria — Lei dos Senos e Cossenos',r:'Lei dos senos: a/senA = b/senB<br>Lei dos cossenos: a² = b² + c² - 2bc·cosA',extra:true},
   ]},
   'Fisica':{label:'Física',cor:'#f0a04e',tops:[
-    {id:'f1',n:'Cinemática',r:'MRU e MRUV: posição, velocidade, aceleração.<br><br><ul><li>S = S₀ + vt · V = V₀ + at</li><li>Queda livre e lançamento oblíquo</li></ul>'},
-    {id:'f2',n:'Leis de Newton',r:'<b>1ª:</b> Inércia · <b>2ª:</b> F = m.a · <b>3ª:</b> Ação e reação.<br><br><ul><li>Peso, normal, tensão, atrito · Plano inclinado</li></ul>'},
-    {id:'f3',n:'Energia e Trabalho',r:'W = F.d.cosθ · Ec = mv²/2 · Ep = mgh<br><br><ul><li>Conservação de energia · Potência e rendimento</li></ul>'},
-    {id:'f4',n:'Eletricidade',r:'V = R.i · P = V.i<br><br><ul><li>Circuitos série e paralelo</li><li>Efeito Joule e chuveiro elétrico</li></ul>'},
-    {id:'f5',n:'Ondas e Óptica',r:'v = λ.f · Reflexão, refração, lentes.<br><br><ul><li>Equação de Gauss · Espectro eletromagnético</li></ul>'},
-    {id:'f6',n:'Termodinâmica',r:'Calorimetria, escalas de temperatura, leis da termodinâmica.<br><br><ul><li>Transformações gasosas · Máquinas térmicas</li></ul>'},
+    {id:'f1',n:'Mecânica — Cinemática',r:'<b>MRU:</b> S = S₀ + vt<br><b>MRUV:</b> V = V₀ + at · S = S₀ + V₀t + at²/2<br><br><ul><li>Queda livre: a = g = 10 m/s²</li><li>Lançamento horizontal e oblíquo</li><li>Gráficos posição-tempo e velocidade-tempo</li></ul>'},
+    {id:'f2',n:'Leis de Newton e Dinâmica',r:'<b>1ª:</b> Inércia · <b>2ª:</b> F = m·a · <b>3ª:</b> Ação e reação<br><br><ul><li>Peso P = mg · Normal · Tensão · Atrito f = μN</li><li>Plano inclinado · Força centrípeta</li></ul>'},
+    {id:'f3',n:'Energia e Termodinâmica',r:'<b>Trabalho:</b> W = F·d·cosθ<br><b>Energia:</b> Ec = mv²/2 · Ep = mgh<br><b>Termodinâmica:</b> 1ª lei: ΔU = Q - W<br><ul><li>Máquinas térmicas e rendimento</li><li>Escalas de temperatura</li></ul>'},
+    {id:'f4',n:'Eletricidade',r:'<b>Lei de Ohm:</b> V = R·i<br><b>Potência:</b> P = V·i = R·i²<br><ul><li>Circuitos série e paralelo</li><li>Efeito Joule · Chuveiro elétrico (cai muito!)</li><li>Campo elétrico e força de Coulomb</li></ul>'},
+    {id:'f5',n:'Ondas, Óptica e Física Moderna',r:'<b>Ondas:</b> v = λ·f<br><b>Óptica:</b> reflexão, refração, lentes<br><b>Física moderna:</b> efeito fotoelétrico, radioatividade, fusão e fissão'},
+  ],extra:[
+    {id:'f6',n:'Gravitação e Satélites',r:'F = G·m₁·m₂/d² · Leis de Kepler',extra:true},
+    {id:'f7',n:'Hidrostática',r:'Pressão P = F/A · Princípio de Arquimedes · Vasos comunicantes',extra:true},
   ]},
   'Quimica':{label:'Química',cor:'#3ecfa4',tops:[
-    {id:'q1',n:'Química Orgânica',r:'Hidrocarbonetos, álcoois, aldeídos, cetonas, ácidos, ésteres, aminas.<br><br><ul><li>Nomenclatura IUPAC · Isomeria · Polímeros</li></ul>'},
-    {id:'q2',n:'Ácidos, Bases e pH',r:'pH = -log[H+] · Escala 0–14.<br><br><ul><li>Neutralização · Titulação: CaVa = CbVb</li></ul>'},
-    {id:'q3',n:'Reações e Estequiometria',r:'Síntese, análise, troca simples/dupla, combustão.<br><br><ul><li>Balanceamento · Mol · Reagente limitante</li></ul>'},
-    {id:'q4',n:'Eletroquímica',r:'Pilhas: anodo (oxidação), catodo (redução).<br>Eletrólise: reação não-espontânea.'},
-    {id:'q5',n:'Radioatividade',r:'Partículas alfa, beta, gama · Meia-vida.<br><br><ul><li>Fissão e fusão · Aplicações em medicina e energia</li></ul>'},
+    {id:'q1',n:'Química Orgânica — Estrutura e Reações',r:'<b>Hidrocarbonetos:</b> alcanos, alcenos, alcinos, aromáticos<br><b>Funções:</b> álcoois, aldeídos, cetonas, ácidos, ésteres, aminas, amidas<br><ul><li>Nomenclatura IUPAC · Reações de adição, substituição, eliminação</li><li>Polímeros: formação e aplicações</li></ul>'},
+    {id:'q2',n:'Isomeria',r:'<b>Plana:</b> cadeia, posição, função, compensação, tautomeria<br><b>Espacial:</b> geométrica (cis/trans) e óptica (quiralidade)<br><br>Isomeria é um dos tópicos que mais cai no ENEM!'},
+    {id:'q3',n:'Ácido-Base, pH e Reações',r:'<b>pH = -log[H⁺]</b> · Escala 0–14<br><b>Neutralização:</b> ácido + base → sal + água<br><b>Estequiometria:</b> balanceamento, mol, reagente limitante<br><ul><li>Titulação: CaVa = CbVb</li></ul>'},
+    {id:'q4',n:'Eletroquímica e Radioatividade',r:'<b>Pilhas:</b> anodo (oxidação −) · catodo (redução +)<br><b>Eletrólise:</b> reação não-espontânea com corrente<br><b>Radioatividade:</b> alfa, beta, gama · Meia-vida<br><ul><li>Aplicações: medicina nuclear, datação, energia</li></ul>'},
+  ],extra:[
+    {id:'q5',n:'Cinética e Equilíbrio Químico',r:'Fatores que afetam velocidade · Princípio de Le Chatelier · Kc e Kp',extra:true},
+    {id:'q6',n:'Termoquímica',r:'Entalpia · Lei de Hess · Combustão e calorimetria',extra:true},
   ]},
   'Biologia':{label:'Biologia',cor:'#a0d468',tops:[
-    {id:'b1',n:'Genética',r:'Leis de Mendel: dominância, segregação, distribuição independente.<br><br><ul><li>Heredogramas · Herança ligada ao sexo · Biotecnologia</li></ul>'},
-    {id:'b2',n:'Evolução',r:'<b>Darwin:</b> seleção natural, adaptação.<br><b>Neodarwinismo:</b> mutação + seleção + deriva genética.'},
-    {id:'b3',n:'Ecologia',r:'Cadeias alimentares, ciclos biogeoquímicos, relações ecológicas.<br><br><ul><li>Biomas: Amazônia, Cerrado, Caatinga, Mata Atlântica, Pampa, Pantanal</li></ul>'},
-    {id:'b4',n:'Citologia',r:'Célula procariótica x eucariótica · Organelas.<br><br><ul><li>Mitose e meiose · DNA, RNA, síntese proteica</li></ul>'},
-    {id:'b5',n:'Fisiologia Humana',r:'Sistemas: digestório, circulatório, respiratório, nervoso, endócrino, imunológico.<br><br><ul><li>Hormônios · Vacinas e sistema imune</li></ul>'},
+    {id:'b1',n:'Genética Mendeliana e Molecular',r:'<b>Mendel:</b> dominância, segregação, distribuição independente<br><b>Heredogramas:</b> leitura e resolução<br><ul><li>Herança ligada ao sexo · Grupos sanguíneos ABO e Rh</li><li>DNA: estrutura, replicação, transcrição, tradução</li><li>Biotecnologia: PCR, transgênicos, clonagem</li></ul>'},
+    {id:'b2',n:'Evolução e Especiação',r:'<b>Darwin:</b> seleção natural, variação, adaptação<br><b>Neodarwinismo:</b> mutação + seleção + deriva + fluxo gênico<br><ul><li>Especiação: alopátrica e simpátrica</li><li>Evidências: fósseis, anatomia comparada, bioquímica</li></ul>'},
+    {id:'b3',n:'Ecologia e Biomas',r:'<b>Relações ecológicas:</b> mutualismo, comensalismo, parasitismo, competição<br><b>Cadeias alimentares e ciclos:</b> C, N, H₂O, P<br><ul><li>Biomas brasileiros: Amazônia, Cerrado, Caatinga, Mata Atlântica, Pampa, Pantanal</li><li>Sucessão ecológica · Impactos ambientais</li></ul>'},
+    {id:'b4',n:'Fisiologia Humana',r:'<b>Sistemas:</b><ul><li>Circulatório: coração, pressão, doenças cardiovasculares</li><li>Respiratório: trocas gasosas, doenças pulmonares</li><li>Imunológico: vacinas, anticorpos, AIDS</li><li>Endócrino: hormônios e regulação</li><li>Nervoso: neurônios, sinapses, drogas</li></ul>'},
+  ],extra:[
+    {id:'b5',n:'Citologia — Divisão Celular',r:'Mitose e meiose · Organelas e suas funções · Membrana plasmática',extra:true},
+    {id:'b6',n:'Reinos e Classificação',r:'Monera, Protista, Fungi, Plantae, Animalia · Vírus (não são seres vivos)',extra:true},
   ]},
   'Historia':{label:'História',cor:'#f06e7c',tops:[
-    {id:'h1',n:'República Velha',r:'1889–1930: café com leite, coronelismo, voto de cabresto.<br><br><ul><li>Canudos, Contestado, Cangaço, Tenentismo · Semana de 22</li></ul>'},
-    {id:'h2',n:'Era Vargas',r:'1930–1945: Revolução de 30, Estado Novo, CLT.<br><br><ul><li>Industrialização e trabalhismo · Integralismo</li></ul>'},
-    {id:'h3',n:'Guerra Fria',r:'1945–1991: EUA x URSS, capitalismo x socialismo.<br><br><ul><li>Coreia, Vietnã, Cuba · Queda do Muro de Berlim</li></ul>'},
-    {id:'h4',n:'Ditadura Militar',r:'1964–1985: Golpe, AI-5, milagre econômico.<br><br><ul><li>Diretas Já (1984) · Constituição de 1988</li></ul>'},
-    {id:'h5',n:'Guerras Mundiais',r:'<b>1ª (1914–18):</b> Tríplice Aliança x Entente · Versalhes.<br><b>2ª (1939–45):</b> Nazifascismo, Holocausto, bomba atômica, ONU.'},
+    {id:'h1',n:'Brasil República — 1889 a 1945',r:'<b>República Velha:</b> café com leite, coronelismo, voto de cabresto<br><ul><li>Movimentos: Canudos, Contestado, Cangaço, Tenentismo</li><li>Semana de Arte Moderna de 1922</li></ul><b>Era Vargas (1930–45):</b> Revolução de 30, Estado Novo, CLT, industrialização'},
+    {id:'h2',n:'Brasil — Ditadura Militar e Redemocratização',r:'<b>Golpe de 1964:</b> contexto da Guerra Fria, AI-5 (1968)<br><ul><li>Milagre econômico e dívida externa</li><li>Movimentos de resistência: guerrilha, imprensa alternativa</li><li>Diretas Já (1984) · Constituição de 1988</li></ul>'},
+    {id:'h3',n:'Guerras Mundiais e Totalitarismo',r:'<b>1ª GM (1914–18):</b> causas, frentes, Tratado de Versalhes<br><b>Entre-guerras:</b> nazismo, fascismo, crise de 1929<br><b>2ª GM (1939–45):</b> Holocausto, bomba atômica, ONU'},
+    {id:'h4',n:'Guerra Fria e Mundo Contemporâneo',r:'<b>Guerra Fria (1945–91):</b> EUA x URSS, corrida armamentista<br><ul><li>Conflitos: Coreia, Vietnã, Cuba</li><li>Queda do Muro de Berlim (1989)</li><li>Globalização, neoliberalismo, movimentos sociais atuais</li></ul>'},
+  ],extra:[
+    {id:'h5',n:'Antiguidade e Idade Média',r:'Grécia e Roma: democracia, república, legado cultural<br>Feudalismo · Cruzadas · Formação das monarquias nacionais',extra:true},
+    {id:'h6',n:'Revolução Francesa e Industrial',r:'1789: causas, fases, legado · Iluminismo · Revolução Industrial e capitalismo',extra:true},
   ]},
   'Geografia':{label:'Geografia',cor:'#4eaaf0',tops:[
-    {id:'g1',n:'Geopolítica Mundial',r:'EUA, BRICS, blocos de poder · ONU, OTAN, FMI · Conflitos e refugiados.'},
-    {id:'g2',n:'Brasil: Regiões',r:'Norte, Nordeste, Centro-Oeste, Sudeste, Sul.<br><br><ul><li>Características físicas, econômicas e populacionais</li></ul>'},
-    {id:'g3',n:'Globalização',r:'Integração econômica, cultural e tecnológica.<br><br><ul><li>Blocos: UE, Mercosul, USMCA · IDH e desigualdade global</li></ul>'},
-    {id:'g4',n:'Questões Ambientais',r:'Aquecimento global, desmatamento, escassez de água.<br><br><ul><li>Efeito estufa · Rio 92 · Kyoto · Acordo de Paris</li></ul>'},
-    {id:'g5',n:'Urbanização',r:'Êxodo rural, megalópoles, problemas urbanos.<br><br><ul><li>Industrialização brasileira · Gentrificação e segregação</li></ul>'},
+    {id:'g1',n:'Geopolítica e Relações Internacionais',r:'<b>Blocos:</b> UE, MERCOSUL, BRICS, USMCA<br><ul><li>ONU, OTAN, FMI, Banco Mundial</li><li>Conflitos atuais: Oriente Médio, Ucrânia, tensões EUA-China</li><li>Refugiados e migrações internacionais</li></ul>'},
+    {id:'g2',n:'Brasil — Espaço e Regionalização',r:'<b>5 regiões:</b> características físicas, econômicas e populacionais<br><ul><li>Desigualdades regionais · Políticas públicas</li><li>Urbanização brasileira: metrópoles e problemas urbanos</li><li>Agronegócio x agricultura familiar</li></ul>'},
+    {id:'g3',n:'Questões Ambientais e Sustentabilidade',r:'<b>Problemas:</b> aquecimento global, desmatamento, escassez hídrica<br><ul><li>Efeito estufa e gases do efeito estufa</li><li>Acordos: Kyoto, Paris (2015), Rio 92</li><li>Energias renováveis e matriz energética brasileira</li></ul>'},
+    {id:'g4',n:'Globalização e Desigualdade',r:'<b>Globalização:</b> integração econômica, cultural e tecnológica<br><ul><li>IDH e índice de Gini</li><li>Países centrais x periféricos x semiperiféricos</li><li>Trabalho no século XXI: uberização, home office</li></ul>'},
+  ],extra:[
+    {id:'g5',n:'Climatologia e Hidrografia',r:'Tipos de clima no Brasil · Bacia Amazônica e do Prata · El Niño e La Niña',extra:true},
+    {id:'g6',n:'Cartografia e Fusos Horários',r:'Escalas · Projeções cartográficas · Coordenadas geográficas · Fusos',extra:true},
   ]},
   'Filosofia':{label:'Filosofia',cor:'#d4a0f0',tops:[
-    {id:'fo1',n:'Ética e Moral',r:'<b>Aristóteles:</b> virtude e felicidade · <b>Kant:</b> imperativo categórico · <b>Utilitarismo:</b> maior bem para o maior número.'},
-    {id:'fo2',n:'Política e Contrato Social',r:'<b>Hobbes:</b> Leviatã · <b>Locke:</b> propriedade · <b>Rousseau:</b> vontade geral · <b>Montesquieu:</b> separação dos poderes.'},
-    {id:'fo3',n:'Existencialismo',r:'"A existência precede a essência" — Sartre.<br><br><ul><li>Liberdade e responsabilidade · Camus: absurdo e revolta</li></ul>'},
-    {id:'fo4',n:'Teoria do Conhecimento',r:'<b>Racionalismo (Descartes):</b> razão · <b>Empirismo (Hume):</b> experiência · <b>Kant:</b> os dois juntos.'},
-    {id:'fo5',n:'Filosofia Contemporânea',r:'<b>Foucault:</b> poder e biopoder · <b>Wittgenstein:</b> linguagem · <b>Habermas:</b> razão comunicativa.'},
+    {id:'fo1',n:'Ética, Moral e Política',r:'<b>Aristóteles:</b> ética das virtudes, felicidade (eudaimonia)<br><b>Kant:</b> imperativo categórico — "age como se sua ação fosse lei universal"<br><b>Contrato Social:</b> Hobbes (Leviatã), Locke (propriedade), Rousseau (vontade geral)<br><b>Montesquieu:</b> separação dos poderes'},
+    {id:'fo2',n:'Epistemologia e Teoria do Conhecimento',r:'<b>Racionalismo (Descartes):</b> "cogito ergo sum" — a razão como fonte<br><b>Empirismo (Hume/Locke):</b> experiência como base<br><b>Kant:</b> síntese entre razão e experiência<br><b>Platão:</b> mundo das ideias x mundo sensível'},
+    {id:'fo3',n:'Filosofia Contemporânea',r:'<b>Marx:</b> materialismo histórico, mais-valia, alienação<br><b>Nietzsche:</b> além-do-homem, vontade de potência, crítica à moral<br><b>Sartre:</b> existencialismo — "a existência precede a essência"<br><b>Foucault:</b> poder, disciplina e biopoder'},
+  ],extra:[
+    {id:'fo4',n:'Filosofia Antiga — Sócrates e Platão',r:'Método socrático (maiêutica) · Alegoria da caverna · Mundo das formas',extra:true},
+    {id:'fo5',n:'Lógica e Argumentação',r:'Falácias · Argumento válido x sólido · Lógica formal básica',extra:true},
   ]},
   'Sociologia':{label:'Sociologia',cor:'#f0a04e',tops:[
-    {id:'s1',n:'Pensamento Clássico',r:'<b>Durkheim:</b> fato social, anomia · <b>Marx:</b> classes, alienação · <b>Weber:</b> ação social, dominação.'},
-    {id:'s2',n:'Cultura e Sociedade',r:'Cultura: valores, normas, símbolos de um grupo.<br><br><ul><li>Etnocentrismo x relativismo · Indústria cultural</li></ul>'},
-    {id:'s3',n:'Estado e Democracia',r:'Estado: monopólio legítimo da violência (Weber).<br><br><ul><li>Cidadania civil, política e social · Movimentos sociais</li></ul>'},
-    {id:'s4',n:'Desigualdade Social',r:'Estratificação: castas, estamentos, classes.<br><br><ul><li>Mobilidade social · Índice de Gini</li></ul>'},
-    {id:'s5',n:'Trabalho e Capitalismo',r:'Taylorismo, fordismo, toyotismo · Uberização.<br><br><ul><li>Sindicalismo e direitos trabalhistas</li></ul>'},
+    {id:'s1',n:'Clássicos da Sociologia',r:'<b>Durkheim:</b> fato social, coesão, anomia, divisão do trabalho<br><b>Marx:</b> classes sociais, mais-valia, alienação, ideologia<br><b>Weber:</b> ação social, tipos de dominação, ética protestante'},
+    {id:'s2',n:'Cultura, Identidade e Diversidade',r:'<ul><li>Cultura: valores, normas, símbolos</li><li>Etnocentrismo x relativismo cultural</li><li>Indústria cultural (Escola de Frankfurt)</li><li>Identidade de gênero, raça e sexualidade como construções sociais</li></ul>'},
+    {id:'s3',n:'Cidadania, Estado e Movimentos Sociais',r:'<b>Cidadania:</b> direitos civis, políticos e sociais (Marshall)<br><b>Movimentos:</b> trabalhista, feminista, negro, LGBTQIA+, sem-terra<br><ul><li>Democracia representativa x participativa</li><li>Direitos humanos e sua universalidade</li></ul>'},
+  ],extra:[
+    {id:'s4',n:'Trabalho e Capitalismo',r:'Taylorismo, fordismo, toyotismo · Uberização · Sindicalismo e CLT',extra:true},
+    {id:'s5',n:'Desigualdade e Estratificação',r:'Castas, estamentos, classes sociais · Mobilidade social · Racismo estrutural',extra:true},
   ]},
 }
 
@@ -995,7 +1317,7 @@ function cSalvar(id,v){try{localStorage.setItem('t_'+id,v?'1':'0')}catch(e){}}
 function cLer(id){try{return localStorage.getItem('t_'+id)==='1'}catch(e){return false}}
 
 function renderConteudo(mat){
-  const {label,cor,tops}=CONTEUDO[mat]
+  const {label,cor,tops,extra}=CONTEUDO[mat]
   document.querySelectorAll('.cpill').forEach(p=>{
     const on=p.dataset.m===mat
     p.classList.toggle('active',on)
@@ -1003,6 +1325,8 @@ function renderConteudo(mat){
     p.style.borderColor=on?cor:''
     p.style.color=on?'#fff':''
   })
+
+  // Progresso só dos obrigatórios
   const feitos=tops.filter(t=>cLer(t.id)).length
   const pct=Math.round(feitos/tops.length*100)
   document.getElementById('c-prog').innerHTML=`
@@ -1011,53 +1335,465 @@ function renderConteudo(mat){
       <div class="prog-pct" style="color:${cor}">${pct}%</div>
     </div>
     <div class="prog-bar"><div class="prog-fill" style="width:${pct}%;background:${cor}"></div></div>
-    <div style="font-size:8.5px;color:var(--txt3);margin-top:6px">${feitos} de ${tops.length} tópicos concluídos</div>
+    <div style="font-size:8.5px;color:var(--txt3);margin-top:6px">${feitos} de ${tops.length} tópicos principais · ${extra?.length||0} extras disponíveis</div>
   `
+
   const lista=document.getElementById('c-lista')
   lista.innerHTML=''
-  tops.forEach(top=>{
-    const done=cLer(top.id)
-    const el=document.createElement('div')
-    el.className='top-card'+(done?' feito':'')
-    el.style.setProperty('--tc',cor)
-    el.innerHTML=`
-      <div class="top-head">
-        <div class="top-chk" data-chk="${top.id}">
-          <svg class="top-chk-svg" viewBox="0 0 12 12" fill="none"><polyline points="1.5,6 4.5,9.5 10.5,2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="top-nome">${top.n}</div>
-        <div class="top-arrow">&#9658;</div>
+
+  // Tópicos principais
+  tops.forEach(top=>lista.appendChild(makeTopCard(top,cor)))
+
+  // Extras
+  if(extra?.length){
+    const extraSection=document.createElement('div')
+    extraSection.className='extra-section'
+    extraSection.innerHTML='<div class="extra-label">EXTRAS — OPCIONAIS</div>'
+    extra.forEach(top=>extraSection.appendChild(makeTopCard(top,cor,true)))
+    lista.appendChild(extraSection)
+  }
+}
+
+function makeTopCard(top, cor, isExtra=false){
+  const done=cLer(top.id)
+  const el=document.createElement('div')
+  el.className='top-card'+(done?' feito':'')+(isExtra?' extra':'')
+  el.style.setProperty('--tc',cor)
+  el.innerHTML=`
+    <div class="top-head">
+      <div class="top-chk" data-chk="${top.id}">
+        <svg class="top-chk-svg" viewBox="0 0 12 12" fill="none"><polyline points="1.5,6 4.5,9.5 10.5,2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
-      <div class="top-body">${top.r}</div>
-    `
-    el.querySelector('.top-head').addEventListener('click',function(e){
-      if(e.target.closest('[data-chk]'))return
-      const aberto=el.classList.contains('aberto')
-      document.querySelectorAll('.top-card').forEach(c=>c.classList.remove('aberto'))
-      if(!aberto)el.classList.add('aberto')
-    })
-    el.querySelector('[data-chk]').addEventListener('click',function(e){
-      e.stopPropagation()
-      const novo=!cLer(top.id)
-      cSalvar(top.id,novo)
-      renderConteudo(mat)
-      toast(novo?'Tópico concluído!':'Tópico desmarcado')
-    })
-    lista.appendChild(el)
+      <div class="top-nome">${top.n}</div>
+      <div class="top-arrow">&#9658;</div>
+    </div>
+    <div class="top-body">${top.r}</div>
+  `
+  el.querySelector('.top-head').addEventListener('click',function(e){
+    if(e.target.closest('[data-chk]'))return
+    const aberto=el.classList.contains('aberto')
+    document.querySelectorAll('.top-card').forEach(c=>c.classList.remove('aberto'))
+    if(!aberto)el.classList.add('aberto')
   })
+  el.querySelector('[data-chk]').addEventListener('click',function(e){
+    e.stopPropagation()
+    const novo=!cLer(top.id)
+    cSalvar(top.id,novo)
+    renderConteudo(document.querySelector('.cpill.active')?.dataset.m||'Portugues')
+    toast(novo?'Tópico concluído! ✓':'Tópico desmarcado')
+  })
+  return el
 }
 
 // Init pills conteúdo
-const cpillsEl=document.getElementById('c-pills')
-MAT_LIST.forEach(mat=>{
-  const b=document.createElement('div')
-  b.className='cpill'
-  b.dataset.m=mat
-  b.textContent=CONTEUDO[mat].label
-  b.onclick=()=>renderConteudo(mat)
-  cpillsEl.appendChild(b)
-})
-renderConteudo('Portugues')
+;(function(){
+  const cpillsEl = document.getElementById('c-pills')
+  if(!cpillsEl) return
+  MAT_LIST.forEach(mat => {
+    const b = document.createElement('div')
+    b.className = 'cpill'
+    b.dataset.m = mat
+    b.textContent = CONTEUDO[mat].label
+    b.onclick = () => renderConteudo(mat)
+    cpillsEl.appendChild(b)
+  })
+  renderConteudo('Portugues')
+})()
+
+// ═══════════════════════════════════════════
+// MÓDULO IA — ANTHROPIC API
+// ═══════════════════════════════════════════
+const IA_MODEL = 'claude-sonnet-4-20250514'
+let iaProvasDetectadas = []
+let iaChatHistorico = []
+let iaCarregando = false
+
+const IA_SYSTEM = `Você é o assistente pessoal de estudos do Kennedy, um estudante do 3º ano do ensino médio brasileiro. 
+
+PERFIL DO KENNEDY:
+- 17 anos, 3º ano do ensino médio
+- Tem TDAH e autismo — precisa de respostas objetivas, diretas e organizadas
+- Pratica judô (treina seg/qua/qui/sex/sáb) — atleta dedicado
+- Acorda às 05:00, escola das 07:00 às 11:45, dorme às 21:00
+- Está na 3ª semana do 3º ano, se preparando para o ENEM
+- Está cansado e sobrecarregado — precisa de leveza e clareza
+
+REGRAS DE RESPOSTA:
+1. Seja direto e objetivo — sem enrolação
+2. Use listas curtas quando possível (máx 5 itens por vez)
+3. Nunca sobrecarregue com informação demais de uma vez
+4. Para dúvidas de matérias: explica em 3–5 linhas simples + 1 exemplo prático
+5. Para planejamento: divida em blocos pequenos (25min Pomodoro)
+6. Para dicas de TDAH/autismo: baseie-se em evidências, seja acolhedor
+7. Quando mencionar Pomodoro, use o símbolo 🍅
+8. Linguagem informal e amigável em português brasileiro
+9. Se detectar desânimo ou cansaço na mensagem, seja empático antes de responder
+10. Máximo de 200 palavras por resposta — seja conciso`
+
+async function iaChamarAPI(messages, onLoad='Pensando...'){
+  document.getElementById('ia-loading').classList.add('show')
+  document.getElementById('ia-loading-txt').textContent = onLoad
+  iaCarregando = true
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: IA_MODEL,
+        max_tokens: 1000,
+        system: IA_SYSTEM,
+        messages
+      })
+    })
+    const data = await resp.json()
+    return data.content?.[0]?.text || 'Erro ao obter resposta.'
+  } catch(e) {
+    return 'Erro de conexão. Verifique sua internet e tente novamente.'
+  } finally {
+    document.getElementById('ia-loading').classList.remove('show')
+    iaCarregando = false
+  }
+}
+
+// ── ANÁLISE DE FOTO ────────────────────────
+async function iaAnalisarFoto(e){
+  const file = e.target.files[0]
+  if(!file) return
+
+  // Preview
+  const reader = new FileReader()
+  reader.onload = ev => {
+    const img = document.getElementById('ia-preview')
+    img.src = ev.target.result
+    img.style.display = 'block'
+  }
+  reader.readAsDataURL(file)
+
+  // Converte para base64
+  const base64 = await new Promise(res => {
+    const r = new FileReader()
+    r.onload = ev => res(ev.target.result.split(',')[1])
+    r.readAsDataURL(file)
+  })
+
+  const mediaType = file.type || 'image/jpeg'
+
+  document.getElementById('ia-loading').classList.add('show')
+  document.getElementById('ia-loading-txt').textContent = 'Lendo o calendário...'
+  iaCarregando = true
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: IA_MODEL,
+        max_tokens: 1000,
+        system: IA_SYSTEM,
+        messages: [{
+          role: 'user',
+          content: [
+            {
+              type: 'image',
+              source: { type: 'base64', media_type: mediaType, data: base64 }
+            },
+            {
+              type: 'text',
+              text: `Esta é uma foto do calendário de avaliações do Kennedy. 
+              
+Por favor:
+1. Liste TODAS as provas que conseguir identificar (data, matéria, tipo)
+2. Para cada prova, diga quantos dias faltam a partir de hoje (${new Date().toLocaleDateString('pt-BR')})
+3. Monte um plano de estudo Pomodoro 🍅 para as provas mais próximas
+4. Dê 2-3 dicas específicas de como estudar cada matéria detectada
+5. No final, liste as provas em JSON puro neste formato (para eu salvar automaticamente):
+PROVAS_JSON:[{"mat":"Matemática","data":"2026-03-12","tipo":"Parcial","bim":1}]
+
+Seja direto e organize bem as informações.`
+            }
+          ]
+        }]
+      })
+    })
+    const data = await resp.json()
+    const texto = data.content?.[0]?.text || 'Não consegui ler a imagem.'
+
+    // Extrai JSON de provas se houver
+    const jsonMatch = texto.match(/PROVAS_JSON:(\[.*?\])/s)
+    if(jsonMatch) {
+      try {
+        iaProvasDetectadas = JSON.parse(jsonMatch[1])
+      } catch(e) { iaProvasDetectadas = [] }
+    }
+
+    // Exibe resultado sem o JSON bruto
+    const textoLimpo = texto.replace(/PROVAS_JSON:\[.*?\]/s, '').trim()
+    const resultEl = document.getElementById('ia-result')
+    document.getElementById('ia-result-body').innerHTML = textoLimpo.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<b>$1</b>').replace(/\*(.*?)\*/g,'<i>$1</i>')
+    resultEl.classList.add('show')
+
+  } catch(err) {
+    document.getElementById('ia-result-body').textContent = 'Erro ao analisar imagem.'
+    document.getElementById('ia-result').classList.add('show')
+  } finally {
+    document.getElementById('ia-loading').classList.remove('show')
+    iaCarregando = false
+  }
+}
+
+function iaSalvarProvas(){
+  if(!iaProvasDetectadas.length){ toast('Nenhuma prova detectada para salvar.'); return }
+  const custom = avalCarregar()
+  iaProvasDetectadas.forEach(p => {
+    if(!custom.find(c=>c.mat===p.mat&&c.data===p.data)){
+      custom.push(p)
+    }
+  })
+  avalSalvar(custom)
+  renderProvas()
+  toast(`${iaProvasDetectadas.length} provas salvas! ✓`)
+  iaLimpar()
+}
+
+function iaLimpar(){
+  document.getElementById('ia-result').classList.remove('show')
+  document.getElementById('ia-preview').style.display='none'
+  document.getElementById('ia-file').value=''
+  iaProvasDetectadas=[]
+}
+
+// ── CHAT ────────────────────────────────────
+async function iaChatEnviar(){
+  if(iaCarregando) return
+  const input = document.getElementById('ia-chat-in')
+  const msg = input.value.trim()
+  if(!msg) return
+
+  input.value = ''
+  document.getElementById('ia-chat-send').disabled = true
+
+  // Adiciona msg do usuário
+  iaChatHistorico.push({ role:'user', content: msg })
+  iaChatRenderMsg('user', msg)
+
+  // Chama a API
+  document.getElementById('ia-loading').classList.add('show')
+  document.getElementById('ia-loading-txt').textContent = 'Pensando...'
+  iaCarregando = true
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: IA_MODEL,
+        max_tokens: 1000,
+        system: IA_SYSTEM,
+        messages: iaChatHistorico
+      })
+    })
+    const data = await resp.json()
+    const resposta = data.content?.[0]?.text || 'Não consegui responder agora.'
+
+    iaChatHistorico.push({ role:'assistant', content: resposta })
+    iaChatRenderMsg('ai', resposta)
+
+    // Limite de histórico (últimas 10 mensagens)
+    if(iaChatHistorico.length > 20) iaChatHistorico = iaChatHistorico.slice(-20)
+
+  } catch(err) {
+    iaChatRenderMsg('ai', 'Erro de conexão. Tenta de novo!')
+  } finally {
+    document.getElementById('ia-loading').classList.remove('show')
+    iaCarregando = false
+    document.getElementById('ia-chat-send').disabled = false
+  }
+}
+
+function iaChatRenderMsg(role, texto){
+  const msgs = document.getElementById('ia-chat-msgs')
+  const div = document.createElement('div')
+  div.className = `ia-msg ${role}`
+  div.innerHTML = texto
+    .replace(/\n/g,'<br>')
+    .replace(/\*\*(.*?)\*\*/g,'<b>$1</b>')
+    .replace(/\*(.*?)\*/g,'<i>$1</i>')
+  msgs.appendChild(div)
+  msgs.scrollTop = msgs.scrollHeight
+}
+
+// ── INTEGRAÇÃO POMODORO ─────────────────────
+// Após 4 sessões Pomodoro, a IA comenta o progresso
+let iaPomoSessoes = 0
+function iaPomoCheck(){
+  iaPomoSessoes++
+  if(iaPomoSessoes % 4 === 0){
+    iaChatHistorico.push({
+      role:'user',
+      content:`Acabei de completar 4 sessões Pomodoro de estudo (2 horas de foco). Como estou indo? Dê uma palavra de incentivo curta e diga o que focar agora.`
+    })
+    iaChatEnviarSilencioso()
+  }
+}
+
+async function iaChatEnviarSilencioso(){
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: IA_MODEL,
+        max_tokens: 200,
+        system: IA_SYSTEM,
+        messages: iaChatHistorico
+      })
+    })
+    const data = await resp.json()
+    const resposta = data.content?.[0]?.text || ''
+    if(resposta) {
+      iaChatHistorico.push({ role:'assistant', content: resposta })
+      iaChatRenderMsg('ai', '🍅 ' + resposta)
+      // Só vai para aba provas se não estiver aberta
+      const navProvas = document.getElementById('nav-provas')
+      if(!navProvas.classList.contains('active')){
+        toast('💬 IA te mandou uma mensagem!')
+      }
+    }
+  } catch(e){}
+}
+
+// ═══════════════════════════════════════════
+// SISTEMA DE PROVAS
+// ═══════════════════════════════════════════
+const AVAL_FIXAS = [
+  {id:'a1',mat:'Matemática',data:'2026-03-12',tipo:'Parcial',bim:1,
+   dicas:['Revise funções de 1º e 2º grau — são a base','Treine cálculo de área e volume','Refaça exercícios de juros compostos','Foque em gráficos e interpretação visual']},
+  {id:'a2',mat:'Ciências Humanas',data:'2026-03-13',tipo:'Parcial',bim:1,
+   dicas:['Revise República Velha e Era Vargas (História)','Estude geopolítica e blocos econômicos (Geo)','Relembre os filósofos do Contrato Social','Revise os clássicos da Sociologia: Durkheim, Marx, Weber']},
+  {id:'a3',mat:'Linguagens',data:'2026-03-16',tipo:'Parcial',bim:1,
+   dicas:['Leia textos e pratique identificar tese e argumentos','Revise figuras de linguagem','Releia sua apostila de redação — proposta de intervenção','Estude variação linguística e contexto de uso']},
+  {id:'a4',mat:'Ciências da Natureza',data:'2026-03-17',tipo:'Parcial',bim:1,
+   dicas:['Revise as Leis de Newton e cinemática (Física)','Estude química orgânica — funções e nomenclatura','Revise genética mendeliana e heredogramas (Bio)','Treine equações de Ohm e circuitos elétricos']},
+]
+
+function avalCarregar(){
+  try{ return JSON.parse(localStorage.getItem('aval_custom')||'[]') }catch(e){ return [] }
+}
+function avalSalvar(list){ try{ localStorage.setItem('aval_custom', JSON.stringify(list)) }catch(e){} }
+
+function diasAte(dataStr){
+  const hoje = new Date(); hoje.setHours(0,0,0,0)
+  const prova = new Date(dataStr+'T00:00:00')
+  return Math.ceil((prova-hoje)/(1000*60*60*24))
+}
+
+function avalCor(dias){
+  if(dias<0) return {tag:'PASSOU',cls:'green',cor:'#3ecfa4',heroCls:'prova-ok'}
+  if(dias===0) return {tag:'HOJE!',cls:'red',cor:'#f06e7c',heroCls:'prova-urgente'}
+  if(dias===1) return {tag:'AMANHÃ',cls:'red',cor:'#f06e7c',heroCls:'prova-urgente'}
+  if(dias<=3) return {tag:`${dias} DIAS`,cls:'yellow',cor:'#f0a04e',heroCls:'prova-hero'}
+  return {tag:`${dias} DIAS`,cls:'green',cor:'#3ecfa4',heroCls:'prova-ok'}
+}
+
+function fmtData(dataStr){
+  const [y,m,d] = dataStr.split('-')
+  const dias=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb']
+  const meses=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
+  const dt = new Date(dataStr+'T12:00:00')
+  return `${dias[dt.getDay()]}, ${d} de ${meses[parseInt(m)-1]}`
+}
+
+function renderProvas(){
+  const custom = avalCarregar()
+  const todas = [...AVAL_FIXAS, ...custom].sort((a,b)=>a.data.localeCompare(b.data))
+  const hoje = new Date(); hoje.setHours(0,0,0,0)
+
+  // Destaque — próxima prova
+  const proxima = todas.find(a=>diasAte(a.data)>=0)
+  const dest = document.getElementById('prova-destaque')
+
+  if(proxima){
+    const dias = diasAte(proxima.data)
+    const {tag,cls,cor,heroCls} = avalCor(dias)
+    const plano = proxima.dicas || ['Revise os tópicos principais','Faça exercícios anteriores','Durma bem na véspera','Não estude na última hora — confie no que já sabe']
+    dest.innerHTML=`
+      <div class="${heroCls}" style="margin-bottom:8px">
+        <div class="prova-tag ${cls}">${tag}</div>
+        <div class="prova-nome" style="color:${cor}">${proxima.mat}</div>
+        <div class="prova-data">${fmtData(proxima.data)} · ${proxima.tipo} · ${proxima.bim}º Bimestre</div>
+        <div class="prova-countdown">
+          <div class="prova-dias" style="color:${cor}">${dias<=0?'📅':dias}</div>
+          <div class="prova-dias-label">${dias===0?'prova hoje!':dias===1?'dia restante':'dias restantes'}</div>
+        </div>
+        <div class="prova-plano">
+          <div class="prova-plano-title">PLANO DE ESTUDO — O QUE FOCAR</div>
+          ${plano.map(d=>`<div class="prova-dica">• ${d}</div>`).join('')}
+        </div>
+      </div>
+    `
+  } else {
+    dest.innerHTML=`<div class="card" style="text-align:center;padding:20px;color:var(--txt3);font-size:11px">Nenhuma prova próxima 🎉<br><span style="font-size:9px">Adicione abaixo quando souber as datas</span></div>`
+  }
+
+  // Lista completa
+  const lista = document.getElementById('aval-lista')
+  lista.innerHTML = todas.map((a,i)=>{
+    const dias = diasAte(a.data)
+    const {tag,cls,cor} = avalCor(dias)
+    const [y,m,d] = a.data.split('-')
+    const isCustom = i >= AVAL_FIXAS.length
+    return `
+      <div class="aval-card" style="opacity:${dias<0?'.5':'1'}">
+        <div class="aval-data-box">
+          <div class="aval-dia" style="color:${cor}">${d}</div>
+          <div class="aval-mes">${['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][parseInt(m)-1].toUpperCase()}</div>
+        </div>
+        <div class="aval-info">
+          <div class="aval-materia">${a.mat}</div>
+          <div class="aval-tipo">${a.tipo} · ${a.bim||'?'}º Bimestre</div>
+        </div>
+        <div class="aval-dias-badge" style="background:${cor}22;color:${cor}">${dias<0?'✓':tag}</div>
+        ${isCustom?`<button onclick="delAval(${i-AVAL_FIXAS.length})" style="background:none;border:none;color:var(--txt3);cursor:pointer;font-size:14px;padding:4px">✕</button>`:''}
+      </div>
+    `
+  }).join('')
+
+  // Badge no nav
+  const proxQtd = todas.filter(a=>{ const d=diasAte(a.data); return d>=0&&d<=3 }).length
+  const navBtn = document.getElementById('nav-provas')
+  navBtn.querySelector('.nav-badge')?.remove()
+  if(proxQtd>0){
+    const badge=document.createElement('span')
+    badge.className='nav-badge'
+    badge.textContent=proxQtd
+    navBtn.appendChild(badge)
+  }
+}
+
+function addAval(){
+  const mat = document.getElementById('nova-materia').value.trim()
+  const data = document.getElementById('nova-data').value
+  const tipo = document.getElementById('nova-tipo').value
+  if(!mat||!data){ toast('Preencha matéria e data!'); return }
+  const custom = avalCarregar()
+  custom.push({mat,data,tipo,bim:1,dicas:[]})
+  avalSalvar(custom)
+  document.getElementById('nova-materia').value=''
+  document.getElementById('nova-data').value=''
+  renderProvas()
+  toast('Avaliação adicionada! ✓')
+}
+
+function delAval(i){
+  const custom = avalCarregar()
+  custom.splice(i,1)
+  avalSalvar(custom)
+  renderProvas()
+  toast('Removida!')
+}
+
+renderProvas()
 
 // ═══════════════════════════════════════════
 // TOAST + TOGGLE
