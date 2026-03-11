@@ -1,4 +1,4 @@
-const CACHE = 'kennedy-v16';
+const CACHE = 'kennedy-v17';
 const ASSETS = ['./index.html','./manifest.json','./icon.png','./icon-192.png'];
 
 self.addEventListener('install', e => {
