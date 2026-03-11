@@ -18,35 +18,213 @@
   --acc:#7c6ef8; --acc2:#4eaaf0; --acc3:#3ecfa4; --acc4:#f0a04e; --acc5:#f06e7c; --acc6:#a0d468;
   --txt:#e8e8f0; --txt2:#9090a8; --txt3:#4a4a60;
   --mono:'JetBrains Mono',monospace; --sans:'Syne',sans-serif;
+  --nav-h:72px;
 }
+
+/* ── TEMAS ───────────────────────────────── */
+[data-theme="aurora"] {
+  --bg:#0d0a14; --bg1:#160f20; --bg2:#1e1530; --line:#2e2048;
+  --acc:#c084fc; --acc2:#f472b6; --acc3:#a78bfa; --acc4:#fb7185; --acc5:#e879f9; --acc6:#818cf8;
+  --txt:#f0e8ff; --txt2:#a090c0; --txt3:#4a3a60;
+}
+[data-theme="ocean"] {
+  --bg:#070d14; --bg1:#0d1520; --bg2:#121e2e; --line:#1a2a40;
+  --acc:#38bdf8; --acc2:#22d3ee; --acc3:#34d399; --acc4:#60a5fa; --acc5:#818cf8; --acc6:#6ee7b7;
+  --txt:#e0f2fe; --txt2:#7fb0cc; --txt3:#2a4a60;
+}
+[data-theme="forest"] {
+  --bg:#080e0a; --bg1:#0e1610; --bg2:#141e16; --line:#1e2e20;
+  --acc:#4ade80; --acc2:#86efac; --acc3:#34d399; --acc4:#fbbf24; --acc5:#f87171; --acc6:#a3e635;
+  --txt:#e8f5ea; --txt2:#7aaa7e; --txt3:#2a4a2e;
+}
+[data-theme="sunset"] {
+  --bg:#110a07; --bg1:#1c100a; --bg2:#251610; --line:#382010;
+  --acc:#fb923c; --acc2:#fbbf24; --acc3:#f87171; --acc4:#fdba74; --acc5:#f43f5e; --acc6:#fcd34d;
+  --txt:#fff0e8; --txt2:#c08060; --txt3:#603020;
+}
+[data-theme="arctic"] {
+  --bg:#07090f; --bg1:#0d1018; --bg2:#141820; --line:#1e2430;
+  --acc:#94a3b8; --acc2:#7dd3fc; --acc3:#bae6fd; --acc4:#e2e8f0; --acc5:#f472b6; --acc6:#cbd5e1;
+  --txt:#f1f5f9; --txt2:#94a3b8; --txt3:#334155;
+}
+[data-theme="ember"] {
+  --bg:#0e0805; --bg1:#180e08; --bg2:#201408; --line:#301e10;
+  --acc:#dc8a3e; --acc2:#b45309; --acc3:#f59e0b; --acc4:#fde68a; --acc5:#ef4444; --acc6:#fed7aa;
+  --txt:#fef3c7; --txt2:#b48a5a; --txt3:#5a3010;
+}
+[data-theme="void"] {
+  --bg:#030305; --bg1:#08080e; --bg2:#0e0e18; --line:#161622;
+  --acc:#6366f1; --acc2:#8b5cf6; --acc3:#a78bfa; --acc4:#c4b5fd; --acc5:#f43f5e; --acc6:#818cf8;
+  --txt:#e0e0f0; --txt2:#7070a0; --txt3:#303050;
+}
+[data-theme="sakura"] {
+  --bg:#0e080c; --bg1:#180d14; --bg2:#20121c; --line:#301828;
+  --acc:#f9a8d4; --acc2:#fda4af; --acc3:#f0abfc; --acc4:#fbbf24; --acc5:#fb7185; --acc6:#e879f9;
+  --txt:#fdf2f8; --txt2:#c08090; --txt3:#603050;
+}
+
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{background:var(--bg);color:var(--txt);font-family:var(--mono);min-height:100vh;overscroll-behavior:none}
 
-/* NAV */
-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--bg1);border-top:1px solid var(--line);display:flex;padding:10px 0 max(10px,env(safe-area-inset-bottom))}
-nav button{flex:1;background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0;color:var(--txt3);transition:color .2s;font-family:var(--mono);font-size:7.5px;letter-spacing:.05em}
-nav button svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-nav button.active{color:var(--acc)}
-nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
-
-/* Botão + do nav */
-.nav-mais{flex:1;background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0;color:var(--txt3);font-family:var(--mono);font-size:7.5px;letter-spacing:.05em;position:relative}
-.nav-mais-icon{width:32px;height:32px;background:var(--acc);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:0;transition:transform .2s,background .2s}
-.nav-mais-icon svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round}
-.nav-mais.aberto .nav-mais-icon{background:var(--acc5);transform:rotate(45deg)}
-
-/* Menu flutuante do + */
-.nav-mais-menu{
-  position:fixed;bottom:calc(max(10px,env(safe-area-inset-bottom)) + 70px);
-  left:50%;transform:translateX(-50%);
-  background:var(--bg1);border:1px solid var(--line);border-radius:16px;
-  padding:8px;display:none;flex-direction:column;gap:4px;
-  min-width:180px;box-shadow:0 -8px 32px #0008;z-index:200;
+/* ══════════════════════════════════════════
+   NAV FLUTUANTE — island limpa + botão + elevado
+══════════════════════════════════════════ */
+nav {
+  position:fixed; bottom:0; left:0; right:0; z-index:100;
+  display:flex; justify-content:center; align-items:flex-end;
+  padding: 0 16px max(16px, env(safe-area-inset-bottom)) 16px;
+  background:none; border:none; pointer-events:none;
 }
-.nav-mais-menu.show{display:flex}
-.nav-mais-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;cursor:pointer;color:var(--txt2);font-family:var(--mono);font-size:10px;letter-spacing:.05em;border:none;background:none;width:100%;text-align:left;transition:background .15s}
-.nav-mais-item:hover,.nav-mais-item:active{background:var(--bg2);color:var(--txt)}
-.nav-mais-item svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8;flex-shrink:0}
+
+.nav-island {
+  display:flex; align-items:center; justify-content:space-around;
+  width:100%; max-width:420px;
+  background: color-mix(in srgb, var(--bg1) 65%, transparent);
+  border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+  border-radius: 28px;
+  padding: 6px 8px;
+  box-shadow: 0 8px 40px #00000070, 0 2px 8px #00000050, inset 0 1px 0 #ffffff08;
+  pointer-events: all;
+  position: relative;
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  margin-bottom: 8px;
+}
+
+/* Botões normais */
+.nav-island > button {
+  flex:1; background:none; border:none; cursor:pointer;
+  display:flex; flex-direction:column; align-items:center; gap:3px;
+  padding: 8px 6px 6px;
+  color: var(--txt3);
+  font-family: var(--mono); font-size: 7px; letter-spacing:.06em;
+  transition: color .2s;
+  border-radius: 20px;
+  position: relative;
+  min-width:0;
+}
+.nav-island > button svg {
+  width:19px; height:19px; stroke:currentColor; fill:none;
+  stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;
+  transition: filter .25s, transform .2s;
+}
+.nav-island > button.active { color: var(--acc); }
+.nav-island > button.active svg {
+  filter: drop-shadow(0 0 5px var(--acc)) drop-shadow(0 0 10px var(--acc)66);
+  transform: translateY(-1px);
+}
+/* Traço luminoso acima do ícone ativo */
+.nav-island > button.active::before {
+  content:'';
+  position:absolute;
+  top: 2px; left:50%; transform:translateX(-50%);
+  width: 20px; height: 2px;
+  background: var(--acc);
+  border-radius: 2px;
+  box-shadow: 0 0 6px var(--acc), 0 0 14px var(--acc)77;
+}
+
+/* Badge */
+.nav-badge {
+  position:absolute; top:4px; right:6px;
+  background:var(--acc5); color:#fff; font-size:7px; font-weight:700;
+  border-radius:10px; padding:1px 4px; line-height:1.4; pointer-events:none;
+}
+
+/* ── Espaço central para o botão + ─────── */
+.nav-mais-wrap {
+  flex: 0 0 64px;
+  display:flex; flex-direction:column; align-items:center;
+  position: relative;
+  pointer-events: all;
+}
+
+/* O botão + elevado acima da barra */
+.nav-mais-btn {
+  width: 44px; height: 44px;
+  background: linear-gradient(145deg, var(--acc), var(--acc2));
+  border: none; border-radius: 50%; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px var(--acc)55, 0 0 0 2px var(--bg1), 0 0 0 3px var(--acc)33;
+  transition: transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s;
+  position: relative;
+  top: -14px;
+  margin-bottom: -14px;
+}
+.nav-mais-btn:active { transform: scale(.92) translateY(2px); }
+.nav-mais-btn.aberto {
+  background: linear-gradient(145deg, var(--acc5), var(--acc4));
+  box-shadow: 0 4px 20px var(--acc5)55, 0 0 0 2px var(--bg1), 0 0 0 3px var(--acc5)33;
+}
+.nav-mais-btn svg {
+  width:17px; height:17px; stroke:#fff; fill:none;
+  stroke-width:2.5; stroke-linecap:round;
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1);
+}
+.nav-mais-btn.aberto svg { transform: rotate(45deg); }
+
+.nav-mais-label {
+  font-family:var(--mono); font-size:7px; letter-spacing:.06em;
+  color:var(--txt3); line-height:1; margin-top:2px;
+}
+
+/* Menu flutuante */
+.nav-mais-menu {
+  position:fixed; bottom: calc(max(16px,env(safe-area-inset-bottom)) + 76px);
+  left:50%; transform:translateX(-50%);
+  background:var(--bg1); border:1px solid var(--line); border-radius:20px;
+  padding:8px; display:none; flex-direction:column; gap:3px;
+  min-width:190px; box-shadow:0 -4px 32px #0009; z-index:300;
+  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+}
+.nav-mais-menu.show { display:flex; }
+.nav-mais-item {
+  display:flex; align-items:center; gap:12px; padding:11px 16px;
+  border-radius:12px; cursor:pointer; color:var(--txt2);
+  font-family:var(--mono); font-size:10px; letter-spacing:.05em;
+  border:none; background:none; width:100%; text-align:left;
+  transition:background .15s, color .15s;
+}
+.nav-mais-item:hover,.nav-mais-item:active { background:var(--bg2); color:var(--txt); }
+.nav-mais-item svg { width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8;flex-shrink:0; }
+
+/* ══════════════════════════════════════════
+   POPUP CUSTOMIZADO (substitui alert/confirm)
+══════════════════════════════════════════ */
+.popup-overlay {
+  position:fixed; inset:0; z-index:1000;
+  background:#00000070; backdrop-filter:blur(4px);
+  display:flex; align-items:flex-end; justify-content:center;
+  padding: 0 12px max(24px,env(safe-area-inset-bottom));
+  opacity:0; pointer-events:none;
+  transition: opacity .2s;
+}
+.popup-overlay.show { opacity:1; pointer-events:all; }
+.popup-box {
+  background:var(--bg1); border:1px solid var(--line); border-radius:20px;
+  padding:20px 18px 16px; width:100%; max-width:340px;
+  transform:translateY(24px); transition:transform .25s cubic-bezier(.34,1.56,.64,1);
+  box-shadow: 0 -4px 40px #00000080;
+}
+.popup-overlay.show .popup-box { transform:translateY(0); }
+.popup-icon { font-size:28px; text-align:center; margin-bottom:10px; }
+.popup-title { font-family:var(--sans); font-size:16px; font-weight:700; text-align:center; margin-bottom:6px; }
+.popup-msg { font-size:11px; color:var(--txt2); text-align:center; line-height:1.6; margin-bottom:18px; }
+.popup-btns { display:flex; flex-direction:column; gap:8px; }
+.popup-btn {
+  width:100%; padding:13px; border:none; border-radius:12px; cursor:pointer;
+  font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.06em;
+  transition: opacity .15s, transform .1s;
+}
+.popup-btn:active { transform:scale(.97); opacity:.85; }
+.popup-btn-confirm { background:var(--acc); color:#fff; }
+.popup-btn-danger  { background:var(--acc5); color:#fff; }
+.popup-btn-cancel  { background:var(--bg2); color:var(--txt2); border:1px solid var(--line); }
+
+/* ── SELETOR DE TEMAS ───────────────────── */
+.tema-btn{background:none;border:2px solid transparent;border-radius:12px;padding:6px 4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;color:var(--txt3);font-family:var(--mono);font-size:7px;letter-spacing:.04em;transition:border-color .2s,color .2s}
+.tema-btn.ativo{border-color:var(--tc);color:var(--txt)}
+.tema-circle{width:32px;height:32px;border-radius:50%;box-shadow:0 2px 8px #0005}
 
 /* TOPBAR */
 .topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--line);padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
@@ -172,24 +350,150 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
 .top-body ul{padding-left:14px;margin-top:4px}
 .top-body li{margin-bottom:3px}
 
-/* ── MODO PROVA ──────────────────────────── */
-.prova-hero{background:linear-gradient(135deg,#2a1020,var(--bg1));border:1px solid #6a2040;border-radius:14px;padding:15px;margin-bottom:8px}
-.prova-urgente{background:linear-gradient(135deg,#2a1008,var(--bg1));border:1px solid #8a4010}
-.prova-ok{background:linear-gradient(135deg,#0a1a20,var(--bg1));border:1px solid #104060}
-.prova-tag{font-size:8px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:20px;display:inline-block;margin-bottom:8px}
-.prova-tag.red{background:#f06e7c22;color:#f06e7c;border:1px solid #f06e7c44}
-.prova-tag.yellow{background:#f0a04e22;color:#f0a04e;border:1px solid #f0a04e44}
-.prova-tag.green{background:#3ecfa422;color:#3ecfa4;border:1px solid #3ecfa444}
-.prova-nome{font-family:var(--sans);font-size:16px;font-weight:800;margin-bottom:4px}
-.prova-data{font-size:10px;color:var(--txt2);margin-bottom:10px}
-.prova-countdown{display:flex;align-items:baseline;gap:6px;margin-bottom:10px}
-.prova-dias{font-family:var(--sans);font-size:42px;font-weight:800;line-height:1}
-.prova-dias-label{font-size:10px;color:var(--txt2)}
-.prova-plano{background:var(--bg2);border-radius:8px;padding:10px 12px}
-.prova-plano-title{font-size:8px;font-weight:700;color:var(--txt3);letter-spacing:.1em;margin-bottom:6px}
-.prova-dica{font-size:10px;color:var(--txt2);line-height:1.6;margin-bottom:4px;padding-left:10px;border-left:2px solid var(--acc5)}
+/* ── MODO PROVA — banner refinado ─────────── */
+.prova-hero {
+  position: relative; overflow: hidden;
+  background: linear-gradient(150deg, #1e0e2a 0%, #140d1e 50%, var(--bg1) 100%);
+  border: 1px solid color-mix(in srgb, var(--acc) 25%, transparent);
+  border-radius: 24px; padding: 20px 18px; margin-bottom: 12px;
+  box-shadow: 0 4px 24px color-mix(in srgb, var(--acc) 8%, transparent),
+              inset 0 1px 0 #ffffff06;
+}
+.prova-urgente {
+  background: linear-gradient(150deg, #2a0e0e 0%, #1c0a0a 50%, var(--bg1) 100%);
+  border-color: color-mix(in srgb, var(--acc5) 28%, transparent);
+  box-shadow: 0 4px 24px color-mix(in srgb, var(--acc5) 10%, transparent),
+              inset 0 1px 0 #ffffff06;
+}
+.prova-ok {
+  background: linear-gradient(150deg, #0a1e18 0%, #081510 50%, var(--bg1) 100%);
+  border-color: color-mix(in srgb, var(--acc3) 25%, transparent);
+  box-shadow: 0 4px 24px color-mix(in srgb, var(--acc3) 8%, transparent),
+              inset 0 1px 0 #ffffff06;
+}
+/* Brilho decorativo no canto */
+.prova-hero::before {
+  content:''; position:absolute; top:-50px; right:-50px;
+  width:140px; height:140px; border-radius:50%;
+  background: var(--acc); opacity:.07; pointer-events:none; filter: blur(40px);
+}
+.prova-urgente::before { background: var(--acc5); opacity:.09; }
+.prova-ok::before      { background: var(--acc3); opacity:.07; }
 
-.aval-card{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:6px;display:flex;align-items:center;gap:12px}
+/* Linha decorativa no topo */
+.prova-hero::after {
+  content:''; position:absolute; top:0; left:24px; right:24px; height:1px;
+  background: linear-gradient(90deg, transparent, var(--acc), transparent);
+  opacity:.3;
+}
+.prova-urgente::after { background: linear-gradient(90deg, transparent, var(--acc5), transparent); }
+.prova-ok::after      { background: linear-gradient(90deg, transparent, var(--acc3), transparent); }
+
+.prova-top-row { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:10px; }
+.prova-tag { font-size:8px; font-weight:700; letter-spacing:.1em; padding:4px 12px; border-radius:20px; display:inline-flex; align-items:center; gap:4px; }
+.prova-tag.red    { background: color-mix(in srgb, var(--acc5) 15%, transparent); color:var(--acc5); border:1px solid color-mix(in srgb,var(--acc5) 28%,transparent); }
+.prova-tag.yellow { background: color-mix(in srgb, var(--acc4) 15%, transparent); color:var(--acc4); border:1px solid color-mix(in srgb,var(--acc4) 28%,transparent); }
+.prova-tag.green  { background: color-mix(in srgb, var(--acc3) 15%, transparent); color:var(--acc3); border:1px solid color-mix(in srgb,var(--acc3) 28%,transparent); }
+
+.prova-nome { font-family:var(--sans); font-size:24px; font-weight:800; margin-bottom:4px; line-height:1.1; }
+.prova-data { font-size:9px; color:var(--txt2); letter-spacing:.04em; margin-bottom:14px; opacity:.8; }
+
+.prova-countdown {
+  display:flex; align-items:center; gap:14px; margin-bottom:14px;
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
+  border: 1px solid color-mix(in srgb, var(--line) 50%, transparent);
+  border-radius: 16px; padding: 12px 16px;
+}
+.prova-dias { font-family:var(--sans); font-size:48px; font-weight:800; line-height:1; letter-spacing:-2px; }
+.prova-dias-info { display:flex; flex-direction:column; gap:3px; }
+.prova-dias-label { font-size:11px; color:var(--txt2); }
+.prova-tipo-badge { font-size:8px; font-weight:700; letter-spacing:.07em; opacity:.65; }
+
+.prova-plano {
+  border-radius: 16px; padding: 13px 15px;
+  background: color-mix(in srgb, var(--bg) 45%, transparent);
+  border: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
+}
+.prova-plano-title { font-size:8px; font-weight:700; color:var(--txt3); letter-spacing:.12em; margin-bottom:9px; }
+.prova-dica { font-size:10px; color:var(--txt2); line-height:1.65; margin-bottom:6px; padding-left:14px; position:relative; }
+.prova-dica:last-child { margin-bottom:0; }
+.prova-dica::before { content:'›'; position:absolute; left:2px; color:var(--acc3); font-weight:700; font-size:12px; }
+
+/* ── NAV — círculo de luz atrás do ícone ─── */
+.nav-island > button.active::before {
+  content:'';
+  position:absolute;
+  top:50%; left:50%; transform:translate(-50%,-55%);
+  width: 38px; height: 38px;
+  background: radial-gradient(circle, var(--acc)22 0%, transparent 70%);
+  border-radius: 50%;
+  box-shadow: none;
+}
+.nav-island > button.active::after {
+  content:'';
+  position:absolute;
+  top: 3px; left:50%; transform:translateX(-50%);
+  width: 18px; height: 2px;
+  background: var(--acc);
+  border-radius: 2px;
+  box-shadow: 0 0 8px var(--acc), 0 0 16px var(--acc)88;
+}
+
+/* ── IA — botões de áudio e enviar redesenhados ─ */
+.ia-chat-input {
+  display:flex; align-items:center;
+  border-top:1px solid var(--line);
+  padding: 6px 8px; gap:6px;
+  background: var(--bg1);
+}
+.ia-chat-input input {
+  flex:1; background: var(--bg2); border:1px solid var(--line);
+  border-radius:20px; padding:9px 14px;
+  color:var(--txt); font-family:var(--mono); font-size:11px; outline:none;
+  transition: border-color .2s;
+}
+.ia-chat-input input:focus { border-color: var(--acc); }
+.ia-chat-input input::placeholder { color:var(--txt3); }
+.ia-btn-audio {
+  width:36px; height:36px; border-radius:50%; flex-shrink:0;
+  background: var(--bg2); border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; transition:all .2s; color:var(--txt2);
+}
+.ia-btn-audio:hover,.ia-btn-audio:active { background:var(--acc5); border-color:var(--acc5); color:#fff; }
+.ia-btn-audio.gravando { background:var(--acc5); border-color:var(--acc5); color:#fff; animation:pulse-rec .8s ease-in-out infinite; }
+@keyframes pulse-rec { 0%,100%{box-shadow:0 0 0 0 var(--acc5)44} 50%{box-shadow:0 0 0 6px transparent} }
+.ia-btn-audio svg { width:15px; height:15px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; }
+.ia-btn-send {
+  width:36px; height:36px; border-radius:50%; flex-shrink:0;
+  background: var(--acc); border:none;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; transition:all .2s;
+  box-shadow: 0 2px 10px var(--acc)44;
+}
+.ia-btn-send:hover { transform:scale(1.05); }
+.ia-btn-send:active { transform:scale(.94); }
+.ia-btn-send:disabled { opacity:.4; cursor:not-allowed; transform:none; }
+.ia-btn-send svg { width:15px; height:15px; stroke:#fff; fill:none; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+
+/* ── HOJE — cards extras ───────────────────── */
+.hoje-extras { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:4px; }
+.hoje-extra-card {
+  background: var(--bg1); border:1px solid var(--line); border-radius:14px;
+  padding:12px; display:flex; flex-direction:column; gap:4px;
+}
+.hoje-extra-label { font-size:8px; color:var(--txt3); letter-spacing:.08em; font-weight:700; }
+.hoje-extra-val { font-family:var(--sans); font-size:18px; font-weight:800; line-height:1; }
+.hoje-extra-sub { font-size:9px; color:var(--txt2); }
+.hoje-frase {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--acc) 8%, var(--bg1)), var(--bg1));
+  border:1px solid color-mix(in srgb, var(--acc) 20%, transparent);
+  border-radius:14px; padding:14px 16px; margin-bottom:4px;
+}
+.hoje-frase-txt { font-size:11px; color:var(--txt2); line-height:1.7; font-style:italic; }
+.hoje-frase-autor { font-size:8px; color:var(--txt3); margin-top:6px; letter-spacing:.06em; }
+
+.aval-card{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:12px 14px;margin-bottom:6px;display:flex;align-items:center;gap:12px}
 .aval-data-box{background:var(--bg);border-radius:8px;padding:6px 10px;text-align:center;min-width:44px;flex-shrink:0}
 .aval-dia{font-family:var(--sans);font-size:18px;font-weight:800;line-height:1}
 .aval-mes{font-size:8px;color:var(--txt3);letter-spacing:.06em;margin-top:1px}
@@ -617,6 +921,33 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
       <div class="next-hora" id="next-hora"></div>
     </div>
   </div>
+
+  <!-- Cards extras -->
+  <div class="hoje-extras" id="hoje-extras">
+    <div class="hoje-extra-card">
+      <div class="hoje-extra-label">PRÓXIMA PROVA</div>
+      <div class="hoje-extra-val" id="hoje-prova-dias" style="color:var(--acc)">—</div>
+      <div class="hoje-extra-sub" id="hoje-prova-nome">Carregando...</div>
+    </div>
+    <div class="hoje-extra-card">
+      <div class="hoje-extra-label">TÓPICOS ESTUDADOS</div>
+      <div class="hoje-extra-val" id="hoje-topicos-val" style="color:var(--acc3)">—</div>
+      <div class="hoje-extra-sub" id="hoje-topicos-sub">de todos os tópicos</div>
+    </div>
+  </div>
+  <div class="hoje-frase" id="hoje-frase">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+      <svg width="22" height="18" viewBox="0 0 24 20" fill="none" style="flex-shrink:0;margin-top:3px;opacity:.35">
+        <path d="M0 20V12.667C0 5.667 4.333 1.333 13 0l1.333 2.667C10.444 3.556 8.222 5.333 7.333 8H11V20H0zm13 0V12.667C13 5.667 17.333 1.333 26 0l1.333 2.667C23.444 3.556 21.222 5.333 20.333 8H24V20H13z" fill="var(--acc)"/>
+      </svg>
+      <div style="flex:1">
+        <div class="hoje-frase-txt" id="hoje-frase-txt"></div>
+        <div class="hoje-frase-autor" id="hoje-frase-autor"></div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center;gap:5px;margin-top:10px" id="frase-dots"></div>
+  </div>
+
   <div class="sec-header">CHECKLIST DE HOJE</div>
   <div id="lista-hoje"></div>
   <div class="sec-header">MATÉRIAS DE HOJE</div>
@@ -775,6 +1106,48 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
   <div class="dica-card" style="border-left-color:var(--acc3)"><div class="dica-tag" style="color:var(--acc3)">DOMINGO 15:30h</div><div class="dica-txt">Pegue papel e escreva o que vai estudar em CADA dia da semana. Papel, não celular.</div></div>
   <div class="dica-card" style="border-left-color:var(--acc4)"><div class="dica-tag" style="color:var(--acc4)">QUANDO TRAVAR</div><div class="dica-txt">Timer de 2 min → escreve tudo da cabeça → escolhe 1 coisa só → começa.</div></div>
   <div class="dica-card" style="border-left-color:var(--acc5)"><div class="dica-tag" style="color:var(--acc5)">O JUDÔ AJUDA</div><div class="dica-txt">Não abandone o treino quando a escola estiver puxada. Exercício reduz cortisol e melhora o foco.</div></div>
+  <div class="sec-header">APARÊNCIA</div>
+  <div class="card" style="padding:14px">
+    <div style="font-size:9px;color:var(--txt3);letter-spacing:.08em;margin-bottom:10px">TEMA</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+      <button onclick="setTema('')" class="tema-btn" data-tema="" style="--tc:#7c6ef8">
+        <div class="tema-circle" style="background:linear-gradient(135deg,#7c6ef8,#4eaaf0)"></div>
+        <span>Padrão</span>
+      </button>
+      <button onclick="setTema('aurora')" class="tema-btn" data-tema="aurora" style="--tc:#c084fc">
+        <div class="tema-circle" style="background:linear-gradient(135deg,#c084fc,#f472b6)"></div>
+        <span>Aurora</span>
+      </button>
+      <button onclick="setTema('ocean')" class="tema-btn" data-tema="ocean" style="--tc:#38bdf8">
+        <div class="tema-circle" style="background:linear-gradient(135deg,#38bdf8,#34d399)"></div>
+        <span>Ocean</span>
+      </button>
+      <button onclick="setTema('forest')" class="tema-btn" data-tema="forest" style="--tc:#4ade80">
+        <div class="tema-circle" style="background:linear-gradient(135deg,#4ade80,#fbbf24)"></div>
+        <span>Forest</span>
+      </button>
+      <button onclick="setTema('sunset')" class="tema-btn" data-tema="sunset" style="--tc:#fb923c">
+        <div class="tema-circle" style="background:linear-gradient(135deg,#fb923c,#f43f5e)"></div>
+        <span>Sunset</span>
+      </button>
+      <button onclick="setTema('arctic')" class="tema-btn" data-tema="arctic" style="--tc:#94a3b8">
+        <div class="tema-circle" style="background:linear-gradient(135deg,#94a3b8,#7dd3fc)"></div>
+        <span>Arctic</span>
+      </button>
+      <button onclick="setTema('ember')" class="tema-btn" data-tema="ember" style="--tc:#dc8a3e">
+        <div class="tema-circle" style="background:linear-gradient(135deg,#dc8a3e,#ef4444)"></div>
+        <span>Ember</span>
+      </button>
+      <button onclick="setTema('void')" class="tema-btn" data-tema="void" style="--tc:#6366f1">
+        <div class="tema-circle" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)"></div>
+        <span>Void</span>
+      </button>
+      <button onclick="setTema('sakura')" class="tema-btn" data-tema="sakura" style="--tc:#f9a8d4">
+        <div class="tema-circle" style="background:linear-gradient(135deg,#f9a8d4,#f0abfc)"></div>
+        <span>Sakura</span>
+      </button>
+    </div>
+  </div>
   <div class="sec-header">CONFIGURAÇÕES</div>
   <div class="card">
     <div class="toggle-row">
@@ -792,6 +1165,10 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
     <div class="toggle-row" style="border-bottom:none">
       <div><div class="toggle-lbl">Modo edição provas</div><div class="toggle-sub">Libera botão apagar por 5 minutos</div></div>
       <button class="btn btn-ghost" style="font-size:9px;padding:6px 12px" id="btn-modo-edicao" onclick="avalModoEdicao()">ATIVAR</button>
+    </div>
+    <div class="toggle-row" style="border-bottom:none;margin-top:4px">
+      <div><div class="toggle-lbl">Notificações</div><div class="toggle-sub">Provas, Pomodoro e lembretes</div></div>
+      <button class="btn btn-ghost" style="font-size:9px;padding:6px 12px" id="btn-notif" onclick="notifPedir()">ATIVAR</button>
     </div>
   </div>
 </div>
@@ -856,8 +1233,13 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
     </div>
     <div class="ia-chat-input">
       <input type="text" id="ia-chat-in" placeholder="Digite sua dúvida..." onkeydown="if(event.key==='Enter')iaChatEnviar()">
-      <button id="ia-audio-btn" class="ia-chat-send" style="background:var(--bg2);color:var(--txt2);border-left:1px solid var(--line)" onclick="iaToggleAudio()">🎙</button>
-      <button class="ia-chat-send" id="ia-chat-send" onclick="iaChatEnviar()">ENVIAR</button>
+      <button id="ia-audio-btn" class="ia-btn-audio" onclick="iaToggleAudio()" title="Gravar áudio">
+        <svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0014 0"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg>
+      </button>
+      <button class="ia-btn-send" id="ia-chat-send" onclick="iaChatEnviar()" title="Enviar">
+        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
     </div>
   </div>
 
@@ -1023,28 +1405,33 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
 
 <!-- NAV -->
 <nav>
-  <button class="active" onclick="showPage('hoje',this)">
-    <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
-    HOJE
-  </button>
-  <button onclick="showPage('pomo',this)">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M9 2h6"/><line x1="12" y1="5" x2="12" y2="9"/></svg>
-    FOCO
-  </button>
-  <div class="nav-mais" id="nav-mais-btn" onclick="navMaisToggle()">
-    <div class="nav-mais-icon">
-      <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+  <div class="nav-island">
+    <button class="active" onclick="showPage('hoje',this)">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
+      HOJE
+    </button>
+    <button onclick="showPage('pomo',this)">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M9 2h6"/><line x1="12" y1="5" x2="12" y2="9"/></svg>
+      FOCO
+    </button>
+
+    <!-- Botão + com notch -->
+    <div class="nav-mais-wrap">
+      <button class="nav-mais-btn" id="nav-mais-btn" onclick="navMaisToggle()">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </button>
+      <span class="nav-mais-label">MAIS</span>
     </div>
-    MAIS
+
+    <button onclick="showPage('provas',this)" id="nav-provas" style="position:relative">
+      <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      PROVAS
+    </button>
+    <button onclick="showPage('conteudo',this)">
+      <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+      CONTEÚDO
+    </button>
   </div>
-  <button onclick="showPage('provas',this)" id="nav-provas" style="position:relative">
-    <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-    PROVAS
-  </button>
-  <button onclick="showPage('conteudo',this)">
-    <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
-    CONTEÚDO
-  </button>
 </nav>
 
 <!-- Menu flutuante do botão + -->
@@ -1065,6 +1452,16 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
     DICAS
   </button>
+</div>
+
+<!-- POPUP CUSTOMIZADO -->
+<div class="popup-overlay" id="popup-overlay">
+  <div class="popup-box">
+    <div class="popup-icon" id="popup-icon">⚠️</div>
+    <div class="popup-title" id="popup-title">Confirmar</div>
+    <div class="popup-msg" id="popup-msg"></div>
+    <div class="popup-btns" id="popup-btns"></div>
+  </div>
 </div>
 
 <script>
@@ -1319,6 +1716,101 @@ agendarResetDomingo()
 
 function resetChecklist(){updateHoje();toast('✓ Checklist resetado!')}
 
+// ── FRASES MOTIVACIONAIS — CARROSSEL ─────────
+const FRASES = [
+  {txt:'A disciplina é a ponte entre metas e realizações.', autor:'Jim Rohn'},
+  {txt:'Não é sobre ter tempo. É sobre fazer tempo.', autor:''},
+  {txt:'Cada dia de treino é um dia que te separa dos outros.', autor:''},
+  {txt:'O campeão é aquele que se levanta uma vez a mais do que caiu.', autor:''},
+  {txt:'Não espere pela motivação. Aja, e ela virá.', autor:''},
+  {txt:'Estudar é o treino da mente. Judô é o treino do corpo. Os dois te fazem campeão.', autor:''},
+  {txt:'A consistência supera o talento quando o talento não é consistente.', autor:''},
+  {txt:'Feito é melhor que perfeito. Comece.', autor:''},
+  {txt:'Seu futuro eu vai agradecer cada hora de estudo de hoje.', autor:''},
+  {txt:'O ENEM não é um obstáculo. É uma oportunidade.', autor:''},
+]
+
+let fraseAtual = new Date().getDate() % FRASES.length
+
+function fraseRender(fade=false){
+  const f = FRASES[fraseAtual]
+  const el_txt = document.getElementById('hoje-frase-txt')
+  const el_aut = document.getElementById('hoje-frase-autor')
+  const dotsEl = document.getElementById('frase-dots')
+
+  if(fade && el_txt){
+    el_txt.style.transition = 'opacity .3s'
+    el_aut && (el_aut.style.transition = 'opacity .3s')
+    el_txt.style.opacity = '0'
+    el_aut && (el_aut.style.opacity = '0')
+    setTimeout(()=>{
+      if(el_txt) el_txt.textContent = `"${f.txt}"`
+      if(el_aut) el_aut.textContent = f.autor ? `— ${f.autor}` : ''
+      el_txt.style.opacity = '1'
+      el_aut && (el_aut.style.opacity = '1')
+    }, 300)
+  } else {
+    if(el_txt) el_txt.textContent = `"${f.txt}"`
+    if(el_aut) el_aut.textContent = f.autor ? `— ${f.autor}` : ''
+  }
+
+  if(dotsEl){
+    dotsEl.innerHTML = FRASES.map((_, i) =>
+      `<div style="width:${i===fraseAtual?'16':'5'}px;height:5px;border-radius:3px;background:${i===fraseAtual?'var(--acc)':'var(--line)'};transition:all .3s"></div>`
+    ).join('')
+  }
+}
+
+function fraseNav(dir){
+  fraseAtual = (fraseAtual + dir + FRASES.length) % FRASES.length
+  fraseRender(true)
+}
+
+// Auto-avança a cada 3 minutos com fade
+setInterval(()=>{ fraseNav(1) }, 3 * 60 * 1000)
+
+// ── ATUALIZAR CARDS EXTRAS DA ABA HOJE ───────
+function atualizarHojeExtras(){
+  // Próxima prova
+  try{
+    const provas = typeof avalTodas==='function' ? avalTodas().filter(p=>diasAte(p.data)>=0).sort((a,b)=>a.data.localeCompare(b.data)) : []
+    const el_dias = document.getElementById('hoje-prova-dias')
+    const el_nome = document.getElementById('hoje-prova-nome')
+    if(provas.length && el_dias && el_nome){
+      const dias = diasAte(provas[0].data)
+      el_dias.textContent = dias===0 ? 'HOJE!' : dias===1 ? '1 dia' : `${dias} dias`
+      el_dias.style.color = dias<=1 ? 'var(--acc5)' : dias<=3 ? 'var(--acc4)' : 'var(--acc3)'
+      el_nome.textContent = provas[0].mat
+    } else if(el_dias){
+      el_dias.textContent = '—'
+      el_nome && (el_nome.textContent = 'Nenhuma próxima')
+    }
+  }catch(e){}
+
+  // Tópicos estudados
+  try{
+    let feitos=0, total=0
+    if(typeof CONTEUDO!=='undefined' && typeof MAT_LIST!=='undefined'){
+      MAT_LIST.forEach(mat=>{
+        const {tops=[],extra=[]} = CONTEUDO[mat]||{}
+        ;[...tops,...extra].forEach(t=>{
+          total++
+          try{ if(localStorage.getItem('t_'+t.id)==='1') feitos++ }catch(e){}
+        })
+      })
+    }
+    const el_val = document.getElementById('hoje-topicos-val')
+    const el_sub = document.getElementById('hoje-topicos-sub')
+    if(el_val){ el_val.textContent = feitos }
+    if(el_sub){ el_sub.textContent = `de ${total} tópicos (${total?Math.round(feitos/total*100):0}%)` }
+  }catch(e){}
+}
+
+// Chamar ao iniciar e a cada 30s
+fraseRender()
+atualizarHojeExtras()
+setInterval(atualizarHojeExtras, 30000)
+
 // Remove avaliações custom com mesma matéria+data
 function avalRemoverDuplicatas(){
   const custom = avalCarregar()
@@ -1339,9 +1831,8 @@ function avalRemoverDuplicatas(){
 // Modo edição: libera botão apagar por 5 minutos
 let avalModoEdicaoAtivo = false
 let avalModoEdicaoTimer = null
-function avalModoEdicao(){
+async function avalModoEdicao(){
   if(avalModoEdicaoAtivo){
-    // Desativar
     clearTimeout(avalModoEdicaoTimer)
     avalModoEdicaoAtivo = false
     document.getElementById('btn-modo-edicao').textContent = 'ATIVAR'
@@ -1350,14 +1841,22 @@ function avalModoEdicao(){
     toast('Modo edição desativado.')
     return
   }
-  if(!confirm('Ativar modo edição? Você poderá apagar qualquer avaliação por 5 minutos.')) return
+  const ok = await popup({
+    icon:'✏️',
+    title:'Modo edição',
+    msg:'Você poderá apagar qualquer avaliação pelos próximos 5 minutos. Use com cuidado!',
+    btns:[
+      {label:'ATIVAR', type:'confirm', value:true},
+      {label:'Cancelar', type:'cancel', value:false}
+    ]
+  })
+  if(!ok) return
   avalModoEdicaoAtivo = true
   const btn = document.getElementById('btn-modo-edicao')
   btn.textContent = 'ATIVO (5min)'
   btn.style.color = 'var(--acc5)'
   renderProvas()
   toast('Modo edição ativo por 5 minutos!')
-  // Desativa automaticamente após 5 minutos
   avalModoEdicaoTimer = setTimeout(()=>{
     avalModoEdicaoAtivo = false
     const b = document.getElementById('btn-modo-edicao')
@@ -1458,11 +1957,11 @@ function togglePomo(){
       if(pomoTime<=0){
         clearInterval(pomoTimer);pomoRunning=false;beep()
         if(pomoFase==='foco'){
-          if(pomoSession<4){pomoFase='pausa';pomoTime=POMO_BREAK;pomoTotal=POMO_BREAK;toast('Bloco concluído! 5 min de pausa.')}
-          else{pomoFase='longa';pomoTime=POMO_LONG;pomoTotal=POMO_LONG;toast('4 blocos! Pausa longa de 20 min. 🍅');iaPomoCheck()}
+          if(pomoSession<4){pomoFase='pausa';pomoTime=POMO_BREAK;pomoTotal=POMO_BREAK;toast('Bloco concluído! 5 min de pausa.');notifPomo('foco')}
+          else{pomoFase='longa';pomoTime=POMO_LONG;pomoTotal=POMO_LONG;toast('4 blocos! Pausa longa de 20 min. 🍅');iaPomoCheck();notifPomo('foco')}
         } else {
           if(pomoSession>=4)pomoSession=0
-          pomoSession++;pomoFase='foco';pomoTime=POMO_FOCO;pomoTotal=POMO_FOCO;toast('Pausa encerrada. Hora de focar!')
+          pomoSession++;pomoFase='foco';pomoTime=POMO_FOCO;pomoTotal=POMO_FOCO;toast('Pausa encerrada. Hora de focar!');notifPomo('pausa')
         }
         btnPomo.textContent='INICIAR';updatePomoDisplay()
       }
@@ -1830,6 +2329,122 @@ function iaExecutarAcao(texto){
 }
 
 // ═══════════════════════════════════════════
+// POPUP CUSTOMIZADO
+// ═══════════════════════════════════════════
+function popup({ icon='⚠️', title='', msg='', btns=[] }){
+  return new Promise(resolve => {
+    const ov = document.getElementById('popup-overlay')
+    document.getElementById('popup-icon').textContent  = icon
+    document.getElementById('popup-title').textContent = title
+    document.getElementById('popup-msg').textContent   = msg
+    const btnsEl = document.getElementById('popup-btns')
+    btnsEl.innerHTML = ''
+    btns.forEach(b => {
+      const el = document.createElement('button')
+      el.className = `popup-btn popup-btn-${b.type||'cancel'}`
+      el.textContent = b.label
+      el.onclick = () => { fecharPopup(); resolve(b.value) }
+      btnsEl.appendChild(el)
+    })
+    ov.classList.add('show')
+  })
+}
+function fecharPopup(){
+  document.getElementById('popup-overlay').classList.remove('show')
+}
+document.getElementById('popup-overlay').addEventListener('click', e => {
+  if(e.target === e.currentTarget) fecharPopup()
+})
+
+// ═══════════════════════════════════════════
+// SISTEMA DE TEMAS
+// ═══════════════════════════════════════════
+function setTema(tema){
+  document.documentElement.dataset.theme = tema
+  try{ localStorage.setItem('tema', tema) }catch(e){}
+  document.querySelectorAll('.tema-btn').forEach(b => {
+    b.classList.toggle('ativo', b.dataset.tema === tema)
+  })
+}
+// Carregar tema salvo
+;(function(){
+  try{
+    const t = localStorage.getItem('tema') || ''
+    setTema(t)
+  }catch(e){}
+})()
+
+// ═══════════════════════════════════════════
+// NOTIFICAÇÕES
+// ═══════════════════════════════════════════
+async function notifPedir(){
+  if(!('Notification' in window)){ toast('Notificações não suportadas neste navegador.'); return }
+  if(Notification.permission === 'granted'){
+    toast('Notificações já ativas! ✓')
+    notifAtivarAgendar()
+    return
+  }
+  const perm = await Notification.requestPermission()
+  if(perm === 'granted'){
+    document.getElementById('btn-notif').textContent = 'ATIVO'
+    document.getElementById('btn-notif').style.color = 'var(--acc3)'
+    notifAtivarAgendar()
+    new Notification('Kennedy App 🎯', { body:'Notificações ativadas! Vou te avisar sobre provas e Pomodoro.', icon:'/Kennedy-App/icon.png' })
+  } else {
+    toast('Permissão negada. Ative nas configurações do navegador.')
+  }
+}
+
+function notifEnviar(title, body, tag='geral'){
+  if(!('Notification' in window)) return
+  if(Notification.permission !== 'granted') return
+  try{ new Notification(title, { body, icon:'/Kennedy-App/icon.png', tag, badge:'/Kennedy-App/icon-192.png' }) }catch(e){}
+}
+
+function notifAtivarAgendar(){
+  setInterval(notifVerificar, 60 * 60 * 1000)
+  notifVerificar()
+  const btn = document.getElementById('btn-notif')
+  if(btn){ btn.textContent='ATIVO'; btn.style.color='var(--acc3)' }
+}
+
+function notifVerificar(){
+  if(!('Notification' in window)) return
+  if(Notification.permission !== 'granted') return
+  const agora = new Date()
+  const hora = agora.getHours()
+  if(hora < 6 || hora > 22) return
+
+  if(typeof avalTodas === 'function'){
+    avalTodas().forEach(p => {
+      const dias = diasAte(p.data)
+      if(dias === 1) notifEnviar(`📚 Prova amanhã: ${p.mat}`, `${p.tipo} · ${p.bim}º Bimestre${p.desc?' · '+p.desc:''}`, 'prova-'+p.data)
+      if(dias === 0) notifEnviar(`🔴 PROVA HOJE: ${p.mat}!`, `Boa sorte! ${p.tipo} · ${p.bim}º Bimestre`, 'prova-hoje-'+p.data)
+    })
+  }
+
+  if(typeof calTodosEventos === 'function'){
+    const hoje = agora.toISOString().slice(0,10)
+    calTodosEventos()
+      .filter(ev => ev.data === hoje && ev.tipo === 'lembrete')
+      .forEach(ev => {
+        notifEnviar(`🔔 Lembrete: ${ev.titulo}`, ev.nota || ev.hora || '', 'lembrete-'+ev.id)
+      })
+  }
+}
+
+function notifPomo(tipo){
+  if(!('Notification' in window)) return
+  if(tipo === 'foco')  notifEnviar('🍅 Pomodoro finalizado!', 'Pausa de 5 minutos — você merece!', 'pomo-fim')
+  if(tipo === 'pausa') notifEnviar('⏱ Pausa encerrada!', 'Hora de focar. Próximo bloco!', 'pomo-pausa')
+}
+
+;(function(){
+  if(!('Notification' in window)) return
+  if(Notification.permission === 'granted') notifAtivarAgendar()
+})()
+
+// ═══════════════════════════════════════════
 // MÓDULO IA — GROQ API
 // ═══════════════════════════════════════════
 const GROQ_KEY = '%%GROQ_API_KEY%%'
@@ -2071,15 +2686,45 @@ PROVAS_JSON:[{"mat":"Matemática","data":"2026-03-12","tipo":"Parcial","bim":1}]
 Seja direto e organizado.`
 }
 
-function iaSalvarProvas(){
+async function iaSalvarProvas(){
   if(!iaProvasDetectadas.length){ toast('Nenhuma prova detectada para salvar.'); return }
   const custom = avalCarregar()
+  const todas  = [...AVAL_FIXAS, ...custom]
+
+  // Detectar duplicatas
+  const novas = []
+  const duplas = []
   iaProvasDetectadas.forEach(p => {
-    if(!custom.find(c=>c.mat===p.mat&&c.data===p.data)) custom.push(p)
+    const existe = todas.find(c => c.mat.toLowerCase()===p.mat?.toLowerCase() && c.data===p.data)
+    if(existe) duplas.push(p)
+    else novas.push(p)
+  })
+
+  // Se há duplicatas, avisa via popup
+  if(duplas.length > 0){
+    const nomesDup = duplas.map(p=>`${p.mat} (${p.data})`).join(', ')
+    const ok = await popup({
+      icon:'⚠️',
+      title:'Provas já existem',
+      msg:`As seguintes provas já estão cadastradas:\n${nomesDup}\n\nDeseja adicionar mesmo assim?`,
+      btns:[
+        {label:'ADICIONAR MESMO ASSIM', type:'confirm', value:'todas'},
+        {label:`Só as ${novas.length} novas`, type:'cancel', value:'novas'},
+        {label:'Cancelar', type:'cancel', value:false}
+      ]
+    })
+    if(!ok) return
+    if(ok === 'todas') novas.push(...duplas)
+  }
+
+  if(!novas.length){ toast('Nenhuma prova nova para adicionar.'); return }
+
+  novas.forEach(p => {
+    custom.push({mat:p.mat, data:p.data, tipo:p.tipo||'Parcial', bim:p.bim||1, desc:p.desc||'', dicas:[], criadoEm:Date.now()})
   })
   avalSalvar(custom)
   renderProvas()
-  toast(`${iaProvasDetectadas.length} provas salvas! ✓`)
+  toast(`${novas.length} provas salvas! ✓`)
   iaLimpar()
 }
 
@@ -2108,7 +2753,7 @@ async function iaIniciarGravacao(){
     iaMediaRecorder.start(200)
     iaGravando = true
     const btn = document.getElementById('ia-audio-btn')
-    if(btn){ btn.textContent='⏹ PARAR'; btn.style.background='var(--acc5)' }
+    if(btn){ btn.classList.add('gravando'); btn.innerHTML='<svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>' }
     toast('Gravando... fala sua dúvida!')
   } catch(err){
     toast('Microfone não permitido. Verifique as permissões.')
@@ -2121,7 +2766,7 @@ function iaEncerrarGravacao(){
     iaAudioStream?.getTracks().forEach(t=>t.stop())
     iaGravando = false
     const btn = document.getElementById('ia-audio-btn')
-    if(btn){ btn.textContent='🎙 GRAVAR'; btn.style.background='' }
+    if(btn){ btn.classList.remove('gravando'); btn.innerHTML='<svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0014 0"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg>' }
   }
 }
 
@@ -2513,19 +3158,24 @@ function renderProvas(){
   if(proxima){
     const dias = diasAte(proxima.data)
     const {tag,cls,cor,heroCls} = avalCor(dias)
-    const plano = proxima.dicas || ['Revise os tópicos principais','Faça exercícios anteriores','Durma bem na véspera','Não estude na última hora — confie no que já sabe']
+    const plano = proxima.dicas?.length ? proxima.dicas : ['Revise os tópicos principais','Faça exercícios anteriores','Durma bem na véspera','Não estude na última hora — confie no que já sabe']
     dest.innerHTML=`
-      <div class="${heroCls}" style="margin-bottom:8px">
-        <div class="prova-tag ${cls}">${tag}</div>
+      <div class="${heroCls}">
+        <div class="prova-top-row">
+          <div class="prova-tag ${cls}">${tag}</div>
+        </div>
         <div class="prova-nome" style="color:${cor}">${proxima.mat}</div>
-        <div class="prova-data">${fmtData(proxima.data)} · ${proxima.tipo} · ${proxima.bim}º Bimestre</div>
+        <div class="prova-data">${fmtData(proxima.data)} · ${proxima.tipo} · ${proxima.bim}º Bimestre${proxima.desc?` · <span style="color:var(--txt3)">${proxima.desc}</span>`:''}</div>
         <div class="prova-countdown">
-          <div class="prova-dias" style="color:${cor}">${dias<=0?'📅':dias}</div>
-          <div class="prova-dias-label">${dias===0?'prova hoje!':dias===1?'dia restante':'dias restantes'}</div>
+          <div class="prova-dias" style="color:${cor}">${dias<=0?'🎯':dias}</div>
+          <div class="prova-dias-info">
+            <div class="prova-dias-label">${dias===0?'prova hoje!':dias===1?'dia restante':'dias restantes'}</div>
+            <div class="prova-tipo-badge" style="color:${cor}">${proxima.tipo.toUpperCase()} · ${proxima.bim}º BIM</div>
+          </div>
         </div>
         <div class="prova-plano">
-          <div class="prova-plano-title">PLANO DE ESTUDO — O QUE FOCAR</div>
-          ${plano.map(d=>`<div class="prova-dica">• ${d}</div>`).join('')}
+          <div class="prova-plano-title">O QUE FOCAR</div>
+          ${plano.map(d=>`<div class="prova-dica">${d}</div>`).join('')}
         </div>
       </div>
     `
@@ -2609,8 +3259,17 @@ function addAval(){
   toast('Avaliação adicionada! ✓')
 }
 
-function delAval(i){
-  if(!confirm('Apagar esta avaliação? Essa ação não pode ser desfeita.')) return
+async function delAval(i){
+  const ok = await popup({
+    icon:'🗑️',
+    title:'Apagar avaliação?',
+    msg:'Essa ação não pode ser desfeita. A prova será removida permanentemente.',
+    btns:[
+      {label:'APAGAR', type:'danger', value:true},
+      {label:'Cancelar', type:'cancel', value:false}
+    ]
+  })
+  if(!ok) return
   const custom = avalCarregar()
   custom.splice(i,1)
   avalSalvar(custom)
