@@ -878,6 +878,19 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
           </select>
         </div>
       </div>
+      <div>
+        <div style="font-size:9px;color:var(--txt3);margin-bottom:4px;letter-spacing:.06em">BIMESTRE</div>
+        <select id="nova-bim" style="width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:9px 12px;color:var(--txt);font-family:var(--mono);font-size:11px;outline:none">
+          <option value="1">1º Bimestre</option>
+          <option value="2">2º Bimestre</option>
+          <option value="3">3º Bimestre</option>
+          <option value="4">4º Bimestre</option>
+        </select>
+      </div>
+      <div>
+        <div style="font-size:9px;color:var(--txt3);margin-bottom:4px;letter-spacing:.06em">DESCRIÇÃO / CONTEÚDO <span style="color:var(--txt3);font-weight:400">(opcional)</span></div>
+        <textarea id="nova-desc" placeholder="Ex: Funções de 1º e 2º grau, geometria plana..." style="width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:9px 12px;color:var(--txt);font-family:var(--mono);font-size:11px;outline:none;resize:vertical;min-height:64px;box-sizing:border-box"></textarea>
+      </div>
       <button class="btn btn-primary" onclick="addAval()" style="width:100%">ADICIONAR</button>
     </div>
   </div>
@@ -1598,6 +1611,155 @@ function makeTopCard(top, cor, isExtra=false){
   renderConteudo('Portugues')
 })()
 
+// ── CONTEXTO TOTAL DO APP PARA A IA ─────────
+// Coleta tudo que está no app e monta um snapshot para o Groq
+function iaContextoApp(){
+  const agora = new Date()
+  const diasSemana = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado']
+  const hoje = `${diasSemana[agora.getDay()]}, ${agora.toLocaleDateString('pt-BR')}, ${agora.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}`
+
+  // Provas
+  const todasProvas = typeof avalTodas==='function' ? avalTodas() : []
+  const provasTexto = todasProvas.length
+    ? todasProvas.map(p=>{
+        const dias = Math.ceil((new Date(p.data+'T12:00')-agora)/(1000*60*60*24))
+        const desc = p.desc ? ` | Conteúdo: ${p.desc}` : ''
+        return `  - ${p.mat} | ${p.data} | ${p.tipo} ${p.bim||1}º Bim | ${dias>=0?dias+' dias':' já passou'}${desc}`
+      }).join('\n')
+    : '  Nenhuma prova cadastrada'
+
+  // Tópicos de conteúdo marcados
+  const topicosFeitos = []
+  const topicosPendentes = []
+  if(typeof CONTEUDO !== 'undefined' && typeof MAT_LIST !== 'undefined'){
+    MAT_LIST.forEach(mat=>{
+      const {label,tops,extra=[]} = CONTEUDO[mat]
+      ;[...tops,...extra].forEach(t=>{
+        try{
+          const feito = localStorage.getItem('t_'+t.id)==='1'
+          if(feito) topicosFeitos.push(`${label}: ${t.n}`)
+          else topicosPendentes.push(`${label}: ${t.n}`)
+        }catch(e){}
+      })
+    })
+  }
+
+  // Eventos da agenda (próximos 7 dias)
+  const proxEventos = typeof calTodosEventos==='function'
+    ? calTodosEventos().filter(ev=>{
+        const d = new Date(ev.data+'T12:00')
+        const diff = Math.ceil((d-agora)/(1000*60*60*24))
+        return diff>=0 && diff<=7
+      }).slice(0,10)
+    : []
+  const eventosTexto = proxEventos.length
+    ? proxEventos.map(ev=>`  - ${ev.data} ${ev.hora||''} | ${ev.titulo} [${ev.tipo}]`).join('\n')
+    : '  Nenhum evento nos próximos 7 dias'
+
+  // Checklist de hoje (itens passados = feitos)
+  const checkFeitos = []
+  const checkPendentes = []
+  try{
+    document.querySelectorAll('.hora-item').forEach(el=>{
+      const nome = el.querySelector('.hora-ativ')?.textContent?.trim()
+      if(!nome) return
+      if(el.classList.contains('passado')) checkFeitos.push(nome)
+      else if(el.classList.contains('ativo')||el.classList.contains('futuro')) checkPendentes.push(nome)
+    })
+  }catch(e){}
+
+  return `
+ESTADO ATUAL DO APP (${hoje}):
+
+PROVAS CADASTRADAS:
+${provasTexto}
+
+PRÓXIMOS 7 DIAS NA AGENDA:
+${eventosTexto}
+
+CHECKLIST DE HOJE — JÁ FEZ:
+${checkFeitos.length ? checkFeitos.map(c=>`  ✓ ${c}`).join('\n') : '  (nenhum ainda)'}
+
+CHECKLIST DE HOJE — PENDENTE:
+${checkPendentes.length ? checkPendentes.map(c=>`  • ${c}`).join('\n') : '  (tudo feito!)'}
+
+TÓPICOS JÁ ESTUDADOS (${topicosFeitos.length}):
+${topicosFeitos.slice(0,10).map(t=>`  ✓ ${t}`).join('\n')||'  Nenhum ainda'}
+
+TÓPICOS PENDENTES (${topicosPendentes.length}):
+${topicosPendentes.slice(0,8).map(t=>`  • ${t}`).join('\n')||'  Todos concluídos!'}
+
+AÇÕES QUE VOCÊ PODE FAZER:
+- Adicionar prova: responda com ACAO:ADD_PROVA:{"mat":"...","data":"YYYY-MM-DD","tipo":"Parcial|Bimestral|Recuperação|Trabalho","bim":1,"desc":"...opcional"}
+- Adicionar evento na agenda: ACAO:ADD_EVENTO:{"titulo":"...","data":"YYYY-MM-DD","hora":"HH:MM","tipo":"pessoal|judo|escola|prova|lembrete","nota":"..."}
+- Navegar para uma aba: ACAO:IR_PARA:provas|agenda|conteudo|pomo|hoje|semana|musica|dicas
+- Iniciar Pomodoro: ACAO:INICIAR_POMO
+Se for executar uma ação, coloque-a no FIM da resposta em uma linha separada.`
+}
+
+// ── EXECUTAR AÇÕES DA IA ─────────────────────
+function iaExecutarAcao(texto){
+  const linhas = texto.split('\n')
+  linhas.forEach(linha=>{
+    linha = linha.trim()
+
+    // ADD_PROVA
+    if(linha.startsWith('ACAO:ADD_PROVA:')){
+      try{
+        const json = linha.replace('ACAO:ADD_PROVA:','')
+        const p = JSON.parse(json)
+        if(p.mat && p.data){
+          const custom = avalCarregar()
+          custom.push({mat:p.mat, data:p.data, tipo:p.tipo||'Parcial', bim:p.bim||1, desc:p.desc||'', dicas:[]})
+          avalSalvar(custom)
+          renderProvas()
+          calRenderGrade()
+          toast(`✓ Prova de ${p.mat} adicionada!`)
+        }
+      }catch(e){}
+    }
+
+    // ADD_EVENTO
+    if(linha.startsWith('ACAO:ADD_EVENTO:')){
+      try{
+        const json = linha.replace('ACAO:ADD_EVENTO:','')
+        const ev = JSON.parse(json)
+        if(ev.titulo && ev.data){
+          const custom = calCarregar()
+          custom.push({id:'ev-'+Date.now(), titulo:ev.titulo, data:ev.data, hora:ev.hora||'', tipo:ev.tipo||'pessoal', nota:ev.nota||'', fixo:false})
+          calSalvar(custom)
+          calRenderGrade()
+          calRenderAgenda()
+          toast(`✓ Evento "${ev.titulo}" adicionado!`)
+        }
+      }catch(e){}
+    }
+
+    // IR_PARA
+    if(linha.startsWith('ACAO:IR_PARA:')){
+      const pagina = linha.replace('ACAO:IR_PARA:','').trim()
+      setTimeout(()=>{
+        const btn = document.querySelector(`nav button[onclick*="'${pagina}'"]`)
+        if(btn) showPage(pagina, btn)
+        else navMaisIr(pagina)
+      }, 800)
+    }
+
+    // INICIAR_POMO
+    if(linha.startsWith('ACAO:INICIAR_POMO')){
+      setTimeout(()=>{
+        const btn = document.querySelector(`nav button[onclick*="'pomo'"]`)
+        if(btn){ showPage('pomo',btn) }
+        else navMaisIr('pomo')
+        setTimeout(()=>{ if(!pomoRunning) togglePomo() }, 500)
+      }, 800)
+    }
+  })
+
+  // Remove as linhas de ação do texto exibido
+  return texto.replace(/^ACAO:.*$/gm,'').replace(/\n{3,}/g,'\n\n').trim()
+}
+
 // ═══════════════════════════════════════════
 // MÓDULO IA — GROQ API
 // ═══════════════════════════════════════════
@@ -1664,11 +1826,16 @@ async function iaChatEnviar(){
       body: JSON.stringify({
         model: GROQ_CHAT_MODEL,
         max_tokens: 800,
-        messages: [{ role:'system', content: IA_SYSTEM }, ...iaChatHistorico]
+        messages: [
+          { role:'system', content: IA_SYSTEM + '\n\n' + iaContextoApp() },
+          ...iaChatHistorico
+        ]
       })
     })
     const data = await resp.json()
-    const resposta = data.choices?.[0]?.message?.content || 'Não consegui responder agora.'
+    let resposta = data.choices?.[0]?.message?.content || 'Não consegui responder agora.'
+    // Executa ações e limpa o texto
+    resposta = iaExecutarAcao(resposta)
     iaChatHistorico.push({ role:'assistant', content: resposta })
     iaChatRenderMsg('ai', resposta)
     if(iaChatHistorico.length > 20) iaChatHistorico = iaChatHistorico.slice(-20)
@@ -2313,6 +2480,7 @@ function renderProvas(){
         <div class="aval-info">
           <div class="aval-materia">${a.mat}</div>
           <div class="aval-tipo">${a.tipo} · ${a.bim||'?'}º Bimestre</div>
+          ${a.desc?`<div style="font-size:9px;color:var(--txt3);margin-top:3px;line-height:1.5">📝 ${a.desc}</div>`:''}
         </div>
         <div class="aval-dias-badge" style="background:${cor}22;color:${cor}">${dias<0?'✓':tag}</div>
         ${isCustom?`<button onclick="delAval(${i-AVAL_FIXAS.length})" style="background:none;border:none;color:var(--txt3);cursor:pointer;font-size:14px;padding:4px">✕</button>`:''}
@@ -2333,15 +2501,18 @@ function renderProvas(){
 }
 
 function addAval(){
-  const mat = document.getElementById('nova-materia').value.trim()
+  const mat  = document.getElementById('nova-materia').value.trim()
   const data = document.getElementById('nova-data').value
   const tipo = document.getElementById('nova-tipo').value
+  const bim  = parseInt(document.getElementById('nova-bim').value)||1
+  const desc = document.getElementById('nova-desc').value.trim()
   if(!mat||!data){ toast('Preencha matéria e data!'); return }
   const custom = avalCarregar()
-  custom.push({mat,data,tipo,bim:1,dicas:[]})
+  custom.push({mat,data,tipo,bim,desc,dicas:[]})
   avalSalvar(custom)
   document.getElementById('nova-materia').value=''
   document.getElementById('nova-data').value=''
+  document.getElementById('nova-desc').value=''
   renderProvas()
   toast('Avaliação adicionada! ✓')
 }
