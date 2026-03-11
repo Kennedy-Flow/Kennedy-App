@@ -669,9 +669,9 @@ nav {
   pointer-events: none; z-index: 9999;
   box-shadow: 0 8px 32px #0005, 0 2px 8px #0003;
   max-width: calc(100vw - 32px);
-  white-space: nowrap;
+  white-space: nowrap; cursor:pointer;
 }
-.toast.show { opacity:1; transform:translateX(-50%) translateY(0) scale(1); }
+.toast.show { opacity:1; transform:translateX(-50%) translateY(0) scale(1); pointer-events:auto; }
 .toast-icon {
   width: 28px; height: 28px; border-radius: 8px;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
@@ -914,7 +914,7 @@ nav {
 <body>
 
 <div class="app-shell">
-<div id="toast" class="toast">
+<div id="toast" class="toast" onclick="this.classList.remove('show')">
   <div class="toast-icon success" id="toast-icon">✓</div>
   <div class="toast-body">
     <div class="toast-title" id="toast-title"></div>
@@ -2466,11 +2466,14 @@ function notifEnviar(title, body, tag='geral'){
   try{ new Notification(title, { body, icon:'/Kennedy-App/icon.png', tag, badge:'/Kennedy-App/icon-192.png' }) }catch(e){}
 }
 
+let notifIntervalId = null
 function notifAtivarAgendar(){
-  setInterval(notifVerificar, 60 * 60 * 1000)
+  // Evita criar múltiplos intervals
+  if(notifIntervalId) return
+  notifIntervalId = setInterval(notifVerificar, 60 * 60 * 1000)
   notifVerificar()
   const btn = document.getElementById('btn-notif')
-  if(btn){ btn.textContent='ATIVO'; btn.style.color='var(--acc3)' }
+  if(btn){ btn.textContent='ATIVO'; btn.style.color='var(--acc3)'; btn.disabled=false }
 }
 
 function notifVerificar(){
@@ -3231,8 +3234,8 @@ function renderProvas(){
   const todas = [...AVAL_FIXAS, ...customLimpo].sort((a,b)=>a.data.localeCompare(b.data))
   const hoje = new Date(); hoje.setHours(0,0,0,0)
 
-  // Destaque — próxima prova
-  const proxima = todas.find(a=>diasAte(a.data)>=0)
+  // Destaque — próxima prova (ou a mais recente se todas passaram)
+  const proxima = todas.find(a=>diasAte(a.data)>=0) || todas[todas.length-1]
   const dest = document.getElementById('prova-destaque')
 
   if(proxima){
@@ -3268,14 +3271,12 @@ function renderProvas(){
   const agora = Date.now()
   const MS_24H = 24 * 60 * 60 * 1000
 
-  // Filtra: oculta provas custom que passaram há mais de 24h da data
+  // Filtra: fixas sempre visíveis; custom some só depois de 2 dias da data
   const visiveis = todas.filter(a => {
+    const isFixa = !a.criadoEm  // fixas não têm criadoEm
+    if(isFixa) return true
     const dias = diasAte(a.data)
-    const isFixa = !!a.id && a.id.startsWith('a')  // AVAL_FIXAS têm id 'a1','a2'...
-    if(isFixa) return true  // fixas sempre visíveis
-    // custom: oculta se passou mais de 24h da data da prova
-    if(dias < -1) return false  // passou mais de 1 dia — oculta
-    return true
+    return dias >= -2  // custom: some depois de 2 dias passados
   })
 
   lista.innerHTML = visiveis.map((a, i) => {
