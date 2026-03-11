@@ -654,8 +654,36 @@ nav {
 ::-webkit-scrollbar-thumb{background:var(--line);border-radius:2px}
 
 /* TOAST */
-.toast{position:fixed;top:66px;left:50%;transform:translateX(-50%) translateY(-10px);background:var(--bg2);border:1px solid var(--acc);border-radius:8px;padding:10px 18px;font-size:11px;color:var(--txt);opacity:0;transition:all .3s;pointer-events:none;z-index:999;white-space:nowrap}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* ── TOAST estilo iOS ──────────────────────── */
+.toast{
+  position:fixed; top:56px; left:50%; transform:translateX(-50%) translateY(-8px) scale(.95);
+  background: color-mix(in srgb, var(--bg2) 85%, transparent);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
+  border-radius: 20px;
+  padding: 11px 16px 11px 12px;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12px; color: var(--txt);
+  opacity: 0; transition: all .35s cubic-bezier(.34,1.56,.64,1);
+  pointer-events: none; z-index: 9999;
+  box-shadow: 0 8px 32px #0005, 0 2px 8px #0003;
+  max-width: calc(100vw - 32px);
+  white-space: nowrap;
+}
+.toast.show { opacity:1; transform:translateX(-50%) translateY(0) scale(1); }
+.toast-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  font-size: 14px;
+}
+.toast-icon.success { background: #30d15822; }
+.toast-icon.info    { background: #0a84ff22; }
+.toast-icon.warn    { background: #ff9f0a22; }
+.toast-icon.error   { background: #ff453a22; }
+.toast-body { display:flex; flex-direction:column; gap:1px; }
+.toast-title { font-size: 12px; font-weight: 600; color: var(--txt); line-height:1.2; }
+.toast-sub   { font-size: 10px; color: var(--txt2); line-height:1.2; }
 
 /* ── INSTALL BANNER ──────────────────────────── */
 .install-bar{
@@ -886,7 +914,13 @@ nav {
 <body>
 
 <div class="app-shell">
-<div id="toast" class="toast"></div>
+<div id="toast" class="toast">
+  <div class="toast-icon success" id="toast-icon">✓</div>
+  <div class="toast-body">
+    <div class="toast-title" id="toast-title"></div>
+    <div class="toast-sub" id="toast-sub" style="display:none"></div>
+  </div>
+</div>
 
 
 <!-- INSTALL BANNER -->
@@ -1807,6 +1841,7 @@ function atualizarHojeExtras(){
 
 // Chamar ao iniciar e a cada 30s
 fraseRender()
+notifChecarEstado()
 atualizarHojeExtras()
 setInterval(atualizarHojeExtras, 30000)
 
@@ -1956,11 +1991,11 @@ function togglePomo(){
       if(pomoTime<=0){
         clearInterval(pomoTimer);pomoRunning=false;beep()
         if(pomoFase==='foco'){
-          if(pomoSession<4){pomoFase='pausa';pomoTime=POMO_BREAK;pomoTotal=POMO_BREAK;toast('Bloco concluído! 5 min de pausa.');notifPomo('foco')}
-          else{pomoFase='longa';pomoTime=POMO_LONG;pomoTotal=POMO_LONG;toast('4 blocos! Pausa longa de 20 min. 🍅');iaPomoCheck();notifPomo('foco')}
+          if(pomoSession<4){pomoFase='pausa';pomoTime=POMO_BREAK;pomoTotal=POMO_BREAK;toast({title:'Bloco concluído!',sub:'5 min de pausa. Levanta e bebe água.',type:'success'});notifPomo('foco')}
+          else{pomoFase='longa';pomoTime=POMO_LONG;pomoTotal=POMO_LONG;toast({title:'4 blocos! 🍅',sub:'Pausa longa de 20 min. Você merece!',type:'success'});iaPomoCheck();notifPomo('foco')}
         } else {
           if(pomoSession>=4)pomoSession=0
-          pomoSession++;pomoFase='foco';pomoTime=POMO_FOCO;pomoTotal=POMO_FOCO;toast('Pausa encerrada. Hora de focar!');notifPomo('pausa')
+          pomoSession++;pomoFase='foco';pomoTime=POMO_FOCO;pomoTotal=POMO_FOCO;toast({title:'Pausa encerrada',sub:'Hora de focar! 25 min.',type:'info'});notifPomo('pausa')
         }
         btnPomo.textContent='INICIAR';updatePomoDisplay()
       }
@@ -2377,20 +2412,51 @@ function setTema(tema){
 // NOTIFICAÇÕES
 // ═══════════════════════════════════════════
 async function notifPedir(){
-  if(!('Notification' in window)){ toast('Notificações não suportadas neste navegador.'); return }
+  if(!('Notification' in window)){
+    toast({title:'Não suportado', sub:'Tente outro navegador', type:'error'})
+    return
+  }
+  const btn = document.getElementById('btn-notif')
+
   if(Notification.permission === 'granted'){
-    toast('Notificações já ativas! ✓')
+    toast({title:'Notificações ativas', sub:'Já está funcionando!', type:'success'})
     notifAtivarAgendar()
     return
   }
+
+  if(Notification.permission === 'denied'){
+    toast({title:'Bloqueado pelo sistema', sub:'Ative nas config. do navegador', type:'warn'})
+    return
+  }
+
+  // 'default' — pedir permissão
+  if(btn){ btn.textContent='...'; btn.disabled=true }
   const perm = await Notification.requestPermission()
+  if(btn){ btn.disabled=false }
+
   if(perm === 'granted'){
-    document.getElementById('btn-notif').textContent = 'ATIVO'
-    document.getElementById('btn-notif').style.color = 'var(--acc3)'
     notifAtivarAgendar()
-    new Notification('Kennedy App 🎯', { body:'Notificações ativadas! Vou te avisar sobre provas e Pomodoro.', icon:'/Kennedy-App/icon.png' })
+    toast({title:'Notificações ativadas!', sub:'Vou te avisar sobre provas e Pomodoro', type:'success'})
+    setTimeout(()=>{
+      notifEnviar('Kennedy App 🎯', 'Ativado! Você vai receber avisos de provas e Pomodoro.')
+    }, 800)
   } else {
-    toast('Permissão negada. Ative nas configurações do navegador.')
+    toast({title:'Permissão negada', sub:'Ative nas configurações do navegador', type:'warn'})
+    if(btn){ btn.textContent='ATIVAR' }
+  }
+}
+
+function notifChecarEstado(){
+  if(!('Notification' in window)) return
+  const btn = document.getElementById('btn-notif')
+  if(!btn) return
+  if(Notification.permission === 'granted'){
+    btn.textContent = 'ATIVO'
+    btn.style.color = 'var(--acc3)'
+    notifAtivarAgendar()
+  } else if(Notification.permission === 'denied'){
+    btn.textContent = 'BLOQUEADO'
+    btn.style.color = 'var(--acc5)'
   }
 }
 
@@ -3301,11 +3367,35 @@ calRenderAgenda()
 // TOAST + TOGGLE
 // ═══════════════════════════════════════════
 let toastTmr=null
-function toast(msg){
-  const t=document.getElementById('toast')
-  t.textContent=msg;t.classList.add('show')
+// toast(msg) ou toast({title, sub, type:'success'|'info'|'warn'|'error', icon})
+function toast(msg, sub='', type='success'){
+  const t = document.getElementById('toast')
+  const iconEl = document.getElementById('toast-icon')
+  const titleEl = document.getElementById('toast-title')
+  const subEl = document.getElementById('toast-sub')
+
+  // Suporte a objeto ou string simples
+  let title = msg, subtitle = sub, kind = type
+  if(typeof msg === 'object'){ title=msg.title||''; subtitle=msg.sub||''; kind=msg.type||'success' }
+
+  const icons = { success:'✓', info:'ℹ', warn:'⚠', error:'✕' }
+  const colors = { success:'#30d158', info:'#0a84ff', warn:'#ff9f0a', error:'#ff453a' }
+
+  iconEl.textContent = icons[kind] || '✓'
+  iconEl.className = `toast-icon ${kind}`
+  iconEl.style.color = colors[kind] || colors.success
+  titleEl.textContent = title
+
+  if(subtitle){
+    subEl.textContent = subtitle
+    subEl.style.display = 'block'
+  } else {
+    subEl.style.display = 'none'
+  }
+
+  t.classList.add('show')
   clearTimeout(toastTmr)
-  toastTmr=setTimeout(()=>t.classList.remove('show'),2800)
+  toastTmr = setTimeout(()=>t.classList.remove('show'), 3200)
 }
 function toggleSwitch(el,key){
   el.classList.toggle('on')
