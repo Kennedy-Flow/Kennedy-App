@@ -781,9 +781,17 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
       <div><div class="toggle-lbl">Som no Pomodoro</div><div class="toggle-sub">Bip ao fim de cada bloco</div></div>
       <div class="toggle on" id="tog-som" onclick="toggleSwitch(this,'som')"></div>
     </div>
-    <div class="toggle-row" style="border-bottom:none">
+    <div class="toggle-row">
       <div><div class="toggle-lbl">Resetar checklist</div><div class="toggle-sub">Limpa os itens de hoje manualmente</div></div>
       <button class="btn btn-ghost" style="font-size:9px;padding:6px 12px" onclick="resetChecklist()">RESETAR</button>
+    </div>
+    <div class="toggle-row">
+      <div><div class="toggle-lbl">Remover duplicatas</div><div class="toggle-sub">Apaga avaliações com mesma matéria e data</div></div>
+      <button class="btn btn-ghost" style="font-size:9px;padding:6px 12px" onclick="avalRemoverDuplicatas()">LIMPAR</button>
+    </div>
+    <div class="toggle-row" style="border-bottom:none">
+      <div><div class="toggle-lbl">Modo edição provas</div><div class="toggle-sub">Libera botão apagar por 5 minutos</div></div>
+      <button class="btn btn-ghost" style="font-size:9px;padding:6px 12px" id="btn-modo-edicao" onclick="avalModoEdicao()">ATIVAR</button>
     </div>
   </div>
 </div>
@@ -1310,6 +1318,54 @@ function agendarResetDomingo(){
 agendarResetDomingo()
 
 function resetChecklist(){updateHoje();toast('✓ Checklist resetado!')}
+
+// Remove avaliações custom com mesma matéria+data
+function avalRemoverDuplicatas(){
+  const custom = avalCarregar()
+  const vistas = new Set()
+  const semDup = custom.filter(a => {
+    const chave = `${a.mat.toLowerCase().trim()}|${a.data}`
+    if(vistas.has(chave)) return false
+    vistas.add(chave)
+    return true
+  })
+  const removidas = custom.length - semDup.length
+  if(removidas === 0){ toast('Nenhuma duplicata encontrada.'); return }
+  avalSalvar(semDup)
+  renderProvas()
+  toast(`${removidas} duplicata(s) removida(s)! ✓`)
+}
+
+// Modo edição: libera botão apagar por 5 minutos
+let avalModoEdicaoAtivo = false
+let avalModoEdicaoTimer = null
+function avalModoEdicao(){
+  if(avalModoEdicaoAtivo){
+    // Desativar
+    clearTimeout(avalModoEdicaoTimer)
+    avalModoEdicaoAtivo = false
+    document.getElementById('btn-modo-edicao').textContent = 'ATIVAR'
+    document.getElementById('btn-modo-edicao').style.color = ''
+    renderProvas()
+    toast('Modo edição desativado.')
+    return
+  }
+  if(!confirm('Ativar modo edição? Você poderá apagar qualquer avaliação por 5 minutos.')) return
+  avalModoEdicaoAtivo = true
+  const btn = document.getElementById('btn-modo-edicao')
+  btn.textContent = 'ATIVO (5min)'
+  btn.style.color = 'var(--acc5)'
+  renderProvas()
+  toast('Modo edição ativo por 5 minutos!')
+  // Desativa automaticamente após 5 minutos
+  avalModoEdicaoTimer = setTimeout(()=>{
+    avalModoEdicaoAtivo = false
+    const b = document.getElementById('btn-modo-edicao')
+    if(b){ b.textContent='ATIVAR'; b.style.color='' }
+    renderProvas()
+    toast('Modo edição encerrado.')
+  }, 5 * 60 * 1000)
+}
 
 // ═══════════════════════════════════════════
 // SEMANA
@@ -2499,9 +2555,9 @@ function renderProvas(){
 
     // Determina se é fixa (não tem criadoEm) ou custom
     const isFixa   = !a.criadoEm
-    // Pode apagar somente se: custom + dentro de 24h da criação + prova não passou
+    // Pode apagar somente se: custom + (dentro de 24h OU modo edição ativo) + confirmação
     const dentroJanela = a.criadoEm && (agora - a.criadoEm) < MS_24H
-    const podeDel  = !isFixa && dentroJanela && dias >= 0
+    const podeDel  = !isFixa && (dentroJanela || avalModoEdicaoAtivo)
 
     // Índice real dentro do array custom para deletar
     const customIdx = custom.findIndex(c => c.mat===a.mat && c.data===a.data)
