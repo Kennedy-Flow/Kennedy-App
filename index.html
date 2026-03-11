@@ -1717,7 +1717,7 @@ function iaExecutarAcao(texto){
         const p = JSON.parse(json)
         if(p.mat && p.data){
           const custom = avalCarregar()
-          custom.push({mat:p.mat, data:p.data, tipo:p.tipo||'Parcial', bim:p.bim||1, desc:p.desc||'', dicas:[]})
+          custom.push({mat:p.mat, data:p.data, tipo:p.tipo||'Parcial', bim:p.bim||1, desc:p.desc||'', dicas:[], criadoEm:Date.now()})
           avalSalvar(custom)
           renderProvas()
           calRenderGrade()
@@ -2479,13 +2479,35 @@ function renderProvas(){
 
   // Lista completa
   const lista = document.getElementById('aval-lista')
-  lista.innerHTML = todas.map((a,i)=>{
+  const agora = Date.now()
+  const MS_24H = 24 * 60 * 60 * 1000
+
+  // Filtra: oculta provas custom que passaram há mais de 24h da data
+  const visiveis = todas.filter(a => {
     const dias = diasAte(a.data)
+    const isFixa = !!a.id && a.id.startsWith('a')  // AVAL_FIXAS têm id 'a1','a2'...
+    if(isFixa) return true  // fixas sempre visíveis
+    // custom: oculta se passou mais de 24h da data da prova
+    if(dias < -1) return false  // passou mais de 1 dia — oculta
+    return true
+  })
+
+  lista.innerHTML = visiveis.map((a, i) => {
+    const dias  = diasAte(a.data)
     const {tag,cls,cor} = avalCor(dias)
     const [y,m,d] = a.data.split('-')
-    const isCustom = i >= AVAL_FIXAS.length
+
+    // Determina se é fixa (não tem criadoEm) ou custom
+    const isFixa   = !a.criadoEm
+    // Pode apagar somente se: custom + dentro de 24h da criação + prova não passou
+    const dentroJanela = a.criadoEm && (agora - a.criadoEm) < MS_24H
+    const podeDel  = !isFixa && dentroJanela && dias >= 0
+
+    // Índice real dentro do array custom para deletar
+    const customIdx = custom.findIndex(c => c.mat===a.mat && c.data===a.data)
+
     return `
-      <div class="aval-card" style="opacity:${dias<0?'.5':'1'}">
+      <div class="aval-card" style="opacity:${dias<0?'.4':'1'}">
         <div class="aval-data-box">
           <div class="aval-dia" style="color:${cor}">${d}</div>
           <div class="aval-mes">${['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][parseInt(m)-1].toUpperCase()}</div>
@@ -2496,7 +2518,7 @@ function renderProvas(){
           ${a.desc?`<div style="font-size:9px;color:var(--txt3);margin-top:3px;line-height:1.5">📝 ${a.desc}</div>`:''}
         </div>
         <div class="aval-dias-badge" style="background:${cor}22;color:${cor}">${dias<0?'✓':tag}</div>
-        ${isCustom?`<button onclick="delAval(${i-AVAL_FIXAS.length})" style="background:none;border:none;color:var(--txt3);cursor:pointer;font-size:14px;padding:4px">✕</button>`:''}
+        ${podeDel ? `<button onclick="delAval(${customIdx})" title="Apagar (disponível por 24h)" style="background:none;border:none;color:var(--txt3);cursor:pointer;font-size:14px;padding:4px">✕</button>` : ''}
       </div>
     `
   }).join('')
@@ -2521,7 +2543,8 @@ function addAval(){
   const desc = document.getElementById('nova-desc').value.trim()
   if(!mat||!data){ toast('Preencha matéria e data!'); return }
   const custom = avalCarregar()
-  custom.push({mat,data,tipo,bim,desc,dicas:[]})
+  // criadoEm: timestamp para controle das 24h
+  custom.push({mat,data,tipo,bim,desc,dicas:[],criadoEm:Date.now()})
   avalSalvar(custom)
   document.getElementById('nova-materia').value=''
   document.getElementById('nova-data').value=''
@@ -2531,6 +2554,7 @@ function addAval(){
 }
 
 function delAval(i){
+  if(!confirm('Apagar esta avaliação? Essa ação não pode ser desfeita.')) return
   const custom = avalCarregar()
   custom.splice(i,1)
   avalSalvar(custom)
