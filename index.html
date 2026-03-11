@@ -29,6 +29,25 @@ nav button svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width
 nav button.active{color:var(--acc)}
 nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
 
+/* Botão + do nav */
+.nav-mais{flex:1;background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0;color:var(--txt3);font-family:var(--mono);font-size:7.5px;letter-spacing:.05em;position:relative}
+.nav-mais-icon{width:32px;height:32px;background:var(--acc);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:0;transition:transform .2s,background .2s}
+.nav-mais-icon svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round}
+.nav-mais.aberto .nav-mais-icon{background:var(--acc5);transform:rotate(45deg)}
+
+/* Menu flutuante do + */
+.nav-mais-menu{
+  position:fixed;bottom:calc(max(10px,env(safe-area-inset-bottom)) + 70px);
+  left:50%;transform:translateX(-50%);
+  background:var(--bg1);border:1px solid var(--line);border-radius:16px;
+  padding:8px;display:none;flex-direction:column;gap:4px;
+  min-width:180px;box-shadow:0 -8px 32px #0008;z-index:200;
+}
+.nav-mais-menu.show{display:flex}
+.nav-mais-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;cursor:pointer;color:var(--txt2);font-family:var(--mono);font-size:10px;letter-spacing:.05em;border:none;background:none;width:100%;text-align:left;transition:background .15s}
+.nav-mais-item:hover,.nav-mais-item:active{background:var(--bg2);color:var(--txt)}
+.nav-mais-item svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8;flex-shrink:0}
+
 /* TOPBAR */
 .topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--line);padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
 .topbar-title{font-family:var(--sans);font-size:15px;font-weight:700}
@@ -187,6 +206,56 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
 
 /* NAV badge prova */
 .nav-badge{position:absolute;top:4px;right:8px;background:var(--acc5);color:#fff;font-size:7px;font-weight:700;border-radius:10px;padding:1px 5px;line-height:1.4}
+/* ── CALENDÁRIO ──────────────────────────── */
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.cal-mes{font-family:var(--sans);font-size:16px;font-weight:700;color:var(--txt)}
+.cal-nav{background:var(--bg2);border:1px solid var(--line);border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--txt2);transition:all .15s}
+.cal-nav:hover{color:var(--txt);border-color:var(--acc)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:16px}
+.cal-dow{font-size:8px;font-weight:700;color:var(--txt3);text-align:center;padding:4px 0;letter-spacing:.06em}
+.cal-day{
+  aspect-ratio:1;border-radius:8px;display:flex;flex-direction:column;
+  align-items:center;justify-content:flex-start;padding:4px 2px;
+  cursor:pointer;transition:all .15s;position:relative;background:var(--bg2);
+  font-size:11px;font-weight:600;color:var(--txt2);gap:2px;
+}
+.cal-day:hover{background:var(--bg1);color:var(--txt)}
+.cal-day.hoje{background:#7c6ef820;color:var(--acc);border:1px solid var(--acc)}
+.cal-day.selecionado{background:var(--acc);color:#fff}
+.cal-day.outro-mes{opacity:.3}
+.cal-day.tem-evento::after{content:'';width:4px;height:4px;border-radius:50%;background:var(--acc3);position:absolute;bottom:3px}
+.cal-dots{display:flex;gap:2px;flex-wrap:wrap;justify-content:center;max-width:100%}
+.cal-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+
+/* Filtros */
+.cal-filtros{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.cal-filtro{padding:5px 10px;border-radius:20px;font-size:9px;font-weight:700;letter-spacing:.05em;cursor:pointer;border:1px solid var(--line);color:var(--txt3);background:var(--bg2);transition:all .15s}
+.cal-filtro.on{color:#fff;border-color:transparent}
+
+/* Agenda do dia */
+.cal-agenda{background:var(--bg2);border-radius:12px;padding:14px;margin-bottom:12px}
+.cal-agenda-titulo{font-size:9px;font-weight:700;color:var(--acc);letter-spacing:.1em;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
+.cal-evento{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.cal-evento:last-child{border-bottom:none;padding-bottom:0}
+.cal-evento-cor{width:3px;border-radius:2px;align-self:stretch;flex-shrink:0;min-height:36px}
+.cal-evento-body{flex:1}
+.cal-evento-titulo{font-size:11px;font-weight:600;color:var(--txt)}
+.cal-evento-hora{font-size:9px;color:var(--txt3);margin-top:2px}
+.cal-evento-tipo{font-size:8px;font-weight:700;letter-spacing:.06em;margin-top:3px}
+.cal-evento-del{background:none;border:none;color:var(--txt3);cursor:pointer;padding:2px 6px;font-size:14px;line-height:1}
+.cal-evento-del:hover{color:var(--acc5)}
+.cal-vazio{font-size:10px;color:var(--txt3);text-align:center;padding:16px 0}
+
+/* Form novo evento */
+.cal-form{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px;display:none}
+.cal-form.show{display:block}
+.cal-form-title{font-size:9px;font-weight:700;color:var(--acc);letter-spacing:.1em;margin-bottom:12px}
+.cal-input{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 12px;color:var(--txt);font-family:var(--mono);font-size:11px;outline:none;margin-bottom:8px;box-sizing:border-box}
+.cal-input:focus{border-color:var(--acc)}
+.cal-tipo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}
+.cal-tipo-btn{padding:8px 4px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--txt2);font-size:9px;font-weight:700;cursor:pointer;text-align:center;transition:all .15s}
+.cal-tipo-btn.sel{color:#fff;border-color:transparent}
+
 /* ── MÓDULO IA ───────────────────────────── */
 .ia-btn{width:100%;background:linear-gradient(135deg,#6a3de8,#4eaaf0);border:none;border-radius:12px;padding:14px;color:#fff;font-family:var(--mono);font-size:11px;font-weight:700;cursor:pointer;letter-spacing:.05em;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;margin-bottom:8px}
 .ia-btn:active{transform:scale(.97);opacity:.9}
@@ -627,6 +696,68 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
   <div id="c-lista"></div>
 </div>
 
+<!-- PAGE AGENDA -->
+<div id="page-agenda" class="page">
+
+  <!-- Cabeçalho do mês -->
+  <div class="cal-header">
+    <button class="cal-nav" onclick="calNavMes(-1)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15,18 9,12 15,6"/></svg>
+    </button>
+    <div class="cal-mes" id="cal-mes-titulo">Março 2026</div>
+    <button class="cal-nav" onclick="calNavMes(1)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9,18 15,12 9,6"/></svg>
+    </button>
+  </div>
+
+  <!-- Filtros -->
+  <div class="cal-filtros" id="cal-filtros">
+    <div class="cal-filtro on" data-tipo="todos" onclick="calFiltro(this)" style="background:var(--acc)">TODOS</div>
+    <div class="cal-filtro" data-tipo="prova" onclick="calFiltro(this)">PROVAS</div>
+    <div class="cal-filtro" data-tipo="judo" onclick="calFiltro(this)">JUDÔ</div>
+    <div class="cal-filtro" data-tipo="escola" onclick="calFiltro(this)">ESCOLA</div>
+    <div class="cal-filtro" data-tipo="pessoal" onclick="calFiltro(this)">PESSOAL</div>
+    <div class="cal-filtro" data-tipo="lembrete" onclick="calFiltro(this)">LEMBRETE</div>
+  </div>
+
+  <!-- Grade do calendário -->
+  <div class="cal-grid" id="cal-grade"></div>
+
+  <!-- Agenda do dia selecionado -->
+  <div class="cal-agenda" id="cal-agenda">
+    <div class="cal-agenda-titulo">
+      <span id="cal-dia-titulo">Selecione um dia</span>
+      <button class="btn btn-primary" style="font-size:8px;padding:5px 10px" onclick="calAbrirForm()">+ EVENTO</button>
+    </div>
+    <div id="cal-eventos-lista"></div>
+  </div>
+
+  <!-- Form novo evento -->
+  <div class="cal-form" id="cal-form">
+    <div class="cal-form-title">NOVO EVENTO</div>
+    <input class="cal-input" id="cal-ev-titulo" type="text" placeholder="Título do evento">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <input class="cal-input" id="cal-ev-data" type="date" style="margin-bottom:0">
+      <input class="cal-input" id="cal-ev-hora" type="time" style="margin-bottom:0">
+    </div>
+    <div style="margin:8px 0 4px;font-size:9px;color:var(--txt3);letter-spacing:.06em">TIPO</div>
+    <div class="cal-tipo-grid">
+      <div class="cal-tipo-btn sel" data-t="pessoal" onclick="calSelTipo(this)" style="background:#7c6ef8">PESSOAL</div>
+      <div class="cal-tipo-btn" data-t="prova" onclick="calSelTipo(this)">PROVA</div>
+      <div class="cal-tipo-btn" data-t="judo" onclick="calSelTipo(this)">JUDÔ</div>
+      <div class="cal-tipo-btn" data-t="escola" onclick="calSelTipo(this)">ESCOLA</div>
+      <div class="cal-tipo-btn" data-t="lembrete" onclick="calSelTipo(this)">LEMBRETE</div>
+      <div class="cal-tipo-btn" data-t="outro" onclick="calSelTipo(this)">OUTRO</div>
+    </div>
+    <input class="cal-input" id="cal-ev-nota" type="text" placeholder="Nota (opcional)" style="margin-bottom:10px">
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-primary" style="flex:1" onclick="calSalvarEvento()">SALVAR</button>
+      <button class="btn btn-ghost" onclick="calFecharForm()">CANCELAR</button>
+    </div>
+  </div>
+
+</div>
+
 <!-- PAGE DICAS -->
 <div id="page-dicas" class="page">
   <div class="card" style="padding:16px;margin-bottom:10px">
@@ -666,24 +797,40 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
   <!-- MÓDULO IA -->
   <div class="sec-header">ASSISTENTE IA</div>
 
-  <!-- Upload foto -->
-  <div id="ia-upload-wrap">
-    <div class="ia-upload-area" onclick="document.getElementById('ia-file').click()">
+  <!-- Botões de upload -->
+  <div style="position:relative;margin-bottom:8px">
+    <button class="ia-btn" onclick="iaAbrirOpcoes()">
       <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
-      <div class="ia-upload-txt">📷 Foto do calendário de provas</div>
-      <div class="ia-upload-sub">Tire foto da folha da escola e a IA extrai tudo</div>
+      ANALISAR CALENDÁRIO DE PROVAS
+    </button>
+    <!-- Menu de opções -->
+    <div id="ia-opcoes-menu" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg2);border:1px solid var(--line);border-radius:10px;overflow:hidden;z-index:50;margin-top:4px;box-shadow:0 8px 24px #0006">
+      <div onclick="iaEscolherCamera()" style="padding:13px 16px;cursor:pointer;font-size:11px;color:var(--txt);display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        Tirar foto agora
+      </div>
+      <div onclick="iaEscolherArquivo()" style="padding:13px 16px;cursor:pointer;font-size:11px;color:var(--txt);display:flex;align-items:center;gap:10px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--acc2)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+        Carregar arquivo (imagem ou PDF)
+      </div>
     </div>
-    <input type="file" id="ia-file" accept="image/*" capture="environment" style="display:none" onchange="iaAnalisarFoto(event)">
-    <img id="ia-preview" class="ia-preview" alt="preview">
   </div>
+
+  <!-- Inputs invisíveis -->
+  <input type="file" id="ia-file-camera" accept="image/*" capture="environment" style="display:none" onchange="iaProcessarArquivo(event)">
+  <input type="file" id="ia-file-upload" accept="image/*,application/pdf" style="display:none" onchange="iaProcessarArquivo(event)">
+
+  <!-- Preview -->
+  <img id="ia-preview" class="ia-preview" alt="preview">
+  <div id="ia-preview-nome" style="font-size:10px;color:var(--acc2);margin-bottom:6px"></div>
 
   <!-- Loading -->
   <div class="ia-loading" id="ia-loading">
     <div class="ia-spinner"></div>
-    <div class="ia-loading-txt" id="ia-loading-txt">Analisando imagem...</div>
+    <div class="ia-loading-txt" id="ia-loading-txt">Analisando...</div>
   </div>
 
-  <!-- Resultado análise foto -->
+  <!-- Resultado análise -->
   <div class="ia-result" id="ia-result">
     <div class="ia-result-title">✦ ANÁLISE DA IA</div>
     <div class="ia-result-body" id="ia-result-body"></div>
@@ -697,10 +844,11 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
   <div class="sec-header">CHAT COM A IA</div>
   <div class="ia-chat">
     <div class="ia-chat-msgs" id="ia-chat-msgs">
-      <div class="ia-msg ai">Oi Kennedy! 👋 Sou seu assistente de estudos.<br><br>Posso te ajudar com:<br>• Dúvidas de qualquer matéria<br>• Plano de estudos personalizado<br>• Dicas para TDAH e autismo<br>• Estratégias para as provas<br><br>Me manda sua dúvida!</div>
+      <div class="ia-msg ai">Oi Kennedy! 👋 Sou seu assistente de estudos.<br><br>Posso te ajudar com:<br>• Dúvidas de qualquer matéria<br>• Plano de estudos personalizado<br>• Dicas para TDAH e autismo<br>• Estratégias para as provas<br><br>Me manda sua dúvida — pode digitar ou gravar áudio 🎙</div>
     </div>
     <div class="ia-chat-input">
       <input type="text" id="ia-chat-in" placeholder="Digite sua dúvida..." onkeydown="if(event.key==='Enter')iaChatEnviar()">
+      <button id="ia-audio-btn" class="ia-chat-send" style="background:var(--bg2);color:var(--txt2);border-left:1px solid var(--line)" onclick="iaToggleAudio()">🎙</button>
       <button class="ia-chat-send" id="ia-chat-send" onclick="iaChatEnviar()">ENVIAR</button>
     </div>
   </div>
@@ -858,14 +1006,16 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
     <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
     HOJE
   </button>
-  <button onclick="showPage('semana',this)">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-    SEMANA
-  </button>
   <button onclick="showPage('pomo',this)">
     <svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M9 2h6"/><line x1="12" y1="5" x2="12" y2="9"/></svg>
     FOCO
   </button>
+  <div class="nav-mais" id="nav-mais-btn" onclick="navMaisToggle()">
+    <div class="nav-mais-icon">
+      <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </div>
+    MAIS
+  </div>
   <button onclick="showPage('provas',this)" id="nav-provas" style="position:relative">
     <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
     PROVAS
@@ -874,15 +1024,27 @@ nav button.active svg{filter:drop-shadow(0 0 5px var(--acc))}
     <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
     CONTEÚDO
   </button>
-  <button onclick="showPage('musica',this)">
+</nav>
+
+<!-- Menu flutuante do botão + -->
+<div class="nav-mais-menu" id="nav-mais-menu">
+  <button class="nav-mais-item" onclick="navMaisIr('semana')">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+    SEMANA
+  </button>
+  <button class="nav-mais-item" onclick="navMaisIr('agenda')">
+    <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    AGENDA
+  </button>
+  <button class="nav-mais-item" onclick="navMaisIr('musica')">
     <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
     MÚSICA
   </button>
-  <button onclick="showPage('dicas',this)">
+  <button class="nav-mais-item" onclick="navMaisIr('dicas')">
     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
     DICAS
   </button>
-</nav>
+</div>
 
 <script>
 // ═══════════════════════════════════════════
@@ -1003,6 +1165,7 @@ const PAGE_TITLES={
   semana:['Semana','CRONOGRAMA COMPLETO'],
   pomo:['Foco','POMODORO TIMER'],
   provas:['Provas','MODO PROVA · AVALIAÇÕES'],
+  agenda:['Agenda','CALENDÁRIO DE EVENTOS'],
   mat:['Matérias','DISTRIBUIÇÃO SEMANAL'],
   conteudo:['Conteúdo','TÓPICOS E RESUMOS'],
   musica:['Música','SPOTIFY PLAYER'],
@@ -1012,11 +1175,46 @@ function showPage(id,btn){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'))
   document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'))
   document.getElementById('page-'+id).classList.add('active')
-  btn.classList.add('active')
-  const [t,s]=PAGE_TITLES[id]
+  if(btn) btn.classList.add('active')
+  const [t,s]=PAGE_TITLES[id]||[id,id]
   document.getElementById('page-title').textContent=t
   document.getElementById('page-sub').textContent=s
+  // Fecha menu + se aberto
+  navMaisFechar()
 }
+
+// ── Nav botão + ──────────────────────────────
+function navMaisToggle(){
+  const menu = document.getElementById('nav-mais-menu')
+  const btn  = document.getElementById('nav-mais-btn')
+  const aberto = menu.classList.contains('show')
+  if(aberto){ navMaisFechar() }
+  else{
+    menu.classList.add('show')
+    btn.classList.add('aberto')
+  }
+}
+function navMaisFechar(){
+  document.getElementById('nav-mais-menu')?.classList.remove('show')
+  document.getElementById('nav-mais-btn')?.classList.remove('aberto')
+}
+function navMaisIr(pagina){
+  // Remove active de todos os botões do nav
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'))
+  // Abre a página
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'))
+  document.getElementById('page-'+pagina)?.classList.add('active')
+  const [t,s]=PAGE_TITLES[pagina]||[pagina,pagina]
+  document.getElementById('page-title').textContent=t
+  document.getElementById('page-sub').textContent=s
+  navMaisFechar()
+}
+// Fecha menu ao clicar fora
+document.addEventListener('click', e=>{
+  if(!e.target.closest('#nav-mais-btn') && !e.target.closest('#nav-mais-menu')){
+    navMaisFechar()
+  }
+})
 
 // ═══════════════════════════════════════════
 // RELÓGIO + CHECKLIST HOJE
@@ -1401,21 +1599,31 @@ function makeTopCard(top, cor, isExtra=false){
 })()
 
 // ═══════════════════════════════════════════
-// MÓDULO IA — ANTHROPIC API
+// MÓDULO IA — GROQ API
 // ═══════════════════════════════════════════
-const IA_MODEL = 'claude-sonnet-4-20250514'
-let iaProvasDetectadas = []
-let iaChatHistorico = []
-let iaCarregando = false
+const GROQ_KEY = '%%GROQ_API_KEY%%'
+const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions'
+const GROQ_WHISPER_URL = 'https://api.groq.com/openai/v1/audio/transcriptions'
 
-const IA_SYSTEM = `Você é o assistente pessoal de estudos do Kennedy, um estudante do 3º ano do ensino médio brasileiro. 
+// Modelo com visão para imagens, modelo de texto para chat
+const GROQ_VISION_MODEL = 'meta-llama/llama-4-scout-17b-16e-instruct' // suporta imagens
+const GROQ_CHAT_MODEL   = 'llama-3.3-70b-versatile'                   // chat rápido
+
+let iaProvasDetectadas = []
+let iaChatHistorico    = []
+let iaCarregando       = false
+let iaAudioStream      = null  // stream do microfone
+let iaMediaRecorder    = null  // gravador de áudio
+let iaAudioChunks      = []    // chunks do áudio gravado
+
+const IA_SYSTEM = `Você é o assistente pessoal de estudos do Kennedy, um estudante do 3º ano do ensino médio brasileiro.
 
 PERFIL DO KENNEDY:
 - 17 anos, 3º ano do ensino médio
 - Tem TDAH e autismo — precisa de respostas objetivas, diretas e organizadas
 - Pratica judô (treina seg/qua/qui/sex/sáb) — atleta dedicado
 - Acorda às 05:00, escola das 07:00 às 11:45, dorme às 21:00
-- Está na 3ª semana do 3º ano, se preparando para o ENEM
+- Está no 3º ano, se preparando para o ENEM
 - Está cansado e sobrecarregado — precisa de leveza e clareza
 
 REGRAS DE RESPOSTA:
@@ -1423,132 +1631,215 @@ REGRAS DE RESPOSTA:
 2. Use listas curtas quando possível (máx 5 itens por vez)
 3. Nunca sobrecarregue com informação demais de uma vez
 4. Para dúvidas de matérias: explica em 3–5 linhas simples + 1 exemplo prático
-5. Para planejamento: divida em blocos pequenos (25min Pomodoro)
+5. Para planejamento: divida em blocos Pomodoro de 25min 🍅
 6. Para dicas de TDAH/autismo: baseie-se em evidências, seja acolhedor
-7. Quando mencionar Pomodoro, use o símbolo 🍅
-8. Linguagem informal e amigável em português brasileiro
-9. Se detectar desânimo ou cansaço na mensagem, seja empático antes de responder
-10. Máximo de 200 palavras por resposta — seja conciso`
+7. Linguagem informal e amigável em português brasileiro
+8. Se detectar desânimo ou cansaço, seja empático antes de responder
+9. Máximo de 200 palavras por resposta — seja conciso`
 
-async function iaChamarAPI(messages, onLoad='Pensando...'){
-  document.getElementById('ia-loading').classList.add('show')
-  document.getElementById('ia-loading-txt').textContent = onLoad
-  iaCarregando = true
+// ── HELPER: mostra/esconde loading ──────────
+function iaLoading(show, txt='Pensando...'){
+  const el = document.getElementById('ia-loading')
+  const txtEl = document.getElementById('ia-loading-txt')
+  if(el) el.classList.toggle('show', show)
+  if(txtEl) txtEl.textContent = txt
+  iaCarregando = show
+}
 
+// ── CHAT (texto) via Groq ────────────────────
+async function iaChatEnviar(){
+  if(iaCarregando) return
+  const input = document.getElementById('ia-chat-in')
+  const msg = input.value.trim()
+  if(!msg) return
+  input.value = ''
+  document.getElementById('ia-chat-send').disabled = true
+  iaChatHistorico.push({ role:'user', content: msg })
+  iaChatRenderMsg('user', msg)
+  iaLoading(true, 'Pensando...')
   try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const resp = await fetch(GROQ_URL, {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json', 'Authorization':'Bearer '+GROQ_KEY },
       body: JSON.stringify({
-        model: IA_MODEL,
-        max_tokens: 1000,
-        system: IA_SYSTEM,
-        messages
+        model: GROQ_CHAT_MODEL,
+        max_tokens: 800,
+        messages: [{ role:'system', content: IA_SYSTEM }, ...iaChatHistorico]
       })
     })
     const data = await resp.json()
-    return data.content?.[0]?.text || 'Erro ao obter resposta.'
-  } catch(e) {
-    return 'Erro de conexão. Verifique sua internet e tente novamente.'
+    const resposta = data.choices?.[0]?.message?.content || 'Não consegui responder agora.'
+    iaChatHistorico.push({ role:'assistant', content: resposta })
+    iaChatRenderMsg('ai', resposta)
+    if(iaChatHistorico.length > 20) iaChatHistorico = iaChatHistorico.slice(-20)
+  } catch(err){
+    iaChatRenderMsg('ai', 'Erro de conexão. Tenta de novo!')
   } finally {
-    document.getElementById('ia-loading').classList.remove('show')
-    iaCarregando = false
+    iaLoading(false)
+    document.getElementById('ia-chat-send').disabled = false
   }
 }
 
-// ── ANÁLISE DE FOTO ────────────────────────
-async function iaAnalisarFoto(e){
+function iaChatRenderMsg(role, texto){
+  const msgs = document.getElementById('ia-chat-msgs')
+  const div = document.createElement('div')
+  div.className = `ia-msg ${role}`
+  div.innerHTML = texto
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\n/g,'<br>')
+    .replace(/\*\*(.*?)\*\*/g,'<b>$1</b>')
+    .replace(/\*(.*?)\*/g,'<i>$1</i>')
+  msgs.appendChild(div)
+  msgs.scrollTop = msgs.scrollHeight
+}
+
+// ── ANÁLISE DE IMAGEM/PDF via Groq Vision ────
+// Abre opções: câmera ou arquivo
+function iaAbrirOpcoes(){
+  const menu = document.getElementById('ia-opcoes-menu')
+  const show = menu.style.display === 'none'
+  menu.style.display = show ? 'block' : 'none'
+}
+// Fechar menu ao clicar fora
+document.addEventListener('click', e => {
+  const menu = document.getElementById('ia-opcoes-menu')
+  if(menu && !e.target.closest('#ia-opcoes-menu') && !e.target.closest('.ia-btn')){
+    menu.style.display = 'none'
+  }
+})
+
+function iaEscolherCamera(){
+  document.getElementById('ia-opcoes-menu').classList.remove('show')
+  const inp = document.getElementById('ia-file-camera')
+  if(inp) inp.click()
+}
+
+function iaEscolherArquivo(){
+  document.getElementById('ia-opcoes-menu').classList.remove('show')
+  const inp = document.getElementById('ia-file-upload')
+  if(inp) inp.click()
+}
+
+// Processa qualquer arquivo selecionado (imagem ou PDF)
+async function iaProcessarArquivo(e){
   const file = e.target.files[0]
   if(!file) return
+  e.target.value = ''
 
-  // Preview
-  const reader = new FileReader()
-  reader.onload = ev => {
-    const img = document.getElementById('ia-preview')
-    img.src = ev.target.result
-    img.style.display = 'block'
+  const isPDF = file.type === 'application/pdf'
+  const isImg = file.type.startsWith('image/')
+
+  if(!isPDF && !isImg){
+    toast('Formato não suportado. Use imagem ou PDF.')
+    return
   }
-  reader.readAsDataURL(file)
 
-  // Converte para base64
-  const base64 = await new Promise(res => {
-    const r = new FileReader()
-    r.onload = ev => res(ev.target.result.split(',')[1])
-    r.readAsDataURL(file)
-  })
+  // Preview visual
+  if(isImg){
+    const img = document.getElementById('ia-preview')
+    const url = URL.createObjectURL(file)
+    img.src = url
+    img.style.display = 'block'
+    document.getElementById('ia-preview-nome').textContent = ''
+  } else {
+    document.getElementById('ia-preview').style.display = 'none'
+    document.getElementById('ia-preview-nome').textContent = '📄 ' + file.name
+  }
 
-  const mediaType = file.type || 'image/jpeg'
-
-  document.getElementById('ia-loading').classList.add('show')
-  document.getElementById('ia-loading-txt').textContent = 'Lendo o calendário...'
-  iaCarregando = true
+  iaLoading(true, isPDF ? 'Lendo PDF...' : 'Analisando imagem...')
 
   try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    let messages
+
+    if(isImg){
+      // Converte imagem para base64
+      const base64 = await new Promise(res => {
+        const r = new FileReader()
+        r.onload = ev => res(ev.target.result.split(',')[1])
+        r.readAsDataURL(file)
+      })
+      const mediaType = file.type
+
+      messages = [{
+        role:'user',
+        content:[
+          { type:'image_url', image_url:{ url:`data:${mediaType};base64,${base64}` } },
+          { type:'text', text: iaPromptCalendario() }
+        ]
+      }]
+    } else {
+      // PDF: extrai texto com FileReader como texto (fallback) ou avisa
+      // Groq Vision não suporta PDF direto — vamos converter para texto descritivo
+      const txtContent = await new Promise((res,rej)=>{
+        const r = new FileReader()
+        r.onload = ev => res(ev.target.result)
+        r.onerror = rej
+        r.readAsText(file, 'utf-8')
+      }).catch(()=>null)
+
+      const descricao = txtContent && txtContent.length > 10
+        ? `Conteúdo extraído do PDF:\n${txtContent.substring(0,3000)}`
+        : `O usuário enviou um PDF chamado "${file.name}". Informe que não foi possível ler o conteúdo do PDF diretamente e peça para ele tirar uma foto da folha.`
+
+      messages = [{
+        role:'user',
+        content: descricao + '\n\n' + iaPromptCalendario()
+      }]
+    }
+
+    const resp = await fetch(GROQ_URL, {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json', 'Authorization':'Bearer '+GROQ_KEY },
       body: JSON.stringify({
-        model: IA_MODEL,
-        max_tokens: 1000,
-        system: IA_SYSTEM,
-        messages: [{
-          role: 'user',
-          content: [
-            {
-              type: 'image',
-              source: { type: 'base64', media_type: mediaType, data: base64 }
-            },
-            {
-              type: 'text',
-              text: `Esta é uma foto do calendário de avaliações do Kennedy. 
-              
+        model: isImg ? GROQ_VISION_MODEL : GROQ_CHAT_MODEL,
+        max_tokens: 1200,
+        messages:[ { role:'system', content: IA_SYSTEM }, ...messages ]
+      })
+    })
+    const data = await resp.json()
+    const texto = data.choices?.[0]?.message?.content || 'Não consegui analisar.'
+
+    // Extrai JSON de provas se houver
+    const jsonMatch = texto.match(/PROVAS_JSON:(\[[\s\S]*?\])/)
+    if(jsonMatch){
+      try { iaProvasDetectadas = JSON.parse(jsonMatch[1]) } catch(e){ iaProvasDetectadas=[] }
+    }
+
+    const textoLimpo = texto.replace(/PROVAS_JSON:[\s\S]*?(\]|$)/,'').trim()
+    document.getElementById('ia-result-body').innerHTML = textoLimpo
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/\n/g,'<br>')
+      .replace(/\*\*(.*?)\*\*/g,'<b>$1</b>')
+      .replace(/\*(.*?)\*/g,'<i>$1</i>')
+    document.getElementById('ia-result').classList.add('show')
+
+  } catch(err){
+    document.getElementById('ia-result-body').textContent = 'Erro ao analisar arquivo. Tenta de novo!'
+    document.getElementById('ia-result').classList.add('show')
+  } finally {
+    iaLoading(false)
+  }
+}
+
+function iaPromptCalendario(){
+  return `Esta imagem ou documento é o calendário de avaliações do Kennedy.
+
 Por favor:
 1. Liste TODAS as provas que conseguir identificar (data, matéria, tipo)
 2. Para cada prova, diga quantos dias faltam a partir de hoje (${new Date().toLocaleDateString('pt-BR')})
 3. Monte um plano de estudo Pomodoro 🍅 para as provas mais próximas
-4. Dê 2-3 dicas específicas de como estudar cada matéria detectada
-5. No final, liste as provas em JSON puro neste formato (para eu salvar automaticamente):
+4. Dê 2–3 dicas de como estudar cada matéria detectada
+5. No final, coloque as provas neste formato exato (para salvar automaticamente):
 PROVAS_JSON:[{"mat":"Matemática","data":"2026-03-12","tipo":"Parcial","bim":1}]
 
-Seja direto e organize bem as informações.`
-            }
-          ]
-        }]
-      })
-    })
-    const data = await resp.json()
-    const texto = data.content?.[0]?.text || 'Não consegui ler a imagem.'
-
-    // Extrai JSON de provas se houver
-    const jsonMatch = texto.match(/PROVAS_JSON:(\[.*?\])/s)
-    if(jsonMatch) {
-      try {
-        iaProvasDetectadas = JSON.parse(jsonMatch[1])
-      } catch(e) { iaProvasDetectadas = [] }
-    }
-
-    // Exibe resultado sem o JSON bruto
-    const textoLimpo = texto.replace(/PROVAS_JSON:\[.*?\]/s, '').trim()
-    const resultEl = document.getElementById('ia-result')
-    document.getElementById('ia-result-body').innerHTML = textoLimpo.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<b>$1</b>').replace(/\*(.*?)\*/g,'<i>$1</i>')
-    resultEl.classList.add('show')
-
-  } catch(err) {
-    document.getElementById('ia-result-body').textContent = 'Erro ao analisar imagem.'
-    document.getElementById('ia-result').classList.add('show')
-  } finally {
-    document.getElementById('ia-loading').classList.remove('show')
-    iaCarregando = false
-  }
+Seja direto e organizado.`
 }
 
 function iaSalvarProvas(){
   if(!iaProvasDetectadas.length){ toast('Nenhuma prova detectada para salvar.'); return }
   const custom = avalCarregar()
   iaProvasDetectadas.forEach(p => {
-    if(!custom.find(c=>c.mat===p.mat&&c.data===p.data)){
-      custom.push(p)
-    }
+    if(!custom.find(c=>c.mat===p.mat&&c.data===p.data)) custom.push(p)
   })
   avalSalvar(custom)
   renderProvas()
@@ -1559,79 +1850,88 @@ function iaSalvarProvas(){
 function iaLimpar(){
   document.getElementById('ia-result').classList.remove('show')
   document.getElementById('ia-preview').style.display='none'
-  document.getElementById('ia-file').value=''
+  document.getElementById('ia-preview-nome').textContent=''
   iaProvasDetectadas=[]
 }
 
-// ── CHAT ────────────────────────────────────
-async function iaChatEnviar(){
-  if(iaCarregando) return
-  const input = document.getElementById('ia-chat-in')
-  const msg = input.value.trim()
-  if(!msg) return
+// ── ÁUDIO — Gravar e Transcrever via Whisper ─
+let iaGravando = false
 
-  input.value = ''
-  document.getElementById('ia-chat-send').disabled = true
+async function iaToggleAudio(){
+  if(!iaGravando){ await iaIniciarGravacao() }
+  else { iaEncerrarGravacao() }
+}
 
-  // Adiciona msg do usuário
-  iaChatHistorico.push({ role:'user', content: msg })
-  iaChatRenderMsg('user', msg)
-
-  // Chama a API
-  document.getElementById('ia-loading').classList.add('show')
-  document.getElementById('ia-loading-txt').textContent = 'Pensando...'
-  iaCarregando = true
-
+async function iaIniciarGravacao(){
   try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: IA_MODEL,
-        max_tokens: 1000,
-        system: IA_SYSTEM,
-        messages: iaChatHistorico
-      })
-    })
-    const data = await resp.json()
-    const resposta = data.content?.[0]?.text || 'Não consegui responder agora.'
-
-    iaChatHistorico.push({ role:'assistant', content: resposta })
-    iaChatRenderMsg('ai', resposta)
-
-    // Limite de histórico (últimas 10 mensagens)
-    if(iaChatHistorico.length > 20) iaChatHistorico = iaChatHistorico.slice(-20)
-
-  } catch(err) {
-    iaChatRenderMsg('ai', 'Erro de conexão. Tenta de novo!')
-  } finally {
-    document.getElementById('ia-loading').classList.remove('show')
-    iaCarregando = false
-    document.getElementById('ia-chat-send').disabled = false
+    iaAudioStream = await navigator.mediaDevices.getUserMedia({ audio:true })
+    iaAudioChunks = []
+    iaMediaRecorder = new MediaRecorder(iaAudioStream)
+    iaMediaRecorder.ondataavailable = e => { if(e.data.size>0) iaAudioChunks.push(e.data) }
+    iaMediaRecorder.onstop = iaTranscreverAudio
+    iaMediaRecorder.start(200)
+    iaGravando = true
+    const btn = document.getElementById('ia-audio-btn')
+    if(btn){ btn.textContent='⏹ PARAR'; btn.style.background='var(--acc5)' }
+    toast('Gravando... fala sua dúvida!')
+  } catch(err){
+    toast('Microfone não permitido. Verifique as permissões.')
   }
 }
 
-function iaChatRenderMsg(role, texto){
-  const msgs = document.getElementById('ia-chat-msgs')
-  const div = document.createElement('div')
-  div.className = `ia-msg ${role}`
-  div.innerHTML = texto
-    .replace(/\n/g,'<br>')
-    .replace(/\*\*(.*?)\*\*/g,'<b>$1</b>')
-    .replace(/\*(.*?)\*/g,'<i>$1</i>')
-  msgs.appendChild(div)
-  msgs.scrollTop = msgs.scrollHeight
+function iaEncerrarGravacao(){
+  if(iaMediaRecorder && iaGravando){
+    iaMediaRecorder.stop()
+    iaAudioStream?.getTracks().forEach(t=>t.stop())
+    iaGravando = false
+    const btn = document.getElementById('ia-audio-btn')
+    if(btn){ btn.textContent='🎙 GRAVAR'; btn.style.background='' }
+  }
+}
+
+async function iaTranscreverAudio(){
+  if(!iaAudioChunks.length) return
+  iaLoading(true,'Transcrevendo áudio...')
+  try {
+    const blob = new Blob(iaAudioChunks, { type:'audio/webm' })
+    const form = new FormData()
+    form.append('file', blob, 'audio.webm')
+    form.append('model','whisper-large-v3-turbo')
+    form.append('language','pt')
+    form.append('response_format','json')
+
+    const resp = await fetch(GROQ_WHISPER_URL, {
+      method:'POST',
+      headers:{ 'Authorization':'Bearer '+GROQ_KEY },
+      body: form
+    })
+    const data = await resp.json()
+    const texto = data.text?.trim()
+    if(texto){
+      // Coloca o texto transcrito no input do chat e envia
+      const input = document.getElementById('ia-chat-in')
+      input.value = texto
+      iaLoading(false)
+      toast('Áudio transcrito! Enviando...')
+      setTimeout(iaChatEnviar, 400)
+    } else {
+      iaLoading(false)
+      toast('Não entendi o áudio. Tenta de novo!')
+    }
+  } catch(err){
+    iaLoading(false)
+    toast('Erro na transcrição. Tenta de novo!')
+  }
 }
 
 // ── INTEGRAÇÃO POMODORO ─────────────────────
-// Após 4 sessões Pomodoro, a IA comenta o progresso
 let iaPomoSessoes = 0
 function iaPomoCheck(){
   iaPomoSessoes++
   if(iaPomoSessoes % 4 === 0){
     iaChatHistorico.push({
       role:'user',
-      content:`Acabei de completar 4 sessões Pomodoro de estudo (2 horas de foco). Como estou indo? Dê uma palavra de incentivo curta e diga o que focar agora.`
+      content:'Acabei de completar 4 sessões Pomodoro (2h de foco). Dê uma palavra curta de incentivo e diga o que focar agora.'
     })
     iaChatEnviarSilencioso()
   }
@@ -1639,29 +1939,290 @@ function iaPomoCheck(){
 
 async function iaChatEnviarSilencioso(){
   try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const resp = await fetch(GROQ_URL, {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json', 'Authorization':'Bearer '+GROQ_KEY },
       body: JSON.stringify({
-        model: IA_MODEL,
-        max_tokens: 200,
-        system: IA_SYSTEM,
-        messages: iaChatHistorico
+        model: GROQ_CHAT_MODEL,
+        max_tokens: 150,
+        messages:[ { role:'system', content: IA_SYSTEM }, ...iaChatHistorico ]
       })
     })
     const data = await resp.json()
-    const resposta = data.content?.[0]?.text || ''
-    if(resposta) {
+    const resposta = data.choices?.[0]?.message?.content || ''
+    if(resposta){
       iaChatHistorico.push({ role:'assistant', content: resposta })
       iaChatRenderMsg('ai', '🍅 ' + resposta)
-      // Só vai para aba provas se não estiver aberta
       const navProvas = document.getElementById('nav-provas')
-      if(!navProvas.classList.contains('active')){
+      if(!navProvas?.classList.contains('active')){
         toast('💬 IA te mandou uma mensagem!')
       }
     }
   } catch(e){}
 }
+
+// ═══════════════════════════════════════════
+// CALENDÁRIO DE AGENDA
+// ═══════════════════════════════════════════
+
+// Cores por tipo de evento
+const CAL_CORES = {
+  prova:    '#f06e7c',
+  judo:     '#f0a04e',
+  escola:   '#4eaaf0',
+  pessoal:  '#7c6ef8',
+  lembrete: '#3ecfa4',
+  outro:    '#a0a0c0',
+}
+
+const CAL_LABELS = {
+  prova:'PROVA', judo:'JUDÔ', escola:'ESCOLA',
+  pessoal:'PESSOAL', lembrete:'LEMBRETE', outro:'OUTRO'
+}
+
+// Estado do calendário
+let calAno  = new Date().getFullYear()
+let calMes  = new Date().getMonth()      // 0-11
+let calDiaSel = new Date().getDate()
+let calFiltroAtivo = 'todos'
+let calTipoSel = 'pessoal'
+
+// Storage
+function calCarregar(){ try{ return JSON.parse(localStorage.getItem('cal_ev')||'[]') }catch(e){ return [] } }
+function calSalvar(ev){ try{ localStorage.setItem('cal_ev', JSON.stringify(ev)) }catch(e){} }
+
+// Eventos pré-carregados: treinos de judô do semestre e provas fixas
+function calEventosBase(){
+  const evs = []
+  const ano = 2026
+
+  // Treinos judô — seg/qua 19:00, ter/qui 18:00, sex 18:00 (mar–nov 2026)
+  const diasJudo = { 1:[19,0], 2:[18,0], 3:[19,0], 4:[18,0], 5:[18,0] } // dom=0
+  for(let m=2; m<=10; m++){           // março(2) a novembro(10)
+    const diasNoMes = new Date(ano, m+1, 0).getDate()
+    for(let d=1; d<=diasNoMes; d++){
+      const dow = new Date(ano, m, d).getDay()
+      if(diasJudo[dow]){
+        const [h] = diasJudo[dow]
+        evs.push({ id:`judo-${ano}-${m}-${d}`, titulo:'Treino de Judô', data:`${ano}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`, hora:`${h}:00`, tipo:'judo', nota:'E.E.E.M. Major Guapindaia', fixo:true })
+      }
+    }
+  }
+
+  // Escola — seg a sex 07:00 (mar–nov 2026)
+  for(let m=2; m<=10; m++){
+    const diasNoMes = new Date(ano, m+1, 0).getDate()
+    for(let d=1; d<=diasNoMes; d++){
+      const dow = new Date(ano, m, d).getDay()
+      if(dow>=1 && dow<=5){
+        evs.push({ id:`escola-${ano}-${m}-${d}`, titulo:'Escola', data:`${ano}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`, hora:'07:00', tipo:'escola', nota:'07:00 – 11:45', fixo:true })
+      }
+    }
+  }
+
+  return evs
+}
+
+// Todos os eventos (base + provas + custom)
+function calTodosEventos(){
+  const base   = calEventosBase()
+  const custom = calCarregar()
+
+  // Provas do sistema de avaliações → converter para eventos
+  const provasEvs = (typeof avalTodas === 'function' ? avalTodas() : []).map(p => ({
+    id: `prova-${p.mat}-${p.data}`,
+    titulo: `Prova: ${p.mat}`,
+    data: p.data,
+    hora: '07:00',
+    tipo: 'prova',
+    nota: p.tipo,
+    fixo: true
+  }))
+
+  return [...base, ...provasEvs, ...custom]
+}
+
+// Retorna eventos de uma data (YYYY-MM-DD) aplicando filtro
+function calEventosDia(dataStr){
+  return calTodosEventos()
+    .filter(ev => {
+      if(ev.data !== dataStr) return false
+      if(calFiltroAtivo === 'todos') return true
+      return ev.tipo === calFiltroAtivo
+    })
+    .sort((a,b) => (a.hora||'00:00').localeCompare(b.hora||'00:00'))
+}
+
+// Renderiza a grade do mês
+function calRenderGrade(){
+  const grade = document.getElementById('cal-grade')
+  if(!grade) return
+
+  const meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']
+  document.getElementById('cal-mes-titulo').textContent = `${meses[calMes]} ${calAno}`
+
+  const hoje = new Date()
+  const primeiroDia = new Date(calAno, calMes, 1).getDay() // 0=dom
+  const diasNoMes   = new Date(calAno, calMes+1, 0).getDate()
+  const diasAntes   = primeiroDia
+  const total       = Math.ceil((diasAntes + diasNoMes) / 7) * 7
+
+  // Dias da semana
+  const dows = ['D','S','T','Q','Q','S','S']
+  const header = dows.map(d=>`<div class="cal-dow">${d}</div>`).join('')
+
+  let cells = ''
+  for(let i=0; i<total; i++){
+    const diaNum = i - diasAntes + 1
+    const isOutro = diaNum < 1 || diaNum > diasNoMes
+    const dataStr = `${calAno}-${String(calMes+1).padStart(2,'0')}-${String(diaNum).padStart(2,'0')}`
+    const isHoje  = !isOutro && diaNum===hoje.getDate() && calMes===hoje.getMonth() && calAno===hoje.getFullYear()
+    const isSel   = !isOutro && diaNum===calDiaSel
+
+    let dots = ''
+    if(!isOutro){
+      const evsDia = calTodosEventos().filter(ev=>{
+        if(ev.data!==dataStr) return false
+        return calFiltroAtivo==='todos' || ev.tipo===calFiltroAtivo
+      })
+      // Mostrar até 3 dots das cores dos tipos únicos
+      const tipos = [...new Set(evsDia.map(e=>e.tipo))].slice(0,3)
+      dots = tipos.map(t=>`<div class="cal-dot" style="background:${CAL_CORES[t]||'#888'}"></div>`).join('')
+    }
+
+    const cls = ['cal-day', isOutro?'outro-mes':'', isHoje?'hoje':'', isSel&&!isHoje?'selecionado':''].filter(Boolean).join(' ')
+    cells += `<div class="${cls}" onclick="${isOutro?'':` calSelDia(${diaNum})`}">${isOutro?'':'<span>'+diaNum+'</span>'}<div class="cal-dots">${dots}</div></div>`
+  }
+
+  grade.innerHTML = header + cells
+}
+
+// Seleciona um dia
+function calSelDia(dia){
+  calDiaSel = dia
+  calRenderGrade()
+  calRenderAgenda()
+}
+
+// Renderiza a agenda do dia selecionado
+function calRenderAgenda(){
+  const dataStr = `${calAno}-${String(calMes+1).padStart(2,'0')}-${String(calDiaSel).padStart(2,'0')}`
+  const d = new Date(calAno, calMes, calDiaSel)
+  const nomes = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado']
+  const meses = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
+  document.getElementById('cal-dia-titulo').textContent = `${nomes[d.getDay()]}, ${calDiaSel} ${meses[calMes]}`
+
+  // Preenche data no form
+  document.getElementById('cal-ev-data').value = dataStr
+
+  const evs = calEventosDia(dataStr)
+  const lista = document.getElementById('cal-eventos-lista')
+
+  if(!evs.length){
+    lista.innerHTML = '<div class="cal-vazio">Nenhum evento neste dia</div>'
+    return
+  }
+
+  lista.innerHTML = evs.map(ev=>`
+    <div class="cal-evento">
+      <div class="cal-evento-cor" style="background:${CAL_CORES[ev.tipo]||'#888'}"></div>
+      <div class="cal-evento-body">
+        <div class="cal-evento-titulo">${ev.titulo}</div>
+        ${ev.hora?`<div class="cal-evento-hora">🕐 ${ev.hora}</div>`:''}
+        ${ev.nota?`<div class="cal-evento-hora">📝 ${ev.nota}</div>`:''}
+        <div class="cal-evento-tipo" style="color:${CAL_CORES[ev.tipo]||'#888'}">${CAL_LABELS[ev.tipo]||ev.tipo.toUpperCase()}</div>
+      </div>
+      ${!ev.fixo?`<button class="cal-evento-del" onclick="calDeletarEvento('${ev.id}')">×</button>`:''}
+    </div>
+  `).join('')
+}
+
+// Navega mês
+function calNavMes(dir){
+  calMes += dir
+  if(calMes > 11){ calMes=0; calAno++ }
+  if(calMes < 0) { calMes=11; calAno-- }
+  calRenderGrade()
+  calRenderAgenda()
+}
+
+// Filtro
+function calFiltro(el){
+  document.querySelectorAll('.cal-filtro').forEach(f=>{
+    f.classList.remove('on')
+    f.style.background=''
+    f.style.color=''
+  })
+  el.classList.add('on')
+  calFiltroAtivo = el.dataset.tipo
+  const cor = calFiltroAtivo==='todos' ? 'var(--acc)' : (CAL_CORES[calFiltroAtivo]||'var(--acc)')
+  el.style.background = cor
+  el.style.color = '#fff'
+  calRenderGrade()
+  calRenderAgenda()
+}
+
+// Form
+function calAbrirForm(){
+  document.getElementById('cal-form').classList.add('show')
+  document.getElementById('cal-ev-titulo').focus()
+}
+function calFecharForm(){
+  document.getElementById('cal-form').classList.remove('show')
+  document.getElementById('cal-ev-titulo').value=''
+  document.getElementById('cal-ev-hora').value=''
+  document.getElementById('cal-ev-nota').value=''
+}
+function calSelTipo(el){
+  document.querySelectorAll('.cal-tipo-btn').forEach(b=>{
+    b.classList.remove('sel')
+    b.style.background=''
+    b.style.color=''
+    b.style.borderColor=''
+  })
+  el.classList.add('sel')
+  calTipoSel = el.dataset.t
+  const cor = CAL_CORES[calTipoSel]||'var(--acc)'
+  el.style.background=cor
+  el.style.color='#fff'
+  el.style.borderColor=cor
+}
+function calSalvarEvento(){
+  const titulo = document.getElementById('cal-ev-titulo').value.trim()
+  const data   = document.getElementById('cal-ev-data').value
+  const hora   = document.getElementById('cal-ev-hora').value
+  const nota   = document.getElementById('cal-ev-nota').value.trim()
+  if(!titulo){ toast('Coloca um título!'); return }
+  if(!data)  { toast('Escolhe uma data!'); return }
+  const custom = calCarregar()
+  custom.push({ id:'ev-'+Date.now(), titulo, data, hora, tipo:calTipoSel, nota, fixo:false })
+  calSalvar(custom)
+  calFecharForm()
+  // Navegar para o mês/dia do evento
+  const d = new Date(data+'T12:00')
+  calAno=d.getFullYear(); calMes=d.getMonth(); calDiaSel=d.getDate()
+  calRenderGrade()
+  calRenderAgenda()
+  toast('Evento salvo! ✓')
+}
+function calDeletarEvento(id){
+  const custom = calCarregar().filter(e=>e.id!==id)
+  calSalvar(custom)
+  calRenderGrade()
+  calRenderAgenda()
+  toast('Evento removido')
+}
+
+// Helper para provas — precisa existir antes de calTodosEventos ser chamado
+function avalTodas(){
+  if(typeof avalCarregar === 'function'){
+    const fixas = typeof AVAL_FIXAS !== 'undefined' ? AVAL_FIXAS : []
+    return [...fixas, ...avalCarregar()]
+  }
+  return []
+}
+
+// Init do calendário — chamado após AVAL_FIXAS ser declarado (ver abaixo)
 
 // ═══════════════════════════════════════════
 // SISTEMA DE PROVAS
@@ -1794,6 +2355,10 @@ function delAval(i){
 }
 
 renderProvas()
+
+// Init calendário — AVAL_FIXAS já declarado aqui
+calRenderGrade()
+calRenderAgenda()
 
 // ═══════════════════════════════════════════
 // TOAST + TOGGLE
