@@ -3768,7 +3768,10 @@ if (isIOS && !isInStandalone && isMobile) {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').catch(() => {})
+  navigator.serviceWorker.register('sw.js').then(reg => {
+    // Força verificação de atualização
+    reg.update()
+  }).catch(() => {})
 }
 </script>
 </div><!-- end app-shell -->
