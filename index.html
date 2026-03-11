@@ -1240,7 +1240,6 @@ nav {
         <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
       </button>
     </div>
-    </div>
   </div>
 
   <!-- Calendário de avaliações -->
@@ -3147,8 +3146,23 @@ function fmtData(dataStr){
 }
 
 function renderProvas(){
-  const custom = avalCarregar()
-  const todas = [...AVAL_FIXAS, ...custom].sort((a,b)=>a.data.localeCompare(b.data))
+  // Remove do localStorage qualquer custom que seja cópia de uma FIXA
+  const fixasKeys = new Set(AVAL_FIXAS.map(f => f.mat.toLowerCase().trim() + '|' + f.data))
+  const custom = avalCarregar().filter(c => {
+    const chave = c.mat.toLowerCase().trim() + '|' + c.data
+    return !fixasKeys.has(chave)  // descarta se bate com fixa
+  })
+  // Deduplica entre customs também
+  const vistas = new Set()
+  const customLimpo = custom.filter(c => {
+    const chave = c.mat.toLowerCase().trim() + '|' + c.data
+    if(vistas.has(chave)) return false
+    vistas.add(chave); return true
+  })
+  // Salva já limpo
+  avalSalvar(customLimpo)
+
+  const todas = [...AVAL_FIXAS, ...customLimpo].sort((a,b)=>a.data.localeCompare(b.data))
   const hoje = new Date(); hoje.setHours(0,0,0,0)
 
   // Destaque — próxima prova
@@ -3210,7 +3224,7 @@ function renderProvas(){
     const podeDel  = !isFixa && (dentroJanela || avalModoEdicaoAtivo)
 
     // Índice real dentro do array custom para deletar
-    const customIdx = custom.findIndex(c => c.mat===a.mat && c.data===a.data)
+    const customIdx = customLimpo.findIndex(c => c.mat===a.mat && c.data===a.data)
 
     return `
       <div class="aval-card" style="opacity:${dias<0?'.4':'1'}">
