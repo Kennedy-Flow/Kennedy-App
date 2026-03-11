@@ -1690,23 +1690,30 @@ TÓPICOS PENDENTES (${topicosPendentes.length}):
 ${topicosPendentes.slice(0,8).map(t=>`  • ${t}`).join('\n')||'  Todos concluídos!'}
 
 AÇÕES QUE VOCÊ PODE FAZER:
-- Adicionar prova: responda com ACAO:ADD_PROVA:{"mat":"...","data":"YYYY-MM-DD","tipo":"Parcial|Bimestral|Recuperação|Trabalho","bim":1,"desc":"...opcional"}
+- Adicionar prova: ACAO:ADD_PROVA:{"mat":"...","data":"YYYY-MM-DD","tipo":"Parcial|Bimestral|Recuperação|Trabalho","bim":1,"desc":"...opcional"}
 - Adicionar evento na agenda: ACAO:ADD_EVENTO:{"titulo":"...","data":"YYYY-MM-DD","hora":"HH:MM","tipo":"pessoal|judo|escola|prova|lembrete","nota":"..."}
 - Navegar para uma aba: ACAO:IR_PARA:provas|agenda|conteudo|pomo|hoje|semana|musica|dicas
 - Iniciar Pomodoro: ACAO:INICIAR_POMO
-Se for executar uma ação, coloque-a no FIM da resposta em uma linha separada.`
+REGRA CRÍTICA: Coloque a ação no FIM da resposta em UMA ÚNICA LINHA. O JSON deve estar todo em uma linha só, sem quebras de linha dentro dele. Exemplo correto: ACAO:ADD_PROVA:{"mat":"Física","data":"2026-03-20","tipo":"Bimestral","bim":1}`
 }
 
 // ── EXECUTAR AÇÕES DA IA ─────────────────────
 function iaExecutarAcao(texto){
-  const linhas = texto.split('\n')
-  linhas.forEach(linha=>{
-    linha = linha.trim()
+  // Normaliza variações com acento (AÇO → ACAO)
+  let t = texto.replace(/AÇO:/g,'ACAO:')
+
+  // Extrai todos os blocos ACAO: mesmo que o JSON seja multilinha
+  // Usa regex que pega até o fechamento do } do JSON
+  const reAcao = /ACAO:[A-Z_]+:\{[\s\S]*?\}/g
+  const acoes = t.match(reAcao) || []
+
+  acoes.forEach(bloco => {
+    const bloco2 = bloco.trim()
 
     // ADD_PROVA
-    if(linha.startsWith('ACAO:ADD_PROVA:')){
+    if(bloco2.startsWith('ACAO:ADD_PROVA:')){
       try{
-        const json = linha.replace('ACAO:ADD_PROVA:','')
+        const json = bloco2.replace('ACAO:ADD_PROVA:','')
         const p = JSON.parse(json)
         if(p.mat && p.data){
           const custom = avalCarregar()
@@ -1716,13 +1723,13 @@ function iaExecutarAcao(texto){
           calRenderGrade()
           toast(`✓ Prova de ${p.mat} adicionada!`)
         }
-      }catch(e){}
+      }catch(e){ console.warn('ADD_PROVA parse error',e) }
     }
 
     // ADD_EVENTO
-    if(linha.startsWith('ACAO:ADD_EVENTO:')){
+    if(bloco2.startsWith('ACAO:ADD_EVENTO:')){
       try{
-        const json = linha.replace('ACAO:ADD_EVENTO:','')
+        const json = bloco2.replace('ACAO:ADD_EVENTO:','')
         const ev = JSON.parse(json)
         if(ev.titulo && ev.data){
           const custom = calCarregar()
@@ -1732,32 +1739,38 @@ function iaExecutarAcao(texto){
           calRenderAgenda()
           toast(`✓ Evento "${ev.titulo}" adicionado!`)
         }
-      }catch(e){}
+      }catch(e){ console.warn('ADD_EVENTO parse error',e) }
     }
+  })
 
-    // IR_PARA
-    if(linha.startsWith('ACAO:IR_PARA:')){
-      const pagina = linha.replace('ACAO:IR_PARA:','').trim()
+  // Trata IR_PARA e INICIAR_POMO (sem JSON)
+  if(/ACAO:IR_PARA:/i.test(t)){
+    const m = t.match(/ACAO:IR_PARA:(\w+)/i)
+    if(m){
+      const pagina = m[1].toLowerCase()
       setTimeout(()=>{
         const btn = document.querySelector(`nav button[onclick*="'${pagina}'"]`)
         if(btn) showPage(pagina, btn)
         else navMaisIr(pagina)
       }, 800)
     }
+  }
 
-    // INICIAR_POMO
-    if(linha.startsWith('ACAO:INICIAR_POMO')){
-      setTimeout(()=>{
-        const btn = document.querySelector(`nav button[onclick*="'pomo'"]`)
-        if(btn){ showPage('pomo',btn) }
-        else navMaisIr('pomo')
-        setTimeout(()=>{ if(!pomoRunning) togglePomo() }, 500)
-      }, 800)
-    }
-  })
+  if(/ACAO:INICIAR_POMO/i.test(t)){
+    setTimeout(()=>{
+      const btn = document.querySelector(`nav button[onclick*="'pomo'"]`)
+      if(btn) showPage('pomo',btn)
+      else navMaisIr('pomo')
+      setTimeout(()=>{ if(!pomoRunning) togglePomo() }, 500)
+    }, 800)
+  }
 
-  // Remove as linhas de ação do texto exibido
-  return texto.replace(/^ACAO:.*$/gm,'').replace(/\n{3,}/g,'\n\n').trim()
+  // Remove TODOS os blocos ACAO do texto exibido (com e sem JSON)
+  return t
+    .replace(/ACAO:[A-Z_]+:\{[\s\S]*?\}/g, '')   // com JSON
+    .replace(/ACAO:[A-Z_]+:[^\n]*/g, '')           // sem JSON (IR_PARA, INICIAR_POMO)
+    .replace(/\n{3,}/g, '\n\n')
+    .trim()
 }
 
 // ═══════════════════════════════════════════
