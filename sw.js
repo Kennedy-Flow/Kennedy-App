@@ -1,4 +1,4 @@
-const CACHE = 'kennedy-v23';
+const CACHE = 'kennedy-v24';
 // index.html NUNCA entra no cache — sempre busca da rede
 const STATIC_ASSETS = ['./manifest.json','./icon.png','./icon-192.png'];
 
@@ -40,3 +40,4 @@ self.addEventListener('fetch', e => {
     })
   );
 });
+
