@@ -195,7 +195,7 @@ nav {
   position:fixed; inset:0; z-index:1000;
   background:#00000070; backdrop-filter:blur(4px);
   display:flex; align-items:flex-end; justify-content:center;
-  padding: 0 12px max(24px,env(safe-area-inset-bottom));
+  padding: 20px 12px max(24px,env(safe-area-inset-bottom));
   opacity:0; pointer-events:none;
   transition: opacity .2s;
 }
@@ -203,14 +203,16 @@ nav {
 .popup-box {
   background:var(--bg1); border:1px solid var(--line); border-radius:20px;
   padding:20px 18px 16px; width:100%; max-width:340px;
+  max-height:80vh; display:flex; flex-direction:column;
   transform:translateY(24px); transition:transform .25s cubic-bezier(.34,1.56,.64,1);
   box-shadow: 0 -4px 40px #00000080;
 }
 .popup-overlay.show .popup-box { transform:translateY(0); }
+.popup-box-scroll { overflow-y:auto; flex:1; margin-bottom:12px; }
 .popup-icon { font-size:28px; text-align:center; margin-bottom:10px; }
 .popup-title { font-family:var(--sans); font-size:16px; font-weight:700; text-align:center; margin-bottom:6px; }
-.popup-msg { font-size:11px; color:var(--txt2); text-align:center; line-height:1.6; margin-bottom:18px; }
-.popup-btns { display:flex; flex-direction:column; gap:8px; }
+.popup-msg { font-size:11px; color:var(--txt2); text-align:center; line-height:1.6; margin-bottom:18px; white-space:pre-line; }
+.popup-btns { display:flex; flex-direction:column; gap:8px; flex-shrink:0; }
 .popup-btn {
   width:100%; padding:13px; border:none; border-radius:12px; cursor:pointer;
   font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.06em;
@@ -987,44 +989,83 @@ nav {
     <div class="meta-icon">🎯</div>
     <div class="meta-txt">
       <div class="meta-label">META DO DIA</div>
-      <div class="meta-val vazia" id="meta-val">Toca aqui pra definir sua meta de hoje...</div>
+      <div class="meta-val vazia" id="meta-val">Toca aqui pra definir sua meta...</div>
     </div>
   </div>
 
-  <!-- Cards: streak + água + humor -->
-  <div class="hoje-extras-3">
-    <div class="hoje-extra-card" style="cursor:default">
-      <div class="hoje-extra-label">🔥 SEQUÊNCIA</div>
-      <div style="display:flex;align-items:baseline;gap:4px;margin:4px 0 2px">
-        <div class="streak-num" id="streak-num" style="color:var(--acc)">0</div>
-        <div style="font-size:9px;color:var(--txt3)">dias</div>
+  <!-- Frase motivacional -->
+  <div class="hoje-frase" id="hoje-frase">
+    <div style="display:flex;align-items:flex-start;gap:8px">
+      <svg width="18" height="15" viewBox="0 0 24 20" fill="none" style="flex-shrink:0;margin-top:3px;opacity:.35">
+        <path d="M0 20V12.667C0 5.667 4.333 1.333 13 0l1.333 2.667C10.444 3.556 8.222 5.333 7.333 8H11V20H0zm13 0V12.667C13 5.667 17.333 1.333 26 0l1.333 2.667C23.444 3.556 21.222 5.333 20.333 8H24V20H13z" fill="var(--acc)"/>
+      </svg>
+      <div style="flex:1">
+        <div class="hoje-frase-txt" id="hoje-frase-txt"></div>
+        <div class="hoje-frase-autor" id="hoje-frase-autor"></div>
       </div>
-      <div class="hoje-extra-sub" id="streak-sub">Comece hoje!</div>
     </div>
-    <div class="hoje-extra-card">
-      <div class="hoje-extra-label">💧 ÁGUA</div>
-      <div style="display:flex;align-items:baseline;gap:4px;margin:4px 0 2px">
-        <div class="streak-num" id="agua-num" style="color:#4eaaf0">0</div>
-        <div style="font-size:9px;color:var(--txt3)">/ 8</div>
+    <div style="display:flex;justify-content:center;gap:5px;margin-top:8px" id="frase-dots"></div>
+  </div>
+
+  <!-- Linha rápida: streak + água + humor + prova -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+
+    <!-- Streak -->
+    <div class="hoje-extra-card" style="display:flex;align-items:center;gap:10px;padding:10px 12px">
+      <div style="font-size:22px;line-height:1">🔥</div>
+      <div>
+        <div class="hoje-extra-label">SEQUÊNCIA</div>
+        <div style="display:flex;align-items:baseline;gap:3px">
+          <div class="streak-num" id="streak-num" style="color:var(--acc);font-size:18px">0</div>
+          <div style="font-size:9px;color:var(--txt3)">dias</div>
+        </div>
+        <div class="hoje-extra-sub" id="streak-sub" style="margin-top:0">Comece hoje!</div>
       </div>
-      <div class="hoje-extra-sub">copos hoje</div>
-      <div class="agua-copos" id="agua-copos"></div>
     </div>
-    <div class="hoje-extra-card">
-      <div class="hoje-extra-label">PRÓXIMA PROVA</div>
-      <div class="hoje-extra-val" id="hoje-prova-dias" style="color:var(--acc)">—</div>
+
+    <!-- Próxima prova -->
+    <div class="hoje-extra-card" style="padding:10px 12px">
+      <div class="hoje-extra-label">📅 PRÓXIMA PROVA</div>
+      <div class="hoje-extra-val" id="hoje-prova-dias" style="color:var(--acc);font-size:18px">—</div>
       <div class="hoje-extra-sub" id="hoje-prova-nome">Carregando...</div>
     </div>
+
   </div>
 
-  <!-- Humor do dia -->
-  <div class="card" style="padding:12px 14px;margin-bottom:8px" id="humor-card">
-    <div style="font-size:9px;color:var(--txt3);letter-spacing:.08em;font-weight:700;margin-bottom:2px">COMO VOCÊ ESTÁ HOJE?</div>
+  <!-- Água (compacto) -->
+  <div class="hoje-extra-card" style="padding:10px 14px;margin-bottom:8px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+      <div style="display:flex;align-items:center;gap:6px">
+        <span style="font-size:15px">💧</span>
+        <span class="hoje-extra-label" style="margin:0">ÁGUA HOJE</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:3px">
+        <span class="streak-num" id="agua-num" style="color:#4eaaf0;font-size:16px">0</span>
+        <span style="font-size:9px;color:var(--txt3)">/ 8 copos</span>
+      </div>
+    </div>
+    <div class="agua-copos" id="agua-copos"></div>
+  </div>
+
+  <!-- Humor (compacto) -->
+  <div class="hoje-extra-card" style="padding:10px 14px;margin-bottom:8px">
+    <div style="font-size:9px;color:var(--txt3);letter-spacing:.08em;font-weight:700;margin-bottom:6px">😊 COMO VOCÊ ESTÁ?</div>
     <div class="humor-row" id="humor-row">
       <div class="humor-btn" data-h="otimo" onclick="humorSel(this)">😄<span class="humor-sub">ótimo</span></div>
       <div class="humor-btn" data-h="ok" onclick="humorSel(this)">😐<span class="humor-sub">ok</span></div>
       <div class="humor-btn" data-h="cansado" onclick="humorSel(this)">😴<span class="humor-sub">cansado</span></div>
       <div class="humor-btn" data-h="ansioso" onclick="humorSel(this)">😬<span class="humor-sub">ansioso</span></div>
+    </div>
+  </div>
+
+  <!-- Tópicos estudados (compacto) -->
+  <div style="display:grid;grid-template-columns:1fr;margin-bottom:8px">
+    <div class="hoje-extra-card" style="padding:10px 14px">
+      <div class="hoje-extra-label">📚 TÓPICOS ESTUDADOS</div>
+      <div style="display:flex;align-items:baseline;gap:4px;margin-top:2px">
+        <div class="hoje-extra-val" id="hoje-topicos-val" style="color:var(--acc3);font-size:18px">—</div>
+        <div class="hoje-extra-sub" id="hoje-topicos-sub" style="margin:0">de todos os tópicos</div>
+      </div>
     </div>
   </div>
 
@@ -1034,28 +1075,7 @@ nav {
     <div id="rev-alertas-lista"></div>
   </div>
 
-  <!-- Cards extras originais (tópicos estudados) -->
-  <div class="hoje-extras" id="hoje-extras" style="grid-template-columns:1fr">
-    <div class="hoje-extra-card">
-      <div class="hoje-extra-label">TÓPICOS ESTUDADOS</div>
-      <div class="hoje-extra-val" id="hoje-topicos-val" style="color:var(--acc3)">—</div>
-      <div class="hoje-extra-sub" id="hoje-topicos-sub">de todos os tópicos</div>
-    </div>
-  </div>
-  <div class="hoje-frase" id="hoje-frase">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-      <svg width="22" height="18" viewBox="0 0 24 20" fill="none" style="flex-shrink:0;margin-top:3px;opacity:.35">
-        <path d="M0 20V12.667C0 5.667 4.333 1.333 13 0l1.333 2.667C10.444 3.556 8.222 5.333 7.333 8H11V20H0zm13 0V12.667C13 5.667 17.333 1.333 26 0l1.333 2.667C23.444 3.556 21.222 5.333 20.333 8H24V20H13z" fill="var(--acc)"/>
-      </svg>
-      <div style="flex:1">
-        <div class="hoje-frase-txt" id="hoje-frase-txt"></div>
-        <div class="hoje-frase-autor" id="hoje-frase-autor"></div>
-      </div>
-    </div>
-    <div style="display:flex;justify-content:center;gap:5px;margin-top:10px" id="frase-dots"></div>
-  </div>
-
-  <!-- Horário de aulas de hoje — ACIMA do checklist -->
+  <!-- Horário de aulas de hoje -->
   <div id="hoje-horario-wrap" style="display:none">
     <div class="sec-header">AULAS DE HOJE</div>
     <div id="hoje-horario-lista"></div>
@@ -1492,9 +1512,11 @@ nav {
 <!-- POPUP CUSTOMIZADO -->
 <div class="popup-overlay" id="popup-overlay">
   <div class="popup-box">
-    <div class="popup-icon" id="popup-icon">⚠️</div>
-    <div class="popup-title" id="popup-title">Confirmar</div>
-    <div class="popup-msg" id="popup-msg"></div>
+    <div class="popup-box-scroll">
+      <div class="popup-icon" id="popup-icon">⚠️</div>
+      <div class="popup-title" id="popup-title">Confirmar</div>
+      <div class="popup-msg" id="popup-msg"></div>
+    </div>
     <div class="popup-btns" id="popup-btns"></div>
   </div>
 </div>
@@ -3640,13 +3662,16 @@ async function iaSalvarHorario(){
     const ok = await popup({
       icon:'🕐', title:'Horário já existe',
       msg:'Você já tem um horário salvo. Deseja substituir pelo novo?',
-      btns:[{txt:'Substituir',cls:'btn-primary'},{txt:'Cancelar',cls:'btn-ghost'}]
+      btns:[
+        {label:'SUBSTITUIR', type:'confirm', value:true},
+        {label:'CANCELAR',   type:'cancel',  value:false}
+      ]
     })
-    if(ok !== 0) return
+    if(!ok) return
   }
   horarioSalvar(iaHorarioDetectado)
   horarioRenderHoje()
-  toast({title:'Horário salvo!', sub:'Aparece na aba Hoje', type:'success'})
+  toast({title:'Horário salvo! ✓', sub:'Aparece na aba Hoje', type:'success'})
   iaLimpar()
 }
 
