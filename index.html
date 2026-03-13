@@ -14,52 +14,54 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#0a0a12; --bg1:#111120; --bg2:#181828; --line:#252538;
-  --acc:#7c6ef8; --acc2:#4eaaf0; --acc3:#3ecfa4; --acc4:#f0a04e; --acc5:#f06e7c; --acc6:#a0d468;
-  --txt:#e8e8f0; --txt2:#9090a8; --txt3:#4a4a60;
+  --bg:#07060f; --bg1:#0e0c1a; --bg2:#141226; --line:#1e1b35;
+  --acc:#7c3aed; --acc-soft:#a78bfa;
+  --acc2:#06b6d4; --acc3:#10b981; --acc4:#f59e0b; --acc5:#f43f5e; --acc6:#8b5cf6;
+  --txt:#f0eeff; --txt2:#8b85aa; --txt3:#3d3860;
   --mono:'JetBrains Mono',monospace; --sans:'Syne',sans-serif;
   --nav-h:72px;
+  --r:18px; --r-sm:12px;
 }
 
 /* ── TEMAS ───────────────────────────────── */
 [data-theme="aurora"] {
-  --bg:#0d0a14; --bg1:#160f20; --bg2:#1e1530; --line:#2e2048;
-  --acc:#c084fc; --acc2:#f472b6; --acc3:#a78bfa; --acc4:#fb7185; --acc5:#e879f9; --acc6:#818cf8;
-  --txt:#f0e8ff; --txt2:#a090c0; --txt3:#4a3a60;
+  --bg:#0a0614; --bg1:#120d20; --bg2:#1a1430; --line:#2a1e48;
+  --acc:#c084fc; --acc-soft:#e0aaff; --acc2:#f472b6; --acc3:#a78bfa; --acc4:#fb7185; --acc5:#e879f9; --acc6:#818cf8;
+  --txt:#f5e8ff; --txt2:#a090c8; --txt3:#4a3a68;
 }
 [data-theme="ocean"] {
   --bg:#070d14; --bg1:#0d1520; --bg2:#121e2e; --line:#1a2a40;
-  --acc:#38bdf8; --acc2:#22d3ee; --acc3:#34d399; --acc4:#60a5fa; --acc5:#818cf8; --acc6:#6ee7b7;
+  --acc:#38bdf8; --acc-soft:#7dd3fc; --acc2:#22d3ee; --acc3:#34d399; --acc4:#60a5fa; --acc5:#818cf8; --acc6:#6ee7b7;
   --txt:#e0f2fe; --txt2:#7fb0cc; --txt3:#2a4a60;
 }
 [data-theme="forest"] {
   --bg:#080e0a; --bg1:#0e1610; --bg2:#141e16; --line:#1e2e20;
-  --acc:#4ade80; --acc2:#86efac; --acc3:#34d399; --acc4:#fbbf24; --acc5:#f87171; --acc6:#a3e635;
+  --acc:#4ade80; --acc-soft:#86efac; --acc2:#86efac; --acc3:#34d399; --acc4:#fbbf24; --acc5:#f87171; --acc6:#a3e635;
   --txt:#e8f5ea; --txt2:#7aaa7e; --txt3:#2a4a2e;
 }
 [data-theme="sunset"] {
   --bg:#110a07; --bg1:#1c100a; --bg2:#251610; --line:#382010;
-  --acc:#fb923c; --acc2:#fbbf24; --acc3:#f87171; --acc4:#fdba74; --acc5:#f43f5e; --acc6:#fcd34d;
+  --acc:#fb923c; --acc-soft:#fdba74; --acc2:#fbbf24; --acc3:#f87171; --acc4:#fdba74; --acc5:#f43f5e; --acc6:#fcd34d;
   --txt:#fff0e8; --txt2:#c08060; --txt3:#603020;
 }
 [data-theme="arctic"] {
   --bg:#07090f; --bg1:#0d1018; --bg2:#141820; --line:#1e2430;
-  --acc:#94a3b8; --acc2:#7dd3fc; --acc3:#bae6fd; --acc4:#e2e8f0; --acc5:#f472b6; --acc6:#cbd5e1;
+  --acc:#94a3b8; --acc-soft:#cbd5e1; --acc2:#7dd3fc; --acc3:#bae6fd; --acc4:#e2e8f0; --acc5:#f472b6; --acc6:#cbd5e1;
   --txt:#f1f5f9; --txt2:#94a3b8; --txt3:#334155;
 }
 [data-theme="ember"] {
   --bg:#0e0805; --bg1:#180e08; --bg2:#201408; --line:#301e10;
-  --acc:#dc8a3e; --acc2:#b45309; --acc3:#f59e0b; --acc4:#fde68a; --acc5:#ef4444; --acc6:#fed7aa;
+  --acc:#dc8a3e; --acc-soft:#fbbf24; --acc2:#b45309; --acc3:#f59e0b; --acc4:#fde68a; --acc5:#ef4444; --acc6:#fed7aa;
   --txt:#fef3c7; --txt2:#b48a5a; --txt3:#5a3010;
 }
 [data-theme="void"] {
-  --bg:#030305; --bg1:#08080e; --bg2:#0e0e18; --line:#161622;
-  --acc:#6366f1; --acc2:#8b5cf6; --acc3:#a78bfa; --acc4:#c4b5fd; --acc5:#f43f5e; --acc6:#818cf8;
-  --txt:#e0e0f0; --txt2:#7070a0; --txt3:#303050;
+  --bg:#0a0a14; --bg1:#111128; --bg2:#181832; --line:#242440;
+  --acc:#6366f1; --acc-soft:#a5b4fc; --acc2:#8b5cf6; --acc3:#a78bfa; --acc4:#c4b5fd; --acc5:#f43f5e; --acc6:#818cf8;
+  --txt:#eeeeff; --txt2:#8888bb; --txt3:#404468;
 }
 [data-theme="sakura"] {
   --bg:#0e080c; --bg1:#180d14; --bg2:#20121c; --line:#301828;
-  --acc:#f9a8d4; --acc2:#fda4af; --acc3:#f0abfc; --acc4:#fbbf24; --acc5:#fb7185; --acc6:#e879f9;
+  --acc:#f9a8d4; --acc-soft:#fbcfe8; --acc2:#fda4af; --acc3:#f0abfc; --acc4:#fbbf24; --acc5:#fb7185; --acc6:#e879f9;
   --txt:#fdf2f8; --txt2:#c08090; --txt3:#603050;
 }
 
@@ -79,15 +81,18 @@ nav {
 .nav-island {
   display:flex; align-items:center; justify-content:space-around;
   width:100%; max-width:420px;
-  background: color-mix(in srgb, var(--bg1) 65%, transparent);
-  border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
-  border-radius: 28px;
+  background: color-mix(in srgb, var(--bg1) 80%, transparent);
+  border: 1px solid color-mix(in srgb, var(--acc) 18%, var(--line));
+  border-radius: 32px;
   padding: 6px 8px;
-  box-shadow: 0 8px 40px #00000070, 0 2px 8px #00000050, inset 0 1px 0 #ffffff08;
+  box-shadow:
+    0 12px 48px #00000088,
+    0 0 0 1px #ffffff06 inset,
+    0 1px 0 #ffffff10 inset;
   pointer-events: all;
   position: relative;
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
   margin-bottom: 8px;
 }
 
@@ -98,31 +103,18 @@ nav {
   padding: 8px 6px 6px;
   color: var(--txt3);
   font-family: var(--mono); font-size: 7px; letter-spacing:.06em;
-  transition: color .2s;
+  transition: color .25s, transform .2s;
   border-radius: 20px;
   position: relative;
   min-width:0;
+  overflow: visible;
 }
 .nav-island > button svg {
-  width:19px; height:19px; stroke:currentColor; fill:none;
-  stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;
-  transition: filter .25s, transform .2s;
+  width:20px; height:20px; stroke:currentColor; fill:none;
+  stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;
+  transition: filter .3s, transform .25s cubic-bezier(.34,1.56,.64,1);
 }
-.nav-island > button.active { color: var(--acc); }
-.nav-island > button.active svg {
-  filter: drop-shadow(0 0 5px var(--acc)) drop-shadow(0 0 10px var(--acc)66);
-  transform: translateY(-1px);
-}
-/* Traço luminoso acima do ícone ativo */
-.nav-island > button.active::before {
-  content:'';
-  position:absolute;
-  top: 2px; left:50%; transform:translateX(-50%);
-  width: 20px; height: 2px;
-  background: var(--acc);
-  border-radius: 2px;
-  box-shadow: 0 0 6px var(--acc), 0 0 14px var(--acc)77;
-}
+/* Active rules definidas abaixo no bloco SISTEMA DE LUZ */
 
 /* Badge */
 .nav-badge {
@@ -201,11 +193,13 @@ nav {
 }
 .popup-overlay.show { opacity:1; pointer-events:all; }
 .popup-box {
-  background:var(--bg1); border:1px solid var(--line); border-radius:20px;
-  padding:20px 18px 16px; width:100%; max-width:340px;
+  background: linear-gradient(160deg, var(--bg2), var(--bg1));
+  border:1px solid color-mix(in srgb, var(--acc) 20%, var(--line));
+  border-radius:24px;
+  padding:22px 20px 18px; width:100%; max-width:340px;
   max-height:80vh; display:flex; flex-direction:column;
-  transform:translateY(24px); transition:transform .25s cubic-bezier(.34,1.56,.64,1);
-  box-shadow: 0 -4px 40px #00000080;
+  transform:translateY(24px); transition:transform .28s cubic-bezier(.34,1.56,.64,1);
+  box-shadow: 0 -8px 48px #000000a0, inset 0 1px 0 #ffffff08;
 }
 .popup-overlay.show .popup-box { transform:translateY(0); }
 .popup-box-scroll { overflow-y:auto; flex:1; margin-bottom:12px; }
@@ -293,8 +287,12 @@ nav {
 .pomo-wrap{display:flex;justify-content:center;margin-bottom:12px}
 .pomo-btns{display:flex;gap:8px;justify-content:center;margin-top:14px}
 .btn{padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.04em;transition:all .15s}
-.btn-primary{background:var(--acc);color:#fff}
-.btn-primary:active{transform:scale(.96)}
+.btn-primary{
+  background: linear-gradient(135deg, var(--acc), color-mix(in srgb, var(--acc) 75%, var(--acc6)));
+  color:#fff;
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--acc) 40%, transparent);
+}
+.btn-primary:active{transform:scale(.96); box-shadow: 0 2px 8px color-mix(in srgb, var(--acc) 30%, transparent);}
 .btn-ghost{background:var(--bg2);border:1px solid var(--line);color:var(--txt2)}
 .pomo-steps{display:flex;flex-direction:column;gap:6px}
 .step-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px}
@@ -303,13 +301,18 @@ nav {
 
 /* MATÉRIAS GRID */
 .mat-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px}
-.mat-card{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;position:relative;overflow:hidden}
+.mat-card{background: linear-gradient(160deg, var(--bg2), var(--bg1));border:1px solid var(--line);border-radius:16px;padding:12px 14px;position:relative;overflow:hidden;box-shadow:0 2px 8px #00000025;}
 .mat-day{font-size:8px;color:var(--txt3);letter-spacing:.07em;margin-bottom:5px}
 .mat-manha{font-size:10px;font-weight:700;color:var(--txt);margin-bottom:3px}
 .mat-tarde{font-size:9px;color:var(--txt2)}
 
 /* DICAS */
-.dica-card{background:var(--bg2);border-left:3px solid var(--acc);border-radius:8px;padding:12px 14px;margin-bottom:8px}
+.dica-card{
+  background: linear-gradient(160deg, var(--bg2), var(--bg1));
+  border-left:3px solid var(--acc);
+  border-radius:16px; padding:14px 16px; margin-bottom:8px;
+  box-shadow: 0 2px 10px #00000030;
+}
 .dica-tag{font-size:8px;font-weight:700;letter-spacing:.08em;margin-bottom:5px;text-transform:uppercase}
 .dica-txt{font-size:10px;color:var(--txt2);line-height:1.6}
 .card-title{font-family:var(--sans);font-size:13px;font-weight:700;margin-bottom:8px}
@@ -333,9 +336,9 @@ nav {
 .prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .prog-nome{font-family:'Syne',sans-serif;font-size:13px;font-weight:700}
 .prog-pct{font-size:11px;font-weight:700}
-.prog-bar{height:4px;background:var(--line);border-radius:2px;overflow:hidden}
-.prog-fill{height:100%;border-radius:2px;transition:width .5s}
-.top-card{background:var(--bg2);border:1px solid var(--line);border-radius:10px;margin-bottom:6px;overflow:hidden}
+.prog-bar{height:5px;background:color-mix(in srgb, var(--acc) 10%, var(--line));border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;border-radius:3px;transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow: 0 0 8px currentColor;}
+.top-card{background: linear-gradient(160deg, var(--bg2), var(--bg1));border:1px solid var(--line);border-radius:16px;margin-bottom:6px;overflow:hidden;box-shadow:0 2px 8px #00000025;}
 .top-card.feito{opacity:.5}
 .top-head{display:flex;align-items:center;gap:10px;padding:11px 13px;cursor:pointer}
 .top-chk{width:22px;height:22px;border-radius:6px;flex-shrink:0;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;transition:all .25s}
@@ -355,23 +358,45 @@ nav {
 /* ── MODO PROVA — banner refinado ─────────── */
 .prova-hero {
   position: relative; overflow: hidden;
-  background: linear-gradient(150deg, #1e0e2a 0%, #140d1e 50%, var(--bg1) 100%);
-  border: 1px solid color-mix(in srgb, var(--acc) 25%, transparent);
-  border-radius: 24px; padding: 20px 18px; margin-bottom: 12px;
-  box-shadow: 0 4px 24px color-mix(in srgb, var(--acc) 8%, transparent),
-              inset 0 1px 0 #ffffff06;
+  background:
+    radial-gradient(ellipse 120% 80% at 100% 0%,   color-mix(in srgb, var(--acc) 30%, transparent), transparent 60%),
+    radial-gradient(ellipse 80%  60% at 0%   100%, color-mix(in srgb, var(--acc2) 15%, transparent), transparent 60%),
+    linear-gradient(160deg, #100828 0%, #090618 60%, var(--bg) 100%);
+  border: 1px solid color-mix(in srgb, var(--acc) 35%, transparent);
+  border-radius: 28px; padding: 24px 22px; margin-bottom: 14px;
+  box-shadow:
+    0 12px 48px color-mix(in srgb, var(--acc) 20%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--acc) 10%, transparent),
+    inset 0 1px 0 #ffffff0a;
+}
+/* Linha luminosa no topo do banner */
+.prova-hero::after {
+  content:''; position:absolute;
+  top:0; left:16px; right:16px; height:1px;
+  background: linear-gradient(90deg, transparent, var(--acc) 30%, var(--acc) 70%, transparent);
+  opacity:.5;
 }
 .prova-urgente {
-  background: linear-gradient(150deg, #2a0e0e 0%, #1c0a0a 50%, var(--bg1) 100%);
-  border-color: color-mix(in srgb, var(--acc5) 28%, transparent);
-  box-shadow: 0 4px 24px color-mix(in srgb, var(--acc5) 10%, transparent),
-              inset 0 1px 0 #ffffff06;
+  background:
+    radial-gradient(ellipse 120% 80% at 100% 0%, color-mix(in srgb, var(--acc5) 30%, transparent), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 0% 100%, color-mix(in srgb, var(--acc4) 15%, transparent), transparent),
+    linear-gradient(160deg, #1e0808 0%, #140606 60%, var(--bg) 100%);
+  border-color: color-mix(in srgb, var(--acc5) 40%, transparent);
+  box-shadow: 0 12px 48px color-mix(in srgb, var(--acc5) 20%, transparent), inset 0 1px 0 #ffffff0a;
+}
+.prova-urgente::after {
+  background: linear-gradient(90deg, transparent, var(--acc5) 30%, var(--acc5) 70%, transparent);
 }
 .prova-ok {
-  background: linear-gradient(150deg, #0a1e18 0%, #081510 50%, var(--bg1) 100%);
-  border-color: color-mix(in srgb, var(--acc3) 25%, transparent);
-  box-shadow: 0 4px 24px color-mix(in srgb, var(--acc3) 8%, transparent),
-              inset 0 1px 0 #ffffff06;
+  background:
+    radial-gradient(ellipse 120% 80% at 100% 0%, color-mix(in srgb, var(--acc3) 25%, transparent), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 0% 100%, color-mix(in srgb, var(--acc2) 12%, transparent), transparent),
+    linear-gradient(160deg, #071a12 0%, #050f0c 60%, var(--bg) 100%);
+  border-color: color-mix(in srgb, var(--acc3) 35%, transparent);
+  box-shadow: 0 12px 48px color-mix(in srgb, var(--acc3) 15%, transparent), inset 0 1px 0 #ffffff0a;
+}
+.prova-ok::after {
+  background: linear-gradient(90deg, transparent, var(--acc3) 30%, var(--acc3) 70%, transparent);
 }
 /* Brilho decorativo no canto */
 .prova-hero::before {
@@ -392,19 +417,20 @@ nav {
 .prova-ok::after      { background: linear-gradient(90deg, transparent, var(--acc3), transparent); }
 
 .prova-top-row { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:10px; }
-.prova-tag { font-size:8px; font-weight:700; letter-spacing:.1em; padding:4px 12px; border-radius:20px; display:inline-flex; align-items:center; gap:4px; }
+.prova-tag { font-size:8px; font-weight:700; letter-spacing:.12em; padding:5px 14px; border-radius:20px; display:inline-flex; align-items:center; gap:5px; backdrop-filter:blur(8px); }
 .prova-tag.red    { background: color-mix(in srgb, var(--acc5) 15%, transparent); color:var(--acc5); border:1px solid color-mix(in srgb,var(--acc5) 28%,transparent); }
 .prova-tag.yellow { background: color-mix(in srgb, var(--acc4) 15%, transparent); color:var(--acc4); border:1px solid color-mix(in srgb,var(--acc4) 28%,transparent); }
 .prova-tag.green  { background: color-mix(in srgb, var(--acc3) 15%, transparent); color:var(--acc3); border:1px solid color-mix(in srgb,var(--acc3) 28%,transparent); }
 
-.prova-nome { font-family:var(--sans); font-size:24px; font-weight:800; margin-bottom:4px; line-height:1.1; }
+.prova-nome { font-family:var(--sans); font-size:28px; font-weight:800; margin-bottom:6px; line-height:1.05; letter-spacing:-.02em; }
 .prova-data { font-size:9px; color:var(--txt2); letter-spacing:.04em; margin-bottom:14px; opacity:.8; }
 
 .prova-countdown {
-  display:flex; align-items:center; gap:14px; margin-bottom:14px;
-  background: color-mix(in srgb, var(--bg) 55%, transparent);
-  border: 1px solid color-mix(in srgb, var(--line) 50%, transparent);
-  border-radius: 16px; padding: 12px 16px;
+  display:flex; align-items:center; gap:16px; margin-bottom:16px;
+  background: rgba(0,0,0,.30);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 20px; padding: 14px 18px;
+  backdrop-filter: blur(10px);
 }
 .prova-dias { font-family:var(--sans); font-size:48px; font-weight:800; line-height:1; letter-spacing:-2px; }
 .prova-dias-info { display:flex; flex-direction:column; gap:3px; }
@@ -412,33 +438,60 @@ nav {
 .prova-tipo-badge { font-size:8px; font-weight:700; letter-spacing:.07em; opacity:.65; }
 
 .prova-plano {
-  border-radius: 16px; padding: 13px 15px;
-  background: color-mix(in srgb, var(--bg) 45%, transparent);
-  border: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
+  border-radius: 18px; padding: 14px 16px;
+  background: rgba(0,0,0,.25);
+  border: 1px solid rgba(255,255,255,.07);
+  backdrop-filter: blur(8px);
 }
 .prova-plano-title { font-size:8px; font-weight:700; color:var(--txt3); letter-spacing:.12em; margin-bottom:9px; }
-.prova-dica { font-size:10px; color:var(--txt2); line-height:1.65; margin-bottom:6px; padding-left:14px; position:relative; }
+.prova-dica { font-size:10.5px; color:rgba(255,255,255,.65); line-height:1.7; margin-bottom:8px; padding-left:18px; position:relative; }
 .prova-dica:last-child { margin-bottom:0; }
-.prova-dica::before { content:'›'; position:absolute; left:2px; color:var(--acc3); font-weight:700; font-size:12px; }
-
-/* ── NAV — círculo de luz atrás do ícone ─── */
-.nav-island > button.active::before {
-  content:'';
-  position:absolute;
-  top:50%; left:50%; transform:translate(-50%,-55%);
-  width: 38px; height: 38px;
-  background: radial-gradient(circle, var(--acc)22 0%, transparent 70%);
-  border-radius: 50%;
-  box-shadow: none;
+.prova-dica::before {
+  content:''; position:absolute; left:2px; top:50%; transform:translateY(-50%);
+  width:6px; height:6px; border-radius:50%;
+  background: var(--acc3); opacity:.8;
+  box-shadow: 0 0 6px var(--acc3);
 }
+
+/* ── NAV — SISTEMA DE LUZ PREMIUM ─── */
+/* Botão ativo: ícone com glow forte */
+.nav-island > button.active {
+  color: var(--acc);
+}
+.nav-island > button.active svg {
+  filter:
+    drop-shadow(0 0 4px var(--acc))
+    drop-shadow(0 0 10px var(--acc))
+    drop-shadow(0 0 20px color-mix(in srgb, var(--acc) 60%, transparent));
+  transform: translateY(-2px) scale(1.1);
+}
+/* Barra luminosa no TOPO (acima do ícone) */
 .nav-island > button.active::after {
   content:'';
   position:absolute;
-  top: 3px; left:50%; transform:translateX(-50%);
-  width: 18px; height: 2px;
-  background: var(--acc);
-  border-radius: 2px;
-  box-shadow: 0 0 8px var(--acc), 0 0 16px var(--acc)88;
+  top: 2px; left:50%; transform:translateX(-50%);
+  width: 28px; height: 3px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--acc) 60%, transparent), var(--acc), color-mix(in srgb, var(--acc) 60%, transparent));
+  border-radius: 0 0 4px 4px;
+  box-shadow:
+    0 0 8px 2px var(--acc),
+    0 0 20px 4px var(--acc),
+    0 0 40px 6px color-mix(in srgb, var(--acc) 60%, transparent),
+    0 0 60px 8px color-mix(in srgb, var(--acc) 30%, transparent);
+}
+/* Halo de luz radial atrás do ícone */
+.nav-island > button.active::before {
+  content:'';
+  position:absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 80% at 50% 30%,
+    color-mix(in srgb, var(--acc) 20%, transparent) 0%,
+    color-mix(in srgb, var(--acc) 8%, transparent) 50%,
+    transparent 100%
+  );
+  border-radius: inherit;
+  pointer-events: none;
 }
 
 /* ── IA — botões de áudio e enviar redesenhados ─ */
@@ -481,10 +534,10 @@ nav {
 /* ── HOJE — cards extras ───────────────────── */
 .hoje-extras { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:4px; }
 /* Horário de aulas */
-.aula-item { display:flex; align-items:center; gap:12px; padding:10px 14px; border-radius:12px; background:var(--bg2); border:1px solid var(--line); margin-bottom:6px; transition:all .3s; position:relative; overflow:hidden; }
+.aula-item { display:flex; align-items:center; gap:12px; padding:12px 16px; border-radius:16px; background: linear-gradient(160deg, var(--bg2), var(--bg1)); border:1px solid var(--line); margin-bottom:6px; transition:all .3s; position:relative; overflow:hidden; box-shadow: 0 2px 8px #00000030; }
 .aula-item.passada { opacity:.3; background:transparent; border-color:transparent; }
 .aula-item.passada .aula-materia { text-decoration:line-through; color:var(--txt3); }
-.aula-item.ativa { background:var(--bg2); border-color:var(--acc); box-shadow:0 0 0 1px var(--acc), 0 4px 16px color-mix(in srgb, var(--acc) 20%, transparent); }
+.aula-item.ativa { background: linear-gradient(160deg, color-mix(in srgb, var(--acc) 12%, var(--bg2)), var(--bg1)); border-color:var(--acc); box-shadow:0 0 0 1px var(--acc)66, 0 4px 24px color-mix(in srgb, var(--acc) 25%, transparent), inset 0 1px 0 color-mix(in srgb, var(--acc) 20%, transparent); }
 .aula-item.ativa::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--acc); border-radius:3px 0 0 3px; }
 .aula-item.futura { background:var(--bg2); border-color:transparent; }
 .aula-hora { font-size:10px; font-weight:700; color:var(--txt3); min-width:42px; font-family:var(--mono); }
@@ -496,32 +549,100 @@ nav {
 .aula-fim-msg { font-size:12px; color:var(--txt); font-weight:500; margin-bottom:8px; }
 .aula-fim-sub { font-size:10px; color:var(--txt3); margin-bottom:12px; }
 .hoje-extra-card {
-  background: var(--bg1); border:1px solid var(--line); border-radius:14px;
-  padding:12px; display:flex; flex-direction:column; gap:4px;
+  background: linear-gradient(160deg, var(--bg2), var(--bg1));
+  border:1px solid var(--line); border-radius:20px;
+  padding:14px; display:flex; flex-direction:column; gap:4px;
+  box-shadow: 0 2px 10px #00000030, inset 0 1px 0 #ffffff05;
 }
 .hoje-extra-label { font-size:8px; color:var(--txt3); letter-spacing:.08em; font-weight:700; }
 .hoje-extra-val { font-family:var(--sans); font-size:18px; font-weight:800; line-height:1; }
 .hoje-extra-sub { font-size:9px; color:var(--txt2); }
 .hoje-frase {
-  background: linear-gradient(135deg, color-mix(in srgb, var(--acc) 8%, var(--bg1)), var(--bg1));
-  border:1px solid color-mix(in srgb, var(--acc) 20%, transparent);
-  border-radius:14px; padding:14px 16px; margin-bottom:4px;
+  background: linear-gradient(150deg,
+    color-mix(in srgb, var(--acc) 10%, var(--bg1)) 0%,
+    var(--bg1) 100%);
+  border:1px solid color-mix(in srgb, var(--acc) 18%, transparent);
+  border-radius:20px; padding:16px 18px; margin-bottom:10px;
+  box-shadow: inset 0 1px 0 #ffffff06;
 }
 .hoje-frase-txt { font-size:11px; color:var(--txt2); line-height:1.7; font-style:italic; }
 .hoje-frase-autor { font-size:8px; color:var(--txt3); margin-top:6px; letter-spacing:.06em; }
 
-.aval-card{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:12px 14px;margin-bottom:6px;display:flex;align-items:center;gap:12px}
-.aval-data-box{background:var(--bg);border-radius:8px;padding:6px 10px;text-align:center;min-width:44px;flex-shrink:0}
-.aval-dia{font-family:var(--sans);font-size:18px;font-weight:800;line-height:1}
+.aval-card{
+  background: linear-gradient(160deg, var(--bg2), var(--bg1));
+  border:1px solid var(--line); border-radius:20px;
+  padding:14px 16px; margin-bottom:8px;
+  display:flex; align-items:center; gap:12px;
+  box-shadow: 0 2px 12px #00000035, inset 0 1px 0 #ffffff05;
+}
+.aval-data-box{
+  background: rgba(0,0,0,.35);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius:14px; padding:8px 12px;
+  text-align:center; min-width:50px; flex-shrink:0;
+}
+.aval-dia{font-family:var(--sans);font-size:22px;font-weight:800;line-height:1;letter-spacing:-.02em}
 .aval-mes{font-size:8px;color:var(--txt3);letter-spacing:.06em;margin-top:1px}
 .aval-info{flex:1}
 .aval-materia{font-size:12px;font-weight:600;color:var(--txt)}
 .aval-tipo{font-size:9px;color:var(--txt3);margin-top:2px}
 .aval-dias-badge{font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px;flex-shrink:0}
 
+/* ── TAP CARDS (aba Hoje) ────────────────── */
+.hoje-tap-card {
+  background: linear-gradient(160deg, var(--bg2), var(--bg1));
+  border:1px solid var(--line); border-radius:20px;
+  padding:16px 14px; cursor:pointer;
+  transition: transform .18s, box-shadow .18s, border-color .18s;
+  display:flex; flex-direction:column; gap:2px;
+  position:relative; overflow:hidden;
+  box-shadow: 0 2px 8px #00000030;
+}
+.hoje-tap-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:1px;
+  background: linear-gradient(90deg, transparent, var(--acc)40, transparent);
+  opacity:0; transition:opacity .2s;
+}
+.hoje-tap-card:active {
+  transform:scale(.96);
+  border-color: color-mix(in srgb, var(--acc) 50%, var(--line));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--acc) 30%, transparent), 0 4px 20px color-mix(in srgb, var(--acc) 15%, transparent);
+}
+.hoje-tap-card:active::before { opacity:1; }
+.hoje-tap-icon { font-size:22px; margin-bottom:6px; line-height:1; }
+.hoje-tap-label { font-size:7.5px; color:var(--txt3); letter-spacing:.1em; font-weight:700; text-transform:uppercase; }
+.hoje-tap-val { font-size:24px; font-weight:800; font-family:var(--sans); line-height:1; color:var(--txt); margin-top:2px; }
+.hoje-tap-sub { font-size:9px; color:var(--txt3); margin-top:3px; }
+/* popup interno de detalhes */
+.pop-detalhe { position:fixed; inset:0; background:#000b; z-index:500; display:flex; align-items:flex-end; justify-content:center; padding:0 0 max(16px,env(safe-area-inset-bottom)); }
+.pop-detalhe-box {
+  background: linear-gradient(180deg, var(--bg2) 0%, var(--bg1) 100%);
+  border-radius:28px 28px 20px 20px;
+  border-top: 1px solid color-mix(in srgb, var(--acc) 25%, var(--line));
+  width:100%; max-width:440px; max-height:85vh;
+  display:flex; flex-direction:column; overflow:hidden;
+  box-shadow: 0 -12px 48px #000000aa, 0 0 0 1px #ffffff06 inset;
+}
+.pop-detalhe-header { display:flex; align-items:center; justify-content:space-between; padding:16px 18px 10px; border-bottom:1px solid var(--line); flex-shrink:0; }
+.pop-detalhe-titulo { font-size:13px; font-weight:700; color:var(--txt); }
+.pop-detalhe-fechar { background:var(--bg2); border:none; border-radius:20px; width:28px; height:28px; cursor:pointer; font-size:14px; color:var(--txt3); display:flex; align-items:center; justify-content:center; }
+.pop-detalhe-body { overflow-y:auto; padding:14px 18px; flex:1; }
+.pop-detalhe-footer { padding:10px 18px; border-top:1px solid var(--line); flex-shrink:0; }
 /* ── STREAK, ÁGUA, HUMOR, META ──────────────── */
 .hoje-extras-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:8px; }
-.meta-card { background:linear-gradient(135deg,color-mix(in srgb,var(--acc) 12%,var(--bg1)),var(--bg1)); border:1px solid color-mix(in srgb,var(--acc) 25%,transparent); border-radius:14px; padding:12px 14px; margin-bottom:8px; display:flex; align-items:center; gap:10px; cursor:pointer; }
+.meta-card {
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--acc) 15%, var(--bg1)),
+    color-mix(in srgb, var(--acc) 5%, var(--bg1)),
+    var(--bg1));
+  border:1px solid color-mix(in srgb, var(--acc) 30%, transparent);
+  border-radius:20px; padding:14px 16px; margin-bottom:10px;
+  display:flex; align-items:center; gap:12px; cursor:pointer;
+  box-shadow: 0 4px 24px color-mix(in srgb, var(--acc) 12%, transparent),
+              inset 0 1px 0 #ffffff08;
+  transition: all .2s;
+}
+.meta-card:active { transform:scale(.98); }
 .meta-icon { font-size:20px; flex-shrink:0; }
 .meta-txt { flex:1; }
 .meta-label { font-size:8px; color:var(--acc); font-weight:700; letter-spacing:.08em; margin-bottom:2px; }
@@ -530,13 +651,13 @@ nav {
 /* Humor */
 .humor-row { display:flex; gap:8px; justify-content:center; margin-top:6px; }
 .humor-btn { flex:1; padding:8px 6px; border-radius:10px; border:1.5px solid var(--line); background:var(--bg2); font-size:13px; cursor:pointer; text-align:center; transition:all .2s; }
-.humor-btn.sel { border-color:var(--acc); background:color-mix(in srgb,var(--acc) 15%,var(--bg1)); transform:scale(1.06); }
+.humor-btn.sel { border-color:var(--acc); background:color-mix(in srgb, var(--acc) 18%, var(--bg1)); transform:scale(1.06); box-shadow: 0 0 16px color-mix(in srgb, var(--acc) 30%, transparent); }
 .humor-sub { font-size:8px; color:var(--txt3); display:block; margin-top:2px; }
 /* Água */
 .agua-copos { display:flex; gap:5px; flex-wrap:wrap; justify-content:center; margin-top:8px; }
 .agua-copo { width:28px; height:34px; border-radius:0 0 6px 6px; border:1.5px solid var(--line); background:var(--bg2); cursor:pointer; transition:all .2s; position:relative; overflow:hidden; }
-.agua-copo.cheio { border-color:#4eaaf0; background:#4eaaf088; }
-.agua-copo.cheio::after { content:''; position:absolute; bottom:0; left:0; right:0; height:60%; background:#4eaaf0; border-radius:0 0 4px 4px; }
+.agua-copo.cheio { border-color:var(--acc-soft); background:color-mix(in srgb, var(--acc) 40%, transparent); }
+.agua-copo.cheio::after { content:''; position:absolute; bottom:0; left:0; right:0; height:60%; background:var(--acc); opacity:.8; border-radius:0 0 4px 4px; }
 /* Streak */
 .streak-num { font-family:var(--sans); font-size:22px; font-weight:800; line-height:1; }
 .streak-fire { font-size:18px; }
@@ -563,14 +684,14 @@ nav {
 .diario-dia-barra-wrap { width:100%; height:50px; display:flex; align-items:flex-end; }
 .diario-dia-bar { width:100%; border-radius:4px 4px 0 0; background:var(--acc); min-height:3px; transition:height .5s; opacity:.85; }
 .diario-dia-min { font-size:7px; color:var(--txt3); text-align:center; margin-top:2px; }
-.diario-entrada { display:flex; align-items:center; gap:10px; padding:8px 12px; border-radius:10px; background:var(--bg2); border:1px solid var(--line); margin-bottom:5px; }
+.diario-entrada { display:flex; align-items:center; gap:10px; padding:10px 14px; border-radius:14px; background: linear-gradient(160deg, var(--bg2), var(--bg1)); border:1px solid var(--line); margin-bottom:5px; box-shadow: 0 2px 6px #00000025; }
 .diario-entrada-mat { font-size:9px; font-weight:700; color:var(--acc); min-width:70px; }
 .diario-entrada-top { font-size:10px; color:var(--txt); flex:1; }
 .diario-entrada-dur { font-size:9px; color:var(--txt3); white-space:nowrap; }
 /* ── PAUSA INTELIGENTE ───────────────────── */
 .pausa-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-.pausa-card { border-radius:14px; padding:14px; cursor:pointer; border:1.5px solid var(--line); background:var(--bg2); transition:all .2s; }
-.pausa-card:hover,.pausa-card:active { border-color:var(--acc); transform:scale(1.02); }
+.pausa-card { border-radius:20px; padding:16px; cursor:pointer; border:1.5px solid var(--line); background: linear-gradient(160deg, var(--bg2), var(--bg1)); transition:all .2s; box-shadow: 0 2px 8px #00000030; }
+.pausa-card:active { border-color:var(--acc); transform:scale(.97); box-shadow: 0 0 20px color-mix(in srgb, var(--acc) 20%, transparent); }
 .pausa-card-icon { font-size:24px; margin-bottom:6px; }
 .pausa-card-nome { font-size:11px; font-weight:700; color:var(--txt); }
 .pausa-card-dur { font-size:9px; color:var(--acc); font-weight:700; margin-bottom:4px; }
@@ -937,6 +1058,260 @@ nav {
   .page{ margin-left:240px; padding:72px 48px 40px }
   .install-bar{ left:252px }
 }
+
+/* ══════════════════════════════════════════
+   AURORA EFFECTS — efeito ambiente nos cards
+══════════════════════════════════════════ */
+@keyframes aurora-drift {
+  0%   { transform: translate(0%, 0%) scale(1);   opacity:.6; }
+  33%  { transform: translate(8%, -12%) scale(1.1); opacity:.8; }
+  66%  { transform: translate(-6%, 8%) scale(.95); opacity:.5; }
+  100% { transform: translate(0%, 0%) scale(1);   opacity:.6; }
+}
+@keyframes aurora-drift2 {
+  0%   { transform: translate(0%, 0%) scale(1.05); opacity:.5; }
+  40%  { transform: translate(-10%, 6%) scale(.9); opacity:.7; }
+  70%  { transform: translate(5%, -10%) scale(1.1); opacity:.4; }
+  100% { transform: translate(0%, 0%) scale(1.05); opacity:.5; }
+}
+@keyframes pulse-glow {
+  0%,100% { opacity:.7; }
+  50%      { opacity:1; }
+}
+@keyframes nav-light-pulse {
+  0%,100% {
+    box-shadow:
+      0 0 8px 2px var(--acc),
+      0 0 20px 4px var(--acc),
+      0 0 40px 6px color-mix(in srgb, var(--acc) 60%, transparent),
+      0 0 60px 8px color-mix(in srgb, var(--acc) 30%, transparent);
+    opacity: .85;
+  }
+  50% {
+    box-shadow:
+      0 0 12px 3px var(--acc),
+      0 0 30px 6px var(--acc),
+      0 0 60px 10px color-mix(in srgb, var(--acc) 70%, transparent),
+      0 0 90px 14px color-mix(in srgb, var(--acc) 40%, transparent);
+    opacity: 1;
+  }
+}
+
+/* AURORA no today-card */
+.today-card .aurora-blob {
+  position:absolute; border-radius:50%;
+  pointer-events:none; z-index:0;
+}
+.today-card .aurora-blob-1 {
+  width:200px; height:160px;
+  top:-70px; right:-40px;
+  background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
+  filter: blur(50px); opacity:.5;
+  animation: aurora-drift 8s ease-in-out infinite;
+}
+.today-card .aurora-blob-2 {
+  width:150px; height:120px;
+  bottom:-50px; left:-20px;
+  background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
+  filter: blur(45px); opacity:.3;
+  animation: aurora-drift2 10s ease-in-out infinite;
+}
+.today-card .aurora-blob-3 {
+  width:100px; height:80px;
+  top:30%; right:15%;
+  background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
+  filter: blur(35px); opacity:.25;
+  animation: aurora-drift 12s ease-in-out infinite reverse;
+}
+.today-card > * { position:relative; z-index:1; }
+
+/* Aurora no prova-hero */
+.prova-hero .aurora-blob {
+  position:absolute; border-radius:50%;
+  pointer-events:none; z-index:0;
+  opacity:.55;
+}
+.prova-hero .aurora-blob-1 {
+  width:180px; height:140px;
+  top:-60px; right:-30px;
+  background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
+  filter: blur(40px);
+  animation: aurora-drift 9s ease-in-out infinite;
+}
+.prova-hero .aurora-blob-2 {
+  width:130px; height:100px;
+  bottom:-40px; left:-10px;
+  background: radial-gradient(circle, #f43f5e 0%, transparent 70%);
+  filter: blur(35px);
+  animation: aurora-drift2 11s ease-in-out infinite;
+  opacity:.35;
+}
+.prova-hero > * { position:relative; z-index:1; }
+/* Urgente: vermelho/laranja */
+.prova-urgente .aurora-blob-1 { background: radial-gradient(circle, #f43f5e 0%, transparent 70%); }
+.prova-urgente .aurora-blob-2 { background: radial-gradient(circle, #f59e0b 0%, transparent 70%); }
+/* Ok: verde */
+.prova-ok .aurora-blob-1 { background: radial-gradient(circle, #10b981 0%, transparent 70%); }
+.prova-ok .aurora-blob-2 { background: radial-gradient(circle, #06b6d4 0%, transparent 70%); }
+
+/* Aurora no meta-card */
+.meta-card .aurora-blob {
+  position:absolute; border-radius:50%;
+  pointer-events:none; z-index:0;
+}
+.meta-card .aurora-blob-1 {
+  width:100px; height:70px;
+  top:-20px; right:-10px;
+  background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
+  filter: blur(30px); opacity:.45;
+  animation: aurora-drift 10s ease-in-out infinite;
+}
+.meta-card > * { position:relative; z-index:1; }
+
+/* Nav active::after pulsa */
+.nav-island > button.active::after {
+  animation: nav-light-pulse 2.5s ease-in-out infinite;
+}
+
+/* ── GLASS CARDS — efeito glassmorphism nos tap cards ── */
+.hoje-tap-card {
+  background:
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--acc) 6%, var(--bg2)) 0%,
+      var(--bg1) 100%);
+  border: 1px solid color-mix(in srgb, var(--acc) 15%, var(--line));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.hoje-tap-card::after {
+  content:''; position:absolute;
+  top:0; left:0; right:0; height:1px;
+  background: linear-gradient(90deg,
+    transparent,
+    color-mix(in srgb, var(--acc) 50%, transparent),
+    transparent);
+  border-radius:inherit;
+}
+
+/* ── PREMIUM EXTRAS ─────────────────────── */
+
+/* Scroll suave */
+* { scroll-behavior: smooth; }
+
+/* Seleção de texto roxa */
+::selection {
+  background: color-mix(in srgb, var(--acc) 35%, transparent);
+  color: var(--txt);
+}
+
+/* Font rendering perfeito */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Page transitions */
+.page { animation: none; }
+.page.active { animation: page-enter .3s cubic-bezier(.4,0,.2,1) both; }
+@keyframes page-enter {
+  from { opacity:0; transform:translateY(8px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* PROVA COUNTDOWN — número de dias ultra bold */
+.prova-dias {
+  font-family: var(--sans);
+  font-size: 64px; font-weight: 800;
+  line-height: .9; letter-spacing: -4px;
+  background: linear-gradient(145deg, white 30%, currentColor 80%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  filter: drop-shadow(0 0 20px currentColor);
+}
+
+/* STREAK NUM — impacto visual */
+.streak-num {
+  font-family: var(--sans);
+  font-weight: 800; line-height: 1;
+  background: linear-gradient(135deg, var(--acc) 50%, var(--acc-soft));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+/* HOJE TAP VAL — gradient text */
+.hoje-tap-val {
+  background: linear-gradient(135deg, var(--txt) 60%, var(--txt2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+/* REVISÃO ESPAÇADA — alerta mais dramático */
+.rev-alerta {
+  background: linear-gradient(135deg,
+    color-mix(in srgb, #f59e0b 12%, var(--bg1)),
+    var(--bg1));
+  border: 1px solid color-mix(in srgb, #f59e0b 30%, transparent);
+  border-radius:16px; padding:12px 16px; margin-bottom:8px;
+  display:flex; align-items:center; gap:12px; cursor:pointer;
+  box-shadow: 0 4px 16px color-mix(in srgb, #f59e0b 10%, transparent);
+  transition: transform .15s;
+}
+.rev-alerta:active { transform: scale(.98); }
+
+/* AULA ITEM ATIVA — barra lateral + glow */
+.aula-item.ativa::before {
+  width: 4px;
+  background: linear-gradient(180deg, var(--acc), var(--acc2));
+  box-shadow: 0 0 12px var(--acc);
+}
+
+/* PROGRESS FILL — glow no fill */
+.prog-fill {
+  position:relative;
+}
+.prog-fill::after {
+  content:''; position:absolute;
+  right:0; top:50%; transform:translateY(-50%);
+  width:6px; height:6px; border-radius:50%;
+  background: currentColor;
+  box-shadow: 0 0 8px 2px currentColor;
+}
+
+/* POPUP BTN CONFIRM — glow */
+.popup-btn-confirm {
+  background: linear-gradient(135deg, var(--acc), color-mix(in srgb, var(--acc) 75%, var(--acc6)));
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--acc) 40%, transparent);
+}
+
+/* CONTEÚDO PILL ATIVA */
+.cpill.active {
+  background: linear-gradient(135deg, var(--acc), color-mix(in srgb, var(--acc) 75%, var(--acc6)));
+  border-color: var(--acc);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--acc) 35%, transparent);
+}
+
+/* HUMOR BTN REFINADO */
+.humor-btn {
+  border-radius: 14px;
+  transition: all .2s cubic-bezier(.34,1.56,.64,1);
+}
+.humor-btn.sel {
+  box-shadow:
+    0 0 20px color-mix(in srgb, var(--acc) 30%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--acc) 30%, transparent);
+}
+
+/* POMO ANEL glow */
+.pomo-anel {
+  filter: drop-shadow(0 0 8px var(--acc)) drop-shadow(0 0 2px var(--acc));
+}
+
+/* IA CHAT BUBBLE */
+.ia-msg-ai {
+  background: linear-gradient(160deg, var(--bg2), var(--bg1));
+  border: 1px solid color-mix(in srgb, var(--acc) 15%, var(--line));
+}
+
+/* TOPBAR position relative para o ::after funcionar */
+.topbar { position: fixed; }
 </style>
 </head>
 <body>
@@ -969,7 +1344,12 @@ nav {
 
 <!-- PAGE HOJE -->
 <div id="page-hoje" class="page active">
+
+  <!-- Hero card: data + relógio + próximo -->
   <div class="today-card">
+    <div class="aurora-blob aurora-blob-1"></div>
+    <div class="aurora-blob aurora-blob-2"></div>
+    <div class="aurora-blob aurora-blob-3"></div>
     <div class="today-header">
       <div>
         <div class="today-dia" id="hoje-dia">—</div>
@@ -986,17 +1366,56 @@ nav {
 
   <!-- Meta do dia -->
   <div class="meta-card" onclick="metaEditar()" id="meta-card">
+    <div class="aurora-blob aurora-blob-1"></div>
     <div class="meta-icon">🎯</div>
     <div class="meta-txt">
       <div class="meta-label">META DO DIA</div>
       <div class="meta-val vazia" id="meta-val">Toca aqui pra definir sua meta...</div>
     </div>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" stroke-width="2" style="flex-shrink:0"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
   </div>
 
-  <!-- Frase motivacional -->
-  <div class="hoje-frase" id="hoje-frase">
+  <!-- Grade de cards clicáveis 2x2 -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+
+    <!-- AULAS -->
+    <div class="hoje-tap-card" onclick="popupAulas()">
+      <div class="hoje-tap-icon">🕐</div>
+      <div class="hoje-tap-label">AULAS</div>
+      <div class="hoje-tap-val" id="tap-aulas-val">—</div>
+      <div class="hoje-tap-sub" id="tap-aulas-sub">toca pra ver</div>
+    </div>
+
+    <!-- PRÓXIMA PROVA -->
+    <div class="hoje-tap-card" onclick="popupProva()">
+      <div class="hoje-tap-icon">📅</div>
+      <div class="hoje-tap-label">PRÓXIMA PROVA</div>
+      <div class="hoje-tap-val" id="hoje-prova-dias" style="color:var(--acc)">—</div>
+      <div class="hoje-tap-sub" id="hoje-prova-nome">toca pra ver</div>
+    </div>
+
+    <!-- SEQUÊNCIA -->
+    <div class="hoje-tap-card" onclick="popupStreak()">
+      <div class="hoje-tap-icon">🔥</div>
+      <div class="hoje-tap-label">SEQUÊNCIA</div>
+      <div class="hoje-tap-val" id="streak-num" style="color:var(--acc)">0</div>
+      <div class="hoje-tap-sub" id="streak-sub">dias seguidos</div>
+    </div>
+
+    <!-- ÁGUA + HUMOR (card duplo) -->
+    <div class="hoje-tap-card" onclick="popupBemEstar()">
+      <div class="hoje-tap-icon">💧</div>
+      <div class="hoje-tap-label">BEM-ESTAR</div>
+      <div class="hoje-tap-val" id="agua-num" style="color:#4eaaf0">0<span style="font-size:11px;color:var(--txt3)">/8</span></div>
+      <div class="hoje-tap-sub" id="tap-humor-sub">toca pra registrar</div>
+    </div>
+
+  </div>
+
+  <!-- Frase motivacional compacta -->
+  <div class="hoje-frase" id="hoje-frase" style="margin-bottom:8px">
     <div style="display:flex;align-items:flex-start;gap:8px">
-      <svg width="18" height="15" viewBox="0 0 24 20" fill="none" style="flex-shrink:0;margin-top:3px;opacity:.35">
+      <svg width="16" height="13" viewBox="0 0 24 20" fill="none" style="flex-shrink:0;margin-top:2px;opacity:.3">
         <path d="M0 20V12.667C0 5.667 4.333 1.333 13 0l1.333 2.667C10.444 3.556 8.222 5.333 7.333 8H11V20H0zm13 0V12.667C13 5.667 17.333 1.333 26 0l1.333 2.667C23.444 3.556 21.222 5.333 20.333 8H24V20H13z" fill="var(--acc)"/>
       </svg>
       <div style="flex:1">
@@ -1004,88 +1423,35 @@ nav {
         <div class="hoje-frase-autor" id="hoje-frase-autor"></div>
       </div>
     </div>
-    <div style="display:flex;justify-content:center;gap:5px;margin-top:8px" id="frase-dots"></div>
+    <div style="display:flex;justify-content:center;gap:5px;margin-top:6px" id="frase-dots"></div>
   </div>
 
-  <!-- Linha rápida: streak + água + humor + prova -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
-
-    <!-- Streak -->
-    <div class="hoje-extra-card" style="display:flex;align-items:center;gap:10px;padding:10px 12px">
-      <div style="font-size:22px;line-height:1">🔥</div>
-      <div>
-        <div class="hoje-extra-label">SEQUÊNCIA</div>
-        <div style="display:flex;align-items:baseline;gap:3px">
-          <div class="streak-num" id="streak-num" style="color:var(--acc);font-size:18px">0</div>
-          <div style="font-size:9px;color:var(--txt3)">dias</div>
-        </div>
-        <div class="hoje-extra-sub" id="streak-sub" style="margin-top:0">Comece hoje!</div>
-      </div>
-    </div>
-
-    <!-- Próxima prova -->
-    <div class="hoje-extra-card" style="padding:10px 12px">
-      <div class="hoje-extra-label">📅 PRÓXIMA PROVA</div>
-      <div class="hoje-extra-val" id="hoje-prova-dias" style="color:var(--acc);font-size:18px">—</div>
-      <div class="hoje-extra-sub" id="hoje-prova-nome">Carregando...</div>
-    </div>
-
-  </div>
-
-  <!-- Água (compacto) -->
-  <div class="hoje-extra-card" style="padding:10px 14px;margin-bottom:8px">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-      <div style="display:flex;align-items:center;gap:6px">
-        <span style="font-size:15px">💧</span>
-        <span class="hoje-extra-label" style="margin:0">ÁGUA HOJE</span>
-      </div>
-      <div style="display:flex;align-items:baseline;gap:3px">
-        <span class="streak-num" id="agua-num" style="color:#4eaaf0;font-size:16px">0</span>
-        <span style="font-size:9px;color:var(--txt3)">/ 8 copos</span>
-      </div>
-    </div>
-    <div class="agua-copos" id="agua-copos"></div>
-  </div>
-
-  <!-- Humor (compacto) -->
-  <div class="hoje-extra-card" style="padding:10px 14px;margin-bottom:8px">
-    <div style="font-size:9px;color:var(--txt3);letter-spacing:.08em;font-weight:700;margin-bottom:6px">😊 COMO VOCÊ ESTÁ?</div>
-    <div class="humor-row" id="humor-row">
-      <div class="humor-btn" data-h="otimo" onclick="humorSel(this)">😄<span class="humor-sub">ótimo</span></div>
-      <div class="humor-btn" data-h="ok" onclick="humorSel(this)">😐<span class="humor-sub">ok</span></div>
-      <div class="humor-btn" data-h="cansado" onclick="humorSel(this)">😴<span class="humor-sub">cansado</span></div>
-      <div class="humor-btn" data-h="ansioso" onclick="humorSel(this)">😬<span class="humor-sub">ansioso</span></div>
-    </div>
-  </div>
-
-  <!-- Tópicos estudados (compacto) -->
-  <div style="display:grid;grid-template-columns:1fr;margin-bottom:8px">
-    <div class="hoje-extra-card" style="padding:10px 14px">
-      <div class="hoje-extra-label">📚 TÓPICOS ESTUDADOS</div>
-      <div style="display:flex;align-items:baseline;gap:4px;margin-top:2px">
-        <div class="hoje-extra-val" id="hoje-topicos-val" style="color:var(--acc3);font-size:18px">—</div>
-        <div class="hoje-extra-sub" id="hoje-topicos-sub" style="margin:0">de todos os tópicos</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Alertas de revisão espaçada -->
+  <!-- Alertas de revisão (só aparece se tiver pendente) -->
   <div id="rev-alertas-wrap" style="display:none">
     <div class="sec-header">⚡ REVISAR AGORA</div>
     <div id="rev-alertas-lista"></div>
   </div>
 
-  <!-- Horário de aulas de hoje -->
-  <div id="hoje-horario-wrap" style="display:none">
-    <div class="sec-header">AULAS DE HOJE</div>
-    <div id="hoje-horario-lista"></div>
-  </div>
-
+  <!-- Checklist -->
   <div class="sec-header">CHECKLIST DE HOJE</div>
   <div id="lista-hoje"></div>
 
   <div class="sec-header">MATÉRIAS DE HOJE</div>
   <div class="card" id="mat-hoje-card"></div>
+
+  <!-- IDs mantidos para compatibilidade (ocultos) -->
+  <div style="display:none">
+    <div id="hoje-topicos-val"></div>
+    <div id="hoje-topicos-sub"></div>
+    <div id="hoje-horario-wrap"><div id="hoje-horario-lista"></div></div>
+    <div id="humor-row">
+      <div class="humor-btn" data-h="otimo"></div>
+      <div class="humor-btn" data-h="ok"></div>
+      <div class="humor-btn" data-h="cansado"></div>
+      <div class="humor-btn" data-h="ansioso"></div>
+    </div>
+    <div id="agua-copos"></div>
+  </div>
 </div>
 
 <!-- PAGE SEMANA -->
@@ -1483,7 +1849,11 @@ nav {
     </div>
 
     <button onclick="showPage('provas',this)" id="nav-provas" style="position:relative">
-      <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/>
+        <circle cx="12" cy="12" r="6"/>
+        <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/>
+      </svg>
       PROVAS
     </button>
     <button onclick="showPage('conteudo',this)">
@@ -1525,6 +1895,7 @@ nav {
 // ═══════════════════════════════════════════
 // DADOS
 // ═══════════════════════════════════════════
+let toastTmr = null  // declarado no topo para evitar ReferenceError
 const TIPO_COR = {
   acordar:'#f0a04e', estudo:'#7c6ef8', escola:'#4eaaf0',
   almoco:'#3ecfa4', treino:'#f06e7c', livre:'#4a4a60', dormir:'#4a90b8'
@@ -1649,11 +2020,15 @@ const PAGE_TITLES={
 function showPage(id,btn){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'))
   document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'))
-  document.getElementById('page-'+id).classList.add('active')
+  const pg = document.getElementById('page-'+id)
+  // Força re-trigger da animação
+  if(pg){ pg.classList.remove('active'); void pg.offsetWidth; pg.classList.add('active') }
   if(btn) btn.classList.add('active')
   const [t,s]=PAGE_TITLES[id]||[id,id]
   document.getElementById('page-title').textContent=t
   document.getElementById('page-sub').textContent=s
+  // Re-renderizar provas ao entrar na aba (garante banner sempre visível)
+  if(id==='provas') renderProvas()
   // Fecha menu + se aberto
   navMaisFechar()
 }
@@ -1868,6 +2243,7 @@ fraseRender()
 notifChecarEstado()
 atualizarHojeExtras()
 setInterval(atualizarHojeExtras, 30000)
+setInterval(hojeAtualizarTapCards, 60000)
 
 // Carregar histórico do chat
 iaChatCarregarTela()
@@ -1880,6 +2256,7 @@ metaRender()
 streakRender()
 aguaRender()
 humorRender()
+hojeAtualizarTapCards()
 // Salvar resumo da sessão ao fechar/sair
 window.addEventListener('beforeunload', () => iaSalvarSessao())
 
@@ -3222,9 +3599,9 @@ async function iaChatLimpar(){
     icon:'🗑',
     title:'Limpar histórico',
     msg:'Apagar todas as mensagens do chat? A memória de sessões será mantida.',
-    btns:[{txt:'Apagar',cls:'btn-primary'},{txt:'Cancelar',cls:'btn-ghost'}]
+    btns:[{label:'APAGAR',type:'danger',value:true},{label:'Cancelar',type:'cancel',value:false}]
   })
-  if(ok !== 0) return
+  if(!ok) return
   try{ localStorage.removeItem(IA_HIST_KEY) }catch(e){}
   iaChatHistorico = []
   const msgs = document.getElementById('ia-chat-msgs')
@@ -3517,6 +3894,244 @@ const HORARIO_KEY = 'horario_aulas'
 function horarioCarregar(){ try{ const r=localStorage.getItem(HORARIO_KEY); return r?JSON.parse(r):{} }catch(e){ return {} } }
 function horarioSalvar(h){ try{ localStorage.setItem(HORARIO_KEY,JSON.stringify(h)) }catch(e){} }
 
+// ══════════════════════════════════════════════
+// POPUPS DETALHADOS DOS TAP CARDS
+// ══════════════════════════════════════════════
+
+function popDetalhes(titulo, conteudoHTML, rodapeHTML=''){
+  const el = document.createElement('div')
+  el.className = 'pop-detalhe'
+  el.innerHTML = `
+    <div class="pop-detalhe-box">
+      <div class="pop-detalhe-header">
+        <div class="pop-detalhe-titulo">${titulo}</div>
+        <button class="pop-detalhe-fechar" onclick="this.closest('.pop-detalhe').remove()">✕</button>
+      </div>
+      <div class="pop-detalhe-body">${conteudoHTML}</div>
+      ${rodapeHTML ? `<div class="pop-detalhe-footer">${rodapeHTML}</div>` : ''}
+    </div>`
+  el.addEventListener('click', e => { if(e.target===el) el.remove() })
+  document.body.appendChild(el)
+}
+
+// Popup AULAS
+function popupAulas(){
+  const dias = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado']
+  const agora = new Date()
+  const diaIdx = agora.getDay()
+  const hoje = dias[diaIdx]
+  const horario = horarioCarregar()
+  const aulas = horario[hoje] || []
+  const agoraMin = agora.getHours()*60 + agora.getMinutes()
+
+  if(!aulas.length){
+    popDetalhes('🕐 Aulas de Hoje',
+      `<div style="text-align:center;padding:20px;color:var(--txt3);font-size:11px">
+        Nenhum horário cadastrado.<br>
+        <button class="btn btn-ghost" style="margin-top:12px;font-size:10px" onclick="this.closest('.pop-detalhe').remove();showPage('provas',document.getElementById('nav-provas'))">
+          Ir para Provas → cadastrar
+        </button>
+      </div>`)
+    return
+  }
+
+  const aulasParsed = aulas.map((a,i) => {
+    const partes = a.split(' ')
+    const horaStr = partes[0]
+    const materia = partes.slice(1).join(' ')
+    const [h,m] = horaStr.split(':').map(Number)
+    const inicioMin = h*60+(m||0)
+    const proxInicio = i < aulas.length-1
+      ? (() => { const p=aulas[i+1].split(' ')[0].split(':').map(Number); return p[0]*60+(p[1]||0) })()
+      : inicioMin+50
+    return {horaStr, materia, inicioMin, fimMin:proxInicio}
+  })
+
+  const itens = aulasParsed.map(a => {
+    let estado='futura', badge=''
+    if(agoraMin >= a.fimMin) estado='passada'
+    else if(agoraMin >= a.inicioMin){ estado='ativa'; badge=`<span class="aula-badge">AGORA</span>` }
+    return `<div class="aula-item ${estado}" style="margin-bottom:8px">
+      <div class="aula-hora">${a.horaStr}</div>
+      <div class="aula-materia">${a.materia}</div>
+      ${badge}
+    </div>`
+  }).join('')
+
+  // Dia de amanhã
+  const amanha = dias[(diaIdx+1)%7]
+  const aulasAmanha = horario[amanha] || []
+  const secAmanha = aulasAmanha.length ? `
+    <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line)">
+      <div style="font-size:9px;color:var(--txt3);letter-spacing:.08em;font-weight:700;margin-bottom:8px">AMANHÃ · ${amanha.toUpperCase()}</div>
+      ${aulasAmanha.map(a=>`<div style="display:flex;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)22">
+        <div style="font-size:10px;font-weight:700;color:var(--txt3);min-width:42px">${a.split(' ')[0]}</div>
+        <div style="font-size:11px;color:var(--txt2)">${a.split(' ').slice(1).join(' ')}</div>
+      </div>`).join('')}
+    </div>` : ''
+
+  popDetalhes(`🕐 Aulas · ${hoje}`, itens + secAmanha)
+  // Atualizar card
+  tapAulasAtualizar()
+}
+
+// Atualiza o tap card de aulas
+function tapAulasAtualizar(){
+  const dias = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado']
+  const agora = new Date()
+  const hoje = dias[agora.getDay()]
+  const horario = horarioCarregar()
+  const aulas = horario[hoje] || []
+  const val = document.getElementById('tap-aulas-val')
+  const sub = document.getElementById('tap-aulas-sub')
+  if(!val) return
+  if(!aulas.length){ val.textContent='—'; if(sub) sub.textContent='sem horário'; return }
+  const agoraMin = agora.getHours()*60+agora.getMinutes()
+  // Aula atual ou próxima
+  let aulaNow = null
+  for(const a of aulas){
+    const [h,m] = a.split(' ')[0].split(':').map(Number)
+    const min = h*60+(m||0)
+    if(agoraMin >= min){ aulaNow = a } else break
+  }
+  const proxima = aulas.find(a => { const [h,m]=a.split(' ')[0].split(':').map(Number); return h*60+(m||0)>agoraMin })
+  if(proxima){
+    val.textContent = proxima.split(' ')[0]
+    if(sub) sub.textContent = proxima.split(' ').slice(1).join(' ')
+  } else {
+    val.textContent = '✓'
+    if(sub) sub.textContent = 'aulas encerradas'
+  }
+}
+
+// Popup PROVA
+function popupProva(){
+  const todas = typeof avalTodas==='function' ? avalTodas() : []
+  const agora = new Date(); agora.setHours(0,0,0,0)
+  const futuras = todas
+    .map(p => { const d=new Date(p.data+'T12:00'); return {...p, dias:Math.ceil((d-agora)/(1000*60*60*24))} })
+    .filter(p => p.dias >= 0)
+    .sort((a,b) => a.dias-b.dias)
+
+  if(!futuras.length){
+    popDetalhes('📅 Provas', '<div style="text-align:center;padding:20px;color:var(--txt3);font-size:11px">Nenhuma prova cadastrada.</div>')
+    return
+  }
+
+  const cores = {0:'var(--acc5)',1:'var(--acc5)',2:'var(--acc5)',3:'#f59e0b'}
+  const html = futuras.slice(0,8).map(p => {
+    const cor = p.dias<=3 ? (cores[p.dias]||'#f59e0b') : 'var(--acc3)'
+    const label = p.dias===0?'HOJE':p.dias===1?'AMANHÃ':`em ${p.dias}d`
+    return `<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)22">
+      <div style="font-size:11px;font-weight:700;color:${cor};min-width:52px">${label}</div>
+      <div style="flex:1">
+        <div style="font-size:11px;color:var(--txt)">${p.mat}</div>
+        <div style="font-size:9px;color:var(--txt3)">${p.tipo} · ${new Date(p.data+'T12:00').toLocaleDateString('pt-BR')}</div>
+      </div>
+    </div>`
+  }).join('')
+  popDetalhes('📅 Próximas Provas', html,
+    `<button class="btn btn-ghost" style="width:100%;font-size:10px" onclick="this.closest('.pop-detalhe').remove();showPage('provas',document.getElementById('nav-provas'))">Ver todas as provas →</button>`)
+}
+
+// Popup STREAK
+function popupStreak(){
+  const s = streakCarregar()
+  const msgs = [
+    s.dias===0 ? 'Ainda não começou. Hoje é um bom dia! 💪' :
+    s.dias < 3 ? `${s.dias} dia${s.dias>1?'s':''} — tá começando! Não para agora.` :
+    s.dias < 7 ? `${s.dias} dias — boa sequência! Falta ${7-s.dias} pra 1 semana.` :
+    s.dias < 14 ? `${s.dias} dias — uma semana completa! 🔥 Continua!` :
+    s.dias < 30 ? `${s.dias} dias — ${s.dias} dias! Incrível consistência! 🚀` :
+    `${s.dias} dias — LENDÁRIO. Isso é disciplina de atleta! 🏆`
+  ]
+  const html = `
+    <div style="text-align:center;padding:10px 0 20px">
+      <div style="font-size:60px;font-weight:800;color:var(--acc);font-family:var(--sans);line-height:1">${s.dias}</div>
+      <div style="font-size:11px;color:var(--txt3);margin-top:4px">dias consecutivos de estudo</div>
+    </div>
+    <div style="background:var(--bg2);border-radius:12px;padding:12px 14px;font-size:11px;color:var(--txt2);line-height:1.6;text-align:center">
+      ${msgs[0]}
+    </div>
+    <div style="margin-top:14px;font-size:9px;color:var(--txt3);text-align:center">
+      A sequência aumenta quando você marca um tópico estudado na aba <b style="color:var(--acc)">Conteúdo</b>.
+    </div>`
+  popDetalhes('🔥 Sequência de Estudos', html)
+}
+
+// Popup BEM-ESTAR (água + humor)
+function popupBemEstar(){
+  const n = aguaCarregar()
+  const h = humorCarregar()
+  const humorEmoji = {otimo:'😄',ok:'😐',cansado:'😴',ansioso:'😬'}
+  const humorLabel = {otimo:'Ótimo',ok:'Ok',cansado:'Cansado',ansioso:'Ansioso'}
+
+  const html = `
+    <div style="margin-bottom:16px">
+      <div style="font-size:9px;color:var(--txt3);letter-spacing:.08em;font-weight:700;margin-bottom:10px">💧 ÁGUA HOJE</div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+        <div style="font-size:32px;font-weight:800;color:#4eaaf0;font-family:var(--sans)">${n}</div>
+        <div style="font-size:11px;color:var(--txt3)">de 8 copos<br>${n>=8?'✅ Meta batida!':n>=4?'💪 Mais da metade!':'💧 Continua!'}</div>
+      </div>
+      <div class="agua-copos" id="agua-copos-popup" style="justify-content:flex-start"></div>
+    </div>
+    <div style="border-top:1px solid var(--line);padding-top:14px">
+      <div style="font-size:9px;color:var(--txt3);letter-spacing:.08em;font-weight:700;margin-bottom:10px">😊 COMO VOCÊ ESTÁ HOJE?</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px" id="humor-row-popup">
+        ${['otimo','ok','cansado','ansioso'].map(hv=>`
+          <div class="humor-btn${h===hv?' sel':''}" data-h="${hv}" onclick="humorSelPopup(this)" style="padding:12px 8px">
+            ${humorEmoji[hv]}<span class="humor-sub">${humorLabel[hv]}</span>
+          </div>`).join('')}
+      </div>
+    </div>`
+
+  popDetalhes('💧 Bem-Estar', html)
+
+  // Renderizar copos no popup
+  setTimeout(()=>{
+    const el = document.getElementById('agua-copos-popup')
+    if(!el) return
+    for(let i=0;i<8;i++){
+      const c = document.createElement('div')
+      c.className = 'agua-copo'+(i<n?' cheio':'')
+      c.onclick = () => {
+        const atual = aguaCarregar()
+        aguaSalvar(Math.min(8, i<atual ? i : atual+1))
+        aguaRender()
+        // Atualizar popup
+        document.querySelectorAll('#agua-copos-popup .agua-copo').forEach((cp,idx)=>cp.classList.toggle('cheio',idx<aguaCarregar()))
+        document.getElementById('agua-num').textContent = aguaCarregar()
+        if(aguaCarregar()===8) toast({title:'🎉 Meta de água batida!',type:'success'})
+      }
+      el.appendChild(c)
+    }
+  }, 50)
+}
+
+function humorSelPopup(btn){
+  const h = btn.dataset.h
+  localStorage.setItem('humor_dia', JSON.stringify({humor:h, data:new Date().toDateString()}))
+  document.querySelectorAll('#humor-row-popup .humor-btn').forEach(b=>b.classList.toggle('sel',b.dataset.h===h))
+  // Atualizar card
+  const sub = document.getElementById('tap-humor-sub')
+  const humoresLabel = {otimo:'😄 ótimo',ok:'😐 ok',cansado:'😴 cansado',ansioso:'😬 ansioso'}
+  if(sub) sub.textContent = humoresLabel[h]||''
+  const msgs = {otimo:'Ótimo pique hoje! 🚀',ok:'Tá ok, foco no essencial 💪',cansado:'Cansado... prioriza o importante 😴',ansioso:'Respira, um passo de cada vez 🧘'}
+  toast({title:msgs[h]||'',type:'success'})
+}
+
+function hojeAtualizarTapCards(){
+  tapAulasAtualizar()
+  // Humor no tap card
+  const h = humorCarregar()
+  const sub = document.getElementById('tap-humor-sub')
+  const humoresLabel = {otimo:'😄 ótimo',ok:'😐 ok',cansado:'😴 cansado',ansioso:'😬 ansioso'}
+  if(sub) sub.textContent = h ? humoresLabel[h] : 'toca pra registrar'
+  // Água
+  const numEl = document.getElementById('agua-num')
+  if(numEl) numEl.innerHTML = aguaCarregar()+'<span style="font-size:11px;color:var(--txt3)">/8</span>'
+}
+
 function horarioRenderHoje(){
   const dias = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado']
   const agora = new Date()
@@ -3527,8 +4142,9 @@ function horarioRenderHoje(){
   const wrap = document.getElementById('hoje-horario-wrap')
   const lista = document.getElementById('hoje-horario-lista')
   if(!wrap || !lista) return
-  if(!aulas.length){ wrap.style.display='none'; return }
+  if(!aulas.length){ wrap.style.display='none'; tapAulasAtualizar(); return }
   wrap.style.display = 'block'
+  tapAulasAtualizar()
 
   // Hora atual em minutos
   const agoraMin = agora.getHours()*60 + agora.getMinutes()
@@ -3599,7 +4215,7 @@ function horarioVerAmanha(){
     icon:'📅',
     title:`Horário de ${amanha}`,
     msg: lista,
-    btns:[{txt:'Fechar',cls:'btn-ghost'}]
+    btns:[{label:'FECHAR',type:'cancel',value:false}]
   })
 }
 
@@ -3623,9 +4239,13 @@ async function iaSalvarProvas(){
     const ok = await popup({
       icon:'⚠️', title:'Provas já existem',
       msg:`Já cadastradas:\n${nomesDup}\n\nDeseja adicionar mesmo assim?`,
-      btns:[{txt:'Adicionar mesmo assim',cls:'btn-primary'},{txt:'Só as novas',cls:'btn-ghost'},{txt:'Cancelar',cls:'btn-ghost'}]
+      btns:[
+        {label:'ADICIONAR TUDO', type:'confirm', value:0},
+        {label:'SÓ AS NOVAS',    type:'cancel',  value:1},
+        {label:'CANCELAR',       type:'cancel',  value:2}
+      ]
     })
-    if(ok === 2) return
+    if(ok === 2 || ok === null) return
     if(ok === 0) novas.push(...duplas)
   }
   if(!novas.length){ toast('Nenhuma prova nova para adicionar.'); return }
@@ -4124,6 +4744,8 @@ function renderProvas(){
     const plano = proxima.dicas?.length ? proxima.dicas : ['Revise os tópicos principais','Faça exercícios anteriores','Durma bem na véspera','Não estude na última hora — confie no que já sabe']
     dest.innerHTML=`
       <div class="${heroCls}">
+        <div class="aurora-blob aurora-blob-1"></div>
+        <div class="aurora-blob aurora-blob-2"></div>
         <div class="prova-top-row">
           <div class="prova-tag ${cls}">${tag}</div>
         </div>
@@ -4247,7 +4869,6 @@ calRenderAgenda()
 // ═══════════════════════════════════════════
 // TOAST + TOGGLE
 // ═══════════════════════════════════════════
-let toastTmr=null
 // toast(msg) ou toast({title, sub, type:'success'|'info'|'warn'|'error', icon})
 function toast(msg, sub='', type='success'){
   const t = document.getElementById('toast')
