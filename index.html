@@ -2753,8 +2753,18 @@ async function iaProcessarArquivo(e){
     const provasMatch = texto.match(/PROVAS_JSON:(\[[\s\S]*?\])/)
     if(provasMatch){ try{ iaProvasDetectadas=JSON.parse(provasMatch[1]) }catch(e){ iaProvasDetectadas=[] } }
 
-    const horarioMatch = texto.match(/HORARIO_JSON:(\{[\s\S]*?\})/)
-    if(horarioMatch){ try{ iaHorarioDetectado=JSON.parse(horarioMatch[1]) }catch(e){ iaHorarioDetectado=null } }
+    const horarioMatch = texto.match(/HORARIO_JSON:(\{[\s\S]*\})/)
+    if(horarioMatch){
+      try{
+        iaHorarioDetectado = JSON.parse(horarioMatch[1])
+        console.log('[IA] Horário detectado:', iaHorarioDetectado)
+      }catch(e){ iaHorarioDetectado=null; console.warn('[IA] Erro ao parsear horário:', e) }
+    }
+
+    // Se a IA descreveu horário mas não formatou JSON, força o tipo
+    if(!iaHorarioDetectado && iaUltimoTipo === 'horario'){
+      console.warn('[IA] Horário detectado mas sem JSON válido. Resposta:', texto.substring(0,300))
+    }
 
     // Texto limpo
     const textoLimpo = texto
@@ -2796,9 +2806,8 @@ PASSO 2 — Responda conforme o tipo:
 Se PROVAS: liste cada prova com data, matéria e tipo. Diga dias restantes a partir de hoje (${hoje}). No final:
 PROVAS_JSON:[{"mat":"Matemática","data":"2026-03-20","tipo":"Parcial","bim":1}]
 
-Se HORARIO: identifique as aulas de cada dia da semana com horário e matéria. No final:
+Se HORARIO: identifique as aulas de cada dia da semana com horário e matéria. Destaque as aulas de hoje (${diaSemana}). OBRIGATÓRIO incluir no final exatamente neste formato (sem quebra de linha dentro):
 HORARIO_JSON:{"Segunda":["07:00 Matemática","08:00 Português"],"Terça":["07:00 História"]}
-Destaque as aulas de hoje (${diaSemana}).
 
 Se EXERCICIO: resolva passo a passo de forma didática e clara.
 
