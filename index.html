@@ -478,6 +478,21 @@ nav {
 
 /* ── HOJE — cards extras ───────────────────── */
 .hoje-extras { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:4px; }
+/* Horário de aulas */
+.aula-item { display:flex; align-items:center; gap:12px; padding:10px 14px; border-radius:12px; background:var(--bg2); border:1px solid var(--line); margin-bottom:6px; transition:all .3s; position:relative; overflow:hidden; }
+.aula-item.passada { opacity:.3; background:transparent; border-color:transparent; }
+.aula-item.passada .aula-materia { text-decoration:line-through; color:var(--txt3); }
+.aula-item.ativa { background:var(--bg2); border-color:var(--acc); box-shadow:0 0 0 1px var(--acc), 0 4px 16px color-mix(in srgb, var(--acc) 20%, transparent); }
+.aula-item.ativa::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--acc); border-radius:3px 0 0 3px; }
+.aula-item.futura { background:var(--bg2); border-color:transparent; }
+.aula-hora { font-size:10px; font-weight:700; color:var(--txt3); min-width:42px; font-family:var(--mono); }
+.aula-item.ativa .aula-hora { color:var(--acc); }
+.aula-materia { font-size:11px; color:var(--txt); flex:1; }
+.aula-item.ativa .aula-materia { font-weight:600; color:var(--txt); }
+.aula-badge { font-size:8px; font-weight:700; background:var(--acc); color:#fff; border-radius:6px; padding:2px 7px; letter-spacing:.05em; }
+.aula-fim-dia { text-align:center; padding:16px 12px; background:var(--bg2); border-radius:14px; border:1px solid var(--line); margin-bottom:6px; }
+.aula-fim-msg { font-size:12px; color:var(--txt); font-weight:500; margin-bottom:8px; }
+.aula-fim-sub { font-size:10px; color:var(--txt3); margin-bottom:12px; }
 .hoje-extra-card {
   background: var(--bg1); border:1px solid var(--line); border-radius:14px;
   padding:12px; display:flex; flex-direction:column; gap:4px;
@@ -502,7 +517,36 @@ nav {
 .aval-tipo{font-size:9px;color:var(--txt3);margin-top:2px}
 .aval-dias-badge{font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px;flex-shrink:0}
 
-/* ── CONTEÚDO EXTRA ──────────────────────── */
+/* ── STREAK, ÁGUA, HUMOR, META ──────────────── */
+.hoje-extras-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:8px; }
+.meta-card { background:linear-gradient(135deg,color-mix(in srgb,var(--acc) 12%,var(--bg1)),var(--bg1)); border:1px solid color-mix(in srgb,var(--acc) 25%,transparent); border-radius:14px; padding:12px 14px; margin-bottom:8px; display:flex; align-items:center; gap:10px; cursor:pointer; }
+.meta-icon { font-size:20px; flex-shrink:0; }
+.meta-txt { flex:1; }
+.meta-label { font-size:8px; color:var(--acc); font-weight:700; letter-spacing:.08em; margin-bottom:2px; }
+.meta-val { font-size:12px; color:var(--txt); font-weight:500; line-height:1.3; }
+.meta-val.vazia { color:var(--txt3); font-style:italic; font-size:11px; }
+/* Humor */
+.humor-row { display:flex; gap:8px; justify-content:center; margin-top:6px; }
+.humor-btn { flex:1; padding:8px 6px; border-radius:10px; border:1.5px solid var(--line); background:var(--bg2); font-size:13px; cursor:pointer; text-align:center; transition:all .2s; }
+.humor-btn.sel { border-color:var(--acc); background:color-mix(in srgb,var(--acc) 15%,var(--bg1)); transform:scale(1.06); }
+.humor-sub { font-size:8px; color:var(--txt3); display:block; margin-top:2px; }
+/* Água */
+.agua-copos { display:flex; gap:5px; flex-wrap:wrap; justify-content:center; margin-top:8px; }
+.agua-copo { width:28px; height:34px; border-radius:0 0 6px 6px; border:1.5px solid var(--line); background:var(--bg2); cursor:pointer; transition:all .2s; position:relative; overflow:hidden; }
+.agua-copo.cheio { border-color:#4eaaf0; background:#4eaaf088; }
+.agua-copo.cheio::after { content:''; position:absolute; bottom:0; left:0; right:0; height:60%; background:#4eaaf0; border-radius:0 0 4px 4px; }
+/* Streak */
+.streak-num { font-family:var(--sans); font-size:22px; font-weight:800; line-height:1; }
+.streak-fire { font-size:18px; }
+/* Revisão espaçada */
+.rev-badge { font-size:8px; font-weight:700; border-radius:6px; padding:2px 7px; letter-spacing:.04em; white-space:nowrap; }
+.rev-badge.hoje { background:#f59e0b22; color:#f59e0b; border:1px solid #f59e0b55; }
+.rev-badge.atrasada { background:#ef444422; color:#ef4444; border:1px solid #ef444455; }
+.rev-badge.ok { background:#22c55e22; color:#22c55e; border:1px solid #22c55e55; }
+.rev-alerta { background:color-mix(in srgb,#f59e0b 8%,var(--bg1)); border:1px solid #f59e0b44; border-radius:12px; padding:10px 14px; margin-bottom:6px; display:flex; align-items:center; gap:10px; cursor:pointer; }
+.rev-alerta-txt { flex:1; font-size:10.5px; color:var(--txt); }
+.rev-alerta-mat { font-size:9px; color:var(--txt3); margin-top:2px; }
+
 .extra-section{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px}
 .extra-label{font-size:8px;color:var(--txt3);letter-spacing:.1em;font-weight:700;margin-bottom:6px}
 .top-card.extra{opacity:.7;border-style:dashed}
@@ -510,6 +554,31 @@ nav {
 
 /* NAV badge prova */
 .nav-badge{position:absolute;top:4px;right:8px;background:var(--acc5);color:#fff;font-size:7px;font-weight:700;border-radius:10px;padding:1px 5px;line-height:1.4}
+/* ── DIÁRIO DE ESTUDOS ───────────────────── */
+.diario-semana { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; margin:8px 0 12px; }
+.diario-dia-col { display:flex; flex-direction:column; align-items:center; gap:3px; }
+.diario-dia-label { font-size:8px; color:var(--txt3); letter-spacing:.04em; text-transform:uppercase; }
+.diario-dia-barra-wrap { width:100%; height:50px; display:flex; align-items:flex-end; }
+.diario-dia-bar { width:100%; border-radius:4px 4px 0 0; background:var(--acc); min-height:3px; transition:height .5s; opacity:.85; }
+.diario-dia-min { font-size:7px; color:var(--txt3); text-align:center; margin-top:2px; }
+.diario-entrada { display:flex; align-items:center; gap:10px; padding:8px 12px; border-radius:10px; background:var(--bg2); border:1px solid var(--line); margin-bottom:5px; }
+.diario-entrada-mat { font-size:9px; font-weight:700; color:var(--acc); min-width:70px; }
+.diario-entrada-top { font-size:10px; color:var(--txt); flex:1; }
+.diario-entrada-dur { font-size:9px; color:var(--txt3); white-space:nowrap; }
+/* ── PAUSA INTELIGENTE ───────────────────── */
+.pausa-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.pausa-card { border-radius:14px; padding:14px; cursor:pointer; border:1.5px solid var(--line); background:var(--bg2); transition:all .2s; }
+.pausa-card:hover,.pausa-card:active { border-color:var(--acc); transform:scale(1.02); }
+.pausa-card-icon { font-size:24px; margin-bottom:6px; }
+.pausa-card-nome { font-size:11px; font-weight:700; color:var(--txt); }
+.pausa-card-dur { font-size:9px; color:var(--acc); font-weight:700; margin-bottom:4px; }
+.pausa-card-desc { font-size:9.5px; color:var(--txt3); line-height:1.5; }
+.pausa-overlay { position:fixed; inset:0; background:#000d; z-index:200; display:flex; align-items:center; justify-content:center; padding:20px; }
+.pausa-box { background:var(--bg1); border-radius:20px; padding:28px 22px; text-align:center; max-width:320px; width:100%; box-shadow:0 20px 60px #0009; }
+.pausa-box-titulo { font-size:13px; font-weight:700; color:var(--acc); letter-spacing:.06em; margin-bottom:10px; }
+.pausa-box-instrucao { font-size:11px; color:var(--txt2); line-height:1.7; margin-bottom:18px; min-height:60px; }
+.pausa-box-num { font-size:56px; font-weight:800; color:var(--txt); font-family:var(--sans); line-height:1; margin-bottom:6px; }
+.pausa-box-fase { font-size:9px; color:var(--txt3); letter-spacing:.08em; margin-bottom:18px; }
 /* ── CALENDÁRIO ──────────────────────────── */
 .cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .cal-mes{font-family:var(--sans);font-size:16px;font-weight:700;color:var(--txt)}
@@ -913,13 +982,60 @@ nav {
     </div>
   </div>
 
-  <!-- Cards extras -->
-  <div class="hoje-extras" id="hoje-extras">
+  <!-- Meta do dia -->
+  <div class="meta-card" onclick="metaEditar()" id="meta-card">
+    <div class="meta-icon">🎯</div>
+    <div class="meta-txt">
+      <div class="meta-label">META DO DIA</div>
+      <div class="meta-val vazia" id="meta-val">Toca aqui pra definir sua meta de hoje...</div>
+    </div>
+  </div>
+
+  <!-- Cards: streak + água + humor -->
+  <div class="hoje-extras-3">
+    <div class="hoje-extra-card" style="cursor:default">
+      <div class="hoje-extra-label">🔥 SEQUÊNCIA</div>
+      <div style="display:flex;align-items:baseline;gap:4px;margin:4px 0 2px">
+        <div class="streak-num" id="streak-num" style="color:var(--acc)">0</div>
+        <div style="font-size:9px;color:var(--txt3)">dias</div>
+      </div>
+      <div class="hoje-extra-sub" id="streak-sub">Comece hoje!</div>
+    </div>
+    <div class="hoje-extra-card">
+      <div class="hoje-extra-label">💧 ÁGUA</div>
+      <div style="display:flex;align-items:baseline;gap:4px;margin:4px 0 2px">
+        <div class="streak-num" id="agua-num" style="color:#4eaaf0">0</div>
+        <div style="font-size:9px;color:var(--txt3)">/ 8</div>
+      </div>
+      <div class="hoje-extra-sub">copos hoje</div>
+      <div class="agua-copos" id="agua-copos"></div>
+    </div>
     <div class="hoje-extra-card">
       <div class="hoje-extra-label">PRÓXIMA PROVA</div>
       <div class="hoje-extra-val" id="hoje-prova-dias" style="color:var(--acc)">—</div>
       <div class="hoje-extra-sub" id="hoje-prova-nome">Carregando...</div>
     </div>
+  </div>
+
+  <!-- Humor do dia -->
+  <div class="card" style="padding:12px 14px;margin-bottom:8px" id="humor-card">
+    <div style="font-size:9px;color:var(--txt3);letter-spacing:.08em;font-weight:700;margin-bottom:2px">COMO VOCÊ ESTÁ HOJE?</div>
+    <div class="humor-row" id="humor-row">
+      <div class="humor-btn" data-h="otimo" onclick="humorSel(this)">😄<span class="humor-sub">ótimo</span></div>
+      <div class="humor-btn" data-h="ok" onclick="humorSel(this)">😐<span class="humor-sub">ok</span></div>
+      <div class="humor-btn" data-h="cansado" onclick="humorSel(this)">😴<span class="humor-sub">cansado</span></div>
+      <div class="humor-btn" data-h="ansioso" onclick="humorSel(this)">😬<span class="humor-sub">ansioso</span></div>
+    </div>
+  </div>
+
+  <!-- Alertas de revisão espaçada -->
+  <div id="rev-alertas-wrap" style="display:none">
+    <div class="sec-header">⚡ REVISAR AGORA</div>
+    <div id="rev-alertas-lista"></div>
+  </div>
+
+  <!-- Cards extras originais (tópicos estudados) -->
+  <div class="hoje-extras" id="hoje-extras" style="grid-template-columns:1fr">
     <div class="hoje-extra-card">
       <div class="hoje-extra-label">TÓPICOS ESTUDADOS</div>
       <div class="hoje-extra-val" id="hoje-topicos-val" style="color:var(--acc3)">—</div>
@@ -939,14 +1055,14 @@ nav {
     <div style="display:flex;justify-content:center;gap:5px;margin-top:10px" id="frase-dots"></div>
   </div>
 
-  <div class="sec-header">CHECKLIST DE HOJE</div>
-  <div id="lista-hoje"></div>
-
-  <!-- Horário de aulas de hoje -->
+  <!-- Horário de aulas de hoje — ACIMA do checklist -->
   <div id="hoje-horario-wrap" style="display:none">
     <div class="sec-header">AULAS DE HOJE</div>
-    <div id="hoje-horario-lista" class="card" style="padding:10px 12px;display:flex;flex-direction:column;gap:6px"></div>
+    <div id="hoje-horario-lista"></div>
   </div>
+
+  <div class="sec-header">CHECKLIST DE HOJE</div>
+  <div id="lista-hoje"></div>
 
   <div class="sec-header">MATÉRIAS DE HOJE</div>
   <div class="card" id="mat-hoje-card"></div>
@@ -979,6 +1095,47 @@ nav {
       <button class="btn btn-ghost" onclick="skipPomo()">PULAR</button>
     </div>
   </div>
+  <div class="sec-header">PAUSA INTELIGENTE</div>
+  <div class="pausa-grid">
+    <div class="pausa-card" onclick="pausaIniciar('respiracao')">
+      <div class="pausa-card-icon">🌬️</div>
+      <div class="pausa-card-nome">Respiração 4-7-8</div>
+      <div class="pausa-card-dur">~2 min</div>
+      <div class="pausa-card-desc">Acalma ansiedade e sistema nervoso</div>
+    </div>
+    <div class="pausa-card" onclick="pausaIniciar('alongamento')">
+      <div class="pausa-card-icon">🧘</div>
+      <div class="pausa-card-nome">Alongamento</div>
+      <div class="pausa-card-dur">~3 min</div>
+      <div class="pausa-card-desc">Pescoço, ombros e costas</div>
+    </div>
+    <div class="pausa-card" onclick="pausaIniciar('olhos')">
+      <div class="pausa-card-icon">👁️</div>
+      <div class="pausa-card-nome">Descanso visual</div>
+      <div class="pausa-card-dur">~2 min</div>
+      <div class="pausa-card-desc">Regra 20-20-20 pra tela</div>
+    </div>
+    <div class="pausa-card" onclick="pausaIniciar('energia')">
+      <div class="pausa-card-icon">⚡</div>
+      <div class="pausa-card-nome">Boost de energia</div>
+      <div class="pausa-card-dur">~2 min</div>
+      <div class="pausa-card-desc">Movimento rápido pra acordar</div>
+    </div>
+  </div>
+
+  <div class="sec-header">DIÁRIO DE ESTUDOS</div>
+  <div class="card" style="padding:14px">
+    <div id="diario-semana-graf" class="diario-semana"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <div style="font-size:9px;color:var(--txt3);letter-spacing:.06em">HOJE</div>
+      <div style="font-size:9px;color:var(--acc);font-weight:700" id="diario-total-hoje">0 min</div>
+    </div>
+    <div id="diario-lista-hoje"></div>
+    <div style="margin-top:8px;text-align:center" id="diario-vazio" style="display:none">
+      <div style="font-size:10px;color:var(--txt3);padding:12px">Nenhum Pomodoro registrado hoje.<br>Complete um bloco de foco pra ver aqui!</div>
+    </div>
+  </div>
+
   <div class="sec-header">COMO FUNCIONA</div>
   <div class="pomo-steps">
     <div class="step-item" style="background:#1c1a2c">
@@ -1696,6 +1853,11 @@ iaChatCarregarTela()
 // Carregar horário de aulas na aba Hoje
 horarioRenderHoje()
 
+// Inicializar novos módulos
+metaRender()
+streakRender()
+aguaRender()
+humorRender()
 // Salvar resumo da sessão ao fechar/sair
 window.addEventListener('beforeunload', () => iaSalvarSessao())
 
@@ -1845,8 +2007,17 @@ function togglePomo(){
       if(pomoTime<=0){
         clearInterval(pomoTimer);pomoRunning=false;beep()
         if(pomoFase==='foco'){
-          if(pomoSession<4){pomoFase='pausa';pomoTime=POMO_BREAK;pomoTotal=POMO_BREAK;toast({title:'Bloco concluído!',sub:'5 min de pausa. Levanta e bebe água.',type:'success'});notifPomo('foco')}
-          else{pomoFase='longa';pomoTime=POMO_LONG;pomoTotal=POMO_LONG;toast({title:'4 blocos! 🍅',sub:'Pausa longa de 20 min. Você merece!',type:'success'});iaPomoCheck();notifPomo('foco')}
+          if(pomoSession<4){
+            pomoFase='pausa';pomoTime=POMO_BREAK;pomoTotal=POMO_BREAK
+            toast({title:'Bloco concluído! 🍅',sub:'5 min de pausa. Levanta e bebe água.',type:'success'})
+            notifPomo('foco')
+            diarioPromptRegistrar() // registra no diário
+          } else {
+            pomoFase='longa';pomoTime=POMO_LONG;pomoTotal=POMO_LONG
+            toast({title:'4 blocos! 🍅',sub:'Pausa longa de 20 min. Você merece!',type:'success'})
+            iaPomoCheck();notifPomo('foco')
+            diarioPromptRegistrar()
+          }
         } else {
           if(pomoSession>=4)pomoSession=0
           pomoSession++;pomoFase='foco';pomoTime=POMO_FOCO;pomoTotal=POMO_FOCO;toast({title:'Pausa encerrada',sub:'Hora de focar! 25 min.',type:'info'});notifPomo('pausa')
@@ -2013,12 +2184,26 @@ function makeTopCard(top, cor, isExtra=false){
   const el=document.createElement('div')
   el.className='top-card'+(done?' feito':'')+(isExtra?' extra':'')
   el.style.setProperty('--tc',cor)
+
+  // Revisão espaçada
+  const revInfo = revGetInfo(top.id)
+  let revBadge = ''
+  if(done && revInfo){
+    const hoje = new Date(); hoje.setHours(0,0,0,0)
+    const prox = new Date(revInfo.proxRev); prox.setHours(0,0,0,0)
+    const diff = Math.round((prox-hoje)/(1000*60*60*24))
+    if(diff < 0) revBadge = `<span class="rev-badge atrasada">revisar!</span>`
+    else if(diff === 0) revBadge = `<span class="rev-badge hoje">revisar hoje</span>`
+    else revBadge = `<span class="rev-badge ok">rev em ${diff}d</span>`
+  }
+
   el.innerHTML=`
     <div class="top-head">
       <div class="top-chk" data-chk="${top.id}">
         <svg class="top-chk-svg" viewBox="0 0 12 12" fill="none"><polyline points="1.5,6 4.5,9.5 10.5,2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
-      <div class="top-nome">${top.n}</div>
+      <div class="top-nome" style="flex:1">${top.n}</div>
+      ${revBadge}
       <div class="top-arrow">&#9658;</div>
     </div>
     <div class="top-body">${top.r}</div>
@@ -2033,13 +2218,450 @@ function makeTopCard(top, cor, isExtra=false){
     e.stopPropagation()
     const novo=!cLer(top.id)
     cSalvar(top.id,novo)
+    if(novo){
+      revSalvar(top.id) // inicia ciclo de revisão
+      streakRegistrar()  // conta como dia de estudo
+    }
     renderConteudo(document.querySelector('.cpill.active')?.dataset.m||'Portugues')
     toast(novo?'Tópico concluído! ✓':'Tópico desmarcado')
+    revRenderAlertas()
   })
   return el
 }
 
-// Init pills conteúdo
+// ══════════════════════════════════════════════
+// PAUSA INTELIGENTE
+// ══════════════════════════════════════════════
+const PAUSAS = {
+  respiracao: {
+    nome: '🌬️ Respiração 4-7-8',
+    passos: [
+      { txt: 'Senta confortável, costas retas.\nFeche os olhos.', dur: 5, fase: 'preparar' },
+      { txt: 'INSPIRA pelo nariz...', dur: 4, fase: 'inspira (4s)' },
+      { txt: 'SEGURA o ar...', dur: 7, fase: 'segura (7s)' },
+      { txt: 'EXPIRA pela boca devagar...', dur: 8, fase: 'expira (8s)' },
+      { txt: 'INSPIRA pelo nariz...', dur: 4, fase: 'inspira (4s)' },
+      { txt: 'SEGURA o ar...', dur: 7, fase: 'segura (7s)' },
+      { txt: 'EXPIRA pela boca devagar...', dur: 8, fase: 'expira (8s)' },
+      { txt: 'INSPIRA pelo nariz...', dur: 4, fase: 'inspira (4s)' },
+      { txt: 'SEGURA o ar...', dur: 7, fase: 'segura (7s)' },
+      { txt: 'EXPIRA pela boca devagar...', dur: 8, fase: 'expira (8s)' },
+      { txt: '✅ Pronto!\nSistema nervoso mais calmo.\nPronto pra focar.', dur: 5, fase: 'concluído' },
+    ]
+  },
+  alongamento: {
+    nome: '🧘 Alongamento rápido',
+    passos: [
+      { txt: 'Levanta da cadeira.\nFico em pé fique firme.', dur: 5, fase: 'preparar' },
+      { txt: 'Gira a cabeça devagar pra direita... depois pra esquerda.', dur: 12, fase: 'pescoço' },
+      { txt: 'Enrola os ombros pra frente 5x, depois pra trás 5x.', dur: 10, fase: 'ombros' },
+      { txt: 'Braços acima da cabeça, estica bem alto. Respira fundo.', dur: 8, fase: 'costas' },
+      { txt: 'Inclina o tronco pra direita devagar... depois pra esquerda.', dur: 10, fase: 'lateral' },
+      { txt: 'Torce o tronco pro lado direito, segura 5s. Depois pro esquerdo.', dur: 12, fase: 'rotação' },
+      { txt: '✅ Ótimo!\nCorpo mais solto, sangue circulando.\nBora focar!', dur: 5, fase: 'concluído' },
+    ]
+  },
+  olhos: {
+    nome: '👁️ Descanso visual 20-20-20',
+    passos: [
+      { txt: 'Larga o celular ou para de olhar pra tela.', dur: 4, fase: 'preparar' },
+      { txt: 'Olha pra algo a pelo menos 6 metros de distância.\nUma parede, janela, o horizonte...', dur: 20, fase: '20 segundos' },
+      { txt: 'Pisca devagar 10 vezes pra umedecer os olhos.', dur: 8, fase: 'piscar' },
+      { txt: 'Esfrega as palmas das mãos até esquentar.\nCobre os olhos fechados com as mãos por 10s.', dur: 15, fase: 'palming' },
+      { txt: 'Olha de novo pra longe por mais 20 segundos.', dur: 20, fase: '20 segundos' },
+      { txt: '✅ Olhos descansados!\nReduces cansaço visual em até 60%.', dur: 5, fase: 'concluído' },
+    ]
+  },
+  energia: {
+    nome: '⚡ Boost de energia',
+    passos: [
+      { txt: 'Levanta! Vamos acordar o corpo em 2 minutos.', dur: 4, fase: 'preparar' },
+      { txt: '20 polichinelos!\nBraços e pernas sincronizados.', dur: 15, fase: 'polichinelos' },
+      { txt: '10 agachamentos rápidos.\nJoelhos não passam dos pés.', dur: 15, fase: 'agachamento' },
+      { txt: 'Bate palmas acima da cabeça 20x enquanto marcha no lugar.', dur: 12, fase: 'marcha' },
+      { txt: '5 pulinhos + 5 flexões de braço (ou na parede tá ok).', dur: 18, fase: 'força' },
+      { txt: 'Respira fundo 3x. Balança os braços soltos.', dur: 10, fase: 'recuperar' },
+      { txt: '✅ Adrenalina ativada!\nCerebro com mais sangue e oxigênio.\nBora!', dur: 5, fase: 'concluído' },
+    ]
+  }
+}
+
+let pausaTimer = null
+
+function pausaIniciar(tipo){
+  const p = PAUSAS[tipo]
+  if(!p) return
+  let stepIdx = 0
+  let stepTime = p.passos[0].dur
+
+  const ov = document.createElement('div')
+  ov.className = 'pausa-overlay'
+  ov.innerHTML = `
+    <div class="pausa-box">
+      <div class="pausa-box-titulo" id="pausa-titulo">${p.nome}</div>
+      <div class="pausa-box-instrucao" id="pausa-instrucao"></div>
+      <div class="pausa-box-num" id="pausa-num">0</div>
+      <div class="pausa-box-fase" id="pausa-fase"></div>
+      <button class="btn btn-ghost" style="width:100%;font-size:10px" onclick="pausaFechar()">ENCERRAR</button>
+    </div>`
+  document.body.appendChild(ov)
+  window._pausaOverlay = ov
+
+  function render(){
+    const step = p.passos[stepIdx]
+    ov.querySelector('#pausa-instrucao').innerHTML = step.txt.replace(/\n/g,'<br>')
+    ov.querySelector('#pausa-num').textContent = stepTime
+    ov.querySelector('#pausa-fase').textContent = step.fase.toUpperCase()
+  }
+
+  render()
+  pausaTimer = setInterval(()=>{
+    stepTime--
+    if(stepTime <= 0){
+      stepIdx++
+      if(stepIdx >= p.passos.length){
+        clearInterval(pausaTimer)
+        pausaFechar()
+        toast({title:'Pausa concluída! ✅', sub:'De volta ao foco 💪', type:'success'})
+        return
+      }
+      stepTime = p.passos[stepIdx].dur
+    }
+    render()
+  }, 1000)
+}
+
+function pausaFechar(){
+  clearInterval(pausaTimer)
+  if(window._pausaOverlay){ window._pausaOverlay.remove(); window._pausaOverlay=null }
+}
+
+// ══════════════════════════════════════════════
+// DIÁRIO DE ESTUDOS
+// ══════════════════════════════════════════════
+const DIARIO_KEY = 'diario_estudos'
+
+function diarioCarregar(){
+  try{ return JSON.parse(localStorage.getItem(DIARIO_KEY)||'[]') }catch(e){ return [] }
+}
+function diarioSalvar(d){ try{ localStorage.setItem(DIARIO_KEY, JSON.stringify(d)) }catch(e){} }
+
+function diarioRegistrar(materia, topico, minutos){
+  const d = diarioCarregar()
+  d.push({ mat:materia, top:topico, min:minutos, ts:new Date().toISOString() })
+  diarioSalvar(d)
+  diarioRender()
+  streakRegistrar()
+}
+
+function diarioRender(){
+  const todos = diarioCarregar()
+  const hoje = new Date().toDateString()
+
+  // Gráfico da semana
+  const dias7 = []
+  for(let i=6;i>=0;i--){
+    const d = new Date(); d.setDate(d.getDate()-i)
+    dias7.push({ label:['D','S','T','Q','Q','S','S'][d.getDay()], data:d.toDateString() })
+  }
+  const maxMin = Math.max(1, ...dias7.map(d => todos.filter(e=>new Date(e.ts).toDateString()===d.data).reduce((s,e)=>s+e.min,0)))
+  const grafEl = document.getElementById('diario-semana-graf')
+  if(grafEl){
+    grafEl.innerHTML = dias7.map(d=>{
+      const mins = todos.filter(e=>new Date(e.ts).toDateString()===d.data).reduce((s,e)=>s+e.min,0)
+      const h = Math.max(3, Math.round((mins/maxMin)*50))
+      const isHoje = d.data === hoje
+      return `<div class="diario-dia-col">
+        <div class="diario-dia-label" style="${isHoje?'color:var(--acc);font-weight:700':''}">${d.label}</div>
+        <div class="diario-dia-barra-wrap">
+          <div class="diario-dia-bar" style="height:${h}px;background:${isHoje?'var(--acc)':'var(--acc)88'}"></div>
+        </div>
+        <div class="diario-dia-min">${mins?mins+'m':''}</div>
+      </div>`
+    }).join('')
+  }
+
+  // Lista de hoje
+  const hojeEntradas = todos.filter(e=>new Date(e.ts).toDateString()===hoje)
+  const totalHoje = hojeEntradas.reduce((s,e)=>s+e.min,0)
+  const totalEl = document.getElementById('diario-total-hoje')
+  if(totalEl) totalEl.textContent = totalHoje ? `${totalHoje} min (${Math.round(totalHoje/25)} 🍅)` : '0 min'
+
+  const listaEl = document.getElementById('diario-lista-hoje')
+  const vazioEl = document.getElementById('diario-vazio')
+  if(!listaEl) return
+  if(!hojeEntradas.length){
+    listaEl.innerHTML = '<div style="text-align:center;font-size:10px;color:var(--txt3);padding:12px">Nenhum Pomodoro registrado hoje.<br>Complete um bloco de foco pra ver aqui! 🍅</div>'
+    return
+  }
+  listaEl.innerHTML = hojeEntradas.slice(-8).reverse().map(e=>{
+    const hora = new Date(e.ts).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})
+    return `<div class="diario-entrada">
+      <div class="diario-entrada-mat">${e.mat||'Geral'}</div>
+      <div class="diario-entrada-top">${e.top||'Pomodoro'}</div>
+      <div class="diario-entrada-dur">${e.min}min · ${hora}</div>
+    </div>`
+  }).join('')
+}
+
+
+// ══════════════════════════════════════════════
+async function diarioPromptRegistrar(){
+  const mat = await popupInput({
+    icon:'🍅',
+    title:'Pomodoro concluído! O que você estudou?',
+    placeholder:'Ex: Matemática — Potenciação',
+    maxLength: 60
+  })
+  if(mat === null) return
+  const texto = mat.trim() || 'Pomodoro'
+  const partes = texto.split(/\s*[—\-]\s*/)
+  const materia = partes[0] || 'Geral'
+  const topico = partes.slice(1).join(' ') || texto
+  diarioRegistrar(materia, topico, 25)
+  aguaSalvar(Math.min(8, aguaCarregar()+1))
+  aguaRender()
+  toast({title:'💧 Bebe água agora!', type:'info'})
+}
+
+// ══════════════════════════════════════════════
+function metaCarregar(){
+  try{
+    const raw = localStorage.getItem('meta_dia')
+    if(!raw) return null
+    const obj = JSON.parse(raw)
+    const hoje = new Date().toDateString()
+    return obj.data === hoje ? obj.txt : null
+  }catch(e){ return null }
+}
+function metaSalvar(txt){
+  localStorage.setItem('meta_dia', JSON.stringify({ txt, data: new Date().toDateString() }))
+}
+function metaRender(){
+  const txt = metaCarregar()
+  const el = document.getElementById('meta-val')
+  if(!el) return
+  if(txt){ el.textContent = txt; el.classList.remove('vazia') }
+  else { el.textContent = 'Toca aqui pra definir sua meta de hoje...'; el.classList.add('vazia') }
+}
+async function metaEditar(){
+  // Popup com input de texto
+  const atual = metaCarregar() || ''
+  const res = await popupInput({
+    icon:'🎯',
+    title:'Meta do dia',
+    placeholder:'Ex: Estudar 3 Pomodoros de Matemática',
+    value: atual,
+    maxLength: 80
+  })
+  if(res === null) return
+  if(res.trim()){ metaSalvar(res.trim()); metaRender(); toast({title:'Meta definida!',type:'success'}) }
+  else { localStorage.removeItem('meta_dia'); metaRender() }
+}
+
+// ══════════════════════════════════════════════
+// POPUP COM INPUT (helper)
+// ══════════════════════════════════════════════
+function popupInput({ icon='', title='', placeholder='', value='', maxLength=120 }){
+  return new Promise(resolve => {
+    const ov = document.createElement('div')
+    ov.className = 'popup-overlay'
+    ov.innerHTML = `
+      <div class="popup-box" style="max-width:340px">
+        <div class="popup-icon">${icon}</div>
+        <div class="popup-title">${title}</div>
+        <input id="popup-input-field" type="text" maxlength="${maxLength}"
+          style="width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;
+          padding:10px 12px;color:var(--txt);font-family:var(--mono);font-size:12px;outline:none;
+          margin:10px 0 16px;box-sizing:border-box"
+          placeholder="${placeholder}" value="${value}">
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-primary" style="flex:1" id="popup-inp-ok">SALVAR</button>
+          <button class="btn btn-ghost" id="popup-inp-cancel">CANCELAR</button>
+        </div>
+      </div>`
+    document.body.appendChild(ov)
+    const inp = ov.querySelector('#popup-input-field')
+    inp.focus(); inp.select()
+    inp.addEventListener('keydown', e => { if(e.key==='Enter'){ resolve(inp.value); ov.remove() } })
+    ov.querySelector('#popup-inp-ok').onclick = () => { resolve(inp.value); ov.remove() }
+    ov.querySelector('#popup-inp-cancel').onclick = () => { resolve(null); ov.remove() }
+  })
+}
+
+// ══════════════════════════════════════════════
+// STREAK DE ESTUDOS
+// ══════════════════════════════════════════════
+function streakCarregar(){
+  try{ return JSON.parse(localStorage.getItem('streak_dados')||'{"dias":0,"ultimo":""}') }catch(e){ return {dias:0,ultimo:''} }
+}
+function streakRegistrar(){
+  const s = streakCarregar()
+  const hoje = new Date().toDateString()
+  const ontem = new Date(Date.now()-86400000).toDateString()
+  if(s.ultimo === hoje) return // já contou hoje
+  s.dias = s.ultimo === ontem ? s.dias+1 : 1
+  s.ultimo = hoje
+  localStorage.setItem('streak_dados', JSON.stringify(s))
+  streakRender()
+}
+function streakRender(){
+  const s = streakCarregar()
+  const el = document.getElementById('streak-num')
+  const sub = document.getElementById('streak-sub')
+  if(!el) return
+  el.textContent = s.dias
+  if(sub){
+    if(s.dias === 0) sub.textContent = 'Comece hoje!'
+    else if(s.dias === 1) sub.textContent = 'Primeiro dia! 💪'
+    else if(s.dias < 7) sub.textContent = `${s.dias} dias seguidos!`
+    else if(s.dias < 30) sub.textContent = `${s.dias} dias! 🔥 incrível`
+    else sub.textContent = `${s.dias} dias! LENDÁRIO 🏆`
+  }
+}
+
+// ══════════════════════════════════════════════
+// CONTADOR DE ÁGUA
+// ══════════════════════════════════════════════
+function aguaCarregar(){
+  try{
+    const raw = localStorage.getItem('agua_dia')
+    const obj = raw ? JSON.parse(raw) : null
+    const hoje = new Date().toDateString()
+    return (obj && obj.data===hoje) ? obj.copos : 0
+  }catch(e){ return 0 }
+}
+function aguaSalvar(n){
+  localStorage.setItem('agua_dia', JSON.stringify({copos:n, data:new Date().toDateString()}))
+}
+function aguaRender(){
+  const n = aguaCarregar()
+  const numEl = document.getElementById('agua-num')
+  const coposEl = document.getElementById('agua-copos')
+  if(numEl) numEl.textContent = n
+  if(!coposEl) return
+  coposEl.innerHTML = ''
+  for(let i=0;i<8;i++){
+    const c = document.createElement('div')
+    c.className = 'agua-copo' + (i<n?' cheio':'')
+    c.title = i<n ? 'Clique para remover' : 'Clique para adicionar'
+    c.onclick = () => {
+      const atual = aguaCarregar()
+      const novo = i < atual ? i : i+1  // clica no cheio → remove até ali; clica vazio → adiciona
+      aguaSalvar(Math.max(0,Math.min(8, i<atual ? i : atual+1)))
+      aguaRender()
+      if(i>=atual && atual<8) toast({title:'💧 +1 copo!', type:'success'})
+      if(aguaCarregar()===8) setTimeout(()=>toast({title:'🎉 Meta de água batida!', sub:'8 copos hoje!', type:'success'}),300)
+    }
+    coposEl.appendChild(c)
+  }
+}
+
+// ══════════════════════════════════════════════
+// HUMOR DO DIA
+// ══════════════════════════════════════════════
+function humorCarregar(){
+  try{
+    const raw = localStorage.getItem('humor_dia')
+    const obj = raw ? JSON.parse(raw) : null
+    const hoje = new Date().toDateString()
+    return (obj && obj.data===hoje) ? obj.humor : null
+  }catch(e){ return null }
+}
+function humorSel(btn){
+  const h = btn.dataset.h
+  localStorage.setItem('humor_dia', JSON.stringify({humor:h, data:new Date().toDateString()}))
+  document.querySelectorAll('.humor-btn').forEach(b=>b.classList.toggle('sel', b.dataset.h===h))
+  const msgs = {otimo:'Ótimo! Bora aproveitar esse pique 🚀', ok:'Tudo bem, foco no essencial 💪', cansado:'Cansado... prioriza o mais importante e descansa bem 😴', ansioso:'Ansioso? Respira, um passo de cada vez 🧘'}
+  toast({title: msgs[h]||'', type:'success'})
+}
+function humorRender(){
+  const h = humorCarregar()
+  if(!h) return
+  document.querySelectorAll('.humor-btn').forEach(b=>b.classList.toggle('sel', b.dataset.h===h))
+}
+
+// ══════════════════════════════════════════════
+// REVISÃO ESPAÇADA
+// ══════════════════════════════════════════════
+const REV_INTERVALOS = [1, 3, 7, 14, 30] // dias
+
+function revSalvar(topId){
+  const key = 'rev_' + topId
+  const existing = revGetInfo(topId)
+  const nivel = existing ? Math.min(existing.nivel+1, REV_INTERVALOS.length-1) : 0
+  const proxRev = new Date()
+  proxRev.setDate(proxRev.getDate() + REV_INTERVALOS[nivel])
+  localStorage.setItem(key, JSON.stringify({
+    topId, nivel, proxRev: proxRev.toISOString(),
+    ultimaRev: new Date().toISOString()
+  }))
+}
+
+function revGetInfo(topId){
+  try{
+    const raw = localStorage.getItem('rev_'+topId)
+    return raw ? JSON.parse(raw) : null
+  }catch(e){ return null }
+}
+
+function revRenderAlertas(){
+  const wrap = document.getElementById('rev-alertas-wrap')
+  const lista = document.getElementById('rev-alertas-lista')
+  if(!wrap || !lista) return
+
+  const hoje = new Date(); hoje.setHours(0,0,0,0)
+  const alertas = []
+
+  // Varrer todos os tópicos de todas as matérias
+  Object.keys(CONTEUDO).forEach(mat=>{
+    const {label, tops, extra=[]} = CONTEUDO[mat]
+    ;[...tops,...extra].forEach(top=>{
+      if(!cLer(top.id)) return // não estudado ainda
+      const info = revGetInfo(top.id)
+      if(!info) return
+      const prox = new Date(info.proxRev); prox.setHours(0,0,0,0)
+      const diff = Math.round((prox-hoje)/(1000*60*60*24))
+      if(diff <= 0) alertas.push({top, mat, label, diff})
+    })
+  })
+
+  if(!alertas.length){ wrap.style.display='none'; return }
+  wrap.style.display = 'block'
+  alertas.sort((a,b)=>a.diff-b.diff)
+
+  lista.innerHTML = alertas.slice(0,5).map(({top,label,diff})=>`
+    <div class="rev-alerta" onclick="revIrTopico('${top.id}')">
+      <div style="font-size:18px">${diff<0?'🚨':'⚡'}</div>
+      <div class="rev-alerta-txt">
+        <div>${top.n}</div>
+        <div class="rev-alerta-mat">${label} · ${diff<0?`atrasado ${Math.abs(diff)}d`:'revisar hoje'}</div>
+      </div>
+      <span class="rev-badge ${diff<0?'atrasada':'hoje'}">${diff<0?'atrasado':'hoje'}</span>
+    </div>`).join('')
+}
+
+function revIrTopico(topId){
+  // Encontrar a matéria do tópico e navegar até ele
+  let matEncontrada = null
+  Object.keys(CONTEUDO).forEach(mat=>{
+    const {tops,extra=[]} = CONTEUDO[mat]
+    if([...tops,...extra].find(t=>t.id===topId)) matEncontrada = mat
+  })
+  if(!matEncontrada) return
+  const navBtn = document.querySelector('[data-nav="conteudo"]') || document.getElementById('nav-conteudo')
+  showPage('conteudo', navBtn)
+  setTimeout(()=>{
+    renderConteudo(matEncontrada)
+    // Highlight do tópico
+    setTimeout(()=>{
+      const chk = document.querySelector(`[data-chk="${topId}"]`)
+      if(chk){ chk.closest('.top-card')?.scrollIntoView({behavior:'smooth',block:'center'}) }
+    }, 200)
+  }, 100)
+}
+
+
 ;(function(){
   const cpillsEl = document.getElementById('c-pills')
   if(!cpillsEl) return
@@ -2052,6 +2674,9 @@ function makeTopCard(top, cor, isExtra=false){
     cpillsEl.appendChild(b)
   })
   renderConteudo('Portugues')
+  // Chamar depois que CONTEUDO está pronto
+  revRenderAlertas()
+  diarioRender()
 })()
 
 // ── CONTEXTO TOTAL DO APP PARA A IA ─────────
@@ -2111,8 +2736,37 @@ function iaContextoApp(){
     })
   }catch(e){}
 
+  // Estado pessoal do dia
+  const humorHoje = humorCarregar()
+  const humorTexto = { otimo:'😄 Ótimo', ok:'😐 Ok', cansado:'😴 Cansado', ansioso:'😬 Ansioso' }
+  const metaHoje = metaCarregar()
+  const streakInfo = streakCarregar()
+  const aguaHoje = aguaCarregar()
+
+  // Revisões pendentes
+  const revPendentes = []
+  if(typeof CONTEUDO !== 'undefined'){
+    const hoje2 = new Date(); hoje2.setHours(0,0,0,0)
+    Object.keys(CONTEUDO).forEach(mat=>{
+      const {label,tops,extra=[]} = CONTEUDO[mat]
+      ;[...tops,...extra].forEach(top=>{
+        if(!cLer(top.id)) return
+        const info = revGetInfo(top.id)
+        if(!info) return
+        const prox = new Date(info.proxRev); prox.setHours(0,0,0,0)
+        if(prox <= hoje2) revPendentes.push(`${label}: ${top.n}`)
+      })
+    })
+  }
+
   return `
 ESTADO ATUAL DO APP (${hoje}):
+
+ESTADO PESSOAL DE HOJE:
+  Humor: ${humorHoje ? humorTexto[humorHoje] : 'Não informado'}
+  Meta do dia: ${metaHoje || 'Não definida'}
+  Sequência de estudos: ${streakInfo.dias} dia(s)
+  Água: ${aguaHoje}/8 copos
 
 PROVAS CADASTRADAS:
 ${provasTexto}
@@ -2132,6 +2786,9 @@ ${topicosFeitos.slice(0,10).map(t=>`  ✓ ${t}`).join('\n')||'  Nenhum ainda'}
 TÓPICOS PENDENTES (${topicosPendentes.length}):
 ${topicosPendentes.slice(0,8).map(t=>`  • ${t}`).join('\n')||'  Todos concluídos!'}
 
+REVISÕES ESPAÇADAS PENDENTES (${revPendentes.length}):
+${revPendentes.slice(0,5).map(t=>`  ⚡ ${t}`).join('\n')||'  Nenhuma revisão pendente'}
+
 AÇÕES QUE VOCÊ PODE FAZER:
 - Adicionar prova: ACAO:ADD_PROVA:{"mat":"...","data":"YYYY-MM-DD","tipo":"Parcial|Bimestral|Recuperação|Trabalho","bim":1,"desc":"...opcional"}
 - Adicionar evento na agenda: ACAO:ADD_EVENTO:{"titulo":"...","data":"YYYY-MM-DD","hora":"HH:MM","tipo":"pessoal|judo|escola|prova|lembrete","nota":"..."}
@@ -2139,6 +2796,7 @@ AÇÕES QUE VOCÊ PODE FAZER:
 - Iniciar Pomodoro: ACAO:INICIAR_POMO
 REGRA CRÍTICA: Coloque a ação no FIM da resposta em UMA ÚNICA LINHA. O JSON deve estar todo em uma linha só, sem quebras de linha dentro dele. Exemplo correto: ACAO:ADD_PROVA:{"mat":"Física","data":"2026-03-20","tipo":"Bimestral","bim":1}`
 }
+
 
 // ── EXECUTAR AÇÕES DA IA ─────────────────────
 function iaExecutarAcao(texto){
@@ -2839,20 +3497,93 @@ function horarioSalvar(h){ try{ localStorage.setItem(HORARIO_KEY,JSON.stringify(
 
 function horarioRenderHoje(){
   const dias = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado']
-  const hoje = dias[new Date().getDay()]
+  const agora = new Date()
+  const diaIdx = agora.getDay()
+  const hoje = dias[diaIdx]
   const horario = horarioCarregar()
   const aulas = horario[hoje] || []
   const wrap = document.getElementById('hoje-horario-wrap')
   const lista = document.getElementById('hoje-horario-lista')
   if(!wrap || !lista) return
   if(!aulas.length){ wrap.style.display='none'; return }
-  wrap.style.display='block'
-  lista.innerHTML = aulas.map(a=>`
-    <div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)">
-      <div style="font-size:10px;font-weight:700;color:var(--acc);min-width:44px">${a.split(' ')[0]}</div>
-      <div style="font-size:11px;color:var(--txt)">${a.split(' ').slice(1).join(' ')}</div>
-    </div>`).join('')
+  wrap.style.display = 'block'
+
+  // Hora atual em minutos
+  const agoraMin = agora.getHours()*60 + agora.getMinutes()
+
+  // Parsear horários
+  const aulasParsed = aulas.map((a, i) => {
+    const partes = a.split(' ')
+    const horaStr = partes[0] // "07:30"
+    const materia = partes.slice(1).join(' ')
+    const [h, m] = horaStr.split(':').map(Number)
+    const inicioMin = h*60 + (m||0)
+    // Fim = início da próxima aula ou início + 50min
+    const proxInicio = i < aulas.length-1
+      ? (() => { const p=aulas[i+1].split(' ')[0].split(':').map(Number); return p[0]*60+(p[1]||0) })()
+      : inicioMin + 50
+    return { horaStr, materia, inicioMin, fimMin: proxInicio }
+  })
+
+  // Determinar última aula
+  const ultimaAula = aulasParsed[aulasParsed.length-1]
+  const diaEncerrado = agoraMin >= ultimaAula.fimMin
+
+  // Renderizar aulas
+  let html = ''
+  if(!diaEncerrado){
+    aulasParsed.forEach(a => {
+      let estado = 'futura'
+      let badge = ''
+      if(agoraMin >= a.fimMin) estado = 'passada'
+      else if(agoraMin >= a.inicioMin){ estado = 'ativa'; badge = '<span class="aula-badge">AGORA</span>' }
+      html += `<div class="aula-item ${estado}">
+        <div class="aula-hora">${a.horaStr}</div>
+        <div class="aula-materia">${a.materia}</div>
+        ${badge}
+      </div>`
+    })
+  } else {
+    // Dia encerrado — mostrar mensagem
+    const amanha = dias[(diaIdx+1) % 7]
+    const fimDeSemana = amanha === 'Sábado' || amanha === 'Domingo' || hoje === 'Sexta' || hoje === 'Sábado' || hoje === 'Domingo'
+    const msg = fimDeSemana
+      ? '🎉 Aulas do dia finalizadas! Bom descanso e bom final de semana! 🥋'
+      : `✅ Aulas do dia finalizadas! Bom descanso!`
+    const sub = fimDeSemana
+      ? 'Aproveite o descanso — você merece!'
+      : `Amanhã tem aula de ${amanha}. Quer ver o horário?`
+    const btnAmanha = !fimDeSemana && (horario[amanha]||[]).length
+      ? `<button class="btn btn-ghost" style="font-size:10px;padding:8px 18px" onclick="horarioVerAmanha()">Ver horário de amanhã</button>`
+      : ''
+    html = `<div class="aula-fim-dia">
+      <div class="aula-fim-msg">${msg}</div>
+      <div class="aula-fim-sub">${sub}</div>
+      ${btnAmanha}
+    </div>`
+  }
+
+  lista.innerHTML = html
 }
+
+function horarioVerAmanha(){
+  const dias = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado']
+  const amanha = dias[(new Date().getDay()+1) % 7]
+  const horario = horarioCarregar()
+  const aulas = horario[amanha] || []
+  if(!aulas.length){ toast('Nenhum horário cadastrado para amanhã.'); return }
+  const lista = aulas.map(a => `🕐 ${a}`).join('\n')
+  popup({
+    icon:'📅',
+    title:`Horário de ${amanha}`,
+    msg: lista,
+    btns:[{txt:'Fechar',cls:'btn-ghost'}]
+  })
+}
+
+// Atualizar horário a cada minuto
+setInterval(horarioRenderHoje, 60000)
+
 
 async function iaSalvarProvas(){
   if(!iaProvasDetectadas.length){ toast('Nenhuma prova detectada para salvar.'); return }
