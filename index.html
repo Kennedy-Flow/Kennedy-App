@@ -72,7 +72,7 @@ html,body{background:var(--bg);color:var(--txt);font-family:var(--mono);min-heig
    NAV FLUTUANTE — island limpa + botão + elevado
 ══════════════════════════════════════════ */
 nav {
-  position:fixed; bottom:0; left:0; right:0; z-index:100;
+  position:fixed; bottom:0; left:0; right:0; z-index:999;
   display:flex; justify-content:center; align-items:flex-end;
   padding: 0 16px max(16px, env(safe-area-inset-bottom)) 16px;
   background:none; border:none; pointer-events:none;
@@ -108,11 +108,13 @@ nav {
   position: relative;
   min-width:0;
   overflow: visible;
+  isolation: isolate;
 }
 .nav-island > button svg {
   width:20px; height:20px; stroke:currentColor; fill:none;
   stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;
   transition: filter .3s, transform .25s cubic-bezier(.34,1.56,.64,1);
+  position:relative; z-index:2;
 }
 /* Active rules definidas abaixo no bloco SISTEMA DE LUZ */
 
@@ -229,7 +231,7 @@ nav {
 .badge{background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--acc)}
 
 /* PAGES */
-.page{display:none;padding:56px 14px calc(max(10px,env(safe-area-inset-bottom)) + 60px);animation:fadeIn .2s ease}
+.page{display:none;padding:56px 14px calc(max(10px,env(safe-area-inset-bottom)) + 60px);animation:fadeIn .2s ease;position:relative;z-index:1}
 .page.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 
@@ -1168,10 +1170,7 @@ nav {
 }
 .meta-card > * { position:relative; z-index:1; }
 
-/* Nav active::after pulsa */
-.nav-island > button.active::after {
-  animation: nav-light-pulse 2.5s ease-in-out infinite;
-}
+/* Pulso removido — barra estática e limpa */
 
 /* ── GLASS CARDS — efeito glassmorphism nos tap cards ── */
 .hoje-tap-card {
@@ -1211,11 +1210,10 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Page transitions */
-.page { animation: none; }
-.page.active { animation: page-enter .3s cubic-bezier(.4,0,.2,1) both; }
+/* Page transitions — sem criar stacking context que bloqueia nav */
+.page.active { animation: page-enter .25s cubic-bezier(.4,0,.2,1) forwards; }
 @keyframes page-enter {
-  from { opacity:0; transform:translateY(8px); }
+  from { opacity:0; transform:translateY(6px); }
   to   { opacity:1; transform:translateY(0); }
 }
 
