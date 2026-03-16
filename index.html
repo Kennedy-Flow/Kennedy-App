@@ -2413,6 +2413,11 @@ nav button.active svg {
 
 
 
+
+
+
+
+
 // ═══════════════════════════════════════════
 // DADOS
 // ═══════════════════════════════════════════
@@ -4341,6 +4346,11 @@ async function iaProcessarArquivo(e){
       }catch(e){ iaHorarioDetectado=null; console.warn('[IA] Erro ao parsear horário:', e) }
     }
 
+    const atividadeMatch = texto.match(/ATIVIDADE_JSON:(\[[\s\S]*?\])/)
+    if(atividadeMatch){
+      try{ iaAtividadesDetectadas = JSON.parse(atividadeMatch[1]) }catch(e){ iaAtividadesDetectadas=[] }
+    }
+
     // Se a IA descreveu horário mas não formatou JSON, força o tipo
     if(!iaHorarioDetectado && iaUltimoTipo === 'horario'){
       console.warn('[IA] Horário detectado mas sem JSON válido. Resposta:', texto.substring(0,300))
@@ -4400,18 +4410,22 @@ ATENÇÃO — abreviações de matérias comuns no Brasil:
 Se PROVAS: liste cada prova com data, matéria e tipo. Diga dias restantes a partir de hoje (${hoje}). No final:
 PROVAS_JSON:[{"mat":"Matemática","data":"2026-03-20","tipo":"Parcial","bim":1}]
 
-Se HORARIO: identifique as aulas de cada dia da semana com horário e matéria. Destaque as aulas de hoje (${diaSemana}). OBRIGATÓRIO incluir no final exatamente neste formato (sem quebra de linha dentro):
-HORARIO_JSON:{"Segunda":["07:00 Matemática","08:00 Português"],"Terça":["07:00 História"]}
+Se HORARIO: identifique TODAS as aulas de TODOS os dias da semana com horário e matéria. Use os nomes dos dias em português (Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado). Destaque as aulas de hoje (${diaSemana}) com "★ HOJE". Mostre a grade organizada e legível. OBRIGATÓRIO incluir no final exatamente neste formato (sem quebra de linha dentro do JSON):
+HORARIO_JSON:{"Segunda":["07:00 Matemática","08:00 Português","09:00 História"],"Terça":["07:00 Física","08:00 Química"]}
+IMPORTANTE: inclua TODOS os dias que tiverem aula. Horários no formato HH:MM. Matéria com nome completo (ex: Matemática, não MAT).
 
 Se EXERCICIO: resolva passo a passo de forma didática e clara.
 
-Se ATIVIDADE: liste as tarefas, priorize por urgência e sugira quanto tempo dedicar a cada uma.
+Se ATIVIDADE: liste as tarefas/trabalhos detectados, priorize por urgência, sugira tempo para cada uma. No final inclua obrigatoriamente:
+ATIVIDADE_JSON:[{"titulo":"Redação sobre meio ambiente","materia":"Português","prazo":"2026-03-20","prioridade":"alta"},{"titulo":"Lista de exercícios pág 45","materia":"Matemática","prazo":"","prioridade":"media"}]
+Prioridade: alta (urgente/prova próxima), media (prazo médio), baixa (sem pressa).
 
 Seja direto e organizado. Português brasileiro.`
 }
 
 // Horário detectado pela IA
 let iaHorarioDetectado = null
+let iaAtividadesDetectadas = []
 const HORARIO_KEY = 'horario_aulas'
 
 function horarioCarregar(){ try{ const r=localStorage.getItem(HORARIO_KEY); return r?JSON.parse(r):{} }catch(e){ return {} } }
@@ -4449,12 +4463,18 @@ function popupAulas(){
 
   if(!aulas.length){
     popDetalhes('🕐 Aulas de Hoje',
-      `<div style="text-align:center;padding:20px;color:var(--txt3);font-size:11px">
-        Nenhum horário cadastrado.<br>
-        <button class="btn btn-ghost" style="margin-top:12px;font-size:10px" onclick="this.closest('.pop-detalhe').remove();showPage('provas',document.getElementById('nav-provas'))">
-          Ir para Provas → cadastrar
-        </button>
-      </div>`)
+      `<div style="font-size:11px;color:var(--txt2);margin-bottom:14px;line-height:1.6">
+        Nenhum horário de aula cadastrado para <b>${hoje}</b>.<br>
+        Adicione seus horários abaixo:
+      </div>
+      <div id="aula-form-wrap" style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;gap:8px">
+          <input id="aula-hora-in" type="time" style="background:var(--bg3);border:1px solid var(--line);border-radius:10px;padding:9px 12px;color:var(--txt);font-family:var(--mono);font-size:11px;outline:none;width:110px;flex-shrink:0">
+          <input id="aula-mat-in" type="text" placeholder="Ex: Matemática" style="background:var(--bg3);border:1px solid var(--line);border-radius:10px;padding:9px 12px;color:var(--txt);font-family:var(--mono);font-size:11px;outline:none;flex:1">
+        </div>
+        <button class="btn btn-acc" style="width:100%" onclick="aulaCadastrarHoje()">+ Adicionar horário</button>
+      </div>`,
+      `<div id="aulas-lista-hoje" style="margin-top:4px"></div>`)
     return
   }
 
@@ -4493,8 +4513,56 @@ function popupAulas(){
       </div>`).join('')}
     </div>` : ''
 
-  popDetalhes(`🕐 Aulas · ${hoje}`, itens + secAmanha)
+  const btnAdd = `<div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--line)">
+    <div style="display:flex;gap:8px;margin-bottom:8px">
+      <input id="aula-hora-in" type="time" style="background:var(--bg3);border:1px solid var(--line);border-radius:10px;padding:8px 10px;color:var(--txt);font-family:var(--mono);font-size:11px;outline:none;width:100px;flex-shrink:0">
+      <input id="aula-mat-in" type="text" placeholder="Matéria..." style="background:var(--bg3);border:1px solid var(--line);border-radius:10px;padding:8px 10px;color:var(--txt);font-family:var(--mono);font-size:11px;outline:none;flex:1">
+    </div>
+    <div style="display:flex;gap:6px">
+      <button class="btn btn-acc" style="flex:1;font-size:10px" onclick="aulaCadastrarHoje()">+ Adicionar</button>
+      <button class="btn btn-ghost" style="flex:1;font-size:10px;color:var(--acc5)" onclick="aulaLimparHoje()">Limpar tudo</button>
+    </div>
+  </div>`
+  popDetalhes(`🕐 Aulas · ${hoje}`, itens + secAmanha + btnAdd)
   // Atualizar card
+  tapAulasAtualizar()
+}
+
+
+// Cadastrar horário de aula do dia de hoje
+function aulaCadastrarHoje(){
+  const horaEl = document.getElementById('aula-hora-in')
+  const matEl  = document.getElementById('aula-mat-in')
+  if(!horaEl || !matEl) return
+  const hora = horaEl.value
+  const mat  = matEl.value.trim()
+  if(!hora || !mat){ toast('Preencha o horário e a matéria','warn'); return }
+  const dias = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado']
+  const hoje = dias[new Date().getDay()]
+  const horario = horarioCarregar()
+  if(!horario[hoje]) horario[hoje] = []
+  horario[hoje].push(hora + ' ' + mat)
+  // Ordenar por horário
+  horario[hoje].sort()
+  horarioSalvar(horario)
+  horaEl.value = ''
+  matEl.value = ''
+  toast('Horário adicionado!', 'success')
+  // Fechar popup e reabrir atualizado
+  document.querySelector('.pop-detalhe')?.remove()
+  setTimeout(()=>popupAulas(), 100)
+}
+
+// Limpar todos horários de hoje
+function aulaLimparHoje(){
+  const dias = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado']
+  const hoje = dias[new Date().getDay()]
+  const horario = horarioCarregar()
+  delete horario[hoje]
+  horarioSalvar(horario)
+  toast('Horários removidos','warn')
+  document.querySelector('.pop-detalhe')?.remove()
+  horarioRenderHoje()
   tapAulasAtualizar()
 }
 
@@ -4780,9 +4848,55 @@ async function iaSalvarProvas(){
 }
 
 
+
+async function iaSalvarAtividades(){
+  if(!iaAtividadesDetectadas.length){
+    // Se não tem JSON, envia pro chat mesmo
+    const corpo = document.getElementById('ia-result-body')?.innerText || ''
+    if(corpo){
+      const ts = new Date().toISOString()
+      iaChatRenderMsg('ai', '📎 Atividades detectadas:\n\n' + corpo, ts)
+      const hist = iaHistCarregar()
+      hist.push({ role:'assistant', content: corpo, ts })
+      iaHistSalvar(hist)
+      iaChatHistorico.push({ role:'assistant', content: corpo })
+      document.getElementById('ia-chat-msgs')?.scrollTo(0, 99999)
+    }
+    iaLimpar()
+    return
+  }
+  // Salvar como tarefas
+  try{
+    const tarefas = JSON.parse(localStorage.getItem('tarefas_custom') || '[]')
+    let adicionadas = 0
+    iaAtividadesDetectadas.forEach(a => {
+      const titulo = a.titulo || a.title || ''
+      if(!titulo) return
+      const texto = `${titulo}${a.materia?' — '+a.materia:''}${a.prazo?' ('+a.prazo+')':''}`
+      tarefas.unshift({
+        id: Date.now() + Math.random(),
+        text: texto,
+        materia: a.materia || '',
+        prazo: a.prazo || '',
+        prio: a.prioridade || 'media',
+        done: false,
+        created: new Date().toISOString(),
+        origem: 'ia'
+      })
+      adicionadas++
+    })
+    localStorage.setItem('tarefas_custom', JSON.stringify(tarefas))
+    toast({title:`${adicionadas} tarefa(s) salva(s)! ✓`, sub:'Veja na aba de tarefas do app', type:'success'})
+  }catch(e){
+    toast('Erro ao salvar tarefas: ' + e.message, 'error')
+  }
+  iaAtividadesDetectadas = []
+  iaLimpar()
+}
+
 async function iaSalvarResultado(){
-  if(iaUltimoTipo === 'horario') return iaSalvarHorario()
-  if(iaUltimoTipo === 'provas')  return iaSalvarProvas()
+  if(iaUltimoTipo === 'horario')   return iaSalvarHorario()
+  if(iaUltimoTipo === 'provas')    return iaSalvarProvas()
   // exercicio / atividade → envia para o chat
   const corpo = document.getElementById('ia-result-body')?.innerText || ''
   if(corpo){
@@ -4814,7 +4928,10 @@ async function iaSalvarHorario(){
   }
   horarioSalvar(iaHorarioDetectado)
   horarioRenderHoje()
-  toast({title:'Horário salvo! ✓', sub:'Aparece na aba Hoje', type:'success'})
+  // Contar dias e aulas salvos
+  const totalDias = Object.keys(iaHorarioDetectado).length
+  const totalAulas = Object.values(iaHorarioDetectado).reduce((a,v)=>a+v.length,0)
+  toast({title:`Horário salvo! ✓ ${totalDias} dias, ${totalAulas} aulas`, sub:'Aparece no card AULAS na aba Hoje', type:'success'})
   iaLimpar()
 }
 
@@ -5473,6 +5590,11 @@ if ('serviceWorker' in navigator) {
     reg.update()
   }).catch(() => {})
 }
+
+
+
+
+
 
 
 
