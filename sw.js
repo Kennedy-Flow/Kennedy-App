@@ -1,4 +1,4 @@
-const CACHE = 'kennedy-v29.1';
+const CACHE = 'kennedy-v29.2';
 // index.html NUNCA entra no cache — sempre busca da rede
 const STATIC_ASSETS = ['./manifest.json','./icon.png','./icon-192.png'];
 
