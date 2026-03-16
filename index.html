@@ -2418,6 +2418,8 @@ nav button.active svg {
 
 
 
+
+
 // ═══════════════════════════════════════════
 // DADOS
 // ═══════════════════════════════════════════
@@ -4332,7 +4334,21 @@ async function iaProcessarArquivo(e){
 
     // Detectar tipo
     const tipoMatch = texto.match(/TIPO_DOC:(provas|horario|exercicio|atividade)/i)
-    iaUltimoTipo = tipoMatch ? tipoMatch[1].toLowerCase() : 'provas'
+    if(tipoMatch){
+      iaUltimoTipo = tipoMatch[1].toLowerCase()
+    } else {
+      // Fallback: detectar pelo conteúdo da resposta
+      const t = texto.toLowerCase()
+      if(t.includes('horario_json') || t.includes('grade') || t.includes('segunda') && t.includes('terça')){
+        iaUltimoTipo = 'horario'
+      } else if(t.includes('provas_json') || t.includes('dias restantes') || t.includes('avaliação')){
+        iaUltimoTipo = 'provas'
+      } else if(t.includes('questão') || t.includes('resolução') || t.includes('passo a passo') || t.includes('resposta:')){
+        iaUltimoTipo = 'exercicio'
+      } else {
+        iaUltimoTipo = 'exercicio' // fallback mais seguro que provas
+      }
+    }
 
     // Extrair JSON conforme tipo
     const provasMatch = texto.match(/PROVAS_JSON:(\[[\s\S]*?\])/)
@@ -4364,7 +4380,7 @@ async function iaProcessarArquivo(e){
       .trim()
 
     // Título e botão conforme tipo
-    const titulos = { provas:'📅 PROVAS DETECTADAS', horario:'🕐 HORÁRIO DE AULAS', exercicio:'📝 RESOLUÇÃO', atividade:'📋 ATIVIDADE' }
+    const titulos = { provas:'📅 PROVAS DETECTADAS', horario:'🕐 HORÁRIO DE AULAS', exercicio:'📝 RESOLUÇÃO', atividade:'📝 RESULTADO' }
     const btnTextos = { provas:'SALVAR PROVAS', horario:'SALVAR HORÁRIO', exercicio:'ENVIAR AO CHAT', atividade:'ENVIAR AO CHAT' }
     document.getElementById('ia-result-title').textContent = '✦ ' + (titulos[iaUltimoTipo]||'ANÁLISE DA IA')
     document.getElementById('ia-btn-salvar').textContent = btnTextos[iaUltimoTipo]||'SALVAR'
@@ -4383,44 +4399,44 @@ async function iaProcessarArquivo(e){
 function iaPromptMulti(){
   const hoje = new Date().toLocaleDateString('pt-BR')
   const diaSemana = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'][new Date().getDay()]
-  return `Analise esta imagem/documento e identifique o tipo.
+  return `Você é um assistente escolar brasileiro. Analise a imagem e siga as instruções abaixo.
 
-PASSO 1 — Identifique o tipo e coloque na primeira linha:
-TIPO_DOC:provas  (se for calendário/lista de provas/avaliações)
-TIPO_DOC:horario  (se for grade/tabela de horários de aulas)
-TIPO_DOC:exercicio  (se for exercício, questão ou prova para resolver)
-TIPO_DOC:atividade  (se for tarefa, lista de atividades ou trabalho)
+PASSO 1 — IDENTIFICAÇÃO OBRIGATÓRIA:
+Olhe a imagem e classifique em UM dos tipos abaixo. Coloque EXATAMENTE na primeira linha da sua resposta:
 
-ATENÇÃO — abreviações de matérias comuns no Brasil:
-- LI, L/I, Líng. Estrangeiras, Línguas Indígenas/Estrangeiras = Inglês e Espanhol (são duas aulas separadas)
-- LP = Língua Portuguesa
-- MAT = Matemática
-- HIS = História
-- GEO = Geografia
-- BIO = Biologia
-- FIS = Física
-- QUI = Química
-- SOC = Sociologia
-- FIL = Filosofia
-- EF = Educação Física
-- ART = Arte
+TIPO_DOC:horario   → use se for tabela/grade de horários de aulas (tem dias da semana + matérias + horários)
+TIPO_DOC:provas    → use se for calendário de provas/avaliações/datas de prova
+TIPO_DOC:exercicio → use se for exercício, questão, problema para resolver ou prova com perguntas
 
+EXEMPLOS:
+- Tabela com Segunda 07:00 Matemática = TIPO_DOC:horario
+- Lista com "Prova de Biologia dia 20/03" = TIPO_DOC:provas
+- "Questão 1: calcule..." = TIPO_DOC:exercicio
 
+ABREVIAÇÕES COMUNS:
+LP=Português, MAT=Matemática, HIS=História, GEO=Geografia, BIO=Biologia
+FIS=Física, QUI=Química, SOC=Sociologia, FIL=Filosofia, EF=Ed.Física, ART=Arte
+LI/LIE=Inglês/Espanhol
 
-Se PROVAS: liste cada prova com data, matéria e tipo. Diga dias restantes a partir de hoje (${hoje}). No final:
+PASSO 2 — PROCESSAMENTO CONFORME TIPO:
+
+Se TIPO_DOC:horario:
+Mostre a grade organizada por dia com todos os horários e matérias.
+Destaque o dia de hoje (${diaSemana}) com ★.
+OBRIGATÓRIO ao final (tudo em uma linha só, sem quebrar):
+HORARIO_JSON:{"Segunda":["07:00 Matemática","08:00 Português"],"Terça":["07:00 Física"]}
+
+Se TIPO_DOC:provas:
+Liste cada prova com: matéria, data, tipo (Parcial/Final/Simulado), bimestre.
+Calcule quantos dias faltam a partir de hoje (${hoje}).
+OBRIGATÓRIO ao final:
 PROVAS_JSON:[{"mat":"Matemática","data":"2026-03-20","tipo":"Parcial","bim":1}]
 
-Se HORARIO: identifique TODAS as aulas de TODOS os dias da semana com horário e matéria. Use os nomes dos dias em português (Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado). Destaque as aulas de hoje (${diaSemana}) com "★ HOJE". Mostre a grade organizada e legível. OBRIGATÓRIO incluir no final exatamente neste formato (sem quebra de linha dentro do JSON):
-HORARIO_JSON:{"Segunda":["07:00 Matemática","08:00 Português","09:00 História"],"Terça":["07:00 Física","08:00 Química"]}
-IMPORTANTE: inclua TODOS os dias que tiverem aula. Horários no formato HH:MM. Matéria com nome completo (ex: Matemática, não MAT).
+Se TIPO_DOC:exercicio:
+Resolva passo a passo de forma clara e didática.
+Se tiver múltiplas questões, resolva todas numeradas.
 
-Se EXERCICIO: resolva passo a passo de forma didática e clara.
-
-Se ATIVIDADE: liste as tarefas/trabalhos detectados, priorize por urgência, sugira tempo para cada uma. No final inclua obrigatoriamente:
-ATIVIDADE_JSON:[{"titulo":"Redação sobre meio ambiente","materia":"Português","prazo":"2026-03-20","prioridade":"alta"},{"titulo":"Lista de exercícios pág 45","materia":"Matemática","prazo":"","prioridade":"media"}]
-Prioridade: alta (urgente/prova próxima), media (prazo médio), baixa (sem pressa).
-
-Seja direto e organizado. Português brasileiro.`
+Responda em português brasileiro. Seja objetivo.`
 }
 
 // Horário detectado pela IA
@@ -5590,6 +5606,8 @@ if ('serviceWorker' in navigator) {
     reg.update()
   }).catch(() => {})
 }
+
+
 
 
 
