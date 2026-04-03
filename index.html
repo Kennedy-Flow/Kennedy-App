@@ -1818,8 +1818,287 @@ nav button.active svg {
 .hoje-tap-card:active .hoje-tap-icon svg { stroke: var(--acc); }
 .pausa-card-icon svg { stroke: var(--acc-soft); }
 
+/* ══════════════════════════════════════
+   NOVAS ABAS — IA + PROJETOS + SALA
+══════════════════════════════════════ */
+
+/* Tabs internas (aba IA) */
+.ia-tab-btn {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--txt3);
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: var(--mono);
+  transition: all .2s;
+  flex-shrink: 0;
+}
+.ia-tab-btn.active {
+  background: color-mix(in srgb, var(--acc) 15%, var(--bg2));
+  border-color: var(--acc);
+  color: var(--acc-soft);
+  box-shadow: 0 2px 10px color-mix(in srgb, var(--acc) 25%, transparent);
+}
+.ia-tab-panel { display: block; }
+
+/* Histórico de sessões */
+.ia-hist-item {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: border-color .2s;
+}
+.ia-hist-item:active { border-color: var(--acc); }
+.ia-hist-data { font-size: 8px; color: var(--txt3); letter-spacing: .08em; margin-bottom: 4px; }
+.ia-hist-preview { font-size: 11px; color: var(--txt2); line-height: 1.5; }
+.ia-hist-count { font-size: 8px; color: var(--acc-soft); margin-top: 4px; }
+
+/* Sala de aula — item */
+.sala-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 11px;
+}
+.sala-item:last-child { border-bottom: none; }
+.sala-mat { color: var(--acc-soft); font-size: 9px; font-weight: 700; letter-spacing: .06em; min-width: 64px; }
+.sala-top { color: var(--txt2); flex: 1; }
+.sala-del { background: none; border: none; cursor: pointer; color: var(--txt3); font-size: 14px; padding: 0 4px; line-height: 1; }
+.sala-del:active { color: var(--acc5); }
+
+/* Sugestão IA na aba provas */
+#prova-sugestao-body b { color: var(--acc-soft); }
+#prova-sugestao-body ul { padding-left: 16px; margin: 4px 0; }
+
+/* ── PROJETOS ── */
+.proj-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 11px;
+  color: var(--txt2);
+  transition: all .2s;
+  margin-bottom: 8px;
+}
+.proj-chip.ativo {
+  background: color-mix(in srgb, var(--acc) 12%, var(--bg2));
+  border-color: var(--acc);
+  color: var(--txt);
+}
+.proj-chip-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--acc);
+  flex-shrink: 0;
+}
+.proj-chip-nome { flex: 1; font-weight: 600; }
+.proj-chip-cnt { font-size: 9px; color: var(--txt3); }
+
+/* Kanban colunas */
+.proj-col {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 120px;
+}
+.proj-col-hdr {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  margin-bottom: 4px;
+  text-align: center;
+}
+.proj-col-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.proj-task {
+  background: var(--bg1);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 7px 8px;
+  font-size: 10px;
+  color: var(--txt);
+  line-height: 1.4;
+  cursor: pointer;
+  transition: border-color .15s;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+.proj-task:active { border-color: var(--acc); }
+.proj-task-del {
+  background: none; border: none; cursor: pointer;
+  color: var(--txt3); font-size: 12px; padding: 0;
+  line-height: 1; flex-shrink: 0; margin-left: auto;
+}
+.proj-add-task {
+  background: none;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  padding: 5px;
+  font-size: 9px;
+  color: var(--txt3);
+  cursor: pointer;
+  width: 100%;
+  font-family: var(--mono);
+  transition: all .15s;
+}
+.proj-add-task:active { border-color: var(--acc); color: var(--acc); }
+
+/* Links do projeto */
+.proj-link-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 9px;
+  color: var(--acc2);
+  text-decoration: none;
+  transition: border-color .15s;
+}
+.proj-link-chip:active { border-color: var(--acc2); }
+.proj-link-del {
+  background: none; border: none; cursor: pointer;
+  color: var(--txt3); font-size: 11px; padding: 0 0 0 2px;
+}
+
+/* Google Calendar */
+.gcal-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 11px;
+  color: var(--txt);
+  font-family: var(--mono);
+  transition: border-color .2s;
+  margin-bottom: 10px;
+}
+.gcal-btn:active { border-color: var(--acc); }
+.gcal-status {
+  font-size: 9px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-left: auto;
+}
+.gcal-status.conectado { background: #10b98120; color: #10b981; border: 1px solid #10b98140; }
+.gcal-status.desconectado { background: #f59e0b20; color: #f59e0b; border: 1px solid #f59e0b40; }
+.gcal-evento {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 12px;
+  background: var(--bg2);
+  border-left: 3px solid var(--acc2);
+  border-radius: 0 10px 10px 0;
+  margin-bottom: 6px;
+  font-size: 11px;
+}
+.gcal-evento-hora { font-size: 9px; color: var(--txt3); white-space: nowrap; margin-top: 2px; }
+.gcal-evento-titulo { color: var(--txt); flex: 1; }
+.gcal-evento-cal { font-size: 8px; color: var(--acc2); margin-top: 2px; }
+
+/* Botões de cor do modal de projeto */
+.proj-cor-btn {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform .15s, border-color .15s;
+  flex-shrink: 0;
+}
+.proj-cor-btn:active { transform: scale(.88); }
+.proj-cor-btn.ativa { border-color: #fff; transform: scale(1.18); }
+
+/* ── RICH TEXT no chat da IA ── */
+.ia-msg-content { line-height: 1.65; font-size: 12px; }
+.ia-msg-content p { margin: 0 0 8px; }
+.ia-msg-content p:last-child { margin-bottom: 0; }
+.ia-msg-content strong, .ia-msg-content b { color: var(--txt); font-weight: 700; }
+.ia-msg-content em, .ia-msg-content i { color: var(--acc-soft); font-style: italic; }
+.ia-msg-content ul, .ia-msg-content ol {
+  padding-left: 18px; margin: 6px 0; display: flex; flex-direction: column; gap: 3px;
+}
+.ia-msg-content li { color: var(--txt2); }
+.ia-msg-content h1,.ia-msg-content h2,.ia-msg-content h3 {
+  font-family: var(--sans); font-weight: 800; color: var(--txt);
+  margin: 10px 0 4px; line-height: 1.2;
+}
+.ia-msg-content h1 { font-size: 15px; }
+.ia-msg-content h2 { font-size: 13px; color: var(--acc-soft); }
+.ia-msg-content h3 { font-size: 11px; color: var(--acc2); letter-spacing: .04em; }
+.ia-msg-content code {
+  background: var(--bg); border: 1px solid var(--line);
+  border-radius: 5px; padding: 1px 5px;
+  font-family: var(--mono); font-size: 10px; color: var(--acc2);
+}
+.ia-msg-content pre {
+  background: var(--bg); border: 1px solid var(--line);
+  border-radius: 10px; padding: 12px 14px; overflow-x: auto;
+  margin: 8px 0;
+}
+.ia-msg-content pre code {
+  background: none; border: none; padding: 0;
+  font-size: 11px; color: var(--acc-soft); white-space: pre;
+}
+/* Bloco matemático */
+.ia-math-block {
+  background: color-mix(in srgb, var(--acc) 8%, var(--bg2));
+  border: 1px solid color-mix(in srgb, var(--acc) 20%, var(--line));
+  border-radius: 12px; padding: 12px 16px; margin: 8px 0;
+  font-family: var(--mono); font-size: 13px; color: var(--acc-soft);
+  text-align: center; letter-spacing: .04em; overflow-x: auto;
+}
+.ia-math-inline {
+  background: color-mix(in srgb, var(--acc) 10%, var(--bg2));
+  border-radius: 5px; padding: 1px 6px;
+  font-family: var(--mono); font-size: 11px; color: var(--acc4);
+}
+/* Separador horizontal */
+.ia-msg-content hr {
+  border: none; border-top: 1px solid var(--line); margin: 10px 0;
+}
+/* Blockquote */
+.ia-msg-content blockquote {
+  border-left: 3px solid var(--acc); padding-left: 12px;
+  margin: 8px 0; color: var(--txt2); font-style: italic;
+}
+/* Tabela */
+.ia-msg-content table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 10px; }
+.ia-msg-content th { background: var(--bg2); color: var(--acc-soft); padding: 6px 10px; border: 1px solid var(--line); text-align: left; }
+.ia-msg-content td { padding: 5px 10px; border: 1px solid var(--line); color: var(--txt2); }
+
 </style>
-</head>
 <body>
 
 <div class="app-shell">
@@ -2089,6 +2368,21 @@ nav button.active svg {
 <!-- PAGE AGENDA -->
 <div id="page-agenda" class="page">
 
+  <!-- Google Calendar sync -->
+  <div class="sec-header" style="margin-top:0">GOOGLE CALENDAR</div>
+  <button class="gcal-btn" onclick="gcalConectar()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="var(--acc2)" stroke-width="1.8"/><line x1="3" y1="10" x2="21" y2="10" stroke="var(--acc2)" stroke-width="1.8"/><line x1="8" y1="2" x2="8" y2="6" stroke="var(--acc2)" stroke-width="1.8"/><line x1="16" y1="2" x2="16" y2="6" stroke="var(--acc2)" stroke-width="1.8"/></svg>
+    <span id="gcal-btn-txt">Conectar Google Calendar</span>
+    <span class="gcal-status desconectado" id="gcal-status-badge">desconectado</span>
+  </button>
+  <div id="gcal-eventos-wrap" style="display:none;margin-bottom:12px">
+    <div style="font-size:9px;color:var(--txt3);letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between">
+      PRÓXIMOS EVENTOS DO GOOGLE
+      <button class="btn btn-ghost" style="font-size:8px;padding:4px 8px" onclick="gcalSincronizar()">↺ ATUALIZAR</button>
+    </div>
+    <div id="gcal-lista"></div>
+  </div>
+
   <!-- Cabeçalho do mês -->
   <div class="cal-header">
     <button class="cal-nav" onclick="calNavMes(-1)">
@@ -2225,10 +2519,7 @@ nav button.active svg {
       <div><div class="toggle-lbl">Modo edição provas</div><div class="toggle-sub">Libera botão apagar por 5 minutos</div></div>
       <button class="btn btn-ghost" style="font-size:9px;padding:6px 12px" id="btn-modo-edicao" onclick="avalModoEdicao()">ATIVAR</button>
     </div>
-    <div class="toggle-row" style="border-bottom:none;margin-top:4px">
-      <div><div class="toggle-lbl">Notificações</div><div class="toggle-sub">Provas, Pomodoro e lembretes</div></div>
-      <button class="btn btn-ghost" style="font-size:9px;padding:6px 12px" id="btn-notif" onclick="notifPedir()">ATIVAR</button>
-    </div>
+
   </div>
 </div>
 
@@ -2238,69 +2529,30 @@ nav button.active svg {
   <!-- Destaque próxima prova -->
   <div id="prova-destaque"></div>
 
-  <!-- MÓDULO IA -->
-  <div class="sec-header">ASSISTENTE IA</div>
-
-  <!-- Botão análise multi-função -->
-  <div style="position:relative;margin-bottom:8px">
-    <button class="ia-btn" onclick="iaAbrirOpcoes()">
-      <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
-      ANALISAR IMAGEM / DOCUMENTO
-    </button>
-    <div id="ia-opcoes-menu" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg2);border:1px solid var(--line);border-radius:10px;overflow:hidden;z-index:50;margin-top:4px;box-shadow:0 8px 24px #0006">
-      <div onclick="iaEscolherCamera()" style="padding:13px 16px;cursor:pointer;font-size:11px;color:var(--txt);display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line)">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        Tirar foto agora
-      </div>
-      <div onclick="iaEscolherArquivo()" style="padding:13px 16px;cursor:pointer;font-size:11px;color:var(--txt);display:flex;align-items:center;gap:10px">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--acc2)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
-        Carregar arquivo (imagem ou PDF)
-      </div>
+  <!-- Sugestão de Estudo IA -->
+  <div class="sec-header">O QUE ESTUDAR</div>
+  <div class="card" style="padding:14px;margin-bottom:10px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <div style="font-size:9px;color:var(--txt3);letter-spacing:.08em">SUGESTÃO DA IA · BASEADO NAS SUAS PROVAS</div>
+      <button class="btn btn-ghost" style="font-size:8px;padding:5px 10px" onclick="provaSugestaoGerar()">↺ GERAR</button>
+    </div>
+    <div id="prova-sugestao-body" style="font-size:11px;color:var(--txt2);line-height:1.7;min-height:40px">
+      <span style="color:var(--txt3)">Toque em GERAR para ver sugestão personalizada ✦</span>
+    </div>
+    <div id="prova-sugestao-loading" style="display:none;text-align:center;padding:12px 0">
+      <div class="ia-spinner" style="margin:0 auto"></div>
     </div>
   </div>
 
-  <!-- Inputs invisíveis -->
-  <input type="file" id="ia-file-camera" accept="image/*" capture="environment" style="display:none" onchange="iaProcessarArquivo(event)">
-  <input type="file" id="ia-file-upload" accept="image/*,application/pdf" style="display:none" onchange="iaProcessarArquivo(event)">
-
-  <!-- Preview -->
-  <img id="ia-preview" class="ia-preview" alt="preview">
-  <div id="ia-preview-nome" style="font-size:10px;color:var(--acc2);margin-bottom:6px"></div>
-
-  <!-- Loading -->
-  <div class="ia-loading" id="ia-loading">
-    <div class="ia-spinner"></div>
-    <div class="ia-loading-txt" id="ia-loading-txt">Analisando...</div>
-  </div>
-
-  <!-- Resultado análise -->
-  <div class="ia-result" id="ia-result">
-    <div class="ia-result-title" id="ia-result-title">✦ ANÁLISE DA IA</div>
-    <div class="ia-result-body" id="ia-result-body"></div>
-    <div style="display:flex;gap:8px;margin-top:12px" id="ia-result-btns">
-      <button class="btn btn-primary" style="flex:1;font-size:9px" id="ia-btn-salvar" onclick="iaSalvarResultado()">SALVAR</button>
-      <button class="btn btn-ghost" style="font-size:9px;padding:8px 12px" onclick="iaLimpar()">LIMPAR</button>
-    </div>
-  </div>
-
-  <!-- Chat IA -->
-  <div class="sec-header">CHAT COM A IA</div>
-  <div class="ia-chat">
-    <div class="ia-chat-header">
-      <span class="ia-chat-header-title">✦ ASSISTENTE DE ESTUDOS</span>
-      <div class="ia-chat-header-btns">
-        <button class="ia-chat-hbtn" onclick="iaChatLimpar()" title="Limpar histórico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg> limpar</button>
-      </div>
-    </div>
-    <div class="ia-chat-msgs" id="ia-chat-msgs"></div>
-    <div class="ia-chat-input-wrap">
-      <input type="text" id="ia-chat-in" placeholder="Digite sua dúvida..." onkeydown="if(event.key==='Enter')iaChatEnviar()">
-      <button id="ia-audio-btn" class="ia-btn-audio" onclick="iaToggleAudio()" title="Gravar áudio">
-        <svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0014 0"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg>
-      </button>
-      <button class="ia-btn-send" id="ia-chat-send" onclick="iaChatEnviar()" title="Enviar">
-        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-      </button>
+  <!-- Conteúdos em sala -->
+  <div class="sec-header">CONTEÚDOS DA SALA</div>
+  <div class="card" style="padding:14px;margin-bottom:10px" id="sala-conteudos-card">
+    <div style="font-size:9px;color:var(--txt3);margin-bottom:10px;letter-spacing:.08em">O QUE OS PROFESSORES ESTÃO PASSANDO</div>
+    <div id="sala-lista"></div>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <input id="sala-mat" type="text" placeholder="Matéria" style="flex:1;background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;color:var(--txt);font-family:var(--mono);font-size:11px;outline:none">
+      <input id="sala-top" type="text" placeholder="Conteúdo / tópico" style="flex:2;background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;color:var(--txt);font-family:var(--mono);font-size:11px;outline:none" onkeydown="if(event.key==='Enter')salaAdd()">
+      <button class="btn btn-primary" style="font-size:9px;padding:8px 12px" onclick="salaAdd()">+</button>
     </div>
   </div>
 
@@ -2346,6 +2598,161 @@ nav button.active svg {
     </div>
   </div>
 </div>
+<!-- PAGE IA -->
+<div id="page-ia" class="page">
+  <!-- Tabs internas -->
+  <div style="display:flex;gap:6px;margin-bottom:14px;overflow-x:auto;padding-bottom:2px">
+    <button class="ia-tab-btn active" data-iatab="chat" onclick="iaTabSwitch(this,'chat')">CHAT</button>
+    <button class="ia-tab-btn" data-iatab="imagem" onclick="iaTabSwitch(this,'imagem')">IMAGEM/DOC</button>
+    <button class="ia-tab-btn" data-iatab="historico" onclick="iaTabSwitch(this,'historico')">HISTÓRICO</button>
+  </div>
+
+  <!-- TAB CHAT -->
+  <div id="ia-tab-chat" class="ia-tab-panel">
+    <div class="ia-chat">
+      <div class="ia-chat-header">
+        <span class="ia-chat-header-title">✦ ASSISTENTE IA</span>
+        <div class="ia-chat-header-btns">
+          <button class="ia-chat-hbtn" onclick="iaChatLimpar()" title="Limpar histórico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg> limpar
+          </button>
+        </div>
+      </div>
+      <div class="ia-chat-msgs" id="ia-chat-msgs"></div>
+      <div class="ia-chat-input-wrap">
+        <input type="text" id="ia-chat-in" placeholder="Pesquisa, dúvida, atividade..." onkeydown="if(event.key==='Enter')iaChatEnviar()">
+        <button id="ia-audio-btn" class="ia-btn-audio" onclick="iaToggleAudio()" title="Gravar áudio">
+          <svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0014 0"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg>
+        </button>
+        <button class="ia-btn-send" id="ia-chat-send" onclick="iaChatEnviar()" title="Enviar">
+          <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- Loading -->
+    <div class="ia-loading" id="ia-loading">
+      <div class="ia-spinner"></div>
+      <div class="ia-loading-txt" id="ia-loading-txt">Pensando...</div>
+    </div>
+  </div>
+
+  <!-- TAB IMAGEM/DOC -->
+  <div id="ia-tab-imagem" class="ia-tab-panel" style="display:none">
+    <div style="position:relative;margin-bottom:8px">
+      <button class="ia-btn" onclick="iaAbrirOpcoes()">
+        <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        ANALISAR IMAGEM / DOCUMENTO
+      </button>
+      <div id="ia-opcoes-menu" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg2);border:1px solid var(--line);border-radius:10px;overflow:hidden;z-index:50;margin-top:4px;box-shadow:0 8px 24px #0006">
+        <div onclick="iaEscolherCamera()" style="padding:13px 16px;cursor:pointer;font-size:11px;color:var(--txt);display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          Tirar foto agora
+        </div>
+        <div onclick="iaEscolherArquivo()" style="padding:13px 16px;cursor:pointer;font-size:11px;color:var(--txt);display:flex;align-items:center;gap:10px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--acc2)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+          Carregar arquivo (imagem ou PDF)
+        </div>
+      </div>
+    </div>
+    <input type="file" id="ia-file-camera" accept="image/*" capture="environment" style="display:none" onchange="iaProcessarArquivo(event)">
+    <input type="file" id="ia-file-upload" accept="image/*,application/pdf" style="display:none" onchange="iaProcessarArquivo(event)">
+    <img id="ia-preview" class="ia-preview" alt="preview">
+    <div id="ia-preview-nome" style="font-size:10px;color:var(--acc2);margin-bottom:6px"></div>
+    <div class="ia-result" id="ia-result">
+      <div class="ia-result-title" id="ia-result-title">✦ ANÁLISE DA IA</div>
+      <div class="ia-result-body" id="ia-result-body"></div>
+      <div style="display:flex;gap:8px;margin-top:12px" id="ia-result-btns">
+        <button class="btn btn-primary" style="flex:1;font-size:9px" id="ia-btn-salvar" onclick="iaSalvarResultado()">SALVAR</button>
+        <button class="btn btn-ghost" style="font-size:9px;padding:8px 12px" onclick="iaLimpar()">LIMPAR</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB HISTÓRICO -->
+  <div id="ia-tab-historico" class="ia-tab-panel" style="display:none">
+    <div class="sec-header" style="margin-top:0">SESSÕES ANTERIORES</div>
+    <div id="ia-hist-lista" style="display:flex;flex-direction:column;gap:8px"></div>
+    <div style="text-align:center;margin-top:12px">
+      <button class="btn btn-ghost" style="font-size:9px" onclick="iaHistLimparTudo()">APAGAR TODO HISTÓRICO</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE PROJETOS -->
+<div id="page-proj" class="page">
+  <!-- Selector de projeto ativo -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+    <div style="font-size:9px;color:var(--txt3);letter-spacing:.08em">PROJETO ATIVO</div>
+    <button class="btn btn-primary" style="font-size:9px;padding:6px 12px" onclick="projNovoPop()">+ NOVO</button>
+  </div>
+  <div id="proj-selector" style="margin-bottom:14px"></div>
+
+  <!-- Painéis do projeto selecionado -->
+  <div id="proj-detail" style="display:none">
+    <!-- Header do projeto -->
+    <div class="card" style="padding:14px;margin-bottom:10px" id="proj-header-card">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px">
+        <div>
+          <div class="card-title" id="proj-nome-titulo" style="font-size:14px"></div>
+          <div id="proj-desc-txt" style="font-size:11px;color:var(--txt2);margin-top:4px;line-height:1.5"></div>
+        </div>
+        <div style="display:flex;gap:6px;flex-shrink:0">
+          <button class="btn btn-ghost" style="font-size:8px;padding:5px 8px" onclick="projEditar()">EDIT</button>
+          <button class="btn btn-ghost" style="font-size:8px;padding:5px 8px;color:var(--acc5)" onclick="projDeletar()">DEL</button>
+        </div>
+      </div>
+      <div id="proj-links-wrap" style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px"></div>
+    </div>
+
+    <!-- Kanban -->
+    <div class="sec-header">TAREFAS</div>
+    <div id="proj-kanban" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px">
+      <div class="proj-col">
+        <div class="proj-col-hdr" style="color:var(--acc5)">A FAZER</div>
+        <div id="proj-col-todo" class="proj-col-body"></div>
+        <button class="proj-add-task" onclick="projAddTarefa('todo')">+ tarefa</button>
+      </div>
+      <div class="proj-col">
+        <div class="proj-col-hdr" style="color:var(--acc4)">FAZENDO</div>
+        <div id="proj-col-doing" class="proj-col-body"></div>
+        <button class="proj-add-task" onclick="projAddTarefa('doing')">+ tarefa</button>
+      </div>
+      <div class="proj-col">
+        <div class="proj-col-hdr" style="color:var(--acc3)">FEITO</div>
+        <div id="proj-col-done" class="proj-col-body"></div>
+        <button class="proj-add-task" onclick="projAddTarefa('done')">+ tarefa</button>
+      </div>
+    </div>
+
+    <!-- IA Dev Assistant -->
+    <div class="sec-header">IA DEV ASSISTANT</div>
+    <div class="ia-chat" id="proj-ia-chat">
+      <div class="ia-chat-header">
+        <span class="ia-chat-header-title">✦ DEV ASSISTANT</span>
+        <div class="ia-chat-header-btns">
+          <button class="ia-chat-hbtn" onclick="projIaLimpar()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg> limpar
+          </button>
+        </div>
+      </div>
+      <div class="ia-chat-msgs" id="proj-ia-msgs"></div>
+      <div class="ia-chat-input-wrap">
+        <input type="text" id="proj-ia-in" placeholder="Ex: Como estruturar este projeto? Explica um erro..." onkeydown="if(event.key==='Enter')projIaEnviar()">
+        <button class="ia-btn-send" onclick="projIaEnviar()">
+          <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="ia-loading" id="proj-ia-loading" style="display:none">
+      <div class="ia-spinner"></div>
+    </div>
+  </div>
+
+  <div id="proj-vazio" style="text-align:center;padding:40px 20px;color:var(--txt3);font-size:11px">
+    Nenhum projeto ainda.<br>Toque em <b style="color:var(--acc)">+ NOVO</b> para criar.
+  </div>
+</div>
+
 <!-- NAV -->
 <nav>
   <div class="nav-island">
@@ -2374,9 +2781,9 @@ nav button.active svg {
       </svg>
       PROVAS
     </button>
-    <button onclick="showPage('conteudo',this)">
-      <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
-      CONTEÚDO
+    <button onclick="showPage('ia',this)">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      IA
     </button>
   </div>
 </nav>
@@ -2390,6 +2797,14 @@ nav button.active svg {
   <button class="nav-mais-item" onclick="navMaisIr('agenda')">
     <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
     AGENDA
+  </button>
+  <button class="nav-mais-item" onclick="navMaisIr('conteudo')">
+    <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+    CONTEÚDO
+  </button>
+  <button class="nav-mais-item" onclick="navMaisIr('proj')">
+    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8,21 12,17 16,21"/></svg>
+    PROJETOS
   </button>
   <button class="nav-mais-item" onclick="navMaisIr('dicas')">
     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -2406,6 +2821,82 @@ nav button.active svg {
       <div class="popup-msg" id="popup-msg"></div>
     </div>
     <div class="popup-btns" id="popup-btns"></div>
+  </div>
+</div>
+
+<!-- MODAL NOVO PROJETO -->
+<div class="popup-overlay" id="proj-modal-overlay" style="display:none;opacity:0;pointer-events:none">
+  <div class="popup-box" style="max-width:340px">
+    <div class="popup-box-scroll" style="padding:20px 20px 0">
+      <div class="popup-title" id="proj-modal-titulo">NOVO PROJETO</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px">
+        <div>
+          <div style="font-size:9px;color:var(--txt3);letter-spacing:.08em;margin-bottom:5px">NOME *</div>
+          <input id="proj-modal-nome" type="text" placeholder="Ex: Kennedy App, Site do Cliente..." maxlength="40"
+            style="width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--txt);font-family:var(--mono);font-size:12px;outline:none;box-sizing:border-box"
+            onkeydown="if(event.key==='Enter')document.getElementById('proj-modal-desc').focus()">
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--txt3);letter-spacing:.08em;margin-bottom:5px">DESCRIÇÃO <span style="opacity:.5">(opcional)</span></div>
+          <textarea id="proj-modal-desc" placeholder="Do que se trata? Qual a stack?" maxlength="120"
+            style="width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--txt);font-family:var(--mono);font-size:11px;outline:none;resize:none;min-height:60px;box-sizing:border-box;line-height:1.5"></textarea>
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--txt3);letter-spacing:.08em;margin-bottom:8px">COR</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap" id="proj-modal-cores">
+            <div class="proj-cor-btn" data-cor="#7c3aed" style="background:#7c3aed" onclick="projCorSel(this)"></div>
+            <div class="proj-cor-btn" data-cor="#06b6d4" style="background:#06b6d4" onclick="projCorSel(this)"></div>
+            <div class="proj-cor-btn" data-cor="#10b981" style="background:#10b981" onclick="projCorSel(this)"></div>
+            <div class="proj-cor-btn" data-cor="#f59e0b" style="background:#f59e0b" onclick="projCorSel(this)"></div>
+            <div class="proj-cor-btn" data-cor="#f43f5e" style="background:#f43f5e" onclick="projCorSel(this)"></div>
+            <div class="proj-cor-btn ativa" data-cor="#8b5cf6" style="background:#8b5cf6" onclick="projCorSel(this)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="popup-btns" style="padding:16px 20px;display:flex;gap:8px">
+      <button class="popup-btn popup-btn-confirm" style="flex:1" onclick="projModalSalvar()">CRIAR</button>
+      <button class="popup-btn popup-btn-cancel" onclick="projModalFechar()">CANCELAR</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL NOVA TAREFA -->
+<div class="popup-overlay" id="proj-task-overlay" style="display:none;opacity:0;pointer-events:none">
+  <div class="popup-box" style="max-width:320px">
+    <div class="popup-box-scroll" style="padding:20px 20px 0">
+      <div class="popup-title">NOVA TAREFA</div>
+      <div style="margin-top:14px">
+        <input id="proj-task-in" type="text" placeholder="Descreva a tarefa..." maxlength="80"
+          style="width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--txt);font-family:var(--mono);font-size:12px;outline:none;box-sizing:border-box"
+          onkeydown="if(event.key==='Enter')projTaskSalvar()">
+        <input type="hidden" id="proj-task-status" value="todo">
+      </div>
+    </div>
+    <div class="popup-btns" style="padding:16px 20px;display:flex;gap:8px">
+      <button class="popup-btn popup-btn-confirm" style="flex:1" onclick="projTaskSalvar()">ADICIONAR</button>
+      <button class="popup-btn popup-btn-cancel" onclick="projTaskFechar()">CANCELAR</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL NOVO LINK -->
+<div class="popup-overlay" id="proj-link-overlay" style="display:none;opacity:0;pointer-events:none">
+  <div class="popup-box" style="max-width:320px">
+    <div class="popup-box-scroll" style="padding:20px 20px 0">
+      <div class="popup-title">ADICIONAR LINK</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px">
+        <input id="proj-link-nome" type="text" placeholder="Nome (ex: GitHub, Figma...)" maxlength="30"
+          style="width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--txt);font-family:var(--mono);font-size:12px;outline:none;box-sizing:border-box">
+        <input id="proj-link-url" type="url" placeholder="https://..." maxlength="200"
+          style="width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--txt);font-family:var(--mono);font-size:11px;outline:none;box-sizing:border-box"
+          onkeydown="if(event.key==='Enter')projLinkSalvar()">
+      </div>
+    </div>
+    <div class="popup-btns" style="padding:16px 20px;display:flex;gap:8px">
+      <button class="popup-btn popup-btn-confirm" style="flex:1" onclick="projLinkSalvar()">SALVAR</button>
+      <button class="popup-btn popup-btn-cancel" onclick="projLinkFechar()">CANCELAR</button>
+    </div>
   </div>
 </div>
 
@@ -2544,7 +3035,8 @@ const PAGE_TITLES={
   agenda:['Agenda','CALENDÁRIO DE EVENTOS'],
   mat:['Matérias','DISTRIBUIÇÃO SEMANAL'],
   conteudo:['Conteúdo','TÓPICOS E RESUMOS'],
-  
+  ia:['IA','ASSISTENTE · PESQUISA · ANÁLISE'],
+  proj:['Projetos','DEV · TAREFAS · IA ASSISTANT'],
   dicas:['Dicas','TDAH · SONO · ORGANIZAÇÃO'],
 }
 function showPage(id,btn){
@@ -2558,7 +3050,11 @@ function showPage(id,btn){
   document.getElementById('page-title').textContent=t
   document.getElementById('page-sub').textContent=s
   // Re-renderizar provas ao entrar na aba (garante banner sempre visível)
-  if(id==='provas') renderProvas()
+  if(id==='provas'){ renderProvas(); salaRender() }
+  // Re-renderizar projetos
+  if(id==='proj') projRender()
+  // Re-carregar histórico da IA
+  if(id==='ia') iaChatCarregarTela()
   // Fecha menu + se aberto
   navMaisFechar()
 }
@@ -2587,6 +3083,8 @@ function navMaisIr(pagina){
   const [t,s]=PAGE_TITLES[pagina]||[pagina,pagina]
   document.getElementById('page-title').textContent=t
   document.getElementById('page-sub').textContent=s
+  if(pagina==='proj') projRender()
+  if(pagina==='ia') iaChatCarregarTela()
   navMaisFechar()
 }
 // Fecha menu ao clicar fora
@@ -3688,6 +4186,22 @@ function iaContextoApp(){
     })
   }
 
+  // Projetos ativos
+  const projsAtivos = projCarregar()
+  const projsTexto = projsAtivos.length
+    ? projsAtivos.map(p=>{
+        const pendentes = (p.tarefas||[]).filter(t=>t.status!=='done').length
+        const feitos = (p.tarefas||[]).filter(t=>t.status==='done').length
+        return `  - ${p.nome}: ${p.desc||'sem descrição'} | ${pendentes} tarefa(s) pendente(s), ${feitos} feita(s)`
+      }).join('\n')
+    : '  Nenhum projeto cadastrado'
+
+  // Conteúdos da sala
+  const salaItems = salaCarregar()
+  const salaTexto = salaItems.length
+    ? salaItems.map(s=>`  - ${s.mat}: ${s.top}`).join('\n')
+    : '  Nenhum conteúdo da sala cadastrado'
+
   return `
 ESTADO ATUAL DO APP (${hoje}):
 
@@ -3702,6 +4216,12 @@ ${provasTexto}
 
 PRÓXIMOS 7 DIAS NA AGENDA:
 ${eventosTexto}
+
+CONTEÚDOS DA SALA (o que os professores estão passando):
+${salaTexto}
+
+PROJETOS DE DESENVOLVIMENTO:
+${projsTexto}
 
 CHECKLIST DE HOJE — JÁ FEZ:
 ${checkFeitos.length ? checkFeitos.map(c=>`  ✓ ${c}`).join('\n') : '  (nenhum ainda)'}
@@ -3721,7 +4241,7 @@ ${revPendentes.slice(0,5).map(t=>`  ⚡ ${t}`).join('\n')||'  Nenhuma revisão p
 AÇÕES QUE VOCÊ PODE FAZER:
 - Adicionar prova: ACAO:ADD_PROVA:{"mat":"...","data":"YYYY-MM-DD","tipo":"Parcial|Bimestral|Recuperação|Trabalho","bim":1,"desc":"...opcional"}
 - Adicionar evento na agenda: ACAO:ADD_EVENTO:{"titulo":"...","data":"YYYY-MM-DD","hora":"HH:MM","tipo":"pessoal|judo|escola|prova|lembrete","nota":"..."}
-- Navegar para uma aba: ACAO:IR_PARA:provas|agenda|conteudo|pomo|hoje|semana|dicas
+- Navegar para uma aba: ACAO:IR_PARA:provas|agenda|conteudo|pomo|hoje|semana|dicas|ia|proj
 - Iniciar Pomodoro: ACAO:INICIAR_POMO
 REGRA CRÍTICA: Coloque a ação no FIM da resposta em UMA ÚNICA LINHA. O JSON deve estar todo em uma linha só, sem quebras de linha dentro dele. Exemplo correto: ACAO:ADD_PROVA:{"mat":"Física","data":"2026-03-20","tipo":"Bimestral","bim":1}`
 }
@@ -4039,37 +4559,109 @@ function iaHoraLabel(date){
   return d.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'})
 }
 
-// ── FORMATAÇÃO MATEMÁTICA ─────────────────────
+// ── FORMATAÇÃO RICH TEXT (Markdown + Math) ───
 function iaFormatarTexto(texto){
-  // Escapa HTML básico
+  if(!texto) return ''
   let t = texto
+
+  // 1. Blocos de código (``` ... ```) — processar ANTES de escapar
+  const blocosCodigo = []
+  t = t.replace(/```(\w*)\n?([\s\S]*?)```/g, (_, lang, code)=>{
+    const idx = blocosCodigo.length
+    blocosCodigo.push({lang:lang||'', code})
+    return `\x00CODE${idx}\x00`
+  })
+
+  // 2. Blocos matemáticos \[ ... \] ou $$ ... $$
+  const blocosMath = []
+  t = t.replace(/\\\[([\s\S]*?)\\\]|\$\$([\s\S]*?)\$\$/g, (_,a,b)=>{
+    const idx = blocosMath.length
+    blocosMath.push((a||b).trim())
+    return `\x00MATH${idx}\x00`
+  })
+
+  // 3. Escapar HTML
+  t = t
     .replace(/&/g,'&amp;')
     .replace(/</g,'&lt;')
     .replace(/>/g,'&gt;')
 
-  // Títulos (## Título ou **Título**)
-  t = t.replace(/^#{1,3}\s+(.+)$/gm, '<h3>$1</h3>')
-  t = t.replace(/\*\*([^*\n]+)\*\*/g, '<b>$1</b>')
-  t = t.replace(/\*([^*\n]+)\*/g, '<i>$1</i>')
+  // 4. Títulos ## e ###
+  t = t.replace(/^### (.+)$/gm,'<h3>$1</h3>')
+  t = t.replace(/^## (.+)$/gm,'<h2>$1</h2>')
+  t = t.replace(/^# (.+)$/gm,'<h1>$1</h1>')
 
-  // Expoentes: 10^2 → 10<sup>2</sup> | x^{n+1} → x<sup>n+1</sup>
-  t = t.replace(/(\w+)\^\{([^}]+)\}/g, '$1<sup>$2</sup>')
-  t = t.replace(/(\w+)\^(\w+)/g, '$1<sup>$2</sup>')
+  // 5. Negrito e itálico
+  t = t.replace(/\*\*\*([^*\n]+)\*\*\*/g,'<strong><em>$1</em></strong>')
+  t = t.replace(/\*\*([^*\n]+)\*\*/g,'<strong>$1</strong>')
+  t = t.replace(/\*([^*\n]+)\*/g,'<em>$1</em>')
+  t = t.replace(/__([^_\n]+)__/g,'<strong>$1</strong>')
+  t = t.replace(/_([^_\n]+)_/g,'<em>$1</em>')
 
-  // Índices: x_{n} → x<sub>n</sub>
-  t = t.replace(/(\w+)_\{([^}]+)\}/g, '$1<sub>$2</sub>')
-  t = t.replace(/(\w+)_(\w)/g, '$1<sub>$2</sub>')
+  // 6. Código inline `code`
+  t = t.replace(/`([^`]+)`/g,'<code>$1</code>')
 
-  // Frações simples: a/b entre espaços fica igual (não mexe)
-  // Raiz: sqrt{x} → √x
-  t = t.replace(/sqrt\{([^}]+)\}/g, '√($1)')
-  t = t.replace(/√(\w+)/g, '√$1')
+  // 7. Math inline \( ... \) ou $ ... $
+  t = t.replace(/\\\(([^)]+)\\\)/g,(_, m)=>`<span class="ia-math-inline">${m.trim()}</span>`)
+  t = t.replace(/(?<![a-zA-Z\d])\$([^$\n]+)\$(?![a-zA-Z\d])/g,(_, m)=>`<span class="ia-math-inline">${m.trim()}</span>`)
 
-  // Código inline: `code`
-  t = t.replace(/`([^`]+)`/g, '<code>$1</code>')
+  // 8. Expoentes e índices (notação matemática sem LaTeX)
+  t = t.replace(/(\S+)\^\{([^}]+)\}/g,'$1<sup>$2</sup>')
+  t = t.replace(/([A-Za-z\d]+)\^([A-Za-z\d]+)/g,'$1<sup>$2</sup>')
+  t = t.replace(/(\S+)_\{([^}]+)\}/g,'$1<sub>$2</sub>')
+  t = t.replace(/sqrt\{([^}]+)\}/g,'√($1)')
 
-  // Quebras de linha
+  // 9. Separador ---
+  t = t.replace(/^---$/gm,'<hr>')
+
+  // 10. Blockquote > texto
+  t = t.replace(/^&gt; (.+)$/gm,'<blockquote>$1</blockquote>')
+
+  // 11. Listas
+  // Listas não-ordenadas
+  t = t.replace(/((?:^[•\-\*] .+\n?)+)/gm, block => {
+    const items = block.trim().split('\n').map(l=>l.replace(/^[•\-\*] /,'').trim())
+    return '<ul>'+items.map(i=>`<li>${i}</li>`).join('')+'</ul>'
+  })
+  // Listas ordenadas
+  t = t.replace(/((?:^\d+[.)]\s.+\n?)+)/gm, block => {
+    const items = block.trim().split('\n').map(l=>l.replace(/^\d+[.)]\s/,'').trim())
+    return '<ol>'+items.map(i=>`<li>${i}</li>`).join('')+'</ol>'
+  })
+
+  // 12. Tabela markdown | col | col |
+  t = t.replace(/((?:^\|.+\|\n?)+)/gm, block => {
+    const linhas = block.trim().split('\n').filter(l=>!/^\|[\s:-]+\|/.test(l))
+    if(linhas.length < 1) return block
+    const [header, ...rows] = linhas
+    const ths = header.split('|').filter(c=>c.trim()).map(c=>`<th>${c.trim()}</th>`).join('')
+    const trs = rows.map(r=>{
+      const tds = r.split('|').filter(c=>c.trim()).map(c=>`<td>${c.trim()}</td>`).join('')
+      return `<tr>${tds}</tr>`
+    }).join('')
+    return `<table><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table>`
+  })
+
+  // 13. Quebras de linha
+  t = t.replace(/\n\n/g,'</p><p>')
   t = t.replace(/\n/g,'<br>')
+  t = `<p>${t}</p>`
+  // Limpar parágrafos em torno de blocos de bloco
+  t = t.replace(/<p>(<(?:h[123]|ul|ol|blockquote|table|hr)[^>]*>)/g,'$1')
+  t = t.replace(/(<\/(?:h[123]|ul|ol|blockquote|table)>)<\/p>/g,'$1')
+  t = t.replace(/<p><\/p>/g,'')
+
+  // 14. Restaurar blocos de código
+  blocosCodigo.forEach(({lang,code},i)=>{
+    const escaped = code.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    t = t.replace(`\x00CODE${i}\x00`,`<pre><code class="lang-${lang}">${escaped}</code></pre>`)
+  })
+
+  // 15. Restaurar blocos math
+  blocosMath.forEach((math,i)=>{
+    const escaped = math.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    t = t.replace(`\x00MATH${i}\x00`,`<div class="ia-math-block">${escaped}</div>`)
+  })
 
   return t
 }
@@ -4096,9 +4688,12 @@ function iaChatRenderMsg(role, texto, timestamp, skipSave){
   div.className = `ia-msg ${role}`
 
   const conteudo = document.createElement('div')
-  conteudo.innerHTML = role === 'ai' ? iaFormatarTexto(texto) : texto
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/\n/g,'<br>')
+  conteudo.className = 'ia-msg-content'
+  if(role === 'ai'){
+    conteudo.innerHTML = iaFormatarTexto(texto)
+  } else {
+    conteudo.textContent = texto
+  }
   div.appendChild(conteudo)
 
   const hora = document.createElement('div')
@@ -5600,21 +6195,614 @@ if (isIOS && !isInStandalone && isMobile) {
   bar.classList.add('show')
 }
 
+
+// ═══════════════════════════════════════════
+// ABA IA — TABS INTERNAS
+// ═══════════════════════════════════════════
+function iaTabSwitch(btn, tab){
+  document.querySelectorAll('.ia-tab-btn').forEach(b=>b.classList.remove('active'))
+  btn.classList.add('active')
+  document.querySelectorAll('.ia-tab-panel').forEach(p=>p.style.display='none')
+  document.getElementById('ia-tab-'+tab).style.display='block'
+  if(tab==='historico') iaHistRenderLista()
+}
+
+// ─── Histórico: renderizar lista de sessões ─
+function iaHistRenderLista(){
+  const hist = iaHistCarregar()
+  const lista = document.getElementById('ia-hist-lista')
+  if(!lista) return
+  if(!hist.length){
+    lista.innerHTML='<div style="text-align:center;padding:24px;color:var(--txt3);font-size:11px">Nenhuma conversa ainda.</div>'
+    return
+  }
+  // Agrupar por data
+  const porData = {}
+  hist.forEach(m=>{
+    const dt = m.ts ? new Date(m.ts).toLocaleDateString('pt-BR') : 'Hoje'
+    if(!porData[dt]) porData[dt]=[]
+    porData[dt].push(m)
+  })
+  lista.innerHTML = Object.entries(porData).reverse().map(([dt,msgs])=>{
+    const resumo = msgs.find(m=>m.role==='user')?.content?.slice(0,80)||'...'
+    const qtd = msgs.length
+    return `<div class="ia-hist-item">
+      <div class="ia-hist-data">${dt}</div>
+      <div class="ia-hist-preview">${resumo}${resumo.length>=80?'…':''}</div>
+      <div class="ia-hist-count">${qtd} mensagem${qtd!==1?'s':''}</div>
+    </div>`
+  }).join('')
+}
+
+async function iaHistLimparTudo(){
+  const ok = await popup({icon:'🗑',title:'Apagar histórico completo',msg:'Isso apaga todas as conversas salvas. Não tem volta.',btns:[{label:'APAGAR TUDO',type:'danger',value:true},{label:'Cancelar',type:'cancel',value:false}]})
+  if(!ok) return
+  try{ localStorage.removeItem(IA_HIST_KEY) }catch(e){}
+  iaChatHistorico = []
+  const msgs = document.getElementById('ia-chat-msgs')
+  if(msgs) msgs.innerHTML=''
+  iaChatRenderMsg('ai','Histórico apagado! Como posso te ajudar?',new Date().toISOString(),true)
+  iaHistRenderLista()
+  toast({title:'Histórico apagado',type:'success'})
+}
+
+// ═══════════════════════════════════════════
+// CONTEÚDOS DA SALA
+// ═══════════════════════════════════════════
+const SALA_KEY = 'sala_conteudos'
+function salaCarregar(){ try{ const r=localStorage.getItem(SALA_KEY); return r?JSON.parse(r):[] }catch(e){ return [] } }
+function salaSalvar(d){ try{ localStorage.setItem(SALA_KEY,JSON.stringify(d)) }catch(e){} }
+
+function salaRender(){
+  const lista = document.getElementById('sala-lista')
+  if(!lista) return
+  const items = salaCarregar()
+  if(!items.length){
+    lista.innerHTML='<div style="color:var(--txt3);font-size:10px;padding:8px 0">Nenhum conteúdo cadastrado ainda.</div>'
+    return
+  }
+  lista.innerHTML = items.map((it,i)=>`
+    <div class="sala-item">
+      <span class="sala-mat">${it.mat.toUpperCase()}</span>
+      <span class="sala-top">${it.top}</span>
+      <button class="sala-del" onclick="salaDel(${i})">✕</button>
+    </div>`).join('')
+}
+
+function salaAdd(){
+  const mat = document.getElementById('sala-mat')?.value.trim()
+  const top = document.getElementById('sala-top')?.value.trim()
+  if(!mat||!top){ toast('Preencha matéria e conteúdo!'); return }
+  const items = salaCarregar()
+  items.push({mat,top})
+  salaSalvar(items)
+  document.getElementById('sala-mat').value=''
+  document.getElementById('sala-top').value=''
+  salaRender()
+  toast({title:'Conteúdo salvo!',type:'success'})
+}
+
+function salaDel(i){
+  const items = salaCarregar()
+  items.splice(i,1)
+  salaSalvar(items)
+  salaRender()
+}
+
+// ═══════════════════════════════════════════
+// SUGESTÃO DE ESTUDO — PROVAS
+// ═══════════════════════════════════════════
+async function provaSugestaoGerar(){
+  const body = document.getElementById('prova-sugestao-body')
+  const loading = document.getElementById('prova-sugestao-loading')
+  if(!body||!loading) return
+  body.style.display='none'
+  loading.style.display='block'
+  try{
+    const provas = avalCarregar().concat(AVAL_FIXAS||[])
+    const sala = salaCarregar()
+    const hoje = new Date().toLocaleDateString('pt-BR')
+    const provasTexto = provas.slice(0,8).map(p=>`${p.mat} — ${p.data} (${p.tipo})`).join('\n')||'nenhuma cadastrada'
+    const salaTexto = sala.map(s=>`${s.mat}: ${s.top}`).join('\n')||'nenhum conteúdo cadastrado'
+    const resp = await fetch(GROQ_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},
+      body:JSON.stringify({
+        model:GROQ_CHAT_MODEL,max_tokens:500,
+        messages:[
+          {role:'system',content:'Você é assistente de estudos do Kennedy, 3º ano EM, TDAH+autismo. Seja direto, listas curtas, máx 150 palavras.'},
+          {role:'user',content:`Hoje: ${hoje}\n\nPROVAS:\n${provasTexto}\n\nCONTEÚDOS DA SALA:\n${salaTexto}\n\nMe dá uma sugestão objetiva de o que estudar hoje/amanhã. Priorize o que está mais próximo. Use emojis.`}
+        ]
+      })
+    })
+    const data = await resp.json()
+    const txt = data.choices?.[0]?.message?.content||'Não consegui gerar agora.'
+    body.innerHTML = txt
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<b>$1</b>').replace(/\*(.*?)\*/g,'<i>$1</i>')
+  }catch(e){
+    body.innerHTML='<span style="color:var(--acc5)">Erro ao conectar. Tenta de novo!</span>'
+  }finally{
+    loading.style.display='none'
+    body.style.display='block'
+  }
+}
+
+// ═══════════════════════════════════════════
+// PROJETOS
+// ═══════════════════════════════════════════
+const PROJ_KEY = 'projetos_v1'
+let projAtivoId = null
+
+function projCarregar(){ try{ const r=localStorage.getItem(PROJ_KEY); return r?JSON.parse(r):[] }catch(e){ return [] } }
+function projSalvar(d){ try{ localStorage.setItem(PROJ_KEY,JSON.stringify(d)) }catch(e){} }
+
+function projRender(){
+  const projs = projCarregar()
+  const sel = document.getElementById('proj-selector')
+  const detail = document.getElementById('proj-detail')
+  const vazio = document.getElementById('proj-vazio')
+  if(!sel) return
+
+  if(!projs.length){
+    sel.innerHTML=''
+    if(detail) detail.style.display='none'
+    if(vazio) vazio.style.display='block'
+    return
+  }
+  if(vazio) vazio.style.display='none'
+
+  sel.innerHTML = projs.map(p=>`
+    <div class="proj-chip ${p.id===projAtivoId?'ativo':''}" onclick="projSelecionar('${p.id}')">
+      <div class="proj-chip-dot" style="background:${p.cor||'var(--acc)'}"></div>
+      <span class="proj-chip-nome">${p.nome}</span>
+      <span class="proj-chip-cnt">${(p.tarefas||[]).filter(t=>t.status!=='done').length} pendentes</span>
+    </div>`).join('')
+
+  if(projAtivoId){
+    const proj = projs.find(p=>p.id===projAtivoId)
+    if(proj){ projRenderDetail(proj); if(detail) detail.style.display='block' }
+    else{ if(detail) detail.style.display='none' }
+  } else {
+    // seleciona o primeiro automaticamente
+    projSelecionar(projs[0].id)
+  }
+}
+
+function projSelecionar(id){
+  projAtivoId = id
+  projRender()
+}
+
+function projRenderDetail(proj){
+  const el = id => document.getElementById(id)
+  el('proj-nome-titulo').textContent = proj.nome
+  el('proj-desc-txt').textContent = proj.desc||''
+
+  // Links
+  const linksWrap = el('proj-links-wrap')
+  linksWrap.innerHTML = (proj.links||[]).map((l,i)=>`
+    <a href="${l.url}" target="_blank" class="proj-link-chip">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      ${l.nome}
+    </a>
+    <button class="proj-link-del" onclick="projDelLink(${i})" title="Remover link">✕</button>`).join('')
+  const addLinkHtml = `<button onclick="projAddLink()" style="background:none;border:1px dashed var(--line);border-radius:20px;padding:4px 10px;font-size:9px;color:var(--txt3);cursor:pointer;font-family:var(--mono)">+ link</button>`
+  linksWrap.innerHTML += addLinkHtml
+
+  // Kanban
+  ;['todo','doing','done'].forEach(status=>{
+    const col = el('proj-col-'+status)
+    const tarefas = (proj.tarefas||[]).filter(t=>t.status===status)
+    col.innerHTML = tarefas.map((t,i)=>{
+      const realIdx = (proj.tarefas||[]).findIndex(x=>x.id===t.id)
+      return `<div class="proj-task">
+        <span style="flex:1">${t.texto}</span>
+        <div style="display:flex;gap:4px;flex-shrink:0">
+          ${status!=='done'?`<button class="proj-task-del" onclick="projMoverTask('${t.id}','${status==='todo'?'doing':'done'}')" title="Avançar">→</button>`:''}
+          ${status!=='todo'?`<button class="proj-task-del" onclick="projMoverTask('${t.id}','${status==='doing'?'todo':'doing'}')" title="Voltar">←</button>`:''}
+          <button class="proj-task-del" onclick="projDelTask('${t.id}')" title="Apagar">✕</button>
+        </div>
+      </div>`
+    }).join('')
+  })
+
+  // IA chat do projeto — carregar histórico
+  projIaCarregar(proj.id)
+}
+
+function projMoverTask(taskId, novoStatus){
+  const projs = projCarregar()
+  const proj = projs.find(p=>p.id===projAtivoId)
+  if(!proj) return
+  const task = (proj.tarefas||[]).find(t=>t.id===taskId)
+  if(task) task.status = novoStatus
+  projSalvar(projs)
+  projRenderDetail(proj)
+  projRender()
+}
+
+function projDelTask(taskId){
+  const projs = projCarregar()
+  const proj = projs.find(p=>p.id===projAtivoId)
+  if(!proj) return
+  proj.tarefas = (proj.tarefas||[]).filter(t=>t.id!==taskId)
+  projSalvar(projs)
+  projRenderDetail(proj)
+  projRender()
+}
+
+function projDelLink(i){
+  const projs = projCarregar()
+  const proj = projs.find(p=>p.id===projAtivoId)
+  if(!proj) return
+  (proj.links||[]).splice(i,1)
+  projSalvar(projs)
+  projRenderDetail(proj)
+}
+
+function projNovoPop(){
+  const overlay = document.getElementById('proj-modal-overlay')
+  document.getElementById('proj-modal-titulo').textContent = 'NOVO PROJETO'
+  document.getElementById('proj-modal-nome').value = ''
+  document.getElementById('proj-modal-desc').value = ''
+  document.querySelectorAll('.proj-cor-btn').forEach(b=>b.classList.remove('ativa'))
+  const ultimo = document.querySelector('.proj-cor-btn[data-cor="#8b5cf6"]')
+  if(ultimo) ultimo.classList.add('ativa')
+  overlay.style.display = 'flex'
+  // Restaurar onclick do salvar para o padrão
+  const btnSalvar = overlay.querySelector('.popup-btn-confirm')
+  if(btnSalvar){ btnSalvar.textContent='CRIAR'; btnSalvar.onclick=projModalSalvar }
+  requestAnimationFrame(()=>overlay.classList.add('show'))
+  setTimeout(()=>document.getElementById('proj-modal-nome').focus(), 120)
+}
+
+function projCorSel(btn){
+  document.querySelectorAll('.proj-cor-btn').forEach(b=>b.classList.remove('ativa'))
+  btn.classList.add('ativa')
+}
+
+function projModalFechar(){
+  const overlay = document.getElementById('proj-modal-overlay')
+  overlay.classList.remove('show')
+  setTimeout(()=>{ overlay.style.display='none' }, 220)
+}
+
+function projModalSalvar(){
+  const nome = document.getElementById('proj-modal-nome').value.trim()
+  if(!nome){ document.getElementById('proj-modal-nome').focus(); toast({title:'Digite o nome do projeto',type:'warn'}); return }
+  const desc = document.getElementById('proj-modal-desc').value.trim()
+  const corEl = document.querySelector('.proj-cor-btn.ativa')
+  const cor = corEl ? corEl.dataset.cor : '#8b5cf6'
+  const projs = projCarregar()
+  const novoId = 'p'+Date.now()
+  projs.push({id:novoId,nome,desc,cor,tarefas:[],links:[],iaChat:[]})
+  projSalvar(projs)
+  projAtivoId = novoId
+  projModalFechar()
+  projRender()
+  toast({title:`Projeto "${nome}" criado! 🚀`,type:'success'})
+}
+
+function projEditar(){
+  const projs = projCarregar()
+  const proj = projs.find(p=>p.id===projAtivoId)
+  if(!proj) return
+  const overlay = document.getElementById('proj-modal-overlay')
+  document.getElementById('proj-modal-titulo').textContent = 'EDITAR PROJETO'
+  document.getElementById('proj-modal-nome').value = proj.nome
+  document.getElementById('proj-modal-desc').value = proj.desc||''
+  document.querySelectorAll('.proj-cor-btn').forEach(b=>{
+    b.classList.toggle('ativa', b.dataset.cor===proj.cor)
+  })
+  overlay.style.display='flex'
+  requestAnimationFrame(()=>overlay.classList.add('show'))
+  const btnSalvar = overlay.querySelector('.popup-btn-confirm')
+  btnSalvar.textContent='SALVAR'
+  btnSalvar.onclick = ()=>{
+    const nome = document.getElementById('proj-modal-nome').value.trim()
+    if(!nome){ toast({title:'Digite o nome',type:'warn'}); return }
+    proj.nome = nome
+    proj.desc = document.getElementById('proj-modal-desc').value.trim()
+    const corEl = document.querySelector('.proj-cor-btn.ativa')
+    if(corEl) proj.cor = corEl.dataset.cor
+    projSalvar(projs)
+    projModalFechar()
+    projRender()
+    btnSalvar.onclick = projModalSalvar
+    btnSalvar.textContent = 'CRIAR'
+  }
+}
+
+let _projTaskStatusPendente = 'todo'
+function projAddTarefa(status){
+  _projTaskStatusPendente = status
+  document.getElementById('proj-task-in').value = ''
+  const overlay = document.getElementById('proj-task-overlay')
+  overlay.style.display='flex'
+  requestAnimationFrame(()=>overlay.classList.add('show'))
+  setTimeout(()=>document.getElementById('proj-task-in').focus(),120)
+}
+function projTaskFechar(){
+  const overlay = document.getElementById('proj-task-overlay')
+  overlay.classList.remove('show')
+  setTimeout(()=>overlay.style.display='none',220)
+}
+function projTaskSalvar(){
+  const texto = document.getElementById('proj-task-in').value.trim()
+  if(!texto){ toast({title:'Digite a tarefa',type:'warn'}); return }
+  const projs = projCarregar()
+  const proj = projs.find(p=>p.id===projAtivoId)
+  if(!proj) return
+  if(!proj.tarefas) proj.tarefas=[]
+  proj.tarefas.push({id:'t'+Date.now(),texto,status:_projTaskStatusPendente})
+  projSalvar(projs)
+  projTaskFechar()
+  projRenderDetail(proj)
+  projRender()
+}
+
+function projAddLink(){
+  document.getElementById('proj-link-nome').value=''
+  document.getElementById('proj-link-url').value=''
+  const overlay = document.getElementById('proj-link-overlay')
+  overlay.style.display='flex'
+  requestAnimationFrame(()=>overlay.classList.add('show'))
+  setTimeout(()=>document.getElementById('proj-link-nome').focus(),120)
+}
+function projLinkFechar(){
+  const overlay = document.getElementById('proj-link-overlay')
+  overlay.classList.remove('show')
+  setTimeout(()=>overlay.style.display='none',220)
+}
+function projLinkSalvar(){
+  const nome = document.getElementById('proj-link-nome').value.trim()
+  const url = document.getElementById('proj-link-url').value.trim()
+  if(!nome||!url){ toast({title:'Preencha nome e URL',type:'warn'}); return }
+  const projs = projCarregar()
+  const proj = projs.find(p=>p.id===projAtivoId)
+  if(!proj) return
+  if(!proj.links) proj.links=[]
+  proj.links.push({nome,url})
+  projSalvar(projs)
+  projLinkFechar()
+  projRenderDetail(proj)
+}
+
+async function projDeletar(){
+  const ok = await popup({icon:'⚠️',title:'Apagar projeto',msg:'Isso apaga o projeto e todas as tarefas. Não tem volta.',btns:[{label:'APAGAR',type:'danger',value:true},{label:'Cancelar',type:'cancel',value:false}]})
+  if(!ok) return
+  const projs = projCarregar().filter(p=>p.id!==projAtivoId)
+  projSalvar(projs)
+  projAtivoId = projs.length?projs[0].id:null
+  projRender()
+}
+
+// ─── IA Dev Assistant por projeto ───────────
+const PROJ_IA_KEY_PREFIX = 'proj_ia_'
+function projIaHistKey(id){ return PROJ_IA_KEY_PREFIX+id }
+function projIaHistCarregar(id){ try{ const r=localStorage.getItem(projIaHistKey(id)); return r?JSON.parse(r):[] }catch(e){ return [] } }
+function projIaHistSalvar(id,h){ try{ localStorage.setItem(projIaHistKey(id),JSON.stringify(h)) }catch(e){} }
+
+let projIaHistorico = []
+
+function projIaCarregar(projId){
+  const msgs = document.getElementById('proj-ia-msgs')
+  if(!msgs) return
+  msgs.innerHTML=''
+  const hist = projIaHistCarregar(projId)
+  projIaHistorico = hist.slice(-20).map(m=>({role:m.role,content:m.content}))
+  if(!hist.length){
+    const projs = projCarregar()
+    const proj = projs.find(p=>p.id===projId)
+    iaChatRenderMsgEm(msgs,'ai',`Oi! Sou o Dev Assistant do projeto **${proj?.nome||''}**. 🚀\n\nPosso te ajudar com:\n• Arquitetura e estrutura do projeto\n• Explicar erros e bugs\n• Sugerir tecnologias\n• Revisar ideias de código\n\nComo posso ajudar?`,new Date().toISOString(),true)
+  } else {
+    hist.forEach(m=>iaChatRenderMsgEm(msgs,m.role,m.content,m.ts,true))
+  }
+}
+
+function iaChatRenderMsgEm(container, role, content, ts, init=false){
+  if(!container) return
+  const div = document.createElement('div')
+  div.className = 'ia-msg ia-msg-'+role
+  const conteudo = document.createElement('div')
+  conteudo.className = 'ia-msg-content'
+  if(role === 'ai'){
+    conteudo.innerHTML = iaFormatarTexto(content)
+  } else {
+    conteudo.textContent = content
+  }
+  div.appendChild(conteudo)
+  const hora = document.createElement('div')
+  hora.className='ia-msg-time'
+  hora.textContent=iaHoraLabel(ts ? new Date(ts) : new Date())
+  div.appendChild(hora)
+  container.appendChild(div)
+  container.scrollTop=container.scrollHeight
+}
+
+async function projIaEnviar(){
+  if(!projAtivoId) return
+  const input = document.getElementById('proj-ia-in')
+  const msg = input?.value.trim()
+  if(!msg) return
+  input.value=''
+
+  const msgs = document.getElementById('proj-ia-msgs')
+  const loading = document.getElementById('proj-ia-loading')
+  const ts = new Date().toISOString()
+
+  projIaHistorico.push({role:'user',content:msg})
+  iaChatRenderMsgEm(msgs,'user',msg,ts)
+
+  const hist = projIaHistCarregar(projAtivoId)
+  hist.push({role:'user',content:msg,ts})
+  projIaHistSalvar(projAtivoId,hist)
+
+  if(loading) loading.style.display='flex'
+  try{
+    const projs = projCarregar()
+    const proj = projs.find(p=>p.id===projAtivoId)
+    const contexto = proj ? `PROJETO: ${proj.nome}\nDESCRIÇÃO: ${proj.desc||'não informada'}\nTAREFAS PENDENTES: ${(proj.tarefas||[]).filter(t=>t.status!=='done').map(t=>t.texto).join(', ')||'nenhuma'}\nLINKS: ${(proj.links||[]).map(l=>l.nome+': '+l.url).join(', ')||'nenhum'}` : ''
+
+    const resp = await fetch(GROQ_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},
+      body:JSON.stringify({
+        model:GROQ_CHAT_MODEL,max_tokens:700,
+        messages:[
+          {role:'system',content:`Você é um assistente de desenvolvimento de software para o Kennedy, 17 anos, desenvolvedor em formação (JavaScript, Python, Node.js, HTML/CSS). Seja direto, técnico mas didático, com exemplos de código quando útil. Máximo 250 palavras.\n\n${contexto}`},
+          ...projIaHistorico
+        ]
+      })
+    })
+    const data = await resp.json()
+    let resposta = data.choices?.[0]?.message?.content||'Não consegui responder agora.'
+    const tsAi = new Date().toISOString()
+    projIaHistorico.push({role:'assistant',content:resposta})
+    iaChatRenderMsgEm(msgs,'ai',resposta,tsAi)
+    const hist2 = projIaHistCarregar(projAtivoId)
+    hist2.push({role:'assistant',content:resposta,ts:tsAi})
+    projIaHistSalvar(projAtivoId,hist2)
+    if(projIaHistorico.length>20) projIaHistorico=projIaHistorico.slice(-20)
+  }catch(e){
+    iaChatRenderMsgEm(msgs,'ai','Erro de conexão. Tenta de novo!',new Date().toISOString())
+  }finally{
+    if(loading) loading.style.display='none'
+  }
+}
+
+async function projIaLimpar(){
+  const ok = await popup({icon:'🗑',title:'Limpar chat do projeto',msg:'Apagar histórico desta conversa?',btns:[{label:'APAGAR',type:'danger',value:true},{label:'Cancelar',type:'cancel',value:false}]})
+  if(!ok||!projAtivoId) return
+  try{ localStorage.removeItem(projIaHistKey(projAtivoId)) }catch(e){}
+  projIaHistorico=[]
+  const msgs=document.getElementById('proj-ia-msgs')
+  if(msgs) msgs.innerHTML=''
+  const projs=projCarregar()
+  const proj=projs.find(p=>p.id===projAtivoId)
+  iaChatRenderMsgEm(msgs,'ai',`Chat limpo! Posso te ajudar com o projeto ${proj?.nome||''}?`,new Date().toISOString(),true)
+  toast({title:'Chat limpo',type:'success'})
+}
+
+// ═══════════════════════════════════════════
+// GOOGLE CALENDAR — OAuth via popup
+// ═══════════════════════════════════════════
+const GCAL_KEY = 'gcal_token'
+const GCAL_CLIENT_ID = '%%GOOGLE_CLIENT_ID%%' // usuário configura no README
+
+function gcalTokenSalvar(t){ try{ localStorage.setItem(GCAL_KEY,t) }catch(e){} }
+function gcalTokenCarregar(){ try{ return localStorage.getItem(GCAL_KEY)||null }catch(e){ return null } }
+
+function gcalConectar(){
+  const token = gcalTokenCarregar()
+  if(token){
+    // já conectado — desconectar
+    popup({icon:'📅',title:'Google Calendar',msg:'Você já está conectado. Deseja desconectar?',btns:[{label:'DESCONECTAR',type:'danger',value:true},{label:'Cancelar',type:'cancel',value:false}]}).then(ok=>{
+      if(ok){ try{ localStorage.removeItem(GCAL_KEY) }catch(e){} gcalAtualizarUI(false); toast({title:'Desconectado do Google',type:'info'}) }
+    })
+    return
+  }
+  // Abre popup OAuth
+  const redirect = encodeURIComponent(location.origin+location.pathname)
+  const scope = encodeURIComponent('https://www.googleapis.com/auth/calendar.readonly')
+  const url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GCAL_CLIENT_ID}&redirect_uri=${redirect}&response_type=token&scope=${scope}&prompt=select_account`
+  if(GCAL_CLIENT_ID.includes('%%')){
+    toast({title:'Configure o Client ID do Google',sub:'Veja o README do app',type:'warn'})
+    return
+  }
+  const win = window.open(url,'gcal_auth','width=500,height=620')
+  // Listener para capturar o token quando o popup redireciona de volta
+  const timer = setInterval(()=>{
+    try{
+      if(!win||win.closed){ clearInterval(timer); return }
+      const hash = win.location.hash
+      if(hash&&hash.includes('access_token')){
+        clearInterval(timer)
+        win.close()
+        const params = new URLSearchParams(hash.substring(1))
+        const token = params.get('access_token')
+        if(token){
+          gcalTokenSalvar(token)
+          gcalAtualizarUI(true)
+          gcalSincronizar()
+          toast({title:'Google Calendar conectado!',type:'success'})
+        }
+      }
+    }catch(e){}
+  },500)
+}
+
+function gcalAtualizarUI(conectado){
+  const badge = document.getElementById('gcal-status-badge')
+  const btnTxt = document.getElementById('gcal-btn-txt')
+  const wrap = document.getElementById('gcal-eventos-wrap')
+  if(badge){
+    badge.textContent = conectado?'conectado':'desconectado'
+    badge.className = 'gcal-status '+(conectado?'conectado':'desconectado')
+  }
+  if(btnTxt) btnTxt.textContent = conectado?'Google Calendar (clique para desconectar)':'Conectar Google Calendar'
+  if(wrap) wrap.style.display = conectado?'block':'none'
+}
+
+async function gcalSincronizar(){
+  const token = gcalTokenCarregar()
+  if(!token){ toast({title:'Conecte o Google Calendar primeiro',type:'warn'}); return }
+  const lista = document.getElementById('gcal-lista')
+  if(lista) lista.innerHTML='<div style="color:var(--txt3);font-size:10px;padding:8px">Carregando...</div>'
+  try{
+    const agora = new Date().toISOString()
+    const fim = new Date(Date.now()+30*24*60*60*1000).toISOString()
+    const resp = await fetch(`https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=${agora}&timeMax=${fim}&maxResults=15&singleEvents=true&orderBy=startTime`,{
+      headers:{'Authorization':'Bearer '+token}
+    })
+    if(resp.status===401){
+      try{ localStorage.removeItem(GCAL_KEY) }catch(e){}
+      gcalAtualizarUI(false)
+      toast({title:'Token expirado. Reconecte o Google.',type:'warn'})
+      return
+    }
+    const data = await resp.json()
+    const eventos = data.items||[]
+    if(!eventos.length){
+      if(lista) lista.innerHTML='<div style="color:var(--txt3);font-size:10px;padding:8px 0">Nenhum evento nos próximos 30 dias.</div>'
+      return
+    }
+    if(lista) lista.innerHTML = eventos.map(ev=>{
+      const start = ev.start?.dateTime||ev.start?.date||''
+      const dt = new Date(start)
+      const hora = ev.start?.dateTime ? dt.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}) : 'dia todo'
+      const data2 = dt.toLocaleDateString('pt-BR',{day:'2-digit',month:'short'})
+      return `<div class="gcal-evento">
+        <div>
+          <div class="gcal-evento-hora">${data2} · ${hora}</div>
+          <div class="gcal-evento-cal">${ev.organizer?.displayName||'Google Calendar'}</div>
+        </div>
+        <div class="gcal-evento-titulo">${ev.summary||'Sem título'}</div>
+      </div>`
+    }).join('')
+  }catch(e){
+    if(lista) lista.innerHTML='<div style="color:var(--acc5);font-size:10px;padding:8px 0">Erro ao carregar. Verifique a conexão.</div>'
+  }
+}
+
+// Init Google Calendar UI ao carregar
+;(function(){
+  const token = gcalTokenCarregar()
+  if(token){ gcalAtualizarUI(true); gcalSincronizar() }
+})()
+
+// ═══════════════════════════════════════════
+// INIT NOVAS FUNCIONALIDADES
+// ═══════════════════════════════════════════
+salaRender()
+projRender()
+
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').then(reg => {
-    // Força verificação de atualização
     reg.update()
   }).catch(() => {})
 }
-
-
-
-
-
-
-
-
-
 
 </script>
 </div><!-- end app-shell -->
