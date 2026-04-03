@@ -191,7 +191,7 @@ nav {
 .popup-overlay {
   position:fixed; inset:0; z-index:1500;
   background:#00000070; backdrop-filter:blur(4px);
-  display:flex; align-items:flex-end; justify-content:center;
+  display:none; align-items:flex-end; justify-content:center;
   padding: 20px 12px max(24px,env(safe-area-inset-bottom));
   opacity:0; pointer-events:none;
   transition: opacity .2s;
@@ -2098,6 +2098,106 @@ nav button.active svg {
 .ia-msg-content th { background: var(--bg2); color: var(--acc-soft); padding: 6px 10px; border: 1px solid var(--line); text-align: left; }
 .ia-msg-content td { padding: 5px 10px; border: 1px solid var(--line); color: var(--txt2); }
 
+/* ══════════════════════════════════════════
+   PROJETOS — MELHORIAS VISUAIS
+══════════════════════════════════════════ */
+
+.proj-chip {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px; background: var(--bg2); border: 1px solid var(--line);
+  border-radius: 12px; cursor: pointer; transition: all .2s;
+  margin-bottom: 8px;
+}
+.proj-chip:hover { background: var(--bg1); border-color: var(--acc); }
+.proj-chip.ativo {
+  background: linear-gradient(135deg, var(--acc), color-mix(in srgb, var(--acc) 75%, var(--acc6)));
+  border-color: var(--acc);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--acc) 35%, transparent);
+}
+.proj-chip-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.proj-chip-nome { flex: 1; font-size: 11px; font-weight: 600; }
+.proj-chip-cnt { font-size: 9px; color: var(--txt3); }
+
+.proj-col {
+  display: flex; flex-direction: column; gap: 8px;
+  background: var(--bg2); border: 1px solid var(--line); border-radius: 12px;
+  padding: 12px; min-height: 200px;
+}
+.proj-col-hdr {
+  font-size: 10px; font-weight: 700; letter-spacing: .06em;
+  margin-bottom: 4px; text-transform: uppercase;
+}
+.proj-col-body { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.proj-task {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 12px; background: var(--bg1); border: 1px solid var(--line);
+  border-radius: 8px; font-size: 11px; transition: all .2s;
+}
+.proj-task:hover { border-color: var(--acc); background: color-mix(in srgb, var(--acc) 5%, var(--bg1)); }
+.proj-task-del {
+  background: none; border: none; cursor: pointer; color: var(--txt3);
+  font-size: 12px; padding: 4px 6px; border-radius: 6px; transition: all .2s;
+}
+.proj-task-del:hover { color: var(--txt); background: var(--bg2); }
+.proj-add-task {
+  background: none; border: 1px dashed var(--line); border-radius: 8px;
+  padding: 8px 12px; font-size: 10px; color: var(--txt3); cursor: pointer;
+  font-family: var(--mono); transition: all .2s; margin-top: 4px;
+}
+.proj-add-task:hover { border-color: var(--acc); color: var(--txt); }
+
+.proj-link-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 12px; background: var(--bg1); border: 1px solid var(--line);
+  border-radius: 8px; font-size: 10px; color: var(--acc2); text-decoration: none;
+  transition: all .2s; position: relative;
+}
+.proj-link-chip:hover {
+  border-color: var(--acc2); background: color-mix(in srgb, var(--acc2) 10%, var(--bg1));
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--acc2) 20%, transparent);
+}
+.proj-link-chip svg { width: 10px; height: 10px; }
+.proj-link-del {
+  background: none; border: none; cursor: pointer; color: var(--txt3);
+  font-size: 10px; padding: 4px 6px; margin-left: 4px; transition: all .2s;
+}
+.proj-link-del:hover { color: var(--acc5); }
+
+.proj-doing-section {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--acc) 8%, var(--bg2)), var(--bg2));
+  border: 1px solid color-mix(in srgb, var(--acc) 20%, var(--line));
+  border-radius: 12px; padding: 14px; margin-bottom: 12px;
+}
+.proj-doing-label {
+  font-size: 9px; color: var(--txt3); letter-spacing: .08em; margin-bottom: 8px;
+  text-transform: uppercase; font-weight: 700;
+}
+.proj-doing-input {
+  width: 100%; background: var(--bg1); border: 1px solid var(--line);
+  border-radius: 8px; padding: 10px 12px; color: var(--txt); font-family: var(--mono);
+  font-size: 11px; outline: none; box-sizing: border-box; margin-bottom: 8px;
+}
+.proj-doing-btns {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.proj-doing-btn {
+  flex: 1; min-width: 120px; padding: 8px 12px; border: none; border-radius: 8px;
+  font-size: 10px; font-weight: 600; cursor: pointer; transition: all .2s;
+  font-family: var(--mono); letter-spacing: .05em;
+}
+.proj-doing-btn-generate {
+  background: linear-gradient(135deg, var(--acc), color-mix(in srgb, var(--acc) 75%, var(--acc6)));
+  color: #fff; box-shadow: 0 4px 12px color-mix(in srgb, var(--acc) 35%, transparent);
+}
+.proj-doing-btn-generate:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--acc) 45%, transparent);
+}
+.proj-doing-btn-clear {
+  background: var(--bg2); border: 1px solid var(--line); color: var(--txt2);
+}
+.proj-doing-btn-clear:hover { background: var(--bg1); color: var(--txt); }
+
 </style>
 <body>
 
@@ -2724,6 +2824,35 @@ nav button.active svg {
       </div>
     </div>
 
+    <!-- O que estou fazendo? -->
+    <div class="proj-doing-section">
+      <div class="proj-doing-label">💡 O que você está fazendo?</div>
+      <input type="text" id="proj-doing-input" class="proj-doing-input" placeholder="Ex: Criar um formulário de login com validação..." maxlength="150">
+      <div class="proj-doing-btns">
+        <button class="proj-doing-btn proj-doing-btn-generate" onclick="projIaGerarCodigo()">✨ GERAR CÓDIGO</button>
+        <button class="proj-doing-btn proj-doing-btn-clear" onclick="document.getElementById('proj-doing-input').value=''">LIMPAR</button>
+      </div>
+    </div>
+
+    <!-- Recursos do Projeto -->
+    <div class="sec-header">RECURSOS</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+      <button class="btn btn-ghost" style="font-size:9px;padding:8px 12px;text-align:center" onclick="projExportarJSON()">📥 EXPORTAR JSON</button>
+      <button class="btn btn-ghost" style="font-size:9px;padding:8px 12px;text-align:center" onclick="projExportarHTML()">📄 EXPORTAR HTML</button>
+    </div>
+
+    <!-- Notas e Código -->
+    <div class="sec-header">NOTAS E CÓDIGO</div>
+    <div class="card" style="padding:14px;margin-bottom:12px">
+      <div style="font-size:9px;color:var(--txt3);letter-spacing:.08em;margin-bottom:8px">BASE DE CONHECIMENTO / SNIPPETS</div>
+      <textarea id="proj-notas-input" placeholder="Cole aqui bases de dados, snippets de código ou anotações do projeto..." 
+        style="width:100%;background:var(--bg1);border:1px solid var(--line);border-radius:10px;padding:12px;color:var(--txt);font-family:var(--mono);font-size:11px;outline:none;resize:vertical;min-height:120px;box-sizing:border-box;line-height:1.6"
+        onchange="projSalvarNotas()"></textarea>
+      <div style="display:flex;justify-content:flex-end;margin-top:8px">
+        <button class="btn btn-ghost" style="font-size:9px;padding:6px 12px" onclick="projSalvarNotas()">SALVAR NOTAS</button>
+      </div>
+    </div>
+
     <!-- IA Dev Assistant -->
     <div class="sec-header">IA DEV ASSISTANT</div>
     <div class="ia-chat" id="proj-ia-chat">
@@ -2825,7 +2954,7 @@ nav button.active svg {
 </div>
 
 <!-- MODAL NOVO PROJETO -->
-<div class="popup-overlay" id="proj-modal-overlay" style="display:none;opacity:0;pointer-events:none">
+<div class="popup-overlay" id="proj-modal-overlay">
   <div class="popup-box" style="max-width:340px">
     <div class="popup-box-scroll" style="padding:20px 20px 0">
       <div class="popup-title" id="proj-modal-titulo">NOVO PROJETO</div>
@@ -2862,7 +2991,7 @@ nav button.active svg {
 </div>
 
 <!-- MODAL NOVA TAREFA -->
-<div class="popup-overlay" id="proj-task-overlay" style="display:none;opacity:0;pointer-events:none">
+<div class="popup-overlay" id="proj-task-overlay">
   <div class="popup-box" style="max-width:320px">
     <div class="popup-box-scroll" style="padding:20px 20px 0">
       <div class="popup-title">NOVA TAREFA</div>
@@ -2881,7 +3010,7 @@ nav button.active svg {
 </div>
 
 <!-- MODAL NOVO LINK -->
-<div class="popup-overlay" id="proj-link-overlay" style="display:none;opacity:0;pointer-events:none">
+<div class="popup-overlay" id="proj-link-overlay">
   <div class="popup-box" style="max-width:320px">
     <div class="popup-box-scroll" style="padding:20px 20px 0">
       <div class="popup-title">ADICIONAR LINK</div>
@@ -4329,6 +4458,7 @@ function iaExecutarAcao(texto){
 function popup({ icon='⚠️', title='', msg='', btns=[] }){
   return new Promise(resolve => {
     const ov = document.getElementById('popup-overlay')
+    if(!ov) return
     document.getElementById('popup-icon').textContent  = icon
     document.getElementById('popup-title').textContent = title
     document.getElementById('popup-msg').textContent   = msg
@@ -4341,11 +4471,16 @@ function popup({ icon='⚠️', title='', msg='', btns=[] }){
       el.onclick = () => { fecharPopup(); resolve(b.value) }
       btnsEl.appendChild(el)
     })
+    ov.style.display = 'flex'
+    void ov.offsetWidth
     ov.classList.add('show')
   })
 }
 function fecharPopup(){
-  document.getElementById('popup-overlay').classList.remove('show')
+  const ov = document.getElementById('popup-overlay')
+  if(!ov) return
+  ov.classList.remove('show')
+  setTimeout(() => { ov.style.display = 'none' }, 220)
 }
 document.getElementById('popup-overlay').addEventListener('click', e => {
   if(e.target === e.currentTarget) fecharPopup()
@@ -6378,6 +6513,10 @@ function projRenderDetail(proj){
   const el = id => document.getElementById(id)
   el('proj-nome-titulo').textContent = proj.nome
   el('proj-desc-txt').textContent = proj.desc||''
+  
+  // Carregar notas
+  const notasEl = el('proj-notas-input')
+  if(notasEl) notasEl.value = proj.notas || ''
 
   // Links
   const linksWrap = el('proj-links-wrap')
@@ -6443,17 +6582,22 @@ function projDelLink(i){
 
 function projNovoPop(){
   const overlay = document.getElementById('proj-modal-overlay')
+  if(!overlay) return
   document.getElementById('proj-modal-titulo').textContent = 'NOVO PROJETO'
   document.getElementById('proj-modal-nome').value = ''
   document.getElementById('proj-modal-desc').value = ''
   document.querySelectorAll('.proj-cor-btn').forEach(b=>b.classList.remove('ativa'))
   const ultimo = document.querySelector('.proj-cor-btn[data-cor="#8b5cf6"]')
   if(ultimo) ultimo.classList.add('ativa')
+  
   overlay.style.display = 'flex'
+  // Forçar reflow para a transição de opacidade funcionar
+  void overlay.offsetWidth
+  overlay.classList.add('show')
+  
   // Restaurar onclick do salvar para o padrão
   const btnSalvar = overlay.querySelector('.popup-btn-confirm')
   if(btnSalvar){ btnSalvar.textContent='CRIAR'; btnSalvar.onclick=projModalSalvar }
-  requestAnimationFrame(()=>overlay.classList.add('show'))
   setTimeout(()=>document.getElementById('proj-modal-nome').focus(), 120)
 }
 
@@ -6472,9 +6616,19 @@ function projModalSalvar(){
   const nome = document.getElementById('proj-modal-nome').value.trim()
   if(!nome){ document.getElementById('proj-modal-nome').focus(); toast({title:'Digite o nome do projeto',type:'warn'}); return }
   const desc = document.getElementById('proj-modal-desc').value.trim()
-  const corEl = document.querySelector('.proj-cor-btn.ativa')
-  const cor = corEl ? corEl.dataset.cor : '#8b5cf6'
+  
   const projs = projCarregar()
+  
+  // Lógica de cores únicas
+  const coresDisponiveis = ['#7c3aed', '#06b6d4', '#10b981', '#f59e0b', '#f43f5e', '#8b5cf6', '#ec4899', '#3b82f6']
+  const coresEmUso = projs.map(p => p.cor)
+  let cor = document.querySelector('.proj-cor-btn.ativa')?.dataset.cor
+  
+  // Se a cor selecionada já estiver em uso, tenta pegar a próxima disponível
+  if(!cor || coresEmUso.includes(cor)){
+    cor = coresDisponiveis.find(c => !coresEmUso.includes(c)) || coresDisponiveis[Math.floor(Math.random() * coresDisponiveis.length)]
+  }
+
   const novoId = 'p'+Date.now()
   projs.push({id:novoId,nome,desc,cor,tarefas:[],links:[],iaChat:[]})
   projSalvar(projs)
@@ -6489,14 +6643,18 @@ function projEditar(){
   const proj = projs.find(p=>p.id===projAtivoId)
   if(!proj) return
   const overlay = document.getElementById('proj-modal-overlay')
+  if(!overlay) return
   document.getElementById('proj-modal-titulo').textContent = 'EDITAR PROJETO'
   document.getElementById('proj-modal-nome').value = proj.nome
   document.getElementById('proj-modal-desc').value = proj.desc||''
   document.querySelectorAll('.proj-cor-btn').forEach(b=>{
     b.classList.toggle('ativa', b.dataset.cor===proj.cor)
   })
+  
   overlay.style.display='flex'
-  requestAnimationFrame(()=>overlay.classList.add('show'))
+  void overlay.offsetWidth
+  overlay.classList.add('show')
+  
   const btnSalvar = overlay.querySelector('.popup-btn-confirm')
   btnSalvar.textContent='SALVAR'
   btnSalvar.onclick = ()=>{
@@ -6519,8 +6677,10 @@ function projAddTarefa(status){
   _projTaskStatusPendente = status
   document.getElementById('proj-task-in').value = ''
   const overlay = document.getElementById('proj-task-overlay')
+  if(!overlay) return
   overlay.style.display='flex'
-  requestAnimationFrame(()=>overlay.classList.add('show'))
+  void overlay.offsetWidth
+  overlay.classList.add('show')
   setTimeout(()=>document.getElementById('proj-task-in').focus(),120)
 }
 function projTaskFechar(){
@@ -6546,8 +6706,10 @@ function projAddLink(){
   document.getElementById('proj-link-nome').value=''
   document.getElementById('proj-link-url').value=''
   const overlay = document.getElementById('proj-link-overlay')
+  if(!overlay) return
   overlay.style.display='flex'
-  requestAnimationFrame(()=>overlay.classList.add('show'))
+  void overlay.offsetWidth
+  overlay.classList.add('show')
   setTimeout(()=>document.getElementById('proj-link-nome').focus(),120)
 }
 function projLinkFechar(){
@@ -6567,6 +6729,85 @@ function projLinkSalvar(){
   projSalvar(projs)
   projLinkFechar()
   projRenderDetail(proj)
+}
+
+function projSalvarNotas(){
+  const texto = document.getElementById('proj-notas-input').value
+  const projs = projCarregar()
+  const proj = projs.find(p=>p.id===projAtivoId)
+  if(proj){
+    proj.notas = texto
+    projSalvar(projs)
+    toast({title:'Notas salvas!',type:'success'})
+  }
+}
+
+function projExportarJSON(){
+  const projs = projCarregar()
+  const proj = projs.find(p=>p.id===projAtivoId)
+  if(!proj){ toast({title:'Selecione um projeto',type:'warn'}); return }
+  const json = JSON.stringify(proj, null, 2)
+  const blob = new Blob([json], {type:'application/json'})
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `${proj.nome.replace(/\s+/g,'_')}_backup.json`
+  a.click()
+  URL.revokeObjectURL(url)
+  toast({title:'Projeto exportado!',type:'success'})
+}
+
+function projExportarHTML(){
+  const projs = projCarregar()
+  const proj = projs.find(p=>p.id===projAtivoId)
+  if(!proj){ toast({title:'Selecione um projeto',type:'warn'}); return }
+  
+  const tarefasHtml = (proj.tarefas||[]).map(t=>`<li><strong>${t.status.toUpperCase()}</strong> - ${t.texto}</li>`).join('')
+  const linksHtml = (proj.links||[]).map(l=>`<li><a href="${l.url}" target="_blank">${l.nome}</a></li>`).join('')
+  const notasHtml = proj.notas ? `<pre style="background:#f5f5f5;padding:12px;border-radius:6px;overflow-x:auto">${proj.notas}</pre>` : ''
+  
+  const html = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${proj.nome}</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 40px; color: #333; }
+    h1 { color: ${proj.cor}; }
+    h2 { margin-top: 30px; border-bottom: 2px solid ${proj.cor}; padding-bottom: 10px; }
+    ul { line-height: 1.8; }
+    a { color: ${proj.cor}; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    pre { background: #f5f5f5; padding: 12px; border-radius: 6px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <h1>💫 ${proj.nome}</h1>
+  <p><strong>Descrição:</strong> ${proj.desc||'Não informada'}</p>
+  
+  <h2>Tarefas</h2>
+  <ul>${tarefasHtml||'<li>Nenhuma tarefa</li>'}</ul>
+  
+  <h2>Links</h2>
+  <ul>${linksHtml||'<li>Nenhum link</li>'}</ul>
+  
+  <h2>Notas e Código</h2>
+  ${notasHtml||'<p>Nenhuma nota</p>'}
+  
+  <hr>
+  <p style="color: #999; font-size: 12px;">Exportado de Kennedy App em ${new Date().toLocaleString('pt-BR')}</p>
+</body>
+</html>`
+  
+  const blob = new Blob([html], {type:'text/html'})
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `${proj.nome.replace(/\s+/g,'_')}.html`
+  a.click()
+  URL.revokeObjectURL(url)
+  toast({title:'Projeto exportado como HTML!',type:'success'})
 }
 
 async function projDeletar(){
@@ -6683,6 +6924,73 @@ async function projIaLimpar(){
   const proj=projs.find(p=>p.id===projAtivoId)
   iaChatRenderMsgEm(msgs,'ai',`Chat limpo! Posso te ajudar com o projeto ${proj?.nome||''}?`,new Date().toISOString(),true)
   toast({title:'Chat limpo',type:'success'})
+}
+
+// ─── Gerar CÓDIGO com IA ───────────────────
+async function projIaGerarCodigo(){
+  if(!projAtivoId) return
+  const input = document.getElementById('proj-doing-input')
+  const descricao = input?.value.trim()
+  if(!descricao){ toast({title:'Descreva o que você quer fazer',type:'warn'}); return }
+  
+  const msgs = document.getElementById('proj-ia-msgs')
+  const loading = document.getElementById('proj-ia-loading')
+  const ts = new Date().toISOString()
+  
+  const msgUsuario = `Gera código para: ${descricao}`
+  projIaHistorico.push({role:'user',content:msgUsuario})
+  iaChatRenderMsgEm(msgs,'user',msgUsuario,ts)
+  
+  const hist = projIaHistCarregar(projAtivoId)
+  hist.push({role:'user',content:msgUsuario,ts})
+  projIaHistSalvar(projAtivoId,hist)
+  
+  if(loading) loading.style.display='flex'
+  try{
+    const projs = projCarregar()
+    const proj = projs.find(p=>p.id===projAtivoId)
+    const contexto = proj ? `PROJETO: ${proj.nome}\nDESCRIÇÃO: ${proj.desc||'não informada'}\nNOTAS/CÓDIGO: ${proj.notas||'nenhuma'}\nTAREFAS PENDENTES: ${(proj.tarefas||[]).filter(t=>t.status!=='done').map(t=>t.texto).join(', ')||'nenhuma'}` : ''
+    
+    const resp = await fetch(GROQ_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},
+      body:JSON.stringify({
+        model:GROQ_CHAT_MODEL,max_tokens:1000,
+        messages:[
+          {role:'system',content:`Você é um assistente de desenvolvimento especializado em gerar código prático e funcional. Gere código completo e pronto para usar, com comentários explicativos. Prefira JavaScript, HTML/CSS, Python ou Node.js. Sempre retorne código dentro de blocos \`\`\`.\n\n${contexto}`},
+          ...projIaHistorico
+        ]
+      })
+    })
+    const data = await resp.json()
+    let resposta = data.choices?.[0]?.message?.content||'Não consegui gerar código agora.'
+    const tsAi = new Date().toISOString()
+    projIaHistorico.push({role:'assistant',content:resposta})
+    iaChatRenderMsgEm(msgs,'ai',resposta,tsAi)
+    const hist2 = projIaHistCarregar(projAtivoId)
+    hist2.push({role:'assistant',content:resposta,ts:tsAi})
+    projIaHistSalvar(projAtivoId,hist2)
+    if(projIaHistorico.length>20) projIaHistorico=projIaHistorico.slice(-20)
+    
+    const tarefaTexto = `[IA] ${descricao.substring(0,50)}${descricao.length>50?'...':''}`
+    
+    const projsAtt = projCarregar()
+    const projAtt = projsAtt.find(p=>p.id===projAtivoId)
+    if(projAtt){
+      if(!projAtt.tarefas) projAtt.tarefas=[]
+      projAtt.tarefas.push({id:'t'+Date.now(),texto:tarefaTexto,status:'todo'})
+      projSalvar(projsAtt)
+      projRenderDetail(projAtt)
+      projRender()
+      toast({title:'🚀 Código gerado e salvo como tarefa!',type:'success'})
+    }
+    
+    input.value = ''
+  }catch(e){
+    iaChatRenderMsgEm(msgs,'ai','Erro ao gerar código. Tenta de novo!',new Date().toISOString())
+  }finally{
+    if(loading) loading.style.display='none'
+  }
 }
 
 // ═══════════════════════════════════════════
@@ -6803,6 +7111,17 @@ if ('serviceWorker' in navigator) {
     reg.update()
   }).catch(() => {})
 }
+
+
+
+
+
+
+
+
+
+
+
 
 </script>
 </div><!-- end app-shell -->
